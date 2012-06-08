@@ -17,3 +17,6 @@ site_root/kernel/sc-error.log
 
 site_root/data/THECAND8WA/*
 
+site_root/kernel/wbs.xml
+site_root/dblist/THECAND8WA.xml
+
