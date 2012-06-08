@@ -13,4 +13,7 @@ site_root/kernel/includes/smarty/compiled/*
 
 site_root/kernel/errors.log
 site_root/dblist/wbs.log
+site_root/kernel/sc-error.log
+
+site_root/data/THECAND8WA/*
 
