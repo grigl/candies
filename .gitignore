@@ -1,0 +1,16 @@
+site_root/temp/*
+
+site_root/published/AA/localization/.cache.aa.php
+site_root/published/MW/localization/.cache.mw.php
+site_root/published/SC/localization/.cache.sc.php
+site_root/published/UG/localization/.cache.ug.php
+site_root/published/WG/localization/.cache.wg.php
+site_root/published/wbsadmin/localization/.cache.wbs.php
+
+site_root/data/CANDIES/attachments/SC/temp/loc_cache/*
+
+site_root/kernel/includes/smarty/compiled/*
+
+site_root/kernel/errors.log
+site_root/dblist/wbs.log
+
