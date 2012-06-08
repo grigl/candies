@@ -451,7 +451,7 @@ class News extends ComponentModule {
 		$Subscribers = subscrGetAllSubscriber( $callBackParam, $count_row);
 		$emails = array();
 		foreach ($Subscribers as $subscriber){
-			if (preg_match("/^[a-z0-9_-]+(\.[a-z0-9_-]+)*@([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$/i", $subscriber["Email"])){
+			if (preg_match("/^[a-z0-9_+-]+(\.[a-z0-9_+-]+)*@([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$/i", $subscriber["Email"])){
 				$emails[] = $subscriber["Email"];
 			}
 		}
@@ -533,4 +533,4 @@ class News extends ComponentModule {
 		$RSSFeed->generateFeed(DIR_RSS."/blog-news.xml");
 	}
 }
-?>
+

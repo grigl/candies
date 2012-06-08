@@ -690,7 +690,7 @@ function regVerifyContactInfo( $login, $cust_password1, $cust_password2, $Email,
 	if ( trim($last_name) == "" ) $error = translate("err_input_name");
 	else
 	if ( trim($Email) == "" ) $error = translate("err_input_email");
-	else if(!preg_match("/^[a-z0-9_-]+(\.[a-z0-9_-]+)*@([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$/i", $Email) )
+	else if(!preg_match("/^[a-z0-9_+-]+(\.[a-z0-9_+-]+)*@([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$/i", $Email) )
 	{ //e-mail validation
 		$error = translate("err_input_email");
 	}
@@ -1080,4 +1080,4 @@ function _getBaseCustomerInfo($customer_id)
     $row = db_fetch_assoc($res);
     return $row;
 }
-?>
+
