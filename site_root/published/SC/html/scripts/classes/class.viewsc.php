@@ -16,7 +16,7 @@ class ViewSC extends Smarty {
 		
 		$this->security_settings['PHP_HANDLING'] = false;
 		$this->security_settings['MODIFIER_FUNCS'] = array();
-		$this->security_settings['PHP_TAGS'] = false;
+		$this->security_settings['PHP_TAGS'] = true;
 		$this->security_settings['IF_FUNCS'] = array('true', 'false', 'null', 'NULL');
 		$this->security_settings['INCLUDE_ANY'] = false;
 		$this->secure_dir = array(DIR_THEMES, DIR_TPLS, DIR_REPOTHEMES, DIR_MODULES.'/shipping/templates');
