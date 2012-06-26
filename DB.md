@@ -4,3 +4,4 @@
 - Модификатор is_male `modifier.is_male.php` — slug категории «М»
 - Вывод фичеред товаров — id списков товаров
 - Удаление лишних пунктов в админке: https://github.com/whitescape/candies/blob/master/site_root/published/SC/html/scripts/frame.php#L82
+- «status_name != 'Новый'» в двух местах в site_root/published/SC/html/scripts/modules/products/exportto1c/class.exportto1c.php
