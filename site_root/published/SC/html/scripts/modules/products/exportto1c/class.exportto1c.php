@@ -229,7 +229,7 @@ class ExportTo1c extends Module {
 						 ?#ORDER_STATUS_CHANGE_LOG_TABLE.status_change_time ,
 						 ?#ORDER_STATUS_CHANGE_LOG_TABLE.status_comment
 						FROM ?#ORDER_STATUS_CHANGE_LOG_TABLE 
-						WHERE status_name != 'Новый' AND status_change_time > ? ORDER BY ?#ORDER_STATUS_CHANGE_LOG_TABLE.status_change_time DESC) AS tbl
+						WHERE status_change_time > ? ORDER BY ?#ORDER_STATUS_CHANGE_LOG_TABLE.status_change_time DESC) AS tbl
 						LEFT JOIN ?#ORDERS_TABLE ON  ?#ORDERS_TABLE.orderID = tbl.orderID 
 						 GROUP BY tbl.orderID", CONF_1C_TIME_LASTEXPORT);
 					
@@ -786,9 +786,9 @@ $xml .= '</КоммерческаяИнформация>';
 		
 		if ($this->is_orders_mode()) {		
 			
-			$where = 'WHERE status_name != "Новый"';
+			$where = '';
 			if ( !$this->is_export_ordersall() ) { 
-				$where .= " AND status_change_time > '".CONF_1C_TIME_LASTEXPORT."'";
+				$where = "WHERE status_change_time > '".CONF_1C_TIME_LASTEXPORT."'";
 			}
 			
 			$orders = db_phquery("
