@@ -24,3 +24,5 @@ deploy-ftp.log
 
 /candies.sublime-project
 /candies.sublime-workspace
+
+site_root/importAdvensedStock_settings.php
