@@ -324,8 +324,23 @@ $xml = '<КоммерческаяИнформация ВерсияСхемы="2.
 				</Контакты>
 			</Контрагент>
 		</Контрагенты>
-		<Время>'.$time.'</Время>
-		<Комментарий>'.htmlspecialchars($order['status_comment']).'</Комментарий>';
+		<Время>'.$time.'</Время>';
+
+		$products = db_phquery_fetch(DBRFETCH_ASSOC_ALL, "SELECT *, ?#ORDERED_CARTS_TABLE.Price as PriceInOrder, ?#ORDERED_CARTS_TABLE.name as fullName FROM ?#ORDERED_CARTS_TABLE
+			LEFT JOIN ?#SHOPPING_CART_ITEMS_TABLE
+				ON ?#ORDERED_CARTS_TABLE.itemID = ?#SHOPPING_CART_ITEMS_TABLE.itemID
+			LEFT JOIN ?#PRODUCTS_TABLE 
+				ON ?#SHOPPING_CART_ITEMS_TABLE.productID = ?#PRODUCTS_TABLE.productID
+			 
+			WHERE orderID = ?", $order["orderID"]);
+
+		$fullProductNames = array();
+		foreach ($products as $product) {
+			$fullProductNames[] = $product['fullName'];
+		}
+		$fullProductNames = implode(', ', $fullProductNames);
+
+		$xml .= '<Комментарий>'.htmlspecialchars("{$fullProductNames} /// {$order['status_comment']}").'</Комментарий>';
 
 		if ($order['order_discount'] > 0) {
 			$xml .='	
@@ -340,13 +355,7 @@ $xml = '<КоммерческаяИнформация ВерсияСхемы="2.
 		$xml .='
 		<Товары>';					
 
-		$products = db_phquery_fetch(DBRFETCH_ASSOC_ALL, "SELECT *, ?#ORDERED_CARTS_TABLE.Price as PriceInOrder FROM ?#ORDERED_CARTS_TABLE
-			LEFT JOIN ?#SHOPPING_CART_ITEMS_TABLE
-				ON ?#ORDERED_CARTS_TABLE.itemID = ?#SHOPPING_CART_ITEMS_TABLE.itemID
-			LEFT JOIN ?#PRODUCTS_TABLE 
-				ON ?#SHOPPING_CART_ITEMS_TABLE.productID = ?#PRODUCTS_TABLE.productID
-			 
-			WHERE orderID = ?", $order["orderID"]);
+		
 		foreach ($products as $product) {
 				
 			$xml .=
