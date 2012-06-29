@@ -47,6 +47,7 @@ function loadAdvencedRest() {
 
 	// Выбрасываем все текущие данные
 	mysql_query('truncate table advensed_stock');
+	mysql_query('truncate table SC_product_options_set');
 	
 	$stock = get("stock/xml");
 	//dumpXmlObject($stock);
@@ -108,6 +109,8 @@ function loadAdvencedRest() {
 			$productId = $productId['productID'];
 
 			mysql_query("insert into advensed_stock (productID, colorID, sizeID, amount) values ($productId, $sizeId, $colorId, $amount)");
+			mysql_query("insert into SC_product_options_set (productID, optionID, variantID) values ($productId, $colorOptionId, $colorId)");
+			mysql_query("insert into SC_product_options_set (productID, optionID, variantID) values ($productId, $sizeOptionId, $sizeId)");
 
 			echo "{$fullName} // {$externalId} ($productId) // {$size} ($sizeId) // {$color} ($colorId) // {$amount} — Ok\n";
 		}
