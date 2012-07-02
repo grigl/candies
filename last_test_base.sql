@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 10.126.0.29
--- Generation Time: Jun 29, 2012 at 06:46 PM
+-- Generation Time: Jul 02, 2012 at 01:40 PM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.15
 
@@ -18,8 +18,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `thecand8_wa`
 --
-CREATE DATABASE `thecand8_wa` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `thecand8_wa`;
 
 -- --------------------------------------------------------
 
@@ -41,6 +39,29 @@ CREATE TABLE IF NOT EXISTS `ACCESSRIGHTS_LINK` (
 -- Dumping data for table `ACCESSRIGHTS_LINK`
 --
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `advensed_stock`
+--
+
+DROP TABLE IF EXISTS `advensed_stock`;
+CREATE TABLE IF NOT EXISTS `advensed_stock` (
+  `productID` int(11) NOT NULL,
+  `colorID` int(11) NOT NULL,
+  `sizeID` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  PRIMARY KEY  (`productID`,`colorID`,`sizeID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `advensed_stock`
+--
+
+INSERT INTO `advensed_stock` (`productID`, `colorID`, `sizeID`, `amount`) VALUES
+(674, 9, 5, 5),
+(674, 8, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -394,144 +415,6 @@ CREATE TABLE IF NOT EXISTS `MMSENT` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `SC__courier_rates`
---
-
-DROP TABLE IF EXISTS `SC__courier_rates`;
-CREATE TABLE IF NOT EXISTS `SC__courier_rates` (
-  `module_id` int(10) unsigned NOT NULL default '0',
-  `orderAmount` float default NULL,
-  `rate` float default NULL,
-  `isPercent` tinyint(1) default NULL,
-  KEY `module_id` (`module_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `SC__courier_rates`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `SC__courier_rates2`
---
-
-DROP TABLE IF EXISTS `SC__courier_rates2`;
-CREATE TABLE IF NOT EXISTS `SC__courier_rates2` (
-  `module_id` int(10) unsigned NOT NULL default '0',
-  `orderAmount` float default NULL,
-  `rate` float default NULL,
-  `isPercent` tinyint(1) default NULL,
-  KEY `module_id` (`module_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `SC__courier_rates2`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `SC__intershipper_carriers`
---
-
-DROP TABLE IF EXISTS `SC__intershipper_carriers`;
-CREATE TABLE IF NOT EXISTS `SC__intershipper_carriers` (
-  `module_id` int(10) unsigned NOT NULL default '0',
-  `carrierID` int(11) default NULL,
-  `account` varchar(50) default NULL,
-  `invoiced` tinyint(1) default NULL,
-  KEY `module_id` (`module_id`,`carrierID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `SC__intershipper_carriers`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `SC__module_payment_invoice_jur`
---
-
-DROP TABLE IF EXISTS `SC__module_payment_invoice_jur`;
-CREATE TABLE IF NOT EXISTS `SC__module_payment_invoice_jur` (
-  `module_id` int(10) unsigned default NULL,
-  `orderID` int(11) default NULL,
-  `company_name` varchar(64) default NULL,
-  `company_inn` varchar(64) default NULL,
-  `nds_included` int(11) default '0',
-  `nds_rate` float default '0',
-  `RUR_rate` float default '1'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `SC__module_payment_invoice_jur`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `SC__module_payment_invoice_phys`
---
-
-DROP TABLE IF EXISTS `SC__module_payment_invoice_phys`;
-CREATE TABLE IF NOT EXISTS `SC__module_payment_invoice_phys` (
-  `module_id` int(10) unsigned default NULL,
-  `orderID` int(11) default NULL,
-  `order_amount_string` varchar(64) default NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `SC__module_payment_invoice_phys`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `SC__module_shipping_bycountries_byzones_rates`
---
-
-DROP TABLE IF EXISTS `SC__module_shipping_bycountries_byzones_rates`;
-CREATE TABLE IF NOT EXISTS `SC__module_shipping_bycountries_byzones_rates` (
-  `module_id` int(10) unsigned NOT NULL default '0',
-  `countryID` int(11) default NULL,
-  `zoneID` int(11) default NULL,
-  `shipping_rate` float default '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `SC__module_shipping_bycountries_byzones_rates`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `SC__module_shipping_bycountries_byzones_rates_percent`
---
-
-DROP TABLE IF EXISTS `SC__module_shipping_bycountries_byzones_rates_percent`;
-CREATE TABLE IF NOT EXISTS `SC__module_shipping_bycountries_byzones_rates_percent` (
-  `module_id` int(10) unsigned NOT NULL default '0',
-  `countryID` int(11) default NULL,
-  `zoneID` int(11) default NULL,
-  `shipping_rate` float default '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `SC__module_shipping_bycountries_byzones_rates_percent`
---
-
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `SC_aff_commissions`
 --
 
@@ -643,56 +526,25 @@ CREATE TABLE IF NOT EXISTS `SC_categories` (
   KEY `slug` (`slug`),
   KEY `sort_order` (`sort_order`),
   KEY `name_en` (`name_en`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=572 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=573 ;
 
 --
 -- Dumping data for table `SC_categories`
 --
 
 INSERT INTO `SC_categories` (`categoryID`, `parent`, `products_count`, `picture`, `products_count_admin`, `sort_order`, `viewed_times`, `allow_products_comparison`, `allow_products_search`, `show_subcategories_products`, `name_en`, `description_en`, `meta_title_en`, `meta_description_en`, `meta_keywords_en`, `slug`, `name_ru`, `description_ru`, `meta_title_ru`, `meta_description_ru`, `meta_keywords_ru`, `vkontakte_type`, `id_1c`) VALUES
-(1, NULL, 9, NULL, 9, 0, 0, 0, 1, 1, NULL, NULL, NULL, NULL, NULL, '', 'ROOT', NULL, NULL, NULL, NULL, 0, NULL),
-(560, 558, 1, '', 1, 0, 0, 0, 0, 0, '', '', '', '', '', '', 'Рибок', '', '', '', '', 0, 'hBw7bCxuhJqHn9TbtmfYP0'),
-(561, 558, 1, '', 1, 0, 0, 0, 0, 0, '', '', '', '', '', '', 'Пума', '', '', '', '', 0, 'bWSfNCcHhF_rLsASY12s43'),
-(562, 1, 3, '', 3, 0, 2, 0, 0, 0, '', '', '', '', '', '', 'Ж', '', '', '', '', 0, 'MNyWO-zYiP29gI0hUMEkJ1'),
-(563, 562, 1, '', 1, 0, 8, 0, 0, 0, '', '', '', '', '', '', 'Адидас', '', '', '', '', 0, 'aPqZnI3MgCqj69Ku3hDlf0'),
-(564, 562, 1, '', 1, 0, 7, 0, 0, 0, '', '', '', '', '', '', 'Рибок', '', '', '', '', 0, 'ZNfKP9ToheWNscwslhfkV0'),
-(559, 558, 1, '', 1, 0, 2, 0, 0, 0, '', '', '', '', '', '', 'Адидас', '', '', '', '', 0, 'oyFI7l1-hXSUU6SHsMJ_Z0'),
-(558, 1, 4, '', 4, 0, 1, 0, 0, 0, '', '', '', '', '', '', 'М', '', '', '', '', 0, 'i_YRzNqmin__dy7_jhu3X0'),
-(565, 562, 1, '', 1, 0, 7, 0, 0, 0, '', '', '', '', '', '', 'Найк', '', '', '', '', 0, 'vN9QvoKmixeKByi509Xb71'),
-(566, 558, 1, '', 1, 0, 11, 0, 0, 0, '', '', '', '', '', '', 'Doctor Martines', '', '', '', '', 0, 'rv0zn_nWhlWupq7lyremB3'),
-(567, 566, 1, '', 1, 0, 6, 0, 0, 0, '', '', '', '', '', '', 'SS12', '', '', '', '', 0, '4xu6VMFYiW_GGZyR_DoaT2'),
-(570, 1, 1, '', 1, 0, 0, 0, 0, 0, '', '', '', '', '', '', 'Товары интернет-магазинов', '', '', '', '', 0, '6j_RYTFZhzKv4_vIor04m1'),
-(571, 570, 1, '', 1, 0, 1, 0, 0, 0, '', '', '', '', '', '', 'http://thecandies.ru/published/SC/html/scripts/callbackhandlers/1c_exchange.php', '', '', '', '', 0, 'eX7hMs-Ig366PjZ1JhGlA0');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `SC_category__product_options`
---
-
-DROP TABLE IF EXISTS `SC_category__product_options`;
-CREATE TABLE IF NOT EXISTS `SC_category__product_options` (
-  `optionID` int(11) NOT NULL default '0',
-  `categoryID` int(11) NOT NULL default '0',
-  `set_arbitrarily` int(11) default '1',
-  PRIMARY KEY  (`optionID`,`categoryID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `SC_category__product_options`
---
-
-INSERT INTO `SC_category__product_options` (`optionID`, `categoryID`, `set_arbitrarily`) VALUES
-(12, 543, 1),
-(12, 544, 1),
-(12, 545, 1),
-(12, 546, 1),
-(12, 547, 1),
-(12, 548, 1),
-(12, 549, 1),
-(12, 550, 1),
-(12, 551, 1),
-(12, 552, 1);
+(1, NULL, 7, NULL, 7, 0, 0, 0, 1, 1, NULL, NULL, NULL, NULL, NULL, '', 'ROOT', NULL, NULL, NULL, NULL, 0, NULL),
+(560, 558, 1, '', 1, 0, 2, 0, 0, 0, '', '', '', '', '', '', 'Рибок', '', '', '', '', 0, 'hBw7bCxuhJqHn9TbtmfYP0'),
+(561, 558, 1, '', 1, 0, 2, 0, 0, 0, '', '', '', '', '', '', 'Пума', '', '', '', '', 0, 'bWSfNCcHhF_rLsASY12s43'),
+(562, 572, 3, '', 3, 0, 7, 0, 0, 0, '', '', '', '', '', '', 'Ж', '', '', '', '', 0, 'MNyWO-zYiP29gI0hUMEkJ1'),
+(563, 562, 1, '', 1, 0, 11, 0, 0, 0, '', '', '', '', '', '', 'Адидас', '', '', '', '', 0, 'aPqZnI3MgCqj69Ku3hDlf0'),
+(564, 562, 1, '', 1, 0, 10, 0, 0, 0, '', '', '', '', '', '', 'Рибок', '', '', '', '', 0, 'ZNfKP9ToheWNscwslhfkV0'),
+(559, 558, 1, '', 1, 0, 6, 0, 0, 0, '', '', '', '', '', '', 'Адидас', '', '', '', '', 0, 'oyFI7l1-hXSUU6SHsMJ_Z0'),
+(558, 572, 4, '', 4, 0, 4, 0, 0, 0, '', '', '', '', '', '', 'М', '', '', '', '', 0, 'i_YRzNqmin__dy7_jhu3X0'),
+(565, 562, 1, '', 1, 0, 13, 0, 0, 0, '', '', '', '', '', '', 'Найк', '', '', '', '', 0, 'vN9QvoKmixeKByi509Xb71'),
+(566, 558, 1, '', 1, 0, 13, 0, 0, 0, '', '', '', '', '', '', 'Doctor Martines', '', '', '', '', 0, 'rv0zn_nWhlWupq7lyremB3'),
+(567, 566, 0, '', 0, 0, 7, 0, 0, 0, '', '', '', '', '', '', 'SS12', '', '', '', '', 0, '4xu6VMFYiW_GGZyR_DoaT2'),
+(572, 1, 7, '', 7, 0, 1, 0, 0, 0, '', '', '', '', '', '', 'Candies', '', '', '', '', 0, 'nzWnQLK7gd6rDPp3SS35N0');
 
 -- --------------------------------------------------------
 
@@ -733,6 +585,36 @@ CREATE TABLE IF NOT EXISTS `SC_category_product_options__variants` (
 -- Dumping data for table `SC_category_product_options__variants`
 --
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SC_category__product_options`
+--
+
+DROP TABLE IF EXISTS `SC_category__product_options`;
+CREATE TABLE IF NOT EXISTS `SC_category__product_options` (
+  `optionID` int(11) NOT NULL default '0',
+  `categoryID` int(11) NOT NULL default '0',
+  `set_arbitrarily` int(11) default '1',
+  PRIMARY KEY  (`optionID`,`categoryID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `SC_category__product_options`
+--
+
+INSERT INTO `SC_category__product_options` (`optionID`, `categoryID`, `set_arbitrarily`) VALUES
+(12, 543, 1),
+(12, 544, 1),
+(12, 545, 1),
+(12, 546, 1),
+(12, 547, 1),
+(12, 548, 1),
+(12, 549, 1),
+(12, 550, 1),
+(12, 551, 1),
+(12, 552, 1);
 
 -- --------------------------------------------------------
 
@@ -1069,6 +951,43 @@ INSERT INTO `SC_custgroups` (`custgroupID`, `custgroup_discount`, `sort_order`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `SC_customers`
+--
+
+DROP TABLE IF EXISTS `SC_customers`;
+CREATE TABLE IF NOT EXISTS `SC_customers` (
+  `customerID` int(11) NOT NULL auto_increment,
+  `Login` varchar(32) NOT NULL,
+  `cust_password` varchar(255) NOT NULL default '',
+  `Email` varchar(64) default NULL,
+  `first_name` varchar(32) default NULL,
+  `last_name` varchar(32) default NULL,
+  `subscribed4news` int(11) default NULL,
+  `custgroupID` int(11) default NULL,
+  `addressID` int(11) default NULL,
+  `reg_datetime` datetime default NULL,
+  `CID` int(11) default NULL,
+  `affiliateID` int(11) NOT NULL default '0',
+  `affiliateEmailOrders` int(11) NOT NULL default '1',
+  `affiliateEmailPayments` int(11) NOT NULL default '1',
+  `ActivationCode` varchar(16) NOT NULL default '',
+  `vkontakte_id` int(11) default NULL,
+  PRIMARY KEY  (`customerID`),
+  KEY `AFFILIATEID` (`affiliateID`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `SC_customers`
+--
+
+INSERT INTO `SC_customers` (`customerID`, `Login`, `cust_password`, `Email`, `first_name`, `last_name`, `subscribed4news`, `custgroupID`, `addressID`, `reg_datetime`, `CID`, `affiliateID`, `affiliateEmailOrders`, `affiliateEmailPayments`, `ActivationCode`, `vkontakte_id`) VALUES
+(1, 'rp', '0LnRhtGD0LrQtdC9', 'rp+candies@whitescape.com', 'rp', 'rp', 1, 3, 1, '2012-06-08 17:51:46', 3, 0, 1, 1, '', NULL),
+(2, 'rsedykh', 'dGVzdHRlc3Q=', 'rsedykh@whitescape.com', 'Роман', 'Седых', 0, 3, 0, '2012-06-25 14:46:51', 0, 0, 0, 0, '', 0),
+(3, '', '', 'rp@whitescape.com', 'Имя', 'Фамилия', 1, 3, 0, '2012-06-26 16:33:10', 0, 0, 0, 0, '', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `SC_customer_addresses`
 --
 
@@ -1166,43 +1085,6 @@ CREATE TABLE IF NOT EXISTS `SC_customer_reg_fields_values_quickreg` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `SC_customers`
---
-
-DROP TABLE IF EXISTS `SC_customers`;
-CREATE TABLE IF NOT EXISTS `SC_customers` (
-  `customerID` int(11) NOT NULL auto_increment,
-  `Login` varchar(32) NOT NULL,
-  `cust_password` varchar(255) NOT NULL default '',
-  `Email` varchar(64) default NULL,
-  `first_name` varchar(32) default NULL,
-  `last_name` varchar(32) default NULL,
-  `subscribed4news` int(11) default NULL,
-  `custgroupID` int(11) default NULL,
-  `addressID` int(11) default NULL,
-  `reg_datetime` datetime default NULL,
-  `CID` int(11) default NULL,
-  `affiliateID` int(11) NOT NULL default '0',
-  `affiliateEmailOrders` int(11) NOT NULL default '1',
-  `affiliateEmailPayments` int(11) NOT NULL default '1',
-  `ActivationCode` varchar(16) NOT NULL default '',
-  `vkontakte_id` int(11) default NULL,
-  PRIMARY KEY  (`customerID`),
-  KEY `AFFILIATEID` (`affiliateID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `SC_customers`
---
-
-INSERT INTO `SC_customers` (`customerID`, `Login`, `cust_password`, `Email`, `first_name`, `last_name`, `subscribed4news`, `custgroupID`, `addressID`, `reg_datetime`, `CID`, `affiliateID`, `affiliateEmailOrders`, `affiliateEmailPayments`, `ActivationCode`, `vkontakte_id`) VALUES
-(1, 'rp', '0LnRhtGD0LrQtdC9', 'rp+candies@whitescape.com', 'rp', 'rp', 1, 3, 1, '2012-06-08 17:51:46', 3, 0, 1, 1, '', NULL),
-(2, 'rsedykh', 'dGVzdHRlc3Q=', 'rsedykh@whitescape.com', 'Роман', 'Седых', 0, 3, 0, '2012-06-25 14:46:51', 0, 0, 0, 0, '', 0),
-(3, '', '', 'rp@whitescape.com', 'Имя', 'Фамилия', 1, 3, 0, '2012-06-26 16:33:10', 0, 0, 0, 0, '', 0);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `SC_discount_coupons`
 --
 
@@ -1251,6 +1133,187 @@ CREATE TABLE IF NOT EXISTS `SC_discussions` (
 -- Dumping data for table `SC_discussions`
 --
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SC_divisions`
+--
+
+DROP TABLE IF EXISTS `SC_divisions`;
+CREATE TABLE IF NOT EXISTS `SC_divisions` (
+  `xID` int(10) unsigned NOT NULL auto_increment,
+  `xName` varchar(255) NOT NULL default '',
+  `xKey` varchar(255) NOT NULL default '',
+  `xUnicKey` varchar(255) NOT NULL default '',
+  `xParentID` int(10) unsigned NOT NULL default '0',
+  `xEnabled` tinyint(1) NOT NULL default '0',
+  `xPriority` smallint(5) unsigned NOT NULL default '0',
+  `xTemplate` varchar(100) NOT NULL default '',
+  `xLinkDivisionUKey` varchar(30) NOT NULL default '',
+  PRIMARY KEY  (`xID`,`xParentID`),
+  KEY `xUnicKey` (`xUnicKey`),
+  KEY `xEnabled` (`xEnabled`),
+  KEY `xPriority` (`xPriority`),
+  KEY `xParentID` (`xParentID`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=212 ;
+
+--
+-- Dumping data for table `SC_divisions`
+--
+
+INSERT INTO `SC_divisions` (`xID`, `xName`, `xKey`, `xUnicKey`, `xParentID`, `xEnabled`, `xPriority`, `xTemplate`, `xLinkDivisionUKey`) VALUES
+(1, 'pgn_mainpage', '', 'TitlePage', 0, 1, 10, 'frame.html', ''),
+(6, 'sub hello', '', '', 2, 0, 0, '', ''),
+(8, 'Администрирование', '', 'admin', 0, 1, 0, 'backend/index.html', 'admin_orders_list'),
+(9, 'pgn_catalog', '', 'catalog', 8, 1, 14, '', 'categorygoods'),
+(10, 'pgn_orders', '', 'admin_orders', 8, 1, 18, '', 'admin_orders_list'),
+(11, 'pgn_settings', '', '', 8, 1, 8, '', 'bsettings'),
+(12, 'pgn_modules', '', '', 8, 1, 12, '', 'product_widgets'),
+(14, 'pgn_products_categories', '', 'categorygoods', 9, 1, 20, '', ''),
+(15, 'pgn_import_products', '', '', 9, 1, 16, '', ''),
+(16, 'pgn_export_products', '', '', 9, 1, 14, '', ''),
+(17, 'Синхронизация баз данных', '', '', 9, 0, 4, '', ''),
+(18, 'pgn_product_customparams', '', '', 9, 1, 10, '', ''),
+(20, 'pgn_product_reviews', '', '', 9, 1, 18, '', ''),
+(21, 'pgn_orders', '', 'admin_orders_list', 10, 1, 8, '', ''),
+(22, 'pgn_customers', '', 'admin_users_list', 89, 1, 8, '', ''),
+(24, 'pgn_general_settings', '', 'bsettings', 11, 1, 100, '', ''),
+(25, 'pgn_shipping_methods', '', '', 11, 1, 80, '', ''),
+(26, 'pgn_payment_methods', '', '', 11, 1, 70, '', ''),
+(29, 'pgn_mainpage', '', 'home', 1, 1, 76, '', 'TitlePage'),
+(30, 'pgn_my_account', '', 'office', 1, 0, 74, '', ''),
+(32, 'pgn_feedback', '', 'feedback', 1, 1, 66, '', ''),
+(33, 'pgn_linkexchange', '', 'linkexchange', 1, 1, 64, '', ''),
+(34, 'pgn_product', '', 'product', 1, 0, 50, '', ''),
+(35, 'pgn_news', '', 'news', 1, 1, 56, '', ''),
+(36, 'pgn_discuss_product', '', 'discuss_product', 1, 0, 54, '', ''),
+(37, 'pgn_cart', '', 'cart', 1, 0, 58, '', ''),
+(38, 'pgn_contact_info', '', 'contact_info', 30, 1, 8, '', ''),
+(39, 'pgn_address_book', '', 'address_book', 30, 1, 7, '', ''),
+(40, 'pgn_order_history', '', 'order_history', 30, 1, 6, '', ''),
+(42, 'pgn_affiliate_program', '', 'affiliate_program', 30, 0, 2, '', 'affiliate_balance'),
+(43, 'pgn_customer_fields', '', '', 11, 1, 30, '', ''),
+(44, 'pgn_add_address', '', 'add_address', 39, 0, 1, '', ''),
+(45, 'pgn_edit_address', '', 'address_editor', 39, 0, 2, '', ''),
+(46, 'pgn_order_detailed', '', 'order_detailed', 40, 0, 0, '', ''),
+(49, 'pgn_affiliate_balance', '', 'affiliate_balance', 42, 1, 0, '', ''),
+(50, 'pgn_affpr_payments_history', '', 'affiliate_history', 42, 1, 0, '', ''),
+(51, 'pgn_affpr_earn_money', '', 'affiliate_money', 42, 1, 0, '', ''),
+(52, 'pgn_affilite_program', '', 'admin_affprogram', 89, 1, 7, '', ''),
+(53, 'pgn_affiliate_settings', '', 'affiliate_settings', 42, 1, 0, '', ''),
+(54, 'pgn_register', '', 'register', 1, 1, 72, '', ''),
+(55, 'pgn_successful_registration', '', 'successful_registration', 1, 0, 46, '', ''),
+(59, 'pgn_change_address', '', 'change_address', 1, 0, 0, '', ''),
+(67, 'pgn_link_exchange_admin', '', '', 12, 1, 70, '', ''),
+(68, 'pgn_news_administration', '', 'manage_news', 12, 1, 90, '', ''),
+(69, 'pgn_survey_administration', '', '', 12, 1, 80, '', ''),
+(70, 'pgn_transaction_result', '', 'transaction_result', 1, 0, 48, '', ''),
+(71, 'Список модулей', '', 'modules_list', 12, 0, 16, '', ''),
+(72, 'pgn_export2googlebase', '', '', 9, 1, 12, '', ''),
+(73, 'pgn_yandex_market', '', '', 9, 1, 11, '', ''),
+(74, 'pgn_currency_types', '', 'currencies', 11, 1, 90, '', ''),
+(75, 'pgn_countries', '', '', 11, 1, 60, '', ''),
+(76, 'pgn_regions', '', '', 11, 1, 50, '', ''),
+(77, 'pgn_taxes', '', '', 11, 1, 40, '', ''),
+(79, 'pgn_aux_pages', '', 'aux_pages', 12, 1, 100, '', ''),
+(87, 'pgn_order_statuses', '', '', 10, 1, 7, '', ''),
+(88, 'pgn_custgroups', '', 'admin_custgroups', 89, 1, 6, '', ''),
+(89, 'pgn_customers', '', 'customers', 8, 1, 16, '', 'admin_users_list'),
+(90, 'pgn_user_info', '', 'user_info', 22, 0, 0, '', 'admin_contact_info'),
+(91, 'pgn_contact_info', '', 'admin_contact_info', 90, 1, 11, '', ''),
+(92, 'pgn_address_book', '', '', 90, 1, 10, '', ''),
+(93, 'pgn_order_history', '', 'admin_user_order_history', 90, 1, 6, '', ''),
+(95, 'affp_title', '', '', 90, 1, 2, '', ''),
+(96, 'pgn_order_detailed', '', 'admin_order_detailed', 21, 0, 0, '', ''),
+(98, 'pgn_divsettings', '', 'div_settings', 23, 0, 0, '', ''),
+(99, 'pgn_newsletter_subscribers', '', '', 89, 1, 2, '', ''),
+(100, 'pgn_discounts', '', 'discount_settings', 10, 1, 6, '', ''),
+(102, 'pgn_home', '', 'home', 8, 0, 2, '', 'TitlePage'),
+(103, 'pgn_reports', '', '', 8, 1, 13, '', 'sales_report'),
+(104, 'pgn_categories_reports', '', '', 103, 1, 80, '', ''),
+(106, 'pgn_products_reports', '', '', 103, 1, 90, '', ''),
+(107, 'pgn_pricelist', '', 'pricelist', 1, 1, 70, '', ''),
+(108, 'Настройки категории', '', 'category_settings', 14, 0, 0, '', ''),
+(109, 'pgn_addmod_product', '', 'product_settings', 14, 0, 0, '', ''),
+(110, 'pgn_addmod_product', '', 'option_value_configurator', 109, 0, 0, 'backend/product_option_configuration.tpl.html', ''),
+(111, 'Рекомендуемые товары', '', 'related_products_setup', 109, 0, 0, 'backend/related_products_setup.tpl.html', ''),
+(113, 'pgn_print_version', '', 'printable', 1, 0, 24, '', ''),
+(114, 'pgn_invoice', '', 'invoice', 1, 0, 0, '', ''),
+(116, 'pgn_invoice', '', 'invoice_phys', 1, 0, 28, '', ''),
+(117, 'Счет на оплату', '', 'invoice_jur', 1, 0, 2, '', ''),
+(118, 'linkpoint', '', 'linkpoint', 1, 0, 42, '', ''),
+(119, 'pgn_cart', '', 'cart_popup', 1, 0, 36, '', ''),
+(120, 'pgn_authorization', '', 'register_authorization', 1, 0, 38, '', ''),
+(121, 'pgn_registration', '', 'quick_register', 1, 0, 20, '', ''),
+(122, 'Быстрое оформление заказа', '', '', 1, 0, 4, '', ''),
+(123, 'pgn_delivery', '', 'order2_shipping_quick', 122, 0, 0, '', ''),
+(124, 'pgn_payment', '', 'order3_billing_quick', 122, 0, 0, '', ''),
+(125, 'pgn_order_confirmation', '', 'order4_confirmation_quick', 122, 0, 0, '', ''),
+(126, 'pgn_customer_activation', '', 'act_customer', 1, 0, 30, '', ''),
+(127, 'Установка модуля', '', 'module_installation', 71, 0, 0, '', ''),
+(128, 'Настройка конфига', '', 'config_settings', 71, 0, 0, '', ''),
+(131, 'pgn_add_news', '', 'add_news', 68, 0, 0, '', ''),
+(134, 'Добавить интерфейс', '', 'add_divinterface', 23, 0, 0, 'backend/noframe.htm', ''),
+(135, 'YourPay Connect', '', 'yourpaymentconnect', 1, 0, 6, '', ''),
+(136, 'payment', '', 'pmethod_list', 11, 0, 11, '', ''),
+(137, 'pmnt_edit_method', '', 'mod_pmethod', 136, 0, 0, '', ''),
+(138, 'pmnt_add_method', '', 'add_pmethod', 136, 0, 0, '', ''),
+(149, 'pgn_languages', '', 'languages', 167, 1, 100, '', ''),
+(150, 'pgn_addmod_language', '', 'addmod_language', 149, 0, 0, '', ''),
+(151, 'PP Express Checkout - order confirmation', '', 'ppexpresscheckout_orderconfirmation', 1, 0, 12, '', ''),
+(152, 'PP Express Checkout - order success', '', 'ppec_order_success', 1, 0, 10, '', ''),
+(153, 'Google Checkout handler', '', 'googlecheckout_handler', 0, 0, 0, '', ''),
+(154, 'pgn_edit_locals', '', 'locals', 149, 0, 0, '', ''),
+(155, 'pgn_find_local', '', 'find_local', 149, 0, 0, '', ''),
+(156, 'pgn_add_language', '', 'add_language', 149, 0, 0, '', ''),
+(157, 'pgn_change_deflang', '', 'change_default_language', 149, 0, 0, '', ''),
+(160, 'pgn_themes_list', '', 'themes_list', 167, 1, 110, '', ''),
+(161, 'pgn_theme_edit', '', 'theme_edit', 160, 0, 0, '', ''),
+(162, 'pgn_cpt_constructor', '', 'cpt_constructor', 1, 0, 32, '', ''),
+(163, 'pgn_theme_preview', '', 'theme_preview', 1, 0, 14, '', ''),
+(164, 'pgn_category_tree', '', 'category_tree', 14, 0, 0, 'backend/js_categorytree.html', ''),
+(165, 'pgn_sales_report', '', 'sales_report', 103, 1, 100, '', ''),
+(166, 'pgn_change_default_currency', '', 'change_default_currency', 74, 0, 0, '', ''),
+(167, 'pgn_presentation', '', '', 8, 1, 6, '', 'themes_list'),
+(168, 'pgn_checkout', '', 'checkout', 1, 0, 34, '', ''),
+(169, 'pgn_images_manager', '', '', 167, 1, 90, '', ''),
+(170, 'pgn_cpt_settings', '', 'cpt_settings', 161, 0, 0, '', ''),
+(171, 'pgn_remind_password', '', 'remind_password', 1, 0, 18, '', ''),
+(175, 'pgn_erase_products', '', '', 9, 1, 2, '', ''),
+(176, 'prd_product_comparison', '', 'product_comparison', 1, 0, 8, '', ''),
+(177, 'pgn_simple_search', '', 'search', 1, 0, 16, '', ''),
+(178, 'pgn_checkout_replacement', '', '', 11, 1, 0, '', ''),
+(179, 'pgn_product_widgets', '', 'product_widgets', 12, 1, 110, '', ''),
+(180, 'pgn_product_widget', '', 'product_widget', 1, 0, 22, '', ''),
+(182, 'pgn_product_lists', '', 'product_lists', 9, 1, 6, '', ''),
+(183, 'pgn_login', '', 'auth', 1, 1, 71, '', ''),
+(184, 'pgn_logout', '', 'logout', 1, 0, 26, '', ''),
+(185, 'err_product_not_found', '', 'product_not_found', 1, 0, 44, '', ''),
+(186, 'pgn_googleanalytics', '', 'googleanalytics', 12, 1, 0, '', ''),
+(187, 'pgn_category_search', '', 'category_search', 1, 0, 0, '', ''),
+(188, 'pgn_sms_notifications', '', 'wasms', 10, 1, 0, '', ''),
+(189, 'pgn_discount_coupons', '', 'discount_coupons', 10, 1, 7, '', ''),
+(190, 'pgn_order_editor', '', 'order_editor', 21, 0, 0, '', ''),
+(191, 'pgn_configuration', '', 'configuration', 24, 0, 0, '', ''),
+(192, 'pgn_order_creater', '', 'order_creater', 21, 0, 0, '', ''),
+(193, 'pgn_gmapi_key_checker', '', 'gmapi_key_checker', 21, 0, 0, '', ''),
+(194, 'Google Checkout handler', '', 'googlecheckout_handler', 0, 0, 0, '', ''),
+(196, 'PP Express Checkout - order confirmation', '', 'ppexpresscheckout_orderconfirmation', 1, 0, 0, '', ''),
+(197, 'PP Express Checkout - order success', '', 'ppec_order_success', 1, 0, 0, '', ''),
+(198, 'pgn_ap_1', '', 'auxpage_1', 1, 0, 0, '', ''),
+(200, 'pgn_order_status', '', 'order_status', 1, 1, 0, '', ''),
+(201, 'pgn_google_sitemap', '', 'sitemap', 12, 1, 1, '', ''),
+(202, 'pgn_printforms', '', 'formmanagment', 12, 1, 0, '', ''),
+(203, 'pgn_printforms', '', 'print_form', 1, 0, 0, '', ''),
+(204, 'prd_out_of_stock', '', 'product_out_of_stock', 1, 0, 0, '', ''),
+(205, 'print_form', '', 'admin_print_form', 21, 0, 0, '', ''),
+(206, 'pgn_social_networks', '', 'social_networks', 12, 1, 97, '', ''),
+(207, 'pgn_1c', '', '', 12, 1, 95, '', ''),
+(208, '1c_exchange', '', '1c_exchange', 1, 0, 0, '', ''),
+(209, 'Google Checkout handler', '', 'googlecheckout_handler', 0, 0, 0, '', ''),
+(210, 'PP Express Checkout - order confirmation', '', 'ppexpresscheckout_orderconfirmation', 1, 0, 0, '', ''),
+(211, 'PP Express Checkout - order success', '', 'ppec_order_success', 1, 0, 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -1511,187 +1574,6 @@ INSERT INTO `SC_division_interface` (`xDivisionID`, `xInterface`, `xPriority`, `
 (119, '25_ppexpresscheckout_button', 0, 0),
 (210, '25_ppexpresscheckout_orderconfirmation', 0, 0),
 (211, '25_ppec_order_success', 0, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `SC_divisions`
---
-
-DROP TABLE IF EXISTS `SC_divisions`;
-CREATE TABLE IF NOT EXISTS `SC_divisions` (
-  `xID` int(10) unsigned NOT NULL auto_increment,
-  `xName` varchar(255) NOT NULL default '',
-  `xKey` varchar(255) NOT NULL default '',
-  `xUnicKey` varchar(255) NOT NULL default '',
-  `xParentID` int(10) unsigned NOT NULL default '0',
-  `xEnabled` tinyint(1) NOT NULL default '0',
-  `xPriority` smallint(5) unsigned NOT NULL default '0',
-  `xTemplate` varchar(100) NOT NULL default '',
-  `xLinkDivisionUKey` varchar(30) NOT NULL default '',
-  PRIMARY KEY  (`xID`,`xParentID`),
-  KEY `xUnicKey` (`xUnicKey`),
-  KEY `xEnabled` (`xEnabled`),
-  KEY `xPriority` (`xPriority`),
-  KEY `xParentID` (`xParentID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=212 ;
-
---
--- Dumping data for table `SC_divisions`
---
-
-INSERT INTO `SC_divisions` (`xID`, `xName`, `xKey`, `xUnicKey`, `xParentID`, `xEnabled`, `xPriority`, `xTemplate`, `xLinkDivisionUKey`) VALUES
-(1, 'pgn_mainpage', '', 'TitlePage', 0, 1, 10, 'frame.html', ''),
-(6, 'sub hello', '', '', 2, 0, 0, '', ''),
-(8, 'Администрирование', '', 'admin', 0, 1, 0, 'backend/index.html', 'admin_orders_list'),
-(9, 'pgn_catalog', '', 'catalog', 8, 1, 14, '', 'categorygoods'),
-(10, 'pgn_orders', '', 'admin_orders', 8, 1, 18, '', 'admin_orders_list'),
-(11, 'pgn_settings', '', '', 8, 1, 8, '', 'bsettings'),
-(12, 'pgn_modules', '', '', 8, 1, 12, '', 'product_widgets'),
-(14, 'pgn_products_categories', '', 'categorygoods', 9, 1, 20, '', ''),
-(15, 'pgn_import_products', '', '', 9, 1, 16, '', ''),
-(16, 'pgn_export_products', '', '', 9, 1, 14, '', ''),
-(17, 'Синхронизация баз данных', '', '', 9, 0, 4, '', ''),
-(18, 'pgn_product_customparams', '', '', 9, 1, 10, '', ''),
-(20, 'pgn_product_reviews', '', '', 9, 1, 18, '', ''),
-(21, 'pgn_orders', '', 'admin_orders_list', 10, 1, 8, '', ''),
-(22, 'pgn_customers', '', 'admin_users_list', 89, 1, 8, '', ''),
-(24, 'pgn_general_settings', '', 'bsettings', 11, 1, 100, '', ''),
-(25, 'pgn_shipping_methods', '', '', 11, 1, 80, '', ''),
-(26, 'pgn_payment_methods', '', '', 11, 1, 70, '', ''),
-(29, 'pgn_mainpage', '', 'home', 1, 1, 76, '', 'TitlePage'),
-(30, 'pgn_my_account', '', 'office', 1, 0, 74, '', ''),
-(32, 'pgn_feedback', '', 'feedback', 1, 1, 66, '', ''),
-(33, 'pgn_linkexchange', '', 'linkexchange', 1, 1, 64, '', ''),
-(34, 'pgn_product', '', 'product', 1, 0, 50, '', ''),
-(35, 'pgn_news', '', 'news', 1, 1, 56, '', ''),
-(36, 'pgn_discuss_product', '', 'discuss_product', 1, 0, 54, '', ''),
-(37, 'pgn_cart', '', 'cart', 1, 0, 58, '', ''),
-(38, 'pgn_contact_info', '', 'contact_info', 30, 1, 8, '', ''),
-(39, 'pgn_address_book', '', 'address_book', 30, 1, 7, '', ''),
-(40, 'pgn_order_history', '', 'order_history', 30, 1, 6, '', ''),
-(42, 'pgn_affiliate_program', '', 'affiliate_program', 30, 0, 2, '', 'affiliate_balance'),
-(43, 'pgn_customer_fields', '', '', 11, 1, 30, '', ''),
-(44, 'pgn_add_address', '', 'add_address', 39, 0, 1, '', ''),
-(45, 'pgn_edit_address', '', 'address_editor', 39, 0, 2, '', ''),
-(46, 'pgn_order_detailed', '', 'order_detailed', 40, 0, 0, '', ''),
-(49, 'pgn_affiliate_balance', '', 'affiliate_balance', 42, 1, 0, '', ''),
-(50, 'pgn_affpr_payments_history', '', 'affiliate_history', 42, 1, 0, '', ''),
-(51, 'pgn_affpr_earn_money', '', 'affiliate_money', 42, 1, 0, '', ''),
-(52, 'pgn_affilite_program', '', 'admin_affprogram', 89, 1, 7, '', ''),
-(53, 'pgn_affiliate_settings', '', 'affiliate_settings', 42, 1, 0, '', ''),
-(54, 'pgn_register', '', 'register', 1, 1, 72, '', ''),
-(55, 'pgn_successful_registration', '', 'successful_registration', 1, 0, 46, '', ''),
-(59, 'pgn_change_address', '', 'change_address', 1, 0, 0, '', ''),
-(67, 'pgn_link_exchange_admin', '', '', 12, 1, 70, '', ''),
-(68, 'pgn_news_administration', '', 'manage_news', 12, 1, 90, '', ''),
-(69, 'pgn_survey_administration', '', '', 12, 1, 80, '', ''),
-(70, 'pgn_transaction_result', '', 'transaction_result', 1, 0, 48, '', ''),
-(71, 'Список модулей', '', 'modules_list', 12, 0, 16, '', ''),
-(72, 'pgn_export2googlebase', '', '', 9, 1, 12, '', ''),
-(73, 'pgn_yandex_market', '', '', 9, 1, 11, '', ''),
-(74, 'pgn_currency_types', '', 'currencies', 11, 1, 90, '', ''),
-(75, 'pgn_countries', '', '', 11, 1, 60, '', ''),
-(76, 'pgn_regions', '', '', 11, 1, 50, '', ''),
-(77, 'pgn_taxes', '', '', 11, 1, 40, '', ''),
-(79, 'pgn_aux_pages', '', 'aux_pages', 12, 1, 100, '', ''),
-(87, 'pgn_order_statuses', '', '', 10, 1, 7, '', ''),
-(88, 'pgn_custgroups', '', 'admin_custgroups', 89, 1, 6, '', ''),
-(89, 'pgn_customers', '', 'customers', 8, 1, 16, '', 'admin_users_list'),
-(90, 'pgn_user_info', '', 'user_info', 22, 0, 0, '', 'admin_contact_info'),
-(91, 'pgn_contact_info', '', 'admin_contact_info', 90, 1, 11, '', ''),
-(92, 'pgn_address_book', '', '', 90, 1, 10, '', ''),
-(93, 'pgn_order_history', '', 'admin_user_order_history', 90, 1, 6, '', ''),
-(95, 'affp_title', '', '', 90, 1, 2, '', ''),
-(96, 'pgn_order_detailed', '', 'admin_order_detailed', 21, 0, 0, '', ''),
-(98, 'pgn_divsettings', '', 'div_settings', 23, 0, 0, '', ''),
-(99, 'pgn_newsletter_subscribers', '', '', 89, 1, 2, '', ''),
-(100, 'pgn_discounts', '', 'discount_settings', 10, 1, 6, '', ''),
-(102, 'pgn_home', '', 'home', 8, 0, 2, '', 'TitlePage'),
-(103, 'pgn_reports', '', '', 8, 1, 13, '', 'sales_report'),
-(104, 'pgn_categories_reports', '', '', 103, 1, 80, '', ''),
-(106, 'pgn_products_reports', '', '', 103, 1, 90, '', ''),
-(107, 'pgn_pricelist', '', 'pricelist', 1, 1, 70, '', ''),
-(108, 'Настройки категории', '', 'category_settings', 14, 0, 0, '', ''),
-(109, 'pgn_addmod_product', '', 'product_settings', 14, 0, 0, '', ''),
-(110, 'pgn_addmod_product', '', 'option_value_configurator', 109, 0, 0, 'backend/product_option_configuration.tpl.html', ''),
-(111, 'Рекомендуемые товары', '', 'related_products_setup', 109, 0, 0, 'backend/related_products_setup.tpl.html', ''),
-(113, 'pgn_print_version', '', 'printable', 1, 0, 24, '', ''),
-(114, 'pgn_invoice', '', 'invoice', 1, 0, 0, '', ''),
-(116, 'pgn_invoice', '', 'invoice_phys', 1, 0, 28, '', ''),
-(117, 'Счет на оплату', '', 'invoice_jur', 1, 0, 2, '', ''),
-(118, 'linkpoint', '', 'linkpoint', 1, 0, 42, '', ''),
-(119, 'pgn_cart', '', 'cart_popup', 1, 0, 36, '', ''),
-(120, 'pgn_authorization', '', 'register_authorization', 1, 0, 38, '', ''),
-(121, 'pgn_registration', '', 'quick_register', 1, 0, 20, '', ''),
-(122, 'Быстрое оформление заказа', '', '', 1, 0, 4, '', ''),
-(123, 'pgn_delivery', '', 'order2_shipping_quick', 122, 0, 0, '', ''),
-(124, 'pgn_payment', '', 'order3_billing_quick', 122, 0, 0, '', ''),
-(125, 'pgn_order_confirmation', '', 'order4_confirmation_quick', 122, 0, 0, '', ''),
-(126, 'pgn_customer_activation', '', 'act_customer', 1, 0, 30, '', ''),
-(127, 'Установка модуля', '', 'module_installation', 71, 0, 0, '', ''),
-(128, 'Настройка конфига', '', 'config_settings', 71, 0, 0, '', ''),
-(131, 'pgn_add_news', '', 'add_news', 68, 0, 0, '', ''),
-(134, 'Добавить интерфейс', '', 'add_divinterface', 23, 0, 0, 'backend/noframe.htm', ''),
-(135, 'YourPay Connect', '', 'yourpaymentconnect', 1, 0, 6, '', ''),
-(136, 'payment', '', 'pmethod_list', 11, 0, 11, '', ''),
-(137, 'pmnt_edit_method', '', 'mod_pmethod', 136, 0, 0, '', ''),
-(138, 'pmnt_add_method', '', 'add_pmethod', 136, 0, 0, '', ''),
-(149, 'pgn_languages', '', 'languages', 167, 1, 100, '', ''),
-(150, 'pgn_addmod_language', '', 'addmod_language', 149, 0, 0, '', ''),
-(151, 'PP Express Checkout - order confirmation', '', 'ppexpresscheckout_orderconfirmation', 1, 0, 12, '', ''),
-(152, 'PP Express Checkout - order success', '', 'ppec_order_success', 1, 0, 10, '', ''),
-(153, 'Google Checkout handler', '', 'googlecheckout_handler', 0, 0, 0, '', ''),
-(154, 'pgn_edit_locals', '', 'locals', 149, 0, 0, '', ''),
-(155, 'pgn_find_local', '', 'find_local', 149, 0, 0, '', ''),
-(156, 'pgn_add_language', '', 'add_language', 149, 0, 0, '', ''),
-(157, 'pgn_change_deflang', '', 'change_default_language', 149, 0, 0, '', ''),
-(160, 'pgn_themes_list', '', 'themes_list', 167, 1, 110, '', ''),
-(161, 'pgn_theme_edit', '', 'theme_edit', 160, 0, 0, '', ''),
-(162, 'pgn_cpt_constructor', '', 'cpt_constructor', 1, 0, 32, '', ''),
-(163, 'pgn_theme_preview', '', 'theme_preview', 1, 0, 14, '', ''),
-(164, 'pgn_category_tree', '', 'category_tree', 14, 0, 0, 'backend/js_categorytree.html', ''),
-(165, 'pgn_sales_report', '', 'sales_report', 103, 1, 100, '', ''),
-(166, 'pgn_change_default_currency', '', 'change_default_currency', 74, 0, 0, '', ''),
-(167, 'pgn_presentation', '', '', 8, 1, 6, '', 'themes_list'),
-(168, 'pgn_checkout', '', 'checkout', 1, 0, 34, '', ''),
-(169, 'pgn_images_manager', '', '', 167, 1, 90, '', ''),
-(170, 'pgn_cpt_settings', '', 'cpt_settings', 161, 0, 0, '', ''),
-(171, 'pgn_remind_password', '', 'remind_password', 1, 0, 18, '', ''),
-(175, 'pgn_erase_products', '', '', 9, 1, 2, '', ''),
-(176, 'prd_product_comparison', '', 'product_comparison', 1, 0, 8, '', ''),
-(177, 'pgn_simple_search', '', 'search', 1, 0, 16, '', ''),
-(178, 'pgn_checkout_replacement', '', '', 11, 1, 0, '', ''),
-(179, 'pgn_product_widgets', '', 'product_widgets', 12, 1, 110, '', ''),
-(180, 'pgn_product_widget', '', 'product_widget', 1, 0, 22, '', ''),
-(182, 'pgn_product_lists', '', 'product_lists', 9, 1, 6, '', ''),
-(183, 'pgn_login', '', 'auth', 1, 1, 71, '', ''),
-(184, 'pgn_logout', '', 'logout', 1, 0, 26, '', ''),
-(185, 'err_product_not_found', '', 'product_not_found', 1, 0, 44, '', ''),
-(186, 'pgn_googleanalytics', '', 'googleanalytics', 12, 1, 0, '', ''),
-(187, 'pgn_category_search', '', 'category_search', 1, 0, 0, '', ''),
-(188, 'pgn_sms_notifications', '', 'wasms', 10, 1, 0, '', ''),
-(189, 'pgn_discount_coupons', '', 'discount_coupons', 10, 1, 7, '', ''),
-(190, 'pgn_order_editor', '', 'order_editor', 21, 0, 0, '', ''),
-(191, 'pgn_configuration', '', 'configuration', 24, 0, 0, '', ''),
-(192, 'pgn_order_creater', '', 'order_creater', 21, 0, 0, '', ''),
-(193, 'pgn_gmapi_key_checker', '', 'gmapi_key_checker', 21, 0, 0, '', ''),
-(194, 'Google Checkout handler', '', 'googlecheckout_handler', 0, 0, 0, '', ''),
-(196, 'PP Express Checkout - order confirmation', '', 'ppexpresscheckout_orderconfirmation', 1, 0, 0, '', ''),
-(197, 'PP Express Checkout - order success', '', 'ppec_order_success', 1, 0, 0, '', ''),
-(198, 'pgn_ap_1', '', 'auxpage_1', 1, 0, 0, '', ''),
-(200, 'pgn_order_status', '', 'order_status', 1, 1, 0, '', ''),
-(201, 'pgn_google_sitemap', '', 'sitemap', 12, 1, 1, '', ''),
-(202, 'pgn_printforms', '', 'formmanagment', 12, 1, 0, '', ''),
-(203, 'pgn_printforms', '', 'print_form', 1, 0, 0, '', ''),
-(204, 'prd_out_of_stock', '', 'product_out_of_stock', 1, 0, 0, '', ''),
-(205, 'print_form', '', 'admin_print_form', 21, 0, 0, '', ''),
-(206, 'pgn_social_networks', '', 'social_networks', 12, 1, 97, '', ''),
-(207, 'pgn_1c', '', '', 12, 1, 95, '', ''),
-(208, '1c_exchange', '', '1c_exchange', 1, 0, 0, '', ''),
-(209, 'Google Checkout handler', '', 'googlecheckout_handler', 0, 0, 0, '', ''),
-(210, 'PP Express Checkout - order confirmation', '', 'ppexpresscheckout_orderconfirmation', 1, 0, 0, '', ''),
-(211, 'PP Express Checkout - order success', '', 'ppec_order_success', 1, 0, 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -5419,6 +5301,55 @@ INSERT INTO `SC_localgroup` (`key`, `name`, `hidden`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `SC_modules`
+--
+
+DROP TABLE IF EXISTS `SC_modules`;
+CREATE TABLE IF NOT EXISTS `SC_modules` (
+  `ModuleID` int(10) unsigned NOT NULL auto_increment,
+  `ModuleVersion` float NOT NULL default '0',
+  `ModuleClassName` varchar(30) NOT NULL default '',
+  `ModuleClassFile` varchar(255) NOT NULL default '',
+  PRIMARY KEY  (`ModuleID`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
+
+--
+-- Dumping data for table `SC_modules`
+--
+
+INSERT INTO `SC_modules` (`ModuleID`, `ModuleVersion`, `ModuleClassName`, `ModuleClassFile`) VALUES
+(1, 1, 'test', '/test/class.test.php'),
+(2, 1, 'products', '/products/class.products.php'),
+(3, 1, 'news', '/news/class.newsmodule.php'),
+(4, 1, 'poll', '/poll/class.poll.php'),
+(5, 1, 'cart', '/cart/class.cart.php'),
+(6, 1, 'affiliateprogram', '/affiliate_program/class.affiliate_program.php'),
+(7, 1, 'ordering', '/ordering/class.ordering.php'),
+(8, 1, 'pricelist', '/products/pricelist/class.pricelist.php'),
+(9, 1, 'feedback', '/feedback/class.feedback.php'),
+(10, 1, 'linkexchange', '/linkexchange/class.linkexchange.php'),
+(11, 1, 'export2froogle', '/products/export2froogle/class.export2froogle.php'),
+(12, 1, 'yandexmarket', '/products/yandex.market/class.yandexmarket.php'),
+(13, 1, 'auxpages', '/auxpages/class.auxpages.php'),
+(24, 1, 'smsordernotify', '/ordering/smsmail/class.smsordernotify.php'),
+(15, 1, 'users', '/users/class.users.php'),
+(16, 1, 'divisionsadministration', '/divisions/administration/class.divisionsadministration.php'),
+(17, 1, 'sc_abstract', '/abstract/class.abstract.php'),
+(18, 1, 'moduleadmin', '/modules/module_admin/class.moduleadmin.php'),
+(25, 1, 'localizationadmin', '/localization/class.localizationadmin.php'),
+(26, 1, 'localization', '/localization/class.localization.php'),
+(27, 1, 'adminscreens', '/adminscreens/class.adminscreens.php'),
+(28, 1, 'wgtmanager', '/wgtmanager/class.wgtmanager.php'),
+(29, 1, 'cptmanager', '/cptmanager/class.cptmanager.php'),
+(30, 0.1, 'discount_coupons', '/discount_coupons/class.discount_coupons.php'),
+(31, 0.1, 'order_editor', '/order_editor/class.order_editor.php'),
+(32, 0.1, 'Configuration', '/configuration/class.configuration.php'),
+(33, 0.1, 'order_creater', '/order_editor/class.order_creater.php'),
+(34, 1, 'ExportTo1c', '/products/exportto1c/class.exportto1c.php');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `SC_module_configs`
 --
 
@@ -5474,55 +5405,6 @@ INSERT INTO `SC_module_configs` (`ModuleConfigID`, `ModuleID`, `ConfigKey`, `Con
 -- --------------------------------------------------------
 
 --
--- Table structure for table `SC_modules`
---
-
-DROP TABLE IF EXISTS `SC_modules`;
-CREATE TABLE IF NOT EXISTS `SC_modules` (
-  `ModuleID` int(10) unsigned NOT NULL auto_increment,
-  `ModuleVersion` float NOT NULL default '0',
-  `ModuleClassName` varchar(30) NOT NULL default '',
-  `ModuleClassFile` varchar(255) NOT NULL default '',
-  PRIMARY KEY  (`ModuleID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
-
---
--- Dumping data for table `SC_modules`
---
-
-INSERT INTO `SC_modules` (`ModuleID`, `ModuleVersion`, `ModuleClassName`, `ModuleClassFile`) VALUES
-(1, 1, 'test', '/test/class.test.php'),
-(2, 1, 'products', '/products/class.products.php'),
-(3, 1, 'news', '/news/class.newsmodule.php'),
-(4, 1, 'poll', '/poll/class.poll.php'),
-(5, 1, 'cart', '/cart/class.cart.php'),
-(6, 1, 'affiliateprogram', '/affiliate_program/class.affiliate_program.php'),
-(7, 1, 'ordering', '/ordering/class.ordering.php'),
-(8, 1, 'pricelist', '/products/pricelist/class.pricelist.php'),
-(9, 1, 'feedback', '/feedback/class.feedback.php'),
-(10, 1, 'linkexchange', '/linkexchange/class.linkexchange.php'),
-(11, 1, 'export2froogle', '/products/export2froogle/class.export2froogle.php'),
-(12, 1, 'yandexmarket', '/products/yandex.market/class.yandexmarket.php'),
-(13, 1, 'auxpages', '/auxpages/class.auxpages.php'),
-(24, 1, 'smsordernotify', '/ordering/smsmail/class.smsordernotify.php'),
-(15, 1, 'users', '/users/class.users.php'),
-(16, 1, 'divisionsadministration', '/divisions/administration/class.divisionsadministration.php'),
-(17, 1, 'sc_abstract', '/abstract/class.abstract.php'),
-(18, 1, 'moduleadmin', '/modules/module_admin/class.moduleadmin.php'),
-(25, 1, 'localizationadmin', '/localization/class.localizationadmin.php'),
-(26, 1, 'localization', '/localization/class.localization.php'),
-(27, 1, 'adminscreens', '/adminscreens/class.adminscreens.php'),
-(28, 1, 'wgtmanager', '/wgtmanager/class.wgtmanager.php'),
-(29, 1, 'cptmanager', '/cptmanager/class.cptmanager.php'),
-(30, 0.1, 'discount_coupons', '/discount_coupons/class.discount_coupons.php'),
-(31, 0.1, 'order_editor', '/order_editor/class.order_editor.php'),
-(32, 0.1, 'Configuration', '/configuration/class.configuration.php'),
-(33, 0.1, 'order_creater', '/order_editor/class.order_creater.php'),
-(34, 1, 'ExportTo1c', '/products/exportto1c/class.exportto1c.php');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `SC_news_table`
 --
 
@@ -5548,6 +5430,128 @@ CREATE TABLE IF NOT EXISTS `SC_news_table` (
 
 INSERT INTO `SC_news_table` (`NID`, `add_date`, `title_en`, `title_ru`, `picture`, `textToPublication_en`, `textToPublication_ru`, `textToMail`, `add_stamp`, `priority`, `emailed`) VALUES
 (1, '1 12 2010', 'We are open!', 'Мы открылись!', NULL, 'Write information about your online store here.', 'Здесь вы можете написать информацию о вашем новом интернет-магазине, а также отправить эту новость вашим клиентам по электронной почте.', '', 1208514048, 0, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SC_ordered_carts`
+--
+
+DROP TABLE IF EXISTS `SC_ordered_carts`;
+CREATE TABLE IF NOT EXISTS `SC_ordered_carts` (
+  `itemID` int(11) NOT NULL default '0',
+  `orderID` int(11) NOT NULL default '0',
+  `name` varchar(255) default NULL,
+  `Price` float default NULL,
+  `Quantity` int(11) default NULL,
+  `tax` float default NULL,
+  `load_counter` int(11) default '0',
+  PRIMARY KEY  (`itemID`,`orderID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `SC_ordered_carts`
+--
+
+INSERT INTO `SC_ordered_carts` (`itemID`, `orderID`, `name`, `Price`, `Quantity`, `tax`, `load_counter`) VALUES
+(1, 1, '[14353001 1460] Doctor Martines Mono Black', 2000, 1, 0, 0),
+(2, 2, '[14353001 1460] Doctor Martines Mono Black', 2000, 1, 0, 0),
+(4, 3, '[14353001 1460] Doctor Martines Mono Black', 2000, 1, 0, 0),
+(6, 4, 'Mono', 2000, 1, 0, 0),
+(8, 5, 'Mono', 2000, 1, 0, 0),
+(10, 6, 'Платок', 50, 1, 0, 0),
+(12, 7, 'Платок (40)', 50, 1, 0, 0),
+(14, 8, 'Mono (37, белый)', 2000, 1, 0, 0),
+(16, 9, 'Mono (40, белый)', 2000, 1, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SC_orders`
+--
+
+DROP TABLE IF EXISTS `SC_orders`;
+CREATE TABLE IF NOT EXISTS `SC_orders` (
+  `orderID` int(11) NOT NULL auto_increment,
+  `customerID` int(11) default NULL,
+  `order_time` datetime default NULL,
+  `customer_ip` varchar(15) default NULL,
+  `shipping_type` varchar(30) default NULL,
+  `shipping_module_id` int(10) unsigned NOT NULL default '0',
+  `payment_type` varchar(30) default NULL,
+  `payment_module_id` int(10) unsigned NOT NULL default '0',
+  `customers_comment` text,
+  `statusID` int(11) default NULL,
+  `shipping_cost` double default NULL,
+  `order_discount` double default NULL,
+  `discount_description` varchar(255) NOT NULL,
+  `order_amount` decimal(12,2) NOT NULL default '0.00',
+  `currency_code` varchar(7) default NULL,
+  `currency_value` double default NULL,
+  `customer_firstname` varchar(64) default NULL,
+  `customer_lastname` varchar(64) default NULL,
+  `customer_email` varchar(50) default NULL,
+  `shipping_firstname` varchar(64) default NULL,
+  `shipping_lastname` varchar(64) default NULL,
+  `shipping_country` varchar(64) default NULL,
+  `shipping_state` varchar(64) default NULL,
+  `shipping_zip` varchar(64) default NULL,
+  `shipping_city` varchar(64) default NULL,
+  `shipping_address` text,
+  `billing_firstname` varchar(64) default NULL,
+  `billing_lastname` varchar(64) default NULL,
+  `billing_country` varchar(64) default NULL,
+  `billing_state` varchar(64) default NULL,
+  `billing_zip` varchar(64) default NULL,
+  `billing_city` varchar(64) default NULL,
+  `billing_address` text,
+  `cc_number` varchar(255) default NULL,
+  `cc_holdername` varchar(255) default NULL,
+  `cc_expires` varchar(255) default NULL,
+  `cc_cvv` varchar(255) default NULL,
+  `affiliateID` int(11) default NULL,
+  `shippingServiceInfo` varchar(255) default NULL,
+  `google_order_number` varchar(50) NOT NULL default '',
+  `source` enum('storefront','widgets','backend') NOT NULL default 'storefront',
+  PRIMARY KEY  (`orderID`),
+  KEY `google_order_number` (`google_order_number`),
+  KEY `customerID` (`customerID`),
+  KEY `statusID` (`statusID`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `SC_orders`
+--
+
+INSERT INTO `SC_orders` (`orderID`, `customerID`, `order_time`, `customer_ip`, `shipping_type`, `shipping_module_id`, `payment_type`, `payment_module_id`, `customers_comment`, `statusID`, `shipping_cost`, `order_discount`, `discount_description`, `order_amount`, `currency_code`, `currency_value`, `customer_firstname`, `customer_lastname`, `customer_email`, `shipping_firstname`, `shipping_lastname`, `shipping_country`, `shipping_state`, `shipping_zip`, `shipping_city`, `shipping_address`, `billing_firstname`, `billing_lastname`, `billing_country`, `billing_state`, `billing_zip`, `billing_city`, `billing_address`, `cc_number`, `cc_holdername`, `cc_expires`, `cc_cvv`, `affiliateID`, `shippingServiceInfo`, `google_order_number`, `source`) VALUES
+(1, 2, '2012-06-25 14:46:51', '109.167.200.251', 'Самовывоз', 9, 'Наличные', 12, 'Беру!', 1, 0, 0, '', 2000.00, 'RUR', 1, 'Роман', 'Седых', 'rsedykh@whitescape.com', 'Роман', 'Седых', 'Россия', 'Ленинградская область', '190000', 'Санкт-Петербург', 'Дворцовая наб. 20', 'Роман', 'Седых', 'Россия', 'Ленинградская область', '190000', 'Санкт-Петербург', 'Дворцовая наб. 20', '', '', '', '', 0, '', '', 'storefront'),
+(2, 3, '2012-06-26 16:33:10', '37.1.45.50', 'Самовывоз', 9, 'Наличные', 12, '', 1, 0, 0, '', 2000.00, 'RUR', 1, 'Имя', 'Фамилия', 'rp@whitescape.com', 'Имя', 'Фамилия', 'Россия', ' Московская область', '123456', 'Город', 'Адрес', 'Имя', 'Фамилия', 'Россия', ' Московская область', '123456', 'Город', 'Адрес', '', '', '', '', 0, '', '', 'storefront'),
+(3, 1, '2012-06-26 17:35:19', '37.1.45.50', 'Курьер', 11, 'Наличные', 12, '', 1, 0, 0, '', 2000.00, 'RUR', 1, 'rp', 'rp', 'rp+candies@whitescape.com', 'rp', 'rp', 'Россия', ' Московская область', '123456789', '123456789', '123456789', 'rp', 'rp', 'Россия', ' Московская область', '123456789', '123456789', '123456789', '', '', '', '', 0, '', '', 'storefront'),
+(4, 2, '2012-06-27 02:36:26', '109.167.200.251', 'Самовывоз', 9, 'Наличные', 12, '', 3, 0, 0, '', 2000.00, 'RUR', 1, 'Роман', 'Седых', 'rsedykh@whitescape.com', 'Роман', 'Седых', 'Россия', 'Ленинградская область', '190000', 'Санкт-Петербург', 'Дворцовая наб. 20', 'Роман', 'Седых', 'Россия', 'Ленинградская область', '190000', 'Санкт-Петербург', 'Дворцовая наб. 20', '', '', '', '', 0, '', '', 'storefront'),
+(5, 2, '2012-06-27 02:47:19', '109.167.200.251', 'Курьер', 11, 'Наличные', 12, '', 3, 0, 0, '', 2000.00, 'RUR', 1, 'Роман', 'Седых', 'rsedykh@whitescape.com', 'Роман', 'Седых', 'Россия', 'Ленинградская область', '190000', 'Санкт-Петербург', 'Дворцовая наб. 20', 'Роман', 'Седых', 'Россия', 'Ленинградская область', '190000', 'Санкт-Петербург', 'Дворцовая наб. 20', '', '', '', '', 0, '', '', 'storefront'),
+(6, 1, '2012-06-28 15:37:56', '37.1.21.171', 'Курьер', 11, 'Наличные', 12, '', 2, 0, 0, '', 50.00, 'RUR', 1, 'rp', 'rp', 'rp+candies@whitescape.com', 'rp', 'rp', 'Россия', ' Московская область', '123456789', '123456789', '123456789', 'rp', 'rp', 'Россия', ' Московская область', '123456789', '123456789', '123456789', '', '', '', '', 0, '', '', 'storefront'),
+(7, 1, '2012-06-28 16:03:51', '37.1.21.171', 'Курьер', 11, 'Наличные', 12, '', 2, 0, 0, '', 50.00, 'RUR', 1, 'rp', 'rp', 'rp+candies@whitescape.com', 'rp', 'rp', 'Россия', ' Московская область', '123456789', '123456789', '123456789', 'rp', 'rp', 'Россия', ' Московская область', '123456789', '123456789', '123456789', '', '', '', '', 0, '', '', 'storefront'),
+(8, 2, '2012-06-28 18:20:42', '87.248.244.210', 'Самовывоз', 9, 'Наличные', 12, '', 2, 0, 0, '', 2000.00, 'RUR', 1, 'Роман', 'Седых', 'rsedykh@whitescape.com', 'Роман', 'Седых', 'Россия', 'Ленинградская область', '190000', 'Санкт-Петербург', 'Дворцовая наб. 20', 'Роман', 'Седых', 'Россия', 'Ленинградская область', '190000', 'Санкт-Петербург', 'Дворцовая наб. 20', '', '', '', '', 0, '', '', 'storefront'),
+(9, 1, '2012-06-29 19:43:04', '37.1.4.146', 'Курьер', 11, 'Наличные', 12, '', 2, 0, 0, '', 2000.00, 'RUR', 1, 'rp', 'rp', 'rp+candies@whitescape.com', 'rp', 'rp', 'Россия', ' Московская область', '123456789', '123456789', '123456789', 'rp', 'rp', 'Россия', ' Московская область', '123456789', '123456789', '123456789', '', '', '', '', 0, '', '', 'storefront');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SC_orders_discount_coupons`
+--
+
+DROP TABLE IF EXISTS `SC_orders_discount_coupons`;
+CREATE TABLE IF NOT EXISTS `SC_orders_discount_coupons` (
+  `order_id` int(11) NOT NULL,
+  `coupon_id` int(11) NOT NULL,
+  PRIMARY KEY  (`order_id`),
+  KEY `coupon_id` (`coupon_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `SC_orders_discount_coupons`
+--
+
 
 -- --------------------------------------------------------
 
@@ -5635,127 +5639,8 @@ INSERT INTO `SC_order_status_changelog` (`orderID`, `status_name`, `status_chang
 (5, 'В обработке', '2012-06-28 13:59:28', 'Принят в обработку \nДобавлен комментарий: Мы приняли ваш заказ в обработку.'),
 (6, 'Новый', '2012-06-28 15:37:56', 'Заказ оформлен покупателем'),
 (7, 'Новый', '2012-06-28 16:03:51', 'Заказ оформлен покупателем'),
-(8, 'Новый', '2012-06-28 18:20:42', 'Заказ оформлен покупателем');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `SC_ordered_carts`
---
-
-DROP TABLE IF EXISTS `SC_ordered_carts`;
-CREATE TABLE IF NOT EXISTS `SC_ordered_carts` (
-  `itemID` int(11) NOT NULL default '0',
-  `orderID` int(11) NOT NULL default '0',
-  `name` varchar(255) default NULL,
-  `Price` float default NULL,
-  `Quantity` int(11) default NULL,
-  `tax` float default NULL,
-  `load_counter` int(11) default '0',
-  PRIMARY KEY  (`itemID`,`orderID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `SC_ordered_carts`
---
-
-INSERT INTO `SC_ordered_carts` (`itemID`, `orderID`, `name`, `Price`, `Quantity`, `tax`, `load_counter`) VALUES
-(1, 1, '[14353001 1460] Doctor Martines Mono Black', 2000, 1, 0, 0),
-(2, 2, '[14353001 1460] Doctor Martines Mono Black', 2000, 1, 0, 0),
-(4, 3, '[14353001 1460] Doctor Martines Mono Black', 2000, 1, 0, 0),
-(6, 4, 'Mono', 2000, 1, 0, 0),
-(8, 5, 'Mono', 2000, 1, 0, 0),
-(10, 6, 'Платок', 50, 1, 0, 0),
-(12, 7, 'Платок (40)', 50, 1, 0, 0),
-(14, 8, 'Mono (37, белый)', 2000, 1, 0, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `SC_orders`
---
-
-DROP TABLE IF EXISTS `SC_orders`;
-CREATE TABLE IF NOT EXISTS `SC_orders` (
-  `orderID` int(11) NOT NULL auto_increment,
-  `customerID` int(11) default NULL,
-  `order_time` datetime default NULL,
-  `customer_ip` varchar(15) default NULL,
-  `shipping_type` varchar(30) default NULL,
-  `shipping_module_id` int(10) unsigned NOT NULL default '0',
-  `payment_type` varchar(30) default NULL,
-  `payment_module_id` int(10) unsigned NOT NULL default '0',
-  `customers_comment` text,
-  `statusID` int(11) default NULL,
-  `shipping_cost` double default NULL,
-  `order_discount` double default NULL,
-  `discount_description` varchar(255) NOT NULL,
-  `order_amount` decimal(12,2) NOT NULL default '0.00',
-  `currency_code` varchar(7) default NULL,
-  `currency_value` double default NULL,
-  `customer_firstname` varchar(64) default NULL,
-  `customer_lastname` varchar(64) default NULL,
-  `customer_email` varchar(50) default NULL,
-  `shipping_firstname` varchar(64) default NULL,
-  `shipping_lastname` varchar(64) default NULL,
-  `shipping_country` varchar(64) default NULL,
-  `shipping_state` varchar(64) default NULL,
-  `shipping_zip` varchar(64) default NULL,
-  `shipping_city` varchar(64) default NULL,
-  `shipping_address` text,
-  `billing_firstname` varchar(64) default NULL,
-  `billing_lastname` varchar(64) default NULL,
-  `billing_country` varchar(64) default NULL,
-  `billing_state` varchar(64) default NULL,
-  `billing_zip` varchar(64) default NULL,
-  `billing_city` varchar(64) default NULL,
-  `billing_address` text,
-  `cc_number` varchar(255) default NULL,
-  `cc_holdername` varchar(255) default NULL,
-  `cc_expires` varchar(255) default NULL,
-  `cc_cvv` varchar(255) default NULL,
-  `affiliateID` int(11) default NULL,
-  `shippingServiceInfo` varchar(255) default NULL,
-  `google_order_number` varchar(50) NOT NULL default '',
-  `source` enum('storefront','widgets','backend') NOT NULL default 'storefront',
-  PRIMARY KEY  (`orderID`),
-  KEY `google_order_number` (`google_order_number`),
-  KEY `customerID` (`customerID`),
-  KEY `statusID` (`statusID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
-
---
--- Dumping data for table `SC_orders`
---
-
-INSERT INTO `SC_orders` (`orderID`, `customerID`, `order_time`, `customer_ip`, `shipping_type`, `shipping_module_id`, `payment_type`, `payment_module_id`, `customers_comment`, `statusID`, `shipping_cost`, `order_discount`, `discount_description`, `order_amount`, `currency_code`, `currency_value`, `customer_firstname`, `customer_lastname`, `customer_email`, `shipping_firstname`, `shipping_lastname`, `shipping_country`, `shipping_state`, `shipping_zip`, `shipping_city`, `shipping_address`, `billing_firstname`, `billing_lastname`, `billing_country`, `billing_state`, `billing_zip`, `billing_city`, `billing_address`, `cc_number`, `cc_holdername`, `cc_expires`, `cc_cvv`, `affiliateID`, `shippingServiceInfo`, `google_order_number`, `source`) VALUES
-(1, 2, '2012-06-25 14:46:51', '109.167.200.251', 'Самовывоз', 9, 'Наличные', 12, 'Беру!', 1, 0, 0, '', 2000.00, 'RUR', 1, 'Роман', 'Седых', 'rsedykh@whitescape.com', 'Роман', 'Седых', 'Россия', 'Ленинградская область', '190000', 'Санкт-Петербург', 'Дворцовая наб. 20', 'Роман', 'Седых', 'Россия', 'Ленинградская область', '190000', 'Санкт-Петербург', 'Дворцовая наб. 20', '', '', '', '', 0, '', '', 'storefront'),
-(2, 3, '2012-06-26 16:33:10', '37.1.45.50', 'Самовывоз', 9, 'Наличные', 12, '', 1, 0, 0, '', 2000.00, 'RUR', 1, 'Имя', 'Фамилия', 'rp@whitescape.com', 'Имя', 'Фамилия', 'Россия', ' Московская область', '123456', 'Город', 'Адрес', 'Имя', 'Фамилия', 'Россия', ' Московская область', '123456', 'Город', 'Адрес', '', '', '', '', 0, '', '', 'storefront'),
-(3, 1, '2012-06-26 17:35:19', '37.1.45.50', 'Курьер', 11, 'Наличные', 12, '', 1, 0, 0, '', 2000.00, 'RUR', 1, 'rp', 'rp', 'rp+candies@whitescape.com', 'rp', 'rp', 'Россия', ' Московская область', '123456789', '123456789', '123456789', 'rp', 'rp', 'Россия', ' Московская область', '123456789', '123456789', '123456789', '', '', '', '', 0, '', '', 'storefront'),
-(4, 2, '2012-06-27 02:36:26', '109.167.200.251', 'Самовывоз', 9, 'Наличные', 12, '', 3, 0, 0, '', 2000.00, 'RUR', 1, 'Роман', 'Седых', 'rsedykh@whitescape.com', 'Роман', 'Седых', 'Россия', 'Ленинградская область', '190000', 'Санкт-Петербург', 'Дворцовая наб. 20', 'Роман', 'Седых', 'Россия', 'Ленинградская область', '190000', 'Санкт-Петербург', 'Дворцовая наб. 20', '', '', '', '', 0, '', '', 'storefront'),
-(5, 2, '2012-06-27 02:47:19', '109.167.200.251', 'Курьер', 11, 'Наличные', 12, '', 3, 0, 0, '', 2000.00, 'RUR', 1, 'Роман', 'Седых', 'rsedykh@whitescape.com', 'Роман', 'Седых', 'Россия', 'Ленинградская область', '190000', 'Санкт-Петербург', 'Дворцовая наб. 20', 'Роман', 'Седых', 'Россия', 'Ленинградская область', '190000', 'Санкт-Петербург', 'Дворцовая наб. 20', '', '', '', '', 0, '', '', 'storefront'),
-(6, 1, '2012-06-28 15:37:56', '37.1.21.171', 'Курьер', 11, 'Наличные', 12, '', 2, 0, 0, '', 50.00, 'RUR', 1, 'rp', 'rp', 'rp+candies@whitescape.com', 'rp', 'rp', 'Россия', ' Московская область', '123456789', '123456789', '123456789', 'rp', 'rp', 'Россия', ' Московская область', '123456789', '123456789', '123456789', '', '', '', '', 0, '', '', 'storefront'),
-(7, 1, '2012-06-28 16:03:51', '37.1.21.171', 'Курьер', 11, 'Наличные', 12, '', 2, 0, 0, '', 50.00, 'RUR', 1, 'rp', 'rp', 'rp+candies@whitescape.com', 'rp', 'rp', 'Россия', ' Московская область', '123456789', '123456789', '123456789', 'rp', 'rp', 'Россия', ' Московская область', '123456789', '123456789', '123456789', '', '', '', '', 0, '', '', 'storefront'),
-(8, 2, '2012-06-28 18:20:42', '87.248.244.210', 'Самовывоз', 9, 'Наличные', 12, '', 2, 0, 0, '', 2000.00, 'RUR', 1, 'Роман', 'Седых', 'rsedykh@whitescape.com', 'Роман', 'Седых', 'Россия', 'Ленинградская область', '190000', 'Санкт-Петербург', 'Дворцовая наб. 20', 'Роман', 'Седых', 'Россия', 'Ленинградская область', '190000', 'Санкт-Петербург', 'Дворцовая наб. 20', '', '', '', '', 0, '', '', 'storefront');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `SC_orders_discount_coupons`
---
-
-DROP TABLE IF EXISTS `SC_orders_discount_coupons`;
-CREATE TABLE IF NOT EXISTS `SC_orders_discount_coupons` (
-  `order_id` int(11) NOT NULL,
-  `coupon_id` int(11) NOT NULL,
-  PRIMARY KEY  (`order_id`),
-  KEY `coupon_id` (`coupon_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `SC_orders_discount_coupons`
---
-
+(8, 'Новый', '2012-06-28 18:20:42', 'Заказ оформлен покупателем'),
+(9, 'Новый', '2012-06-29 19:43:04', 'Заказ оформлен покупателем');
 
 -- --------------------------------------------------------
 
@@ -5835,6 +5720,112 @@ INSERT INTO `SC_payment_types__shipping_methods` (`SID`, `PID`) VALUES
 (5, 6),
 (6, 7),
 (7, 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SC_products`
+--
+
+DROP TABLE IF EXISTS `SC_products`;
+CREATE TABLE IF NOT EXISTS `SC_products` (
+  `productID` int(11) NOT NULL auto_increment,
+  `categoryID` int(11) default NULL,
+  `customers_rating` float default '0',
+  `Price` float default NULL,
+  `in_stock` int(11) default NULL,
+  `customer_votes` int(11) default '0',
+  `items_sold` int(11) NOT NULL default '0',
+  `enabled` int(11) default NULL,
+  `list_price` float default NULL,
+  `product_code` varchar(25) default NULL,
+  `sort_order` int(11) default '0',
+  `default_picture` int(11) default NULL,
+  `date_added` datetime default NULL,
+  `date_modified` datetime default NULL,
+  `viewed_times` int(11) default '0',
+  `add2cart_counter` int(10) unsigned default '0',
+  `eproduct_filename` varchar(255) default NULL,
+  `eproduct_available_days` int(11) default '5',
+  `eproduct_download_times` int(11) default '5',
+  `weight` float default '0',
+  `free_shipping` int(11) default '0',
+  `min_order_amount` int(11) default '1',
+  `shipping_freight` float default '0',
+  `classID` int(11) default NULL,
+  `name_en` varchar(255) default NULL,
+  `brief_description_en` text NOT NULL,
+  `description_en` text NOT NULL,
+  `meta_title_en` varchar(255) default NULL,
+  `meta_description_en` varchar(255) default NULL,
+  `meta_keywords_en` varchar(255) default NULL,
+  `ordering_available` int(11) NOT NULL default '0',
+  `slug` varchar(255) NOT NULL default '',
+  `name_ru` varchar(255) default NULL,
+  `brief_description_ru` text,
+  `description_ru` text,
+  `meta_title_ru` varchar(255) default NULL,
+  `meta_description_ru` varchar(255) default NULL,
+  `meta_keywords_ru` varchar(255) default NULL,
+  `vkontakte_update_timestamp` int(11) default NULL,
+  `id_1c` varchar(74) default NULL,
+  PRIMARY KEY  (`productID`),
+  KEY `categoryID` (`categoryID`),
+  KEY `enabled` (`enabled`),
+  KEY `name_en` (`name_en`),
+  KEY `Price` (`Price`),
+  KEY `customers_rating` (`customers_rating`),
+  KEY `slug` (`slug`),
+  KEY `sort_order` (`sort_order`),
+  KEY `viewed_times` (`viewed_times`),
+  KEY `product_code` (`product_code`),
+  KEY `customer_votes` (`customer_votes`),
+  KEY `items_sold` (`items_sold`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=678 ;
+
+--
+-- Dumping data for table `SC_products`
+--
+
+INSERT INTO `SC_products` (`productID`, `categoryID`, `customers_rating`, `Price`, `in_stock`, `customer_votes`, `items_sold`, `enabled`, `list_price`, `product_code`, `sort_order`, `default_picture`, `date_added`, `date_modified`, `viewed_times`, `add2cart_counter`, `eproduct_filename`, `eproduct_available_days`, `eproduct_download_times`, `weight`, `free_shipping`, `min_order_amount`, `shipping_freight`, `classID`, `name_en`, `brief_description_en`, `description_en`, `meta_title_en`, `meta_description_en`, `meta_keywords_en`, `ordering_available`, `slug`, `name_ru`, `brief_description_ru`, `description_ru`, `meta_title_ru`, `meta_description_ru`, `meta_keywords_ru`, `vkontakte_update_timestamp`, `id_1c`) VALUES
+(667, 559, 0, 1000, 0, 0, 0, 1, 0, '', 0, 0, '2012-06-21 04:27:32', '2012-07-02 13:17:17', 0, 0, '', 0, 0, 0, 0, 1, 0, 0, '', '', '', '', '', '', 1, '', 'Шортики-спортики', '', '', '', '', '', 0, 'EASRqp_KiXaDyY7r5zLMZ3'),
+(668, 561, 0, 500, 0, 0, 0, 1, 0, '', 0, 0, '2012-06-21 04:27:32', '2012-07-02 13:17:17', 0, 0, '', 0, 0, 0, 0, 1, 0, 0, '', '', '', '', '', '', 1, '', 'Сумка-пумка', '', '', '', '', '', 0, 'mHh8TaJ5jnit5_4027Avt1'),
+(669, 560, 0, 2000, 0, 0, 0, 1, 0, '', 0, 0, '2012-06-21 04:27:32', '2012-07-02 13:17:17', 0, 0, '', 0, 0, 0, 0, 1, 0, 0, '', '', '', '', '', '', 1, '', 'Грибок для рывок', '', '', '', '', '', 0, 'YbDSRmhfg3KB7zRGxCP7i0'),
+(670, 563, 0, 200, 0, 0, 0, 1, 0, 'артикул1', 0, 0, '2012-06-21 04:27:32', '2012-07-02 13:17:17', 2, 0, '', 0, 0, 0, 0, 1, 0, 0, '', '', '', '', '', '', 1, '', 'Калебас', 'описание1', '', '', '', '', 0, 'LUNo82EyhEKxUdUz6Vlhn1'),
+(671, 565, 0, 10000, 0, 0, 0, 1, 0, '', 0, 0, '2012-06-21 04:27:32', '2012-07-02 13:17:17', 3, 0, '', 0, 0, 0, 0, 1, 0, 0, '', '', '', '', '', '', 1, '', 'Спайк', '', '', '', '', '', 0, 'FGSYthPXgi2QthbCa8Tui1'),
+(672, 564, 0, 50, 0, 0, 0, 1, 0, '', 0, 0, '2012-06-21 04:27:32', '2012-07-02 13:17:17', 3, 2, '', 0, 0, 0, 0, 1, 0, 0, '', '', '', '', '', '', 1, '', 'Платок', '', '', '', '', '', 0, '3XyUQ2OQjaizMYzcJO_Wc2'),
+(674, 566, 0, 2000, 15, 0, 0, 1, 0, '', 0, 0, '2012-06-27 02:27:12', '2012-07-02 13:17:17', 1, 4, '', 0, 0, 0, 0, 1, 0, 0, '', '', '', '', '', '', 1, '', 'Mono', '', '', '', '', '', 0, 'HW93b4RohBuGphLG8sAoT2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SC_products_opt_val_variants`
+--
+
+DROP TABLE IF EXISTS `SC_products_opt_val_variants`;
+CREATE TABLE IF NOT EXISTS `SC_products_opt_val_variants` (
+  `variantID` int(11) NOT NULL auto_increment,
+  `optionID` int(11) NOT NULL default '0',
+  `sort_order` int(11) default '0',
+  `option_value_en` varchar(255) default NULL,
+  `option_value_ru` varchar(255) default NULL,
+  PRIMARY KEY  (`variantID`),
+  KEY `optionID` (`optionID`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `SC_products_opt_val_variants`
+--
+
+INSERT INTO `SC_products_opt_val_variants` (`variantID`, `optionID`, `sort_order`, `option_value_en`, `option_value_ru`) VALUES
+(2, 15, 0, 'red', 'красный'),
+(3, 15, 0, 'black', 'черный'),
+(4, 15, 1, 'blue', 'синий'),
+(5, 15, 0, 'white', 'белый'),
+(6, 14, 0, '', '49'),
+(7, 14, 0, '', '37'),
+(8, 14, 0, '', '38'),
+(9, 14, 0, '', '40');
 
 -- --------------------------------------------------------
 
@@ -5925,19 +5916,10 @@ CREATE TABLE IF NOT EXISTS `SC_product_options_set` (
 --
 
 INSERT INTO `SC_product_options_set` (`productID`, `optionID`, `variantID`, `price_surplus`) VALUES
-(672, 15, 3, 0),
-(672, 15, 2, 0),
-(672, 15, 4, 0),
-(672, 15, 5, 0),
-(672, 14, 6, 0),
-(672, 14, 7, 0),
-(672, 14, 8, 0),
-(672, 14, 9, 0),
-(674, 14, 6, 0),
-(674, 14, 7, 0),
-(674, 14, 8, 0),
+(674, 15, 5, 0),
+(674, 14, 9, 0),
 (674, 15, 2, 0),
-(674, 15, 5, 0);
+(674, 14, 8, 0);
 
 -- --------------------------------------------------------
 
@@ -5992,114 +5974,6 @@ CREATE TABLE IF NOT EXISTS `SC_product_pictures` (
 -- Dumping data for table `SC_product_pictures`
 --
 
-
--- --------------------------------------------------------
-
---
--- Table structure for table `SC_products`
---
-
-DROP TABLE IF EXISTS `SC_products`;
-CREATE TABLE IF NOT EXISTS `SC_products` (
-  `productID` int(11) NOT NULL auto_increment,
-  `categoryID` int(11) default NULL,
-  `customers_rating` float default '0',
-  `Price` float default NULL,
-  `in_stock` int(11) default NULL,
-  `customer_votes` int(11) default '0',
-  `items_sold` int(11) NOT NULL default '0',
-  `enabled` int(11) default NULL,
-  `list_price` float default NULL,
-  `product_code` varchar(25) default NULL,
-  `sort_order` int(11) default '0',
-  `default_picture` int(11) default NULL,
-  `date_added` datetime default NULL,
-  `date_modified` datetime default NULL,
-  `viewed_times` int(11) default '0',
-  `add2cart_counter` int(10) unsigned default '0',
-  `eproduct_filename` varchar(255) default NULL,
-  `eproduct_available_days` int(11) default '5',
-  `eproduct_download_times` int(11) default '5',
-  `weight` float default '0',
-  `free_shipping` int(11) default '0',
-  `min_order_amount` int(11) default '1',
-  `shipping_freight` float default '0',
-  `classID` int(11) default NULL,
-  `name_en` varchar(255) default NULL,
-  `brief_description_en` text NOT NULL,
-  `description_en` text NOT NULL,
-  `meta_title_en` varchar(255) default NULL,
-  `meta_description_en` varchar(255) default NULL,
-  `meta_keywords_en` varchar(255) default NULL,
-  `ordering_available` int(11) NOT NULL default '0',
-  `slug` varchar(255) NOT NULL default '',
-  `name_ru` varchar(255) default NULL,
-  `brief_description_ru` text,
-  `description_ru` text,
-  `meta_title_ru` varchar(255) default NULL,
-  `meta_description_ru` varchar(255) default NULL,
-  `meta_keywords_ru` varchar(255) default NULL,
-  `vkontakte_update_timestamp` int(11) default NULL,
-  `id_1c` varchar(74) default NULL,
-  PRIMARY KEY  (`productID`),
-  KEY `categoryID` (`categoryID`),
-  KEY `enabled` (`enabled`),
-  KEY `name_en` (`name_en`),
-  KEY `Price` (`Price`),
-  KEY `customers_rating` (`customers_rating`),
-  KEY `slug` (`slug`),
-  KEY `sort_order` (`sort_order`),
-  KEY `viewed_times` (`viewed_times`),
-  KEY `product_code` (`product_code`),
-  KEY `customer_votes` (`customer_votes`),
-  KEY `items_sold` (`items_sold`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=678 ;
-
---
--- Dumping data for table `SC_products`
---
-
-INSERT INTO `SC_products` (`productID`, `categoryID`, `customers_rating`, `Price`, `in_stock`, `customer_votes`, `items_sold`, `enabled`, `list_price`, `product_code`, `sort_order`, `default_picture`, `date_added`, `date_modified`, `viewed_times`, `add2cart_counter`, `eproduct_filename`, `eproduct_available_days`, `eproduct_download_times`, `weight`, `free_shipping`, `min_order_amount`, `shipping_freight`, `classID`, `name_en`, `brief_description_en`, `description_en`, `meta_title_en`, `meta_description_en`, `meta_keywords_en`, `ordering_available`, `slug`, `name_ru`, `brief_description_ru`, `description_ru`, `meta_title_ru`, `meta_description_ru`, `meta_keywords_ru`, `vkontakte_update_timestamp`, `id_1c`) VALUES
-(667, 559, 0, 1000, 0, 0, 0, 1, 0, '', 0, 0, '2012-06-21 04:27:32', '2012-06-29 18:27:25', 0, 0, '', 0, 0, 0, 0, 1, 0, 0, '', '', '', '', '', '', 1, '', 'Шортики-спортики', '', '', '', '', '', 0, 'EASRqp_KiXaDyY7r5zLMZ3'),
-(668, 561, 0, 500, 0, 0, 0, 1, 0, '', 0, 0, '2012-06-21 04:27:32', '2012-06-29 18:27:25', 0, 0, '', 0, 0, 0, 0, 1, 0, 0, '', '', '', '', '', '', 1, '', 'Сумка-пумка', '', '', '', '', '', 0, 'mHh8TaJ5jnit5_4027Avt1'),
-(669, 560, 0, 2000, 0, 0, 0, 1, 0, '', 0, 0, '2012-06-21 04:27:32', '2012-06-29 18:27:25', 0, 0, '', 0, 0, 0, 0, 1, 0, 0, '', '', '', '', '', '', 1, '', 'Грибок для рывок', '', '', '', '', '', 0, 'YbDSRmhfg3KB7zRGxCP7i0'),
-(670, 563, 0, 200, 0, 0, 0, 1, 0, 'артикул1', 0, 0, '2012-06-21 04:27:32', '2012-06-29 18:27:25', 2, 0, '', 0, 0, 0, 0, 1, 0, 0, '', '', '', '', '', '', 1, '', 'Калебас', 'описание1', '', '', '', '', 0, 'LUNo82EyhEKxUdUz6Vlhn1'),
-(671, 565, 0, 10000, 0, 0, 0, 1, 0, '', 0, 0, '2012-06-21 04:27:32', '2012-06-29 18:27:25', 3, 0, '', 0, 0, 0, 0, 1, 0, 0, '', '', '', '', '', '', 1, '', 'Спайк', '', '', '', '', '', 0, 'FGSYthPXgi2QthbCa8Tui1'),
-(672, 564, 0, 50, 0, 0, 0, 1, 0, '', 0, 0, '2012-06-21 04:27:32', '2012-06-29 18:27:25', 3, 2, '', 0, 0, 0, 0, 1, 0, 0, '', '', '', '', '', '', 1, '', 'Платок', '', '', '', '', '', 0, '3XyUQ2OQjaizMYzcJO_Wc2'),
-(676, 571, 0, 2000, 0, 0, 0, 1, 0, '', 0, 0, '2012-06-27 14:14:23', '2012-06-29 17:25:26', 0, 0, '', 0, 0, 0, 0, 1, 0, 0, '', '', '', '', '', '', 1, '', '', '', '', '', '', '', 0, 'mh_vkOG_jNK0q0ln9_ifD1'),
-(677, 1, 0, 0, 0, 0, 0, 1, 0, '', 0, 0, '2012-06-27 14:56:23', '2012-06-27 14:56:24', 0, 0, '', 0, 0, 0, 0, 1, 0, 0, '', '', '', '', '', '', 1, '', '', '', '', '', '', '', 0, ''),
-(674, 567, 0, 2000, 15, 0, 0, 1, 0, '', 0, 0, '2012-06-27 02:27:12', '2012-06-29 18:27:25', 1, 3, '', 0, 0, 0, 0, 1, 0, 0, '', '', '', '', '', '', 1, '', 'Mono', '', '', '', '', '', 0, 'HW93b4RohBuGphLG8sAoT2');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `SC_products_opt_val_variants`
---
-
-DROP TABLE IF EXISTS `SC_products_opt_val_variants`;
-CREATE TABLE IF NOT EXISTS `SC_products_opt_val_variants` (
-  `variantID` int(11) NOT NULL auto_increment,
-  `optionID` int(11) NOT NULL default '0',
-  `sort_order` int(11) default '0',
-  `option_value_en` varchar(255) default NULL,
-  `option_value_ru` varchar(255) default NULL,
-  PRIMARY KEY  (`variantID`),
-  KEY `optionID` (`optionID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
-
---
--- Dumping data for table `SC_products_opt_val_variants`
---
-
-INSERT INTO `SC_products_opt_val_variants` (`variantID`, `optionID`, `sort_order`, `option_value_en`, `option_value_ru`) VALUES
-(2, 15, 0, 'red', 'красный'),
-(3, 15, 0, 'black', 'черный'),
-(4, 15, 1, 'blue', 'синий'),
-(5, 15, 0, 'white', 'белый'),
-(6, 14, 0, '', '40'),
-(7, 14, 0, '', '30'),
-(8, 14, 0, '', '37'),
-(9, 14, 0, '', '42');
 
 -- --------------------------------------------------------
 
@@ -6266,7 +6140,7 @@ INSERT INTO `SC_settings` (`settingsID`, `settings_groupID`, `settings_constant_
 (102, 1, 'CONF_FACEBOOK_ENABLED', '0', '', '', '', 0),
 (103, 1, 'CONF_FACEBOOK_LIKE_URL', '', 'FACEBOOK_CFG_LIKE_URL_TTL', 'FACEBOOK_CFG_LIKE_URL_DSCR', 'setting_TEXT_BOX(0,', 1),
 (104, 1, 'CONF_FACEBOOK_HELLO', '', 'FACEBOOK_CFG_HELLO_TTL', 'FACEBOOK_CFG_HELLO_DSCR', 'setting_TEXT_AREA(', 2),
-(105, NULL, 'CONF_1C_TIME_LASTEXPORT', '2012-06-29 18:42:26', NULL, NULL, NULL, 0),
+(105, NULL, 'CONF_1C_TIME_LASTEXPORT', '2012-07-02 13:34:22', NULL, NULL, NULL, 0),
 (106, 1, 'CONF_PAYMENTMODULE_2CHECKOUT_ID_12', '', 'Ваш ID', 'Введите свой идентификатор в системе 2checkout', 'setting_TEXT_BOX(0,', 1),
 (107, 1, 'CONF_PAYMENTMODULE_2CHECKOUT_SECRET_12', '', 'Secret word', 'Используется для шифрования данных, передаваемых из интернет-магазина в платежную систему', 'setting_TEXT_BOX(0,', 1),
 (108, 1, 'CONF_PAYMENTMODULE_2CO_USD_CURRENCY_12', '0', 'Доллары США', 'Сумма заказа передается в 2checkout в долларах США. Выберите из списка валюту вашего интернет-магазина, которая соответствует долларам США — это необходимо для правильного пересчета стоимости заказа. Если валюта не выбрана, пересчет выполняться не будет.', 'setting_CURRENCY_SELECT(', 1),
@@ -6715,6 +6589,25 @@ INSERT INTO `SC_shipping_methods` (`SID`, `Enabled`, `module_id`, `sort_order`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `SC_shopping_carts`
+--
+
+DROP TABLE IF EXISTS `SC_shopping_carts`;
+CREATE TABLE IF NOT EXISTS `SC_shopping_carts` (
+  `customerID` int(11) NOT NULL default '0',
+  `itemID` int(11) NOT NULL default '0',
+  `Quantity` int(11) default NULL,
+  PRIMARY KEY  (`customerID`,`itemID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `SC_shopping_carts`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `SC_shopping_cart_items`
 --
 
@@ -6723,7 +6616,7 @@ CREATE TABLE IF NOT EXISTS `SC_shopping_cart_items` (
   `itemID` int(11) NOT NULL auto_increment,
   `productID` int(11) default NULL,
   PRIMARY KEY  (`itemID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `SC_shopping_cart_items`
@@ -6743,7 +6636,9 @@ INSERT INTO `SC_shopping_cart_items` (`itemID`, `productID`) VALUES
 (11, 672),
 (12, 672),
 (13, 674),
-(14, 674);
+(14, 674),
+(15, 674),
+(16, 674);
 
 -- --------------------------------------------------------
 
@@ -6767,26 +6662,11 @@ INSERT INTO `SC_shopping_cart_items_content` (`itemID`, `variantID`) VALUES
 (13, 8),
 (13, 5),
 (14, 8),
-(14, 5);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `SC_shopping_carts`
---
-
-DROP TABLE IF EXISTS `SC_shopping_carts`;
-CREATE TABLE IF NOT EXISTS `SC_shopping_carts` (
-  `customerID` int(11) NOT NULL default '0',
-  `itemID` int(11) NOT NULL default '0',
-  `Quantity` int(11) default NULL,
-  PRIMARY KEY  (`customerID`,`itemID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `SC_shopping_carts`
---
-
+(14, 5),
+(15, 6),
+(15, 5),
+(16, 6),
+(16, 5);
 
 -- --------------------------------------------------------
 
@@ -7314,6 +7194,144 @@ INSERT INTO `SC_zones` (`zoneID`, `zone_code`, `countryID`, `zone_name_en`, `zon
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `SC__courier_rates`
+--
+
+DROP TABLE IF EXISTS `SC__courier_rates`;
+CREATE TABLE IF NOT EXISTS `SC__courier_rates` (
+  `module_id` int(10) unsigned NOT NULL default '0',
+  `orderAmount` float default NULL,
+  `rate` float default NULL,
+  `isPercent` tinyint(1) default NULL,
+  KEY `module_id` (`module_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `SC__courier_rates`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SC__courier_rates2`
+--
+
+DROP TABLE IF EXISTS `SC__courier_rates2`;
+CREATE TABLE IF NOT EXISTS `SC__courier_rates2` (
+  `module_id` int(10) unsigned NOT NULL default '0',
+  `orderAmount` float default NULL,
+  `rate` float default NULL,
+  `isPercent` tinyint(1) default NULL,
+  KEY `module_id` (`module_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `SC__courier_rates2`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SC__intershipper_carriers`
+--
+
+DROP TABLE IF EXISTS `SC__intershipper_carriers`;
+CREATE TABLE IF NOT EXISTS `SC__intershipper_carriers` (
+  `module_id` int(10) unsigned NOT NULL default '0',
+  `carrierID` int(11) default NULL,
+  `account` varchar(50) default NULL,
+  `invoiced` tinyint(1) default NULL,
+  KEY `module_id` (`module_id`,`carrierID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `SC__intershipper_carriers`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SC__module_payment_invoice_jur`
+--
+
+DROP TABLE IF EXISTS `SC__module_payment_invoice_jur`;
+CREATE TABLE IF NOT EXISTS `SC__module_payment_invoice_jur` (
+  `module_id` int(10) unsigned default NULL,
+  `orderID` int(11) default NULL,
+  `company_name` varchar(64) default NULL,
+  `company_inn` varchar(64) default NULL,
+  `nds_included` int(11) default '0',
+  `nds_rate` float default '0',
+  `RUR_rate` float default '1'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `SC__module_payment_invoice_jur`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SC__module_payment_invoice_phys`
+--
+
+DROP TABLE IF EXISTS `SC__module_payment_invoice_phys`;
+CREATE TABLE IF NOT EXISTS `SC__module_payment_invoice_phys` (
+  `module_id` int(10) unsigned default NULL,
+  `orderID` int(11) default NULL,
+  `order_amount_string` varchar(64) default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `SC__module_payment_invoice_phys`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SC__module_shipping_bycountries_byzones_rates`
+--
+
+DROP TABLE IF EXISTS `SC__module_shipping_bycountries_byzones_rates`;
+CREATE TABLE IF NOT EXISTS `SC__module_shipping_bycountries_byzones_rates` (
+  `module_id` int(10) unsigned NOT NULL default '0',
+  `countryID` int(11) default NULL,
+  `zoneID` int(11) default NULL,
+  `shipping_rate` float default '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `SC__module_shipping_bycountries_byzones_rates`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SC__module_shipping_bycountries_byzones_rates_percent`
+--
+
+DROP TABLE IF EXISTS `SC__module_shipping_bycountries_byzones_rates_percent`;
+CREATE TABLE IF NOT EXISTS `SC__module_shipping_bycountries_byzones_rates_percent` (
+  `module_id` int(10) unsigned NOT NULL default '0',
+  `countryID` int(11) default NULL,
+  `zoneID` int(11) default NULL,
+  `shipping_rate` float default '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `SC__module_shipping_bycountries_byzones_rates_percent`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `SMS_BALANCE`
 --
 
@@ -7517,7 +7535,7 @@ INSERT INTO `USER_SETTINGS` (`U_ID`, `APP_ID`, `NAME`, `VALUE`) VALUES
 ('ADMINISTRATOR', 'UG', 'LASTPAGE', '0'),
 ('ADMINISTRATOR', 'UG', 'LASTGROUP', 'all'),
 ('ADMINISTRATOR', 'UG', 'SORTINGgroupsall', 'C_NAME:asc'),
-('ADMIN', '', 'LAST_TIME', '1340892697');
+('ADMIN', '', 'LAST_TIME', '1340984811');
 
 -- --------------------------------------------------------
 
@@ -7665,25 +7683,3 @@ CREATE TABLE IF NOT EXISTS `WG_WIDGET` (
 -- Dumping data for table `WG_WIDGET`
 --
 
-
--- --------------------------------------------------------
-
---
--- Table structure for table `advensed_stock`
---
-
-DROP TABLE IF EXISTS `advensed_stock`;
-CREATE TABLE IF NOT EXISTS `advensed_stock` (
-  `productID` int(11) NOT NULL,
-  `colorID` int(11) NOT NULL,
-  `sizeID` int(11) NOT NULL,
-  `amount` int(11) NOT NULL,
-  PRIMARY KEY  (`productID`,`colorID`,`sizeID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `advensed_stock`
---
-
-INSERT INTO `advensed_stock` (`productID`, `colorID`, `sizeID`, `amount`) VALUES
-(674, 6, 5, 5);
