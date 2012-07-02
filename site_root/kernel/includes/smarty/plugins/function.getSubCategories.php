@@ -20,10 +20,7 @@ function smarty_function_getSubCategories( $params, &$smarty ) {
 
   foreach ($subCatigories as &$category) {
   	$category = LanguagesManager::ml_fillFields(CATEGORIES_TABLE, $category);
-  	$category['url'] = $category['categoryID'];
   }
-  //$subCatigories = db_phquery_fetch(DBRFETCH_ROW_ALL, 'SELECT * FROM  `SC_products`');
-  //var_dump($subCatigories);
 
   $smarty->assign($var, $subCatigories);
 }
