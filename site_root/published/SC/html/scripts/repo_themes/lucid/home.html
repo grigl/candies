@@ -14,6 +14,7 @@
 		return $productList->getProducts(true);
 	}
 
+	// !!! Нужно создать списки и добавить в них товары http://goo.gl/gxmYJ
 	$this->assign('featured_products_male', getProducts('featuredmale'));
 	$this->assign('featured_products_female', getProducts('featuredfemale'));
 {/php}
@@ -21,7 +22,6 @@
 <h2>Фичеред мужские</h2>
 {foreach from=$featured_products_male item=product}
 	{include file='product_brief.html' product_info=$product}
-
 {/foreach}
 
 <h2>Фичеред женские</h2>
@@ -35,9 +35,23 @@
 <h2>Текст эбаут</h2>
 {php}
 	$sql = 'SELECT * FROM ?#AUX_PAGES_TABLE WHERE aux_page_slug=?';
-	$q = db_phquery($sql, 'about'); // «about» — ID страницы
+	$q = db_phquery($sql, '1'); // «1» — ID страницы
 	$row = db_fetch_row($q);
 	LanguagesManager::ml_fillFields(AUX_PAGES_TABLE, $row);
 	$this->assign('about_text', $row['aux_page_text']);
 {/php}
 {$about_text}
+
+
+<!-- Вывод подкатегорий -->
+<h2>Вывод подкатегорий</h2>
+
+<!-- Получаем список категорий -->
+{getSubCategories var="femaleCats" parentName="Ж"} 
+
+<!-- при выводе можно опираться на site_root/published/SC/html/scripts/templates/frontend/category_tree.html -->
+{$femaleCats|@debug_print_var}
+
+{getSubCategories var="maleCats" parentName="М"}
+
+{$maleCats|@debug_print_var}
