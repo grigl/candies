@@ -14,5 +14,5 @@
  */
 function smarty_modifier_is_male($category_id)
 {
-	return "m" == db_phquery_fetch(DBRFETCH_FIRST, 'SELECT a.slug FROM ?#CATEGORIES_TABLE as a, ?#CATEGORIES_TABLE as b WHERE a.categoryID = b.parent AND b.categoryID=?', $category_id);
+	return "М" == db_phquery_fetch(DBRFETCH_FIRST, 'SELECT a.name_ru FROM ?#CATEGORIES_TABLE as a, ?#CATEGORIES_TABLE as b WHERE a.categoryID = b.parent AND b.categoryID=?', $category_id);
 }
