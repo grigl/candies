@@ -709,7 +709,8 @@ header li.cur a {cursor: default;}
 		margin: 0 90px 0 55px;
 	}
 	.cart-list-item .info .name {font-size: 15px;}
-	.cart-list-item .info .size {
+	.cart-list-item .info .size,
+	.cart-list-item .info .color {
 		font-size: 12px;
 		margin-right: 10px;
 	}
@@ -962,21 +963,80 @@ header li.cur a {cursor: default;}
 	float: left;
 	margin-top: 0;
 }
+/* //user-info */
 
 .order-history {}
 .order-history h3 {
 	font-size: 21px;
 	text-transform: none;
+	margin-bottom: 20px;
 }
-.order-history ul {padding: 16px 0;}
-.order-history li {margin-bottom: 16px;}
-.order-history .date {float: right;}
-.order-history .name {font-size: 15px;}
-.order-history .info .size {
-	font-size: 12px;
-	margin-right: 10px;
-}
-/* //user-info */
+
+	.order-history-list {}
+	
+		.order-history-item {}
+		.order-history-item h4 {
+			font-size: 18px;
+			line-height: 18px;
+			color: #fff;
+		}
+		.order-history-item h4 span {
+			font-size: 14px;
+			line-height: 14px;
+			margin-left: 28px;
+		}
+		.order-history-item .date {
+			float: right; 
+			font-size: 12px;
+		}
+		.order-history-item ul {padding-bottom: 12px;}
+		.order-history-item li {margin-bottom: 16px;}
+		.order-history-item .num {float: right;}
+		.order-history-item .name {font-size: 15px;}
+		.order-history-item span {font-size: 12px;}
+		.order-history-item .size,
+		.order-history-item .color {margin-right: 10px;}
+		
+			.order-history-name {
+				cursor: pointer;
+			}
+			.order-history-name:before {
+				content: "►";
+				font-size: 13px;
+				position: relative;
+				top: -2px;
+				margin-right: 4px;
+			}
+			.order-history-name.open:before {
+				content: "▼";
+			}
+			
+			.order-history-info {
+				margin-bottom: 12px;
+				display: none;
+			}
+			.order-history-info h5 {
+				font-size: 15px;
+				margin-bottom: 16px;
+			}
+			.order-history-info .info {
+				background-position: top;
+				padding: 16px 0 28px;
+			}
+			.order-history-info .info input[type=checkbox] {
+				float: left;
+				margin: 1px 5px 0 0;
+			}
+			.order-history-info .info label {
+				margin-right: 20px;
+				float: left;
+			}
+			.order-history-info form p {
+				clear: both;
+				padding-top: 14px;
+			}
+	
+/* //history -history */
 
 
 .about-contacts {
