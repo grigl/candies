@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Candies</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="shortcut icon" href="favicon.ico">
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
+
+  <%= stylesheet_link_tag 'style', 'ie' %>
+  <%= javascript_include_tag 'libs/jquery-1.7.2.min', 'libs/jquery.ikselect.min', 'libs/modernizr-2.0.6.min' %>
+  <%= javascript_include_tag 'script' %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo"><img src="images/bg_logo.png" width="128" height="69" alt="Candies"></a>
+  <ul>
+    <li><a href="#" class="dotted go-top">Магазин</a></li>
+    <li class="cur go-top"><a href="#" class="dotted">Личный кабинет</a></li>
+    <li><a href="#" class="dotted go-top">Информация</a></li>
+  </ul>
+</header>
+
+<div class="page white">
+  <div class="wrapper">
+    
+    <div class="basket">
+      <a class="go-bottom" href="#cart">Корзина<span>2</span></a>
+    </div>
+
+    <%= debug params %>
+
+    <%= yield %>
+
+  </div>
+</div>
+
+</body>
+</html>

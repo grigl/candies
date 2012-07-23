@@ -1,0 +1,3 @@
+  <%= hook :homepage_products do %>
+    <%= render "shared/products", :products => @products, :taxon => @taxon %>
+  <% end %>
