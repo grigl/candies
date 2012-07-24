@@ -33,58 +33,8 @@
     <div class="left-colum">
       
       <% @products.limit(1).each do |product| %>
-            <%= hook :products_list_item, {:product => product} do %>
-              <%= link_to raw(product.name), product, :class => 'product-name' %>
-              <%= hook :products_list_item_image, {:product => product} do %>
-              <div class="product-image-wrapper">
-                  <%= link_to small_image(product), product %>
-              </div>
-              <% end %>
-              <% if defined?(SpreeReviews) %>
-                <div align="center" style="height: 15px;"><%= render 'shared/rating', :product => product %></div>
-              <% end %>  
-              <%= link_to raw("<span class='price selling'>#{product_price(product)}</span>"), product, :class => 'info' %>
-            <% end %>
-
-            <% if product.has_variants? %>
-              <div id="product-variants">
-                <h2><%= t('variants') %></h2>
-                <% index = 0 %>
-                <% product.grouped_option_values.each do |type, values| %>
-                  <div id="<%= dom_id(type) %>" class="variant-options index-<%= index %>">
-                    <h6 class="variant-option-type"><%= type.presentation %></h6>
-                    <ul class="variant-option-values">
-                    <% values.sort_by(&:position).each do |value| %>
-                      <% classes = ["option-value"] %>
-
-                        <% classes << ( Spree::Config[:allow_backorders] || variants.sum(&:count_on_hand) > 0 ? "in-stock" : "out-of-stock" ) if index == 0 %>
-                        <li><%= link_to value.has_image? ? image_tag(value.image.url, :alt => value.presentation) : content_tag(:span, value.presentation), "#", :title => value.presentation, :class => classes.join(" "), :rel => "#{type.id}-#{value.id}" %></li>
-
-                    <% end %>
-                      <li class="clear-option"><%= link_to "X", "#clear", :class => "clear-button clear-index-#{index}" %></li>
-                      <li class="clear"></li>
-                    </ul>
-                  </div>
-                  <% index += 1 %>
-                <% end %>
-                <%= hidden_field_tag "products[#{product.id}]", "", :id => "variant_id", :class => "hidden" %>
-                <script type="text/javascript">
-                //<![CDATA[
-                  var variant_options = new VariantOptions(<%== product.variant_options_hash.to_json %>, <%==  !!Spree::Config[:allow_backorders] %>);
-                //]]>
-                </script>    
-              </div>
-            <% end %>
-
-            <% content_for :head do %>
-              <%= stylesheet_link_tag 'variant_options' %>
-              <%= javascript_include_tag 'variant_options' %>
-            <% end %>
-
-      <% end %>
-
       <figure class="shop-item-images">
-        <img src="images/dummy.gif" width="416" height="305" alt="">
+        <%= product_image(product, { width: 416, height: 305 }) %>
       </figure>
       
       <div class="shop-item-options dotted">
@@ -110,35 +60,42 @@
       </div>
       
       <div class="shop-item-text dotted">
-        <p>Уже успевшая полюбиться многим, в новом сезоне модель представлена с ориги-нальной шнуровкой, графической печатью на подкладке и выполнена из проч-нейшего хлопка столь актуального во время летнего сезона.</p>
+        <p><%= product_description(product) %></p>
       </div>
       
       <div class="shop-item-buy">
         <a href="#" class="button plus">В корзину</a>
         <div class="shop-item-price">
-          3400 <em>Руб.</em>
+          <%= product.price.to_i %> <em>Руб.</em>
         </div>
       </div>
-      
+
+      <% end %>
     </div>
+
     
     <div class="right-colum">
       
+      <% @products.limit(1).each do |product| %>
       <figure class="shop-item-images">
-        <img src="images/dummy.gif" width="416" height="305" alt="">
+        <%= product_image(product, { width: 416, height: 305 }) %>
       </figure>
       
       <div class="shop-item-options dotted">
         <div class="left">
           <span class="label">Цвет</span>
           <ul class="shop-item-colors">
+            <li><a href="#"><img src="images/dummy.gif" width="33" height="33" alt=""></a></li>
+            <li><a href="#"><img src="images/dummy.gif" width="33" height="33" alt=""></a></li>
             <li class="cur"><a href="#"><img src="images/dummy.gif" width="33" height="33" alt=""></a></li>
+            <li><a href="#"><img src="images/dummy.gif" width="33" height="33" alt=""></a></li>
+            <li><a href="#"><img src="images/dummy.gif" width="33" height="33" alt=""></a></li>
           </ul>
         </div>
         <div class="right">
           <span class="label">Ваш размер</span>
           <select class="select">
-            <option>38</option>
+            <option>39</option>
             <option>40</option>
             <option>41</option>
             <option>42</option>
@@ -147,15 +104,21 @@
       </div>
       
       <div class="shop-item-text dotted">
-        <p>Keds – это неповторимый комфорт, превосходное качество, универсальность и доступность. Именно эти ключевые показатели сделали имя марки не просто известным на весь мир, а настоящим термином в индустрии обуви.</p>
+        <p><%= product_description(product) rescue "У товара нет описания" %></p>
       </div>
       
-      <div class="shop-item-buy">
-        <a href="#" class="button plus">В корзину</a>
+      <div class="shop-item-buy">       
+        <%= form_for :order, :url => populate_orders_url do |f| %>
+          <a href="#" class="button plus" id="shop-item-buy-button">В корзину</a> 
+          <%= hidden_field_tag "variants[#{product.master.id}]", 1 %>
+          <button type='submit' style:'display:none'></button>
+        <% end %>
         <div class="shop-item-price">
-          2899 <em>Руб.</em>
+          <%= product.price.to_i %> <em>Руб.</em>
         </div>
       </div>
+
+      <% end %>
       
     </div>
     
