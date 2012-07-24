@@ -1,9 +1,0 @@
-<Connector>
-	<Class>
-		<Name>configuration</Name>
-		<File>class.configuration.php</File>
-		<Title>Управление настройками</Title>
-		<Description></Description>
-		<SingleInstallation>true</SingleInstallation>
-	</Class>
-</Connector>

@@ -17,6 +17,7 @@
   <%= javascript_include_tag 'libs/jquery-1.7.2.min', 'libs/jquery.ikselect.min', 'libs/modernizr-2.0.6.min' %>
   <%= javascript_include_tag 'script' %>
   <%= csrf_meta_tag %>
+  <%= yield(:head) %>
 </head>
 <body>
 
