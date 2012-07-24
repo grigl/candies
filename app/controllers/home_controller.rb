@@ -7,6 +7,7 @@ class HomeController < Spree::BaseController
 
     @searcher = Spree::Config.searcher_class.new(params)
     @products = @searcher.retrieve_products
-    @product = @products.first
+
+    @order = current_order
   end
 end

@@ -53,6 +53,12 @@ $('.go-bottom').click(function(e){
 	 return false;
 });
 
+//product add_to_cart
+$('.shop-item-buy-link').click(function(e){
+	e.preventDefault();
+	$(this).parent().find('.shop-item-buy-button').click();
+})
+
 });
 
 // placeholder
