@@ -411,6 +411,56 @@ header li.cur a {cursor: default;}
 		.left-colum {margin-right: 160px;}
 /* //case */
 
+/*.jcarousel-progress {
+	position: absolute;
+	width: 0;
+	height: 1px;
+	background: rgba(0,0,0,1);
+	top: 0;
+	-webkit-animation: runProgress 4.2s linear infinite;
+	-moz-animation: runProgress 4s linear infinite;
+	-o-animation: runProgress 4s linear infinite;
+	-ms-animation: runProgress 4s linear infinite;
+	animation: runProgress 4s linear infinite;
+}
+.left-colum .jcarousel-progress {left: 50%;}
+.right-colum .jcarousel-progress {right: 50%;}
+
+@-webkit-keyframes runProgress {
+	0%{width: 0%;}
+	99%{width: 50%;}
+	100%{width: 0%;}
+}
+@-moz-keyframes runProgress {
+	0%{width: 0%;}
+	100%{width: 50%;}
+}
+@-o-keyframes runProgress {
+	0%{width: 0%;}
+	100%{width: 50%;}
+}
+@-ms-keyframes runProgress {
+	0%{width: 0%;}
+	100%{width: 50%;}
+}
+@keyframes runProgress {
+	0%{width: 0%;}
+	100%{width: 50%;}
+}*/
+
+.jcarousel-clip-vertical, 
+.jcarousel {
+	overflow: hidden;
+	height: 540px;
+}
+
+	.jcarousel-item {
+		height: 540px;
+	}
+.jcarousel-prev-vertical, 
+.jcarousel-next-vertical {display: none;}
+/* //jcarousel */
+
 /* c o n t e n t */
 
 .basket {
