@@ -409,6 +409,12 @@ header li.cur a {cursor: default;}
 			vertical-align: top;
 		}
 		.left-colum {margin-right: 160px;}
+		
+.checkout-step {
+	position: absolute;
+	width: 100%;
+}
+
 /* //case */
 
 /*.jcarousel-progress {
@@ -910,6 +916,7 @@ header li.cur a {cursor: default;}
 	left: 50%;
 	margin-left: -50px;
 	text-align: center;
+	z-index: 90;
 }
 .checkout-steps li {
 	display: inline-block;
