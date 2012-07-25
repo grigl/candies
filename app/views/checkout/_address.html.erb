@@ -1,0 +1,63 @@
+  <%= form.fields_for :bill_address do |bill_form| %>
+    <legend>Платежный адрес</legend>
+        <%= bill_form.label :firstname, t(:first_name) %>
+        <%= bill_form.text_field :firstname, :class => 'required' %>
+        
+        <%= bill_form.label :lastname, t(:last_name) %>
+        <%= bill_form.text_field :lastname, :class => 'required' %>
+        
+        <%= bill_form.label :address1, t(:street_address) %>
+        <%= bill_form.text_field :address1, :class => 'required' %>
+        
+        <%= bill_form.label :address2, t(:street_address_2) %>
+        <%= bill_form.text_field :address2 %>
+
+        <%= bill_form.label :city, t(:city) %>
+        <%= bill_form.text_field :city, :class => 'required' %>
+
+        <%= bill_form.label :zipcode, t(:zip) %>
+        <%= bill_form.text_field :zipcode, :class => 'required' %>
+
+        <%= bill_form.label :country_id, t(:country) %>
+        <%= bill_form.collection_select :country_id, available_countries, :id, :name, {}, {:class => 'required'} %>
+
+        <%= bill_form.label :state, t(:state) %>
+        <%= bill_form.collection_select :state_id, @order.bill_address.country.states, :id, :name, {}, {:class => 'required'} %>        
+
+        <%= bill_form.label :phone, t(:phone) %>
+        <%= bill_form.text_field :phone, :class => 'required' %>
+  <% end %>
+
+  <%= form.fields_for :ship_address do |ship_form| %>
+    <legend>Платежный адрес</legend>
+        <%= ship_form.label :firstname, t(:first_name) %>
+        <%= ship_form.text_field :firstname, :class => 'required' %>
+        
+        <%= ship_form.label :lastname, t(:last_name) %>
+        <%= ship_form.text_field :lastname, :class => 'required' %>
+        
+        <%= ship_form.label :address1, t(:street_address) %>
+        <%= ship_form.text_field :address1, :class => 'required' %>
+        
+        <%= ship_form.label :address2, t(:street_address_2) %>
+        <%= ship_form.text_field :address2 %>
+
+        <%= ship_form.label :city, t(:city) %>
+        <%= ship_form.text_field :city, :class => 'required' %>
+
+        <%= ship_form.label :zipcode, t(:zip) %>
+        <%= ship_form.text_field :zipcode, :class => 'required' %>
+
+        <%= ship_form.label :country_id, t(:country) %>
+        <%= ship_form.collection_select :country_id, available_countries, :id, :name, {}, {:class => 'required'} %>
+
+        <%= ship_form.label :state, t(:state) %>
+        <%= ship_form.collection_select :state_id, @order.bill_address.country.states, :id, :name, {}, {:class => 'required'} %>        
+
+        <%= ship_form.label :phone, t(:phone) %>
+        <%= ship_form.text_field :phone, :class => 'required' %>
+  <% end %>
+<div class="form-buttons">
+  <input type="submit" class="continue button primary" value="<%=t("save_and_continue") %>" />
+</div>
+

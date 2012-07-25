@@ -1,0 +1,15 @@
+
+        <% @order.rate_hash.each do |shipping_method| %>
+
+            <%= radio_button(:order, :shipping_method_id, shipping_method[:id]) %>
+            <%= shipping_method[:name] %> <%= number_to_currency shipping_method[:cost] %>
+
+        <% end %>
+
+    <% if Spree::Config[:shipping_instructions] && @order.rate_hash.present? %>
+
+        <%= form.label :special_instructions, t("shipping_instructions") %><br />
+        <%= form.text_area :special_instructions, :cols => 40, :rows => 7 %>
+
+    <% end %>
+
