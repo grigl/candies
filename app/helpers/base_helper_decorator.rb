@@ -47,4 +47,12 @@ Spree::BaseHelper.module_eval do
       formatted_price
     end
   end
+
+  def retrieve_collections
+    @collections = Taxonomy.find(1).root.children
+  end
+
+  def retrieve_brands
+    @brands = Taxonomy.find(2).root.children
+  end
 end

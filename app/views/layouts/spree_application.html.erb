@@ -38,12 +38,12 @@
       <nav class="catalog-menu dotted">
         <div class="icon-sex"><img src="images/ico_male.png" width="55" height="67" alt="male"></div>
         <ul class="catalog-menu-first">
-          <% @collections.each do |collection| %>
+          <% retrieve_collections.each do |collection| %>
             <li><%= link_to collection.name, seo_url(collection) %></li>
           <% end %>
         </ul>
         <ul class="catalog-menu-second">
-          <% @brands.each do |brand| %>
+          <% retrieve_brands.each do |brand| %>
             <li><%= link_to brand.name, seo_url(brand) %></li>
           <% end %>
         </ul>
@@ -53,12 +53,12 @@
       <nav class="catalog-menu dotted">
         <div class="icon-sex"><img src="images/ico_male.png" width="55" height="67" alt="female"></div>
         <ul class="catalog-menu-first">
-          <% @collections.each do |collection| %>
+          <% retrieve_collections.each do |collection| %>
             <li><%= link_to collection.name, seo_url(collection) %></li>
           <% end %>
         </ul>
         <ul class="catalog-menu-second">
-          <% @brands.each do |brand| %>
+          <% retrieve_brands.each do |brand| %>
             <li><%= link_to brand.name, seo_url(brand) %></li>
           <% end %>
         </ul>
@@ -73,7 +73,11 @@
   </div>
 </div>
 
-<%= render 'shared/personal_page' %>
+<div class="page">
+  <div class="wrapper personal-page-wrapper">
+    <%= render 'shared/personal_page' %>
+  </div>
+</div>
 
 </body>
 </html>

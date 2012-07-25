@@ -48,6 +48,7 @@ class OrdersController < Spree::BaseController
       @order.add_variant(Variant.find(variant_id), quantity) if quantity > 0
     end if params[:variants]
 
+    @order.update_totals
     respond_with(@order) { |format| format.js { render :update_cart } }
   end
 

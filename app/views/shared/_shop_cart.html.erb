@@ -13,7 +13,6 @@
     <a href="#">Все подробности доставки</a>
   </div>
 <% else %>
-    <%= @order.inspect %>
   <%= form_for @order, :url => update_cart_path, :html=> { :id => 'updatecart' }, remote: true  do |order_form| %>
     <ul class="cart-list dotted">
       <%= render :partial => 'shared/cart_form', :locals => {:order_form => order_form} %>
@@ -25,7 +24,7 @@
       </div>
     
       <div class="cart-button-box dotted">
-        <a href="#" class="button">ОФОРМИТЬ ЗАКАЗ БЕЗ РЕГИСТРАЦИИ</a>
+        <%= link_to 'ОФОРМИТЬ ЗАКАЗ БЕЗ РЕГИСТРАЦИИ', checkout_path, remote: true, :class => 'button' %>
       </div>
     
       <div class="cart-deliver-box">
@@ -36,12 +35,4 @@
       <a href="#">Все подробности доставки</a>
     </div>
   <% end %>
-
-  <div id="subtotal">
-    <h3><%= "#{t("subtotal")}: #{order_price(@order)}" %></h3>
-    <div class="links">
-      <%= link_to image_tag('/images/update.png') + t("update"), '#', :class => 'button checkout primary', :onclick => "$('form#updatecart').submit(); return false;" %>
-      <%= link_to image_tag('/images/checkout.png') + t("checkout"), checkout_path, :class => 'button checkout primary' %>
-    </div>
-  </div>
 <% end %>
