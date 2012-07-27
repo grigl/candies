@@ -13,6 +13,8 @@
     <a href="#">Все подробности доставки</a>
   </div>
 <% else %>
+  <h3>ВАША КОРЗИНА:</h3>
+
   <%= form_for @order, :url => update_cart_path, :html=> { :id => 'updatecart' }, remote: true  do |order_form| %>
     <ul class="cart-list dotted">
       <%= render :partial => 'shared/cart_form', :locals => {:order_form => order_form} %>
@@ -22,9 +24,19 @@
       <span>ОБЩАЯ СУММА:  <%= order_price(@order) %></span>
       Всего:  <%= @order.item_count %>
       </div>
-    
-      <div class="cart-button-box dotted">
-        <%= link_to 'ОФОРМИТЬ ЗАКАЗ БЕЗ РЕГИСТРАЦИИ', checkout_path, remote: true, :class => 'button' %>
+  <% end %>  
+      <div class="cart-button-box dotted ">
+        <div class="form-box">
+        <%= form_for @order, :url => update_checkout_registration_path, :html => { :method => :put, :id => "checkout_form_registration"}, remote: true do |f| %>
+          <div class="form-item w346">
+            <label>АДРЕС ЭЛЕКТРОННОЙ ПОЧТЫ</label>
+            <%= f.text_field :email, class: 'textfield' %>
+          </div>
+          <div class="form-item w346">
+            <%= f.submit 'ОФОРМИТЬ ЗАКАЗ БЕЗ РЕГИСТРАЦИИ', :class => 'button' %>
+          </div>
+        <% end %>
+        </div>
       </div>
     
       <div class="cart-deliver-box">
@@ -34,5 +46,4 @@
       <br>
       <a href="#">Все подробности доставки</a>
     </div>
-  <% end %>
 <% end %>

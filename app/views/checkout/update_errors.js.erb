@@ -1,1 +1,1 @@
-alert('<%= @order.errors %>')
+alert('<%= escape_javascript(@order.inspect) %>')

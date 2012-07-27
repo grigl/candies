@@ -1,15 +1,44 @@
+<div class="left-colum">
+    
+      <h3>Выберите способ доставки заказа:</h3>
+      
+      <div class="checkout-form">
+        <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" }, remote: true do |form| %>
+          <ul class="checkout-payment">
+            <% @order.rate_hash.each do |shipping_method| %>
+            <li class="checkout-payment-item">
+              <input type="radio">
+              <%= radio_button(:order, :shipping_method_id, shipping_method[:id]) %>
+              <%= shipping_method[:name] %> <%= number_to_currency shipping_method[:cost] %>
+            </li>
+            <% end %>
+          </ul>
+          <div class="checkout-buttons">
+            <a href="#" class="button">Назад</a>
+          </div>
 
-        <% @order.rate_hash.each do |shipping_method| %>
+      </div>
 
-            <%= radio_button(:order, :shipping_method_id, shipping_method[:id]) %>
-            <%= shipping_method[:name] %> <%= number_to_currency shipping_method[:cost] %>
+    </div>
+    
+    <div class="right-colum">
+      
+      <h3>Выберите способ оплаты:</h3>
+      
+      <div class="checkout-form">
 
+          <ul class="checkout-payment">
+            <% @order.available_payment_methods.each do |method| %>
+            <li class="checkout-payment-item">
+              <%= radio_button_tag "order[payments_attributes][][payment_method_id]", method.id, method == @order.payment_method %>
+              <%= t(method.name, :scope => :payment_methods, :default => method.name) %>
+            </li>
+            <% end %>
+          </ul>
+          <div class="checkout-buttons" align="right">
+            <input type="submit" class="button" value="ДАЛЬШЕ">
+          </div>
         <% end %>
-
-    <% if Spree::Config[:shipping_instructions] && @order.rate_hash.present? %>
-
-        <%= form.label :special_instructions, t("shipping_instructions") %><br />
-        <%= form.text_area :special_instructions, :cols => 40, :rows => 7 %>
-
-    <% end %>
-
+      </div>
+      
+    </div>

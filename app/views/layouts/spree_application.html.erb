@@ -51,7 +51,7 @@
     </div>
     <div class="right-colum">
       <nav class="catalog-menu dotted">
-        <div class="icon-sex"><img src="images/ico_male.png" width="55" height="67" alt="female"></div>
+        <div class="icon-sex"><img src="images/ico_female.png" width="55" height="67" alt="female"></div>
         <ul class="catalog-menu-first">
           <% retrieve_collections.each do |collection| %>
             <li><%= link_to collection.name, seo_url(collection) %></li>
@@ -74,9 +74,7 @@
 </div>
 
 <div class="page">
-  <div class="wrapper personal-page-wrapper">
-    <%= render 'shared/personal_page_index' %>
-  </div>
+  <%= render 'shared/personal_page' %>
 </div>
 
 </body>
