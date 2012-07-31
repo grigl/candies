@@ -48,4 +48,32 @@ Order.class_eval do
 
   end
 
+  def previous_state
+    if state == 'address'
+      'cart'
+    elsif state == 'delivery'
+      'address'
+    elsif state == 'confirm'
+      'delivery'
+    elsif state == 'complete'
+      'confirm'
+    else
+      nil
+    end
+  end
+
+  def next_state
+    if state == 'cart'
+      'address'
+    elsif state == 'address'
+      'delivery'
+    elsif state == 'delivery'
+      'confirm'
+    elsif state == 'confirm'
+      'complete'
+    else
+      nil
+    end
+  end
+
 end

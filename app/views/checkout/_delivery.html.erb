@@ -1,9 +1,10 @@
-<div class="left-colum">
+<%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" }, remote: true do |form| %>
+  <div class="left-colum">
     
       <h3>Выберите способ доставки заказа:</h3>
       
       <div class="checkout-form">
-        <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" }, remote: true do |form| %>
+        
           <ul class="checkout-payment">
             <% @order.rate_hash.each do |shipping_method| %>
             <li class="checkout-payment-item">
@@ -14,7 +15,7 @@
             <% end %>
           </ul>
           <div class="checkout-buttons">
-            <a href="#" class="button">Назад</a>
+            <%= link_to 'НАЗАД', back_checkout_path(@order.state), class: 'button', remote: true %>
           </div>
 
       </div>
@@ -38,7 +39,8 @@
           <div class="checkout-buttons" align="right">
             <input type="submit" class="button" value="ДАЛЬШЕ">
           </div>
-        <% end %>
+        
       </div>
       
     </div>
+<% end %>

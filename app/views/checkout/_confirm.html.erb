@@ -5,3 +5,4 @@ Order details...
     <input type="submit" class="continue button primary" value="<%=t("place_order") %>"/>
   </div>
 <% end %>
+<%= link_to 'НАЗАД', back_checkout_path(@order.state), class: 'button', remote: true %>

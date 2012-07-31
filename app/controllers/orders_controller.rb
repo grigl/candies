@@ -11,9 +11,18 @@ class OrdersController < Spree::BaseController
   def update
     @order = current_order
     if @order.update_attributes(params[:order])
-      @order.line_items = @order.line_items.select {|li| li.quantity > 0 }
       @order.update_totals
-      respond_with(@order) { |format| format.js { render :update_cart } }
+      @order.line_items = @order.line_items.select {|li| li.quantity > 0 }
+      if @order.line_items.empty?
+        @order.destroy
+        render :update_cart
+      else
+        unless @order.state == 'cart'
+          @order.state = 'cart'
+          @order.save
+        end
+        respond_with(@order) { |format| format.js { render :update_cart } }
+      end
     else
       respond_with(@order) 
     end
@@ -49,7 +58,14 @@ class OrdersController < Spree::BaseController
     end if params[:variants]
 
     @order.update_totals
-    respond_with(@order) { |format| format.js { render :update_cart } }
+    @previous_state = @order.state
+    if @order.state != 'cart'
+      @order.state = 'cart'
+      @order.save
+      respond_with(@order) { |format| format.js { render :update_and_show_cart } }
+    else
+      respond_with(@order) { |format| format.js { render :update_cart } }
+    end
   end
 
   def empty

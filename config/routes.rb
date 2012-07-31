@@ -1,4 +1,5 @@
 Candies::Application.routes.draw do
+  match '/checkout/back/:state' => 'checkout#back', :as => :back_checkout
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

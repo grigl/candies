@@ -1,7 +1,60 @@
-  <div class="wrapper personal-page-wrapper">
-    
-    <%= render "checkout/#{@order.state}" %>
-    <input id="post-final" type="submit" style="display:none"/>
-
+<% if @order %>
+  <div class="order-state <%= 'current' if @order.state == 'cart' %>" id="cart" <%= 'style=display:none;' unless @order.state == 'cart' %>> 
+    <div class="wrapper">
+      <%= render 'checkout/cart' if @order.state == 'cart' %>
+    </div>
   </div>
+
+  <div class="order-state <%= 'current' if @order.state == 'address' %>" id="address" <%= 'style=display:none;' unless @order.state == 'address' %>>
+    <div class="wrapper">
+      <%= render 'checkout/address', order: @order if @order.state == 'address' %>
+    </div>
+  </div>
+
+  <div class="order-state <%= 'current' if @order.state == 'delivery' %>" id="delivery" <%= 'style=display:none;' unless @order.state == 'delivery' %>>
+    <div class="wrapper">
+      <%= render 'checkout/delivery' if @order.state == 'delivery' %>
+    </div>
+  </div>
+
+  <div class="order-state <%= 'current' if @order.state == 'confirm' %>" id="confirm" <%= 'style=display:none;' unless @order.state == 'confirm' %>>
+    <div class="wrapper">
+      <%= render 'checkout/confirm' if @order.state == 'confirm' %>
+    </div>
+  </div>
+
+  <div class="order-state <%= 'current' if @order.state == 'complete' %>" id="complete" <%= 'style=display:none;' unless @order.state == 'complete' %>>
+    <div class="wrapper">
+      <%= render 'checkout/complete' if @order.state == 'complete' %>
+    </div>
+  </div>
+<% else %>
+  <div class="order-state current" id="cart">
+    <div class="wrapper">
+      <%= render 'checkout/cart'%>
+    </div>
+  </div>
+
+  <div class="order-state" id="address" style="display:none;">
+    <div class="wrapper">     
+    </div>
+  </div>
+
+  <div class="order-state" id="delivery" style="display:none;">
+    <div class="wrapper">
+    </div>
+  </div>
+
+  <div class="order-state" id="confirm" style="display:none;">
+    <div class="wrapper">
+    </div>
+  </div>
+
+  <div class="order-state" id="complete" style="display:none;">
+    <div class="wrapper">
+    </div>
+  </div>
+<% end %>
+
+<%= @order.inspect if @order %>
 

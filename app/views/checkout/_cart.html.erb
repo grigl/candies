@@ -1,37 +1,35 @@
-    <div class="left-colum full-cart-container">
-      <%= form_for current_order, :url => update_checkout_path(current_order.state), :html => { :id => "checkout_form_#{current_order.state}" }, remote: true do |form| %>
-        <%= render 'shared/shop_cart' %>
-      <% end %>
-    </div>
+<div class="left-colum full-cart-container">
+  <%= render 'shared/shop_cart' %>
+</div>
     
-    <div class="right-colum">
-      
-      <div class="form-box">
-        <form>
-          <div class="form-item w346">
-            <label>ИМЯ ПОЛЬЗОВАТЕЛЯ</label>
-            <input type="text" class="textfield">
-          </div>
-          <div class="form-item w346">
-            <label>ПАРОЛЬ</label>
-            <input type="password" class="textfield">
-          </div>
-          <div class="form-item w110">
-            <div class="checkbox-box">
-              <input type="checkbox">
-              <label>Запомнить</label>
-            </div>
-          </div>
-          <div class="form-item w144">
-            <a href="#">ВСПОМНИТЬ ПАРОЛЬ</a>
-          </div>
-          <div class="form-item w94">
-            <input type="submit" class="button" value="ВОЙТИ">
-          </div>
-        </form>
+<div class="right-colum">
+  
+  <div class="form-box">
+    <form>
+      <div class="form-item w346">
+        <label>ИМЯ ПОЛЬЗОВАТЕЛЯ</label>
+        <input type="text" class="textfield">
       </div>
-      
-      <h3><a href="#" class="dotted">РЕГИСТРАЦИЯ</a></h3>
-      
-    </div>
+      <div class="form-item w346">
+        <label>ПАРОЛЬ</label>
+        <input type="password" class="textfield">
+      </div>
+      <div class="form-item w110">
+        <div class="checkbox-box">
+          <input type="checkbox">
+          <label>Запомнить</label>
+        </div>
+      </div>
+      <div class="form-item w144">
+        <a href="#">ВСПОМНИТЬ ПАРОЛЬ</a>
+      </div>
+      <div class="form-item w94">
+        <input type="submit" class="button" value="ВОЙТИ">
+      </div>
+    </form>
+  </div>
+  
+  <h3><a href="#" class="dotted">РЕГИСТРАЦИЯ</a></h3>
+  
+</div>
     

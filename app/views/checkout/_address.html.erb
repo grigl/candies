@@ -1,9 +1,10 @@
+  <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" }, remote: true do |form| %>  
     <div class="left-colum">
     
       <h3>КОНТАКТНЫЕ ДАННЫЕ</h3>
       
       <div class="checkout-form">
-        <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" }, remote: true do |form| %>
+        
         <%= form.fields_for :bill_address do |bill_form| %>
           <div class="checkout-box">
             <div class="form-item w175">
@@ -20,7 +21,7 @@
             </div>
           </div>
           <div class="checkout-buttons">
-            <a href="#" class="button">Назад</a>
+            <%= link_to 'НАЗАД', back_checkout_path(@order.state), class: 'button', remote: true %>
           </div>
 
       </div>
@@ -131,8 +132,9 @@
             </div>
           </div>
         <% end %>
-        <% end %>
+        
       </div>
       
     </div>
+  <% end %>
 
