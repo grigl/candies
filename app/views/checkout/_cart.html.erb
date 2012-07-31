@@ -1,5 +1,5 @@
     <div class="left-colum full-cart-container">
-      <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" }, remote: true do |form| %>
+      <%= form_for current_order, :url => update_checkout_path(current_order.state), :html => { :id => "checkout_form_#{current_order.state}" }, remote: true do |form| %>
         <%= render 'shared/shop_cart' %>
       <% end %>
     </div>
