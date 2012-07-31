@@ -114,6 +114,8 @@ GEM
     rd_unobtrusive_date_picker (0.1.0)
     rdoc (3.12)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     spree (0.60.6)
       spree_api (= 0.60.6)
       spree_auth (= 0.60.6)
@@ -195,6 +197,7 @@ GEM
     warden (1.0.6)
       rack (>= 1.0)
     will_paginate (3.0.2)
+    xml-simple (1.1.1)
 
 PLATFORMS
   ruby
@@ -203,8 +206,10 @@ DEPENDENCIES
   jquery-rails (= 0.2.6)
   mysql2 (~> 0.2.7)
   rails (= 3.0.10)
+  rest-client (~> 1.6.7)
   spree (~> 0.60.6)
   spree_i18n!
   spree_variant_options (= 0.2.0)
   synergy (~> 0.60.0)
   synergy_default_theme (= 1.0.2)
+  xml-simple (~> 1.1.1)
