@@ -1,0 +1,6 @@
+
+tmp/*
+
+log/development.log
+
+config/database.yml
