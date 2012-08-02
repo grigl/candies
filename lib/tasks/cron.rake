@@ -151,11 +151,16 @@ namespace :sync do
     
     all_goods = {"male" => goods_male, "female" => goods_female}
     
-    all_goods.each do|gender, goods_coll|
-      goods_male.each do|i,good|
+    all_goods.each do|gender, goods_collection|
+      goods_collection.each do|i,good|
         sku = good["productCode"]
         name = good["name"]
-        gender = 1
+        if gender == "male" then
+          gender_i = 1
+        end
+        if gender == "female" then
+          gender_i = 2
+        end
         price = good["salePrice"]
         product = Product.where("ms_sku = ?", sku).limit(1)
         if product.empty?
@@ -163,7 +168,7 @@ namespace :sync do
           product.name = name
           product.ms_sku = sku
           product.sku = sku
-          product.gender = gender
+          product.gender = gender_i
           product.permalink = sku
           product.price = price
           product.save
@@ -171,31 +176,55 @@ namespace :sync do
           product = product[0]
         end
         #attributes and variants
+        size_id = 0
+        color_id = 0
         if good.has_key?("attribute") then
-          good["attribute"].each do|j, attribute|
-            value_id = attribue["entityValueId"]
-            size_id = 0
-            color_id = 0
+          good["attribute"].each do|attribute|
+            value_id = attribute["entityValueId"]
             if good_values_size.has_key?(value_id) then
               size_id = good_values_size[value_id]
             end
-            if good_values_color.has?(value_id) then
-              color_id = good_values_size[value_id]
+            if good_values_color.has_key?(value_id) then
+              color_id = good_values_color[value_id]
             end
-            if size_id != 0 and color_id != 0 then
-              all_variants = Variant.where('product_id = ? AND is_master = 0',  product.id)
-              found_variant = nil
-              all_variants.each do|variant|
-                puts variant.option_values
-                return
+          end
+        end
+        if size_id != 0 and color_id != 0 then
+          all_variants = Variant.where('product_id = ? AND is_master = 0',  product.id)
+          if all_variants.empty? then #нет вариантов - заносим этот!
+            found_variant = Variant.new
+            found_variant.product_id = product.id
+            found_variant.price = price
+            found_variant.is_master = 0
+            found_variant.option_values << OptionValue.find(size_id)
+            found_variant.option_values << OptionValue.find(color_id)
+            found_variant.save
+          else
+            found_variant = nil
+            all_variants.each do|variant|
+              this_variant_size_id = 0
+              this_variant_color_id = 0
+              variant.option_values.each do|value|
+                if good_values_size.has_value?(value.id) then
+                  this_variant_size_id = value.id
+                end
+                if good_values_color.has_value?(value.id) then
+                  this_variant_color_id = value.id
+                end
               end
-            end
+              if this_variant_color_id != color_id and this_variant_size_id then #lets make new variant!
+                found_variant = Variant.new
+                found_variant.product_id = product.id
+                found_variant.price = price
+                found_variant.is_master = 0
+                found_variant.option_values << OptionValue.find(size_id)
+                found_variant.option_values << OptionValue.find(color_id)
+                found_variant.save                 
+              end
+            end            
           end
         end
       end      
     end
-    
-    #puts goods_male
-    #puts goods_female
   end
 end
