@@ -11,9 +11,9 @@
     </div>
   </div>
 
-  <div class="order-state <%= 'current' if @order.state == 'delivery' %>" id="delivery" <%= 'style=display:none;' unless @order.state == 'delivery' %>>
+  <div class="order-state <%= 'current' if @order.state == 'payment' %>" id="payment" <%= 'style=display:none;' unless @order.state == 'payment' %>>
     <div class="wrapper">
-      <%= render 'checkout/delivery' if @order.state == 'delivery' %>
+      <%= render 'checkout/payment' if @order.state == 'payment' %>
     </div>
   </div>
 
@@ -28,6 +28,11 @@
       <%= render 'checkout/complete' if @order.state == 'complete' %>
     </div>
   </div>
+
+  <div class="order-state" id="robokassa" style="display:none;">
+    <div class="wrapper">
+    </div>
+  </div>
 <% else %>
   <div class="order-state current" id="cart">
     <div class="wrapper">
@@ -40,7 +45,7 @@
     </div>
   </div>
 
-  <div class="order-state" id="delivery" style="display:none;">
+  <div class="order-state" id="payment" style="display:none;">
     <div class="wrapper">
     </div>
   </div>
@@ -54,7 +59,15 @@
     <div class="wrapper">
     </div>
   </div>
+
+  <div class="order-state" id="robokassa" style="display:none;">
+    <div class="wrapper">
+    </div>
+  </div>
 <% end %>
 
 <%= @order.inspect if @order %>
+<hr>
+<%= Order.last.inspect %><br />
+<%= Order.last.state_events %>
 

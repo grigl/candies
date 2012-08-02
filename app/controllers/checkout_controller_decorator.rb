@@ -1,4 +1,5 @@
 CheckoutController.class_eval do
+  before_filter :load_order, except: [:back]
   # Updates the order and advances to the next state (when possible.)
   def update
     if @order.update_attributes(object_params)
@@ -7,7 +8,7 @@ CheckoutController.class_eval do
       else
         flash[:error] = I18n.t(:payment_processing_failed)
         # respond_with(@order, :location => checkout_state_path(@order.state))
-        respond_with(@order) { |format| format.js { render :update_checkout } }
+        respond_with(@order) { |format| format.js { render :update_errors } }
         return
       end
 
@@ -47,9 +48,13 @@ CheckoutController.class_eval do
   end
 
   def back
+    @order = current_order
     @order.state = @order.previous_state
-    @order.save
-    respond_with(@order) { |format| format.js { render :back_checkout } }
+    if @order.save
+      respond_with(@order) { |format| format.js { render :back_checkout } }
+    else
+      respond_with(@order) { |format| format.js { render :update_errors } }
+    end
   end
 
   # def update_registration
@@ -63,6 +68,7 @@ CheckoutController.class_eval do
   #     respond_with(@order) { |format| format.js { render :update_errors } }
   #   end
   # end
+  private
 
   def completion_route
     order_path(@order)
@@ -70,7 +76,7 @@ CheckoutController.class_eval do
 
   def object_params
     # For payment step, filter order parameters to produce the expected nested attributes for a single payment and its source, discarding attributes for payment methods other than the one selected
-    if @order.delivery?
+    if @order.payment?
       if params[:payment_source].present? && source_params = params.delete(:payment_source)[params[:order][:payments_attributes].first[:payment_method_id].underscore]
         params[:order][:payments_attributes].first[:source_attributes] = source_params
       end
@@ -97,7 +103,7 @@ CheckoutController.class_eval do
     @order.ship_address ||= Address.default
   end
 
-  def before_delivery
+  def before_payment
     return if params[:order].present?
     @order.shipping_method ||= (@order.rate_hash.first && @order.rate_hash.first[:shipping_method])
     current_order.payments.destroy_all if request.put?
@@ -110,5 +116,40 @@ CheckoutController.class_eval do
   def rescue_from_spree_gateway_error
     flash[:error] = t('spree_gateway_error_flash_for_checkout')
     render :edit
+  end
+
+  def after_payment
+    return
+  end
+
+  def after_confirm
+    if @order.shipping_method.calculator.is_a?(Calculator::CashOnDelivery)
+      @order.payments.build(:payment_method => PaymentMethod.internal, :amount => @order.total)
+      @order.confirm_without_payment!
+    end
+  end
+
+  def redirect_to_robokassa_form_if_needed
+    return unless params[:state] == "payment"
+    load_order
+    payment_method = PaymentMethod.find(params[:order][:payments_attributes].first[:payment_method_id])
+    if payment_method.kind_of? Gateway::Robokassa
+      @response_url = gateway_robokassa_path(:gateway_id => payment_method.id, :order_id => @order.id)
+      respond_with(@order) { |format| format.js { render :update_robokassa } }
+    end
+
+  end
+
+  def normalize_addresses
+    return unless params[:state] == "address" && @order.bill_address_id && @order.ship_address_id && params[:email]
+    @order.bill_address.reload
+    @order.ship_address.reload
+    if @order.bill_address_id != @order.ship_address_id && @order.bill_address.same_as?(@order.ship_address)
+      @order.bill_address.destroy
+      @order.update_attribute(:bill_address_id, @order.ship_address.id)
+    else
+      @order.bill_address.update_attribute(:user_id, current_user.try(:id))
+    end
+    @order.ship_address.update_attribute(:user_id, current_user.try(:id))
   end
 end

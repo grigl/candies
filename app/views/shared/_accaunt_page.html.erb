@@ -1,0 +1,10 @@
+<div class="<%= 'accaunt_current' unless current_user %>" id="login" <%= 'style=display:none;' if  current_user %>>
+  <%= render 'shared/login' %>
+</div>
+
+<div id="registration" style="display:none;">
+</div>
+
+<div id="accaunt" class="<%= 'accaunt_current' if current_user %>" <%= 'style=display:none;' unless  current_user %>>
+  <%= render 'shared/accaunt' %>
+</div>

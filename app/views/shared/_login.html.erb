@@ -1,0 +1,26 @@
+<div class="form-box">
+    <%= form_for(:user, :url => user_session_path) do |f| %>
+      <div class="form-item w346">
+        <%= f.label :email , 'EMAIL' %>
+        <%= f.text_field :email, class: 'textfield' %>
+      </div>
+      <div class="form-item w346">
+        <%= f.label :password , 'ПАРОЛЬ' %>
+        <%= f.text_field :password, class: 'textfield' %>
+      </div>
+      <div class="form-item w110">
+        <div class="checkbox-box">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me, 'Запомнить' %>
+        </div>
+      </div>
+      <div class="form-item w144">
+        <a href="#">ВСПОМНИТЬ ПАРОЛЬ</a>
+      </div>
+      <div class="form-item w94">
+        <input type="submit" class="button" value="ВОЙТИ">
+      </div>
+    <% end %>
+  </div>
+  
+  <h3><a href="#" class="dotted">РЕГИСТРАЦИЯ</a></h3>
