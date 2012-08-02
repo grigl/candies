@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120802072440) do
+ActiveRecord::Schema.define(:version => 20120802120904) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -331,7 +331,7 @@ ActiveRecord::Schema.define(:version => 20120802072440) do
     t.integer  "count_on_hand",           :default => 0,    :null => false
     t.boolean  "export_to_yandex_market", :default => true, :null => false
     t.integer  "gender"
-    t.string   "sku"
+    t.string   "ms_sku"
   end
 
   add_index "products", ["available_on"], :name => "index_products_on_available_on"
@@ -577,6 +577,7 @@ ActiveRecord::Schema.define(:version => 20120802072440) do
     t.integer  "count_on_hand",                               :default => 0,     :null => false
     t.decimal  "cost_price",    :precision => 8, :scale => 2
     t.integer  "position"
+    t.string   "ms_good_id"
   end
 
   add_index "variants", ["product_id"], :name => "index_variants_on_product_id"

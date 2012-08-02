@@ -196,11 +196,11 @@ namespace :sync do
             found_variant.product_id = product.id
             found_variant.price = price
             found_variant.is_master = 0
+            found_vartian.sku = sku
             found_variant.option_values << OptionValue.find(size_id)
             found_variant.option_values << OptionValue.find(color_id)
             found_variant.save
           else
-            found_variant = nil
             all_variants.each do|variant|
               this_variant_size_id = 0
               this_variant_color_id = 0
@@ -219,6 +219,7 @@ namespace :sync do
                 found_variant.is_master = 0
                 found_variant.option_values << OptionValue.find(size_id)
                 found_variant.option_values << OptionValue.find(color_id)
+                found_variant.sku = product.sku
                 found_variant.save                 
               end
             end            
