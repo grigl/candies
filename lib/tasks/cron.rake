@@ -117,16 +117,16 @@ namespace :sync do
     goods_male = Hash.new
     goods_female = Hash.new
     
-    #response = RestClient::Request.new(:method => :get, :url => good_url, :user => rest_user, :password => rest_pass, :headers => { :content_type => :xml }, :timeout => 1800).execute
-    #if response.code != 200 then
-    #  puts "Error fetching goods"
-    #  puts "Answer: " + response.to_str
-    #  return
-    #end
-    #xml = response.to_str
+    response = RestClient::Request.new(:method => :get, :url => good_url, :user => rest_user, :password => rest_pass, :headers => { :content_type => :xml }, :timeout => 1800).execute
+    if response.code != 200 then
+      puts "Error fetching goods"
+      puts "Answer: " + response.to_str
+      return
+    end
+    xml = response.to_str
     #puts xml 
     #return
-    xml = File.read("test.xml")
+    #xml = File.read("test.xml")
     config = XmlSimple.xml_in(xml)
         
     #если бы можно было сделать выборку из REST API по parent_id - было бы проще =/
