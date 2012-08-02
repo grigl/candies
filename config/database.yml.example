@@ -6,7 +6,7 @@ development:
   reconnect: false
   database: candies
   pool: 5
-  username: root
+  username: candies
   password: qwerty
   host: localhost
 
@@ -26,7 +26,7 @@ production:
   reconnect: false
   database: candies
   pool: 5
-  username: root
+  username: candies
   password: qwerty
   host: localhost
 
