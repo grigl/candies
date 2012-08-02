@@ -171,6 +171,7 @@ namespace :sync do
           product.gender = gender_i
           product.permalink = sku
           product.price = price
+          product.master.ms_good_id = good["id"][0]
           product.save
         else
           product = product[0]
@@ -196,9 +197,10 @@ namespace :sync do
             found_variant.product_id = product.id
             found_variant.price = price
             found_variant.is_master = 0
-            found_vartian.sku = sku
+            found_variant.sku = sku
             found_variant.option_values << OptionValue.find(size_id)
             found_variant.option_values << OptionValue.find(color_id)
+            found_variant.ms_good_id = good["id"][0]
             found_variant.save
           else
             all_variants.each do|variant|
@@ -220,6 +222,7 @@ namespace :sync do
                 found_variant.option_values << OptionValue.find(size_id)
                 found_variant.option_values << OptionValue.find(color_id)
                 found_variant.sku = product.sku
+                found_variant.ms_good_id = good["id"][0]
                 found_variant.save                 
               end
             end            
