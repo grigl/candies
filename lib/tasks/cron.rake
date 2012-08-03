@@ -105,9 +105,19 @@ namespace :sync do
     config["goodFolder"].each do|val|
       parent_id = val['parentId']
       if parent_id == root_folder_id then
-        dir_ids[dir_ids_i] = val['id'][0]
+        folder_name = val['name']
+        folder_id = val['id'][0]
+        dir_ids[dir_ids_i] = folder_id
         dir_ids_i = dir_ids_i + 1        
         # занесем бренд если его нет
+        product_group = ProductGroup.where('ms_id = ?', folder_id)
+        if product_group.empty? then
+          product_group = ProductGroup.new
+          product_group.name = folder_name
+          product_group.permalink = folder_id
+          product_group.ms_id = folder_id
+          product_group.save
+        end
       end
     end     
     
@@ -180,6 +190,10 @@ namespace :sync do
       else
         product = product[0]
       end
+      p_group = ProductGroup.where("ms_id = ?", good["parentId"])[0]
+      product.product_groups.delete
+      product.product_groups << p_group
+      product.save 
         
       #variants
       if size_id != 0 and color_id != 0 then
