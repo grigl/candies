@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 #some requires
 require 'rest_client'
 require 'xmlsimple'
@@ -13,9 +15,12 @@ root_folder = '1CANDIES' #название корневого каталога �
 male_folder = '2Man' #название "мужского" каталога
 female_folder = '3Women' #название "жеского" каталога
 
+warehouse_id = "0WUXbhnsjAiKQMf-QZ3Th3" #id склада
+
 namespace :sync do
   desc "Sync remains"
   task :remains => :environment do
+    rest_url = rest_url + '?storeId=' + warehouse_id
     response = RestClient::Request.new(:method => :get, :url => rest_url, :user => rest_user, :password => rest_pass, :headers => { :content_type => :xml }).execute
     if response.code != 200 then
       puts "Error fetching remains"
@@ -33,5 +38,6 @@ namespace :sync do
         variant.save
       end
     end
+        
   end
 end
