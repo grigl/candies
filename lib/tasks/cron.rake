@@ -191,7 +191,7 @@ namespace :sync do
         product = product[0]
       end
       p_group = ProductGroup.where("ms_id = ?", good["parentId"])[0]
-      product.product_groups.delete
+      product.product_groups.clear
       product.product_groups << p_group
       product.save 
         
