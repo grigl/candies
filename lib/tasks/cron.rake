@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 #some requires
 require 'rest_client'
 require 'xmlsimple'
@@ -16,14 +18,14 @@ option_color_id = 2
 #чтобы получить эти id нужно будет сделать запрос сначала и вывести сам xml. Лучше бы подобные данные выводили в веб-морде
 option_size_metadata_id = "b2Ivdtt2gquzhvTBj-3Xy3" #id типа опций "размер"
 option_color_metadata_id = "o037ulinis2iueO23YZ3O1" #id типа опций "цвет"
+param_gender_metadata_id = "BWYidMM6gaC_X7mHsVLm90" #id для пола
+gender_hash = { 0 => "Унисекс", 1 => "Мужские", 2 => "Женские" }
 
 rest_user = "admin@devilmaydie"
 rest_pass = "f9ca1808ba"
 
 #folders...
 root_folder = '1CANDIES' #название корневого каталога магазина
-male_folder = '2Man' #название "мужского" каталога
-female_folder = '3Women' #название "жеского" каталога
 
 namespace :sync do
   desc "Sync goods"
@@ -32,6 +34,7 @@ namespace :sync do
     #цвета и размеры
     good_values_size = {}
     good_values_color = {}
+    good_values_gender = {}
     response = RestClient::Request.new(:method => :get, :url => size_url, :user => rest_user, :password => rest_pass, :headers => { :content_type => :xml }).execute
     if response.code != 200 then
       puts "Error fetching sizes"
@@ -40,6 +43,8 @@ namespace :sync do
     end
     xml = response.to_str
     config = XmlSimple.xml_in(xml)
+    #puts config #конфиг нужно будет вывести, чтобы определить все *_metadata_id
+    #return
     config['customEntity'].each do|custom_entity|
       value_name = custom_entity['name']
       value_id = custom_entity['id'][0]
@@ -66,15 +71,15 @@ namespace :sync do
       if metadata_id == option_color_metadata_id then
         good_values_color[value_id] = value_object.id
       end 
+      if metadata_id == param_gender_metadata_id then
+        good_values_gender[value_id] = gender_hash.index(value_name)
+      end
     end
     
     puts "Getting folders..."
     
     # fetching good folders
-    male_folder_id = '' #эти бы ID да в веб-морде выводить...
-    female_folder_id = ''
-    dir_ids_male = Hash.new #здесь будут храниться уникальные ID каталогов, из которых необходимо вытащить
-    dir_ids_female = Hash.new    
+    dir_ids = Hash.new #здесь будут храниться уникальные ID каталогов, из которых необходимо вытащить
     
     #поехали
     response = RestClient::Request.new(:method => :get, :url => good_folder_url, :user => rest_user, :password => rest_pass, :headers => { :content_type => :xml }).execute
@@ -85,37 +90,29 @@ namespace :sync do
     end
     xml = response.to_str
     config = XmlSimple.xml_in(xml)
-    
-    #придется пару прогнаться. Первый раз - определить ID для male_ и female_folder
+
+    root_folder_id = ""
+    #id рутового каталога        
     config["goodFolder"].each do|val|
       name = val['name']
-      if name == male_folder then
-        male_folder_id = val['id'][0]
+      if name == root_folder then
+        root_folder_id = val['id'][0]
       end
-      if name == female_folder then
-        female_folder_id = val['id'][0]
-      end
-    end
-    
-    dir_ids_male_i = 0
-    dir_ids_female_i = 0
+    end        
+        
+    dir_ids_i = 0
     #теперь, зная id нужных каталогов, находим все нужные подкаталоги, из которых будем вытаскивать товары
     config["goodFolder"].each do|val|
       parent_id = val['parentId']
-      if parent_id == male_folder_id then
-        dir_ids_male[dir_ids_male_i] = val['id'][0]
-        dir_ids_male_i = dir_ids_male_i + 1        
-      end
-      if parent_id == female_folder_id then
-        dir_ids_female[dir_ids_female_i] = val['id'][0]
-        dir_ids_female_i = dir_ids_female_i + 1
+      if parent_id == root_folder_id then
+        dir_ids[dir_ids_i] = val['id'][0]
+        dir_ids_i = dir_ids_i + 1                
       end
     end     
     
     #ну вот мы пришли к самому долгому процессу - получению и обработке товаров
     puts "Getting goods..."
-    goods_male = Hash.new
-    goods_female = Hash.new
+    goods = Hash.new
     
     response = RestClient::Request.new(:method => :get, :url => good_url, :user => rest_user, :password => rest_pass, :headers => { :content_type => :xml }, :timeout => 1800).execute
     if response.code != 200 then
@@ -124,88 +121,79 @@ namespace :sync do
       return
     end
     xml = response.to_str
-    #puts xml 
+    #puts xml #в случае тестирование - лучше скинуть сначала всё в файл, а потом из него читать
     #return
     #xml = File.read("test.xml")
     config = XmlSimple.xml_in(xml)
         
     #если бы можно было сделать выборку из REST API по parent_id - было бы проще =/
     #а так бегаем по всем товарам и вытаскиваем нужное!
-    goods_male_i = 0
-    goods_female_i = 0
+    goods_i = 0
     config["good"].each do|good|
       if good['parentId'].present? then #ну прально, зачем пустые значения то выводить...
         parent_id = good['parentId']
-        if dir_ids_male.value?(parent_id) then
-          goods_male[goods_male_i] = good
-          goods_male_i = goods_male_i + 1
-        end
-        if dir_ids_female.value?(parent_id) then
-          goods_female[goods_female_i] = good
-          goods_female_i = goods_female_i + 1
+        if dir_ids.value?(parent_id) then
+          goods[goods_i] = good
+          goods_i = goods_i + 1
         end
       end
     end
 
     #заносим товары!
-    
-    all_goods = {"male" => goods_male, "female" => goods_female}
-    
-    all_goods.each do|gender, goods_collection|
-      goods_collection.each do|i,good|
-        sku = good["productCode"]
-        name = good["name"]
-        if gender == "male" then
-          gender_i = 1
-        end
-        if gender == "female" then
-          gender_i = 2
-        end
-        price = good["salePrice"]
-        product = Product.where("ms_sku = ?", sku).limit(1)
-        if product.empty?
-          product = Product.new
-          product.name = name
-          product.ms_sku = sku
-          product.sku = sku
-          product.gender = gender_i
-          product.permalink = sku
-          product.price = price
-          product.master.ms_good_id = good["id"][0]
-          product.save
-        else
-          product = product[0]
-        end
         
-        #attributes and variants
-        size_id = 0
-        color_id = 0
-        if good.has_key?("attribute") then
-          good["attribute"].each do|attribute|
-            value_id = attribute["entityValueId"]
-            if good_values_size.has_key?(value_id) then
-              size_id = good_values_size[value_id]
-            end
-            if good_values_color.has_key?(value_id) then
-              color_id = good_values_color[value_id]
-            end
+    goods.each do|i,good|
+      sku = good["productCode"]
+      name = good["name"]
+      price = good["salePrice"]
+      
+      #attributes
+      size_id = 0
+      color_id = 0
+      gender_id = 0
+      if good.has_key?("attribute") then
+        good["attribute"].each do|attribute|
+          value_id = attribute["entityValueId"]
+          if good_values_size.has_key?(value_id) then
+            size_id = good_values_size[value_id]
           end
-        end        
-        
-        if size_id != 0 and color_id != 0 then
-          variant = Variant.where('ms_good_id = ? AND is_master = 0', good["id"][0])
-          if variant.empty? then
-            found_variant = Variant.new
-            found_variant.product_id = product.id
-            found_variant.price = price
-            found_variant.is_master = 0
-            found_variant.sku = sku
-            found_variant.option_values << OptionValue.find(size_id)
-            found_variant.option_values << OptionValue.find(color_id)
-            found_variant.ms_good_id = good["id"][0]
-            found_variant.save          
-          end          
+          if good_values_color.has_key?(value_id) then
+            color_id = good_values_color[value_id]
+          end
+          if good_values_gender.has_key?(value_id) then
+            gender_id = good_values_gender[value_id]
+          end
         end
+      end
+      
+      product = Product.where("ms_sku = ?", sku).limit(1)
+      if product.empty?
+        product = Product.new
+        product.name = name
+        product.ms_sku = sku
+        product.sku = sku
+        product.gender = gender_id
+        product.permalink = sku
+        product.price = price
+        product.master.ms_good_id = good["id"][0]
+        product.save
+      else
+        product = product[0]
+      end
+        
+      #variants
+      if size_id != 0 and color_id != 0 then
+        variant = Variant.where('ms_good_id = ? AND is_master = 0', good["id"][0])
+        if variant.empty? then
+          found_variant = Variant.new
+          found_variant.product_id = product.id
+          found_variant.price = price
+          found_variant.is_master = 0
+          found_variant.sku = sku
+          found_variant.option_values << OptionValue.find(size_id)
+          found_variant.option_values << OptionValue.find(color_id)
+          found_variant.ms_good_id = good["id"][0]
+          found_variant.save          
+        end          
         
       end      
     end
