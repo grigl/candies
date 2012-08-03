@@ -79,7 +79,6 @@ namespace :sync do
     puts "Getting folders..."
     
     # fetching good folders
-    dir_ids = Hash.new #здесь будут храниться уникальные ID каталогов, из которых необходимо вытащить
     
     #поехали
     response = RestClient::Request.new(:method => :get, :url => good_folder_url, :user => rest_user, :password => rest_pass, :headers => { :content_type => :xml }).execute
@@ -99,16 +98,19 @@ namespace :sync do
         root_folder_id = val['id'][0]
       end
     end        
-        
+
+    subdir_ids = Hash.new #бренды
+    dir_ids = Hash.new #здесь будут храниться уникальные ID каталогов, из которых необходимо вытащить        
     dir_ids_i = 0
+    subdir_ids_i = 0    
     #теперь, зная id нужных каталогов, находим все нужные подкаталоги, из которых будем вытаскивать товары
     config["goodFolder"].each do|val|
       parent_id = val['parentId']
       if parent_id == root_folder_id then
         folder_name = val['name']
         folder_id = val['id'][0]
-        dir_ids[dir_ids_i] = folder_id
-        dir_ids_i = dir_ids_i + 1        
+        subdir_ids[subdir_ids_i] = folder_id
+        subdir_ids_i = subdir_ids_i + 1        
         # занесем бренд если его нет
         product_group = ProductGroup.where('ms_id = ?', folder_id)
         if product_group.empty? then
@@ -119,7 +121,19 @@ namespace :sync do
           product_group.save
         end
       end
-    end     
+    end
+
+    dir_parents = {}
+
+    config["goodFolder"].each do|val|
+      parent_id = val['parentId']
+      if subdir_ids.has_value?(parent_id) then
+        folder_id = val['id'][0]
+        dir_ids[dir_ids_i] = folder_id
+        dir_ids_i = dir_ids_i + 1
+        dir_parents[folder_id] = parent_id        
+      end
+    end
     
     #ну вот мы пришли к самому долгому процессу - получению и обработке товаров
     puts "Getting goods..."
@@ -190,7 +204,7 @@ namespace :sync do
       else
         product = product[0]
       end
-      p_group = ProductGroup.where("ms_id = ?", good["parentId"])[0]
+      p_group = ProductGroup.where("ms_id = ?", dir_parents[good["parentId"]])[0]
       product.product_groups.clear
       product.product_groups << p_group
       product.save 
