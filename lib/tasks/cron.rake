@@ -106,7 +106,8 @@ namespace :sync do
       parent_id = val['parentId']
       if parent_id == root_folder_id then
         dir_ids[dir_ids_i] = val['id'][0]
-        dir_ids_i = dir_ids_i + 1                
+        dir_ids_i = dir_ids_i + 1        
+        # занесем бренд если его нет
       end
     end     
     

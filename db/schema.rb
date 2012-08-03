@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120802120904) do
+ActiveRecord::Schema.define(:version => 20120803102152) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -279,6 +279,7 @@ ActiveRecord::Schema.define(:version => 20120802120904) do
     t.string "name"
     t.string "permalink"
     t.string "order"
+    t.string "ms_id"
   end
 
   add_index "product_groups", ["name"], :name => "index_product_groups_on_name"
