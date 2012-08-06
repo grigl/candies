@@ -1,76 +1,71 @@
 <% if @order %>
-  <div class="order-state <%= 'current' if @order.state == 'cart' %>" id="cart" <%= 'style=display:none;' unless @order.state == 'cart' %>> 
+  <div class="checkout-step <%= 'current' if @order.state == 'cart' %>" id="cart" <%= 'style=display:none;' unless @order.state == 'cart' %>> 
     <div class="wrapper">
       <%= render 'checkout/cart' if @order.state == 'cart' %>
     </div>
   </div>
 
-  <div class="order-state <%= 'current' if @order.state == 'address' %>" id="address" <%= 'style=display:none;' unless @order.state == 'address' %>>
+  <div class="checkout-step <%= 'current' if @order.state == 'address' %>" id="address" <%= 'style=display:none;' unless @order.state == 'address' %>>
     <div class="wrapper">
       <%= render 'checkout/address', order: @order if @order.state == 'address' %>
     </div>
   </div>
 
-  <div class="order-state <%= 'current' if @order.state == 'payment' %>" id="payment" <%= 'style=display:none;' unless @order.state == 'payment' %>>
+  <div class="checkout-step <%= 'current' if @order.state == 'payment' %>" id="payment" <%= 'style=display:none;' unless @order.state == 'payment' %>>
     <div class="wrapper">
       <%= render 'checkout/payment' if @order.state == 'payment' %>
     </div>
   </div>
 
-  <div class="order-state <%= 'current' if @order.state == 'confirm' %>" id="confirm" <%= 'style=display:none;' unless @order.state == 'confirm' %>>
+  <div class="checkout-step <%= 'current' if @order.state == 'confirm' %>" id="confirm" <%= 'style=display:none;' unless @order.state == 'confirm' %>>
     <div class="wrapper">
       <%= render 'checkout/confirm' if @order.state == 'confirm' %>
     </div>
   </div>
 
-  <div class="order-state <%= 'current' if @order.state == 'complete' %>" id="complete" <%= 'style=display:none;' unless @order.state == 'complete' %>>
+  <div class="checkout-step <%= 'current' if @order.state == 'complete' %>" id="complete" <%= 'style=display:none;' unless @order.state == 'complete' %>>
     <div class="wrapper">
       <%= render 'checkout/complete' if @order.state == 'complete' %>
     </div>
   </div>
 
-  <div class="order-state" id="robokassa" style="display:none;">
+  <div class="checkout-step" id="robokassa" style="display:none;">
     <div class="wrapper">
     </div>
   </div>
 <% else %>
-  <div class="order-state current" id="cart">
+  <div class="checkout-step current" id="cart">
     <div class="wrapper">
       <%= render 'checkout/cart'%>
     </div>
   </div>
 
-  <div class="order-state" id="address" style="display:none;">
+  <div class="checkout-step" id="address" style="display:none;">
     <div class="wrapper">     
     </div>
   </div>
 
-  <div class="order-state" id="payment" style="display:none;">
+  <div class="checkout-step" id="payment" style="display:none;">
     <div class="wrapper">
     </div>
   </div>
 
-  <div class="order-state" id="confirm" style="display:none;">
+  <div class="checkout-step" id="confirm" style="display:none;">
     <div class="wrapper">
     </div>
   </div>
 
-  <div class="order-state" id="complete" style="display:none;">
+  <div class="checkout-step" id="complete" style="display:none;">
     <div class="wrapper">
     </div>
   </div>
 
-  <div class="order-state" id="robokassa" style="display:none;">
+  <div class="checkout-step" id="robokassa" style="display:none;">
     <div class="wrapper">
     </div>
   </div>
 <% end %>
-<% if Rails.env.development? %>
-  <%= @order.inspect if @order %>
-  <hr>
-  <%= Order.last.inspect %><br />
-  <%= Order.last.state_events %>
-  <hr>
-  <%= User.last.inspect %>
-<% end %>
+
+
+
 
