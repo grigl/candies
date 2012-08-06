@@ -16,8 +16,8 @@ option_size_id = 1
 option_color_id = 2
 
 #чтобы получить эти id нужно будет сделать запрос сначала и вывести сам xml. Лучше бы подобные данные выводили в веб-морде
-option_size_metadata_id = "b2Ivdtt2gquzhvTBj-3Xy3" #id типа опций "размер"
-option_color_metadata_id = "o037ulinis2iueO23YZ3O1" #id типа опций "цвет"
+option_size_metadata_id = "o037ulinis2iueO23YZ3O1" #id типа опций "размер"
+option_color_metadata_id = "b2Ivdtt2gquzhvTBj-3Xy3" #id типа опций "цвет"
 param_gender_metadata_id = "BWYidMM6gaC_X7mHsVLm90" #id для пола
 gender_hash = { 0 => "Унисекс", 1 => "Мужские", 2 => "Женские" }
 
