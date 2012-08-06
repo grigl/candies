@@ -4,6 +4,7 @@ Candies::Application.routes.draw do
   get "sync/goods"
 
   match '/checkout/back/:state' => 'checkout#back', :as => :back_checkout
+  match '/about' => 'home#about'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
