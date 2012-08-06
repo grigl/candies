@@ -4,5 +4,4 @@ tmp/*
 log/development.log
 config/database*
 .powrc
-
 .rvmrc

@@ -1,0 +1,150 @@
+  <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" }, remote: true do |form| %>  
+    <div class="left-colum">
+    
+      <h3>КОНТАКТНЫЕ ДАННЫЕ</h3>
+      
+      <div class="checkout-form">
+        
+        <%= form.fields_for :bill_address do |bill_form| %>
+          <div class="checkout-box">
+            <div class="form-item w175">
+              <%= bill_form.label :firstname, 'ИМЯ' %>
+              <%= bill_form.text_field :firstname, :class => 'textfield' %>
+            </div>
+            <div class="form-item w240">
+              <%= bill_form.label :lastname, 'ФАМИЛИЯ' %>
+              <%= bill_form.text_field :lastname, :class => 'textfield' %>
+            </div>
+        <% end %>
+            <div class="form-item w416">
+              <%= form.label :email, 'EMAIL' %>
+              <% if @order.email == 'temporaryemail@example.com' %>
+                <%= form.text_field :email, :class => 'textfield', value: '' %>
+              <% else %>
+                <%= form.text_field :email, :class => 'textfield' %>
+              <% end %>
+            </div>
+        <%= form.fields_for :bill_address do |bill_form| %>
+            <div class="form-item w322">
+              <%= bill_form.label :phone, 'ТЕЛЕФОН' %>
+              <%= bill_form.text_field :phone, :class => 'textfield' %>
+            </div>
+          </div>
+          <div class="checkout-buttons">
+            <%= link_to 'НАЗАД', back_checkout_path(@order.state), class: 'button', remote: true %>
+          </div>
+
+      </div>
+
+    </div>
+    
+    <div class="right-colum">
+      
+      <h3>Адрес доставки заказа:</h3>
+      
+      <div class="checkout-form">
+
+          <div class="checkout-box">
+            <div class="form-item w416">
+              <%= bill_form.label :address1, 'АДРЕС' %>
+              <%= bill_form.text_area :address1, :class => 'textfield' %>
+            </div>
+            <div class="form-item w184">
+              <%= bill_form.label :country_id, 'СТРАНА' %>
+              <%= bill_form.collection_select :country_id, available_countries, :id, :name, {} %>
+            </div>
+            <div class="form-item w232">
+              <%= bill_form.label :city, 'ГОРОД' %>
+              <%= bill_form.text_field :city, :class => 'textfield' %>
+            </div>
+            <div class="form-item w272">
+              <%= bill_form.label :state, t(:state) %>
+              <%= bill_form.collection_select :state_id, @order.bill_address.country.states, :id, :name, {} %> 
+            </div>
+            <div class="form-item w145">
+              <%= bill_form.label :zipcode, 'ИНДЕКС' %>
+              <%= bill_form.text_field :zipcode, :class => 'textfield' %>
+            </div>
+            <div class="form-item">
+              <div class="checkbox-box">
+                <input type="checkbox">
+                <label>Адрес плательщика (Совпадает с адресом доставки заказа)</label>
+              </div>
+            </div>
+          </div>
+          <div class="checkout-buttons" align="right">
+            <input type="submit" class="button" value="ДАЛЬШЕ">
+          </div>
+
+        <% end %>
+      </div>
+      
+    </div>
+
+
+    <div class="left-colum">
+    
+      <h3>КОНТАКТНЫЕ ДАННЫЕ ПЛАТЕЛЬЩИКА</h3>
+      
+      <div class="checkout-form">
+
+        <%= form.fields_for :ship_address do |ship_form| %>
+          <div class="checkout-box">
+            <div class="form-item w175">
+              <%= ship_form.label :firstname, 'ИМЯ' %>
+              <%= ship_form.text_field :firstname, :class => 'textfield' %>
+            </div>
+            <div class="form-item w240">
+              <%= ship_form.label :lastname, 'ФАМИЛИЯ' %>
+              <%= ship_form.text_field :lastname, :class => 'textfield' %>
+            </div>
+            <div class="form-item w322">
+              <%= ship_form.label :phone, 'ТЕЛЕФОН' %>
+              <%= ship_form.text_field :phone, :class => 'textfield' %>
+            </div>
+          </div>
+
+      </div>
+
+    </div>
+    
+    <div class="right-colum">
+      
+      <h3>Адрес плательщика</h3>
+      
+      <div class="checkout-form">
+
+          <div class="checkout-box">
+            <div class="form-item w416">
+              <%= ship_form.label :address1, 'АДРЕС' %>
+              <%= ship_form.text_area :address1, :class => 'textfield' %>
+            </div>
+            <div class="form-item w184">
+              <%= ship_form.label :country_id, 'СТРАНА' %>
+              <%= ship_form.collection_select :country_id, available_countries, :id, :name, {} %>
+            </div>
+            <div class="form-item w232">
+              <%= ship_form.label :city, 'ГОРОД' %>
+              <%= ship_form.text_field :city, :class => 'textfield' %>
+            </div>
+            <div class="form-item w272">
+              <%= ship_form.label :state, t(:state) %>
+              <%= ship_form.collection_select :state_id, @order.bill_address.country.states, :id, :name, {} %> 
+            </div>
+            <div class="form-item w145">
+              <%= ship_form.label :zipcode, 'ИНДЕКС' %>
+              <%= ship_form.text_field :zipcode, :class => 'textfield' %>
+            </div>
+            <div class="form-item">
+              <div class="checkbox-box">
+
+              </div>
+            </div>
+          </div>
+        <% end %>
+        
+      </div>
+      
+    </div>
+
+  <% end %>

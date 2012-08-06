@@ -1,9 +1,0 @@
-<Connector>
-	<Class>
-		<Name>Cart</Name>
-		<File>class.cart.php</File>
-		<Title>Корзина</Title>
-		<Description></Description>
-		<SingleInstallation>true</SingleInstallation>
-	</Class>
-</Connector>

@@ -1,7 +1,0 @@
-<?php
-define('PAYMENTMODULECASH_TTL', 'Наличные');
-define('PAYMENTMODULECASH_DSCR', '');
-
-define('PAYMENTMODULECASH_CFG_CURRENCY_TTL', 'Валюта');
-define('PAYMENTMODULECASH_CFG_CURRENCY_DSCR', '');
-?>

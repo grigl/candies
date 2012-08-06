@@ -1,0 +1,97 @@
+    <div class="left-colum">
+      <% @products.limit(1).each do |product| %>
+        <figure class="shop-item-images">
+          <%= product_image(product, { width: 416, height: 305 }) %>
+        </figure>
+        
+        <div class="shop-item-options dotted">
+          <div class="left">
+            <span class="label">Цвет</span>
+            <ul class="shop-item-colors">
+              <li><a href="#"><img src="images/dummy.gif" width="33" height="33" alt=""></a></li>
+              <li><a href="#"><img src="images/dummy.gif" width="33" height="33" alt=""></a></li>
+              <li class="cur"><a href="#"><img src="images/dummy.gif" width="33" height="33" alt=""></a></li>
+              <li><a href="#"><img src="images/dummy.gif" width="33" height="33" alt=""></a></li>
+              <li><a href="#"><img src="images/dummy.gif" width="33" height="33" alt=""></a></li>
+            </ul>
+          </div>
+          <div class="right">
+            <span class="label">Ваш размер</span>
+            <select class="select">
+              <option>39</option>
+              <option>40</option>
+              <option>41</option>
+              <option>42</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="shop-item-text dotted">
+          <p><%= product_description(product) rescue "У товара нет описания" %></p>
+        </div>
+        
+        <div class="shop-item-buy">       
+          <%= form_for :order, :url => populate_orders_url, remote: true do |f| %>
+            <a href="#" class="button plus shop-item-buy-link">В корзину</a> 
+            <%= hidden_field_tag "variants[#{product.master.id}]", 1 %>
+            <button type='submit' class="shop-item-buy-button" style='display:none'></button>
+          <% end %>
+          <div class="shop-item-price">
+            <%= product_price(product, with_em: true) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    
+    <div class="right-colum">
+      <% @products.limit(1).each do |product| %>
+        <figure class="shop-item-images">
+          <%= product_image(product, { width: 416, height: 305 }) %>
+        </figure>
+        
+        <div class="shop-item-options dotted">
+          <div class="left">
+            <span class="label">Цвет</span>
+            <ul class="shop-item-colors">
+              <li><a href="#"><img src="images/dummy.gif" width="33" height="33" alt=""></a></li>
+              <li><a href="#"><img src="images/dummy.gif" width="33" height="33" alt=""></a></li>
+              <li class="cur"><a href="#"><img src="images/dummy.gif" width="33" height="33" alt=""></a></li>
+              <li><a href="#"><img src="images/dummy.gif" width="33" height="33" alt=""></a></li>
+              <li><a href="#"><img src="images/dummy.gif" width="33" height="33" alt=""></a></li>
+            </ul>
+          </div>
+          <div class="right">
+            <span class="label">Ваш размер</span>
+            <select class="select">
+              <option>39</option>
+              <option>40</option>
+              <option>41</option>
+              <option>42</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="shop-item-text dotted">
+          <p><%= product_description(product) rescue "У товара нет описания" %></p>
+        </div>
+        
+        <div class="shop-item-buy">       
+          <%= form_for :order, :url => populate_orders_url, remote: true do |f| %>
+            <a href="#" class="button plus shop-item-buy-link">В корзину</a> 
+            <%= hidden_field_tag "variants[#{product.master.id}]", 1 %>
+            <button type='submit' class="shop-item-buy-button" style='display:none'></button>
+          <% end %>
+          <div class="shop-item-price">
+            <%= product.price.to_i %> <em>Руб.</em>
+          </div>
+        </div>
+      <% end %>
+      
+    </div>
+    
+
+<!--<div class="page">
+  <div class="wrapper">
+  </div>
+</div>-->

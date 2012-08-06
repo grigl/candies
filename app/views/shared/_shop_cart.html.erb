@@ -1,0 +1,77 @@
+<div class="shop-cart-wrapper">
+  <% if !@order || @order.line_items.empty? %>
+    <h3>ВАША КОРЗИНА:</h3>
+        
+    <div class="cart-list-empty dotted">
+      ПУСТА
+    </div>
+        
+    <div class="cart-deliver-box">
+      Срок доставки по Москве и Санкт-Петербургу — на следующий день.<br>
+      Срок доставки в другие крупные города России — от 1 до 10 дней.<br>
+      Срок доставки в отдаленные населенные пункты — до 12 дней.<br>
+      <br>
+      <a href="#">Все подробности доставки</a>
+    </div>
+  <% else %>
+<h3>ВАША КОРЗИНА:</h3>
+
+<%= form_for @order, :url => update_cart_path, :html=> { :id => 'updatecart' }, remote: true  do |order_form| %>
+  <ul class="cart-list dotted">
+    <% @order.line_items.each do |line_item| %>
+      <%= order_form.fields_for :line_items do |item_form| %>
+        <li class="cart-list-item">
+          <div class="image">
+            <% if line_item.variant.images.length == 0 %>
+              <%= small_image(line_item.variant.product, { width: 33, height: 33 }) %>
+            <% else %>
+              <%= image_tag line_item.variant.images.first.attachment.url(:small), width: 33, height: 33 %>
+            <% end %>
+          </div>
+          <div class="options">
+            <%= item_form.text_field :quantity, :class => "textfield line_item_quantity" %>
+            <a href="#" class="ico-remove delete">Удалить</a>
+          </div>
+          <div class="info">
+            <p class="name"><%= line_item.variant.product.name %></p>
+            <p>
+              <span class="size">размер: 43</span>
+              <span class="price">цена:   <%= product_price(line_item.variant) %></span>
+            </p>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <div class="cart-end-price dotted">
+    <span>ОБЩАЯ СУММА:  <%= order_price(@order) %></span>
+    Всего:  <%= @order.item_count %>
+  </div>
+<% end %>  
+  
+  <div class="cart-button-box dotted"> 
+  <%= form_for @order, :url => update_checkout_registration_path, :html => { :method => :put, :id => "checkout_form_registration"}, remote: true do |f| %>
+    <% if current_user %>
+      <%= f.submit 'ОФОРМИТЬ ЗАКАЗ', :class => 'button' %>
+    <% else %>
+      <% if @order.email.present? %>
+        <%= f.hidden_field :email, value: @order.email %>
+      <% else %>
+        <%= f.hidden_field :email, value: 'temporaryemail@example.com' %>
+      <% end %>
+
+      <%= f.submit 'ОФОРМИТЬ ЗАКАЗ БЕЗ РЕГИСТРАЦИИ', :class => 'button' %>
+    <% end %>
+
+  <% end %>
+  </div>
+
+<div class="cart-deliver-box">
+  Срок доставки по Москве и Санкт-Петербургу — на следующий день.<br>
+  Срок доставки в другие крупные города России — от 1 до 10 дней.<br>
+  Срок доставки в отдаленные населенные пункты — до 12 дней.<br>
+  <br>
+  <a href="#">Все подробности доставки</a>
+</div>
+<% end %>
+</div>

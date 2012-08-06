@@ -1,0 +1,8 @@
+$.get('<%= @response_url %>', function(data){
+  $("#robokassa .wrapper").html(data);
+  var previousPage = $(".current")
+  previousPage.hide('slide', {direction: 'left'}, 1000);
+  previousPage.removeClass('current');
+  $("#robokassa").addClass('current');
+  $("#robokassa").show('slide', {direction: 'right'}, 1000);
+})

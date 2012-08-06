@@ -1,9 +1,0 @@
-<Connector>
-	<Class>
-		<Name>discount_coupons</Name>
-		<File>class.discount_coupons.php</File>
-		<Title>Купоны на скидку</Title>
-		<Description></Description>
-		<SingleInstallation>true</SingleInstallation>
-	</Class>
-</Connector>
