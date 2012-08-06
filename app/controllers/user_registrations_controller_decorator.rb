@@ -25,7 +25,9 @@ UserRegistrationsController.class_eval do
           @order = current_order
           respond_with(@order) { |format| format.js { render 'orders/update_and_show_cart' } }
         else
-          format.js { render :show_accaunt_page }
+          respond_to do |format|
+            format.js { render 'user_sessions/show_accaunt_page' }
+          end
         end
       end
     else
