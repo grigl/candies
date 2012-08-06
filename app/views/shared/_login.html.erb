@@ -1,12 +1,12 @@
 <div class="form-box">
-    <%= form_for(:user, :url => user_session_path) do |f| %>
+    <%= form_for :user, :url => user_session_path, remote: true do |f| %>
       <div class="form-item w346">
         <%= f.label :email , 'EMAIL' %>
         <%= f.text_field :email, class: 'textfield' %>
       </div>
       <div class="form-item w346">
         <%= f.label :password , 'ПАРОЛЬ' %>
-        <%= f.text_field :password, class: 'textfield' %>
+        <%= f.password_field :password, class: 'textfield' %>
       </div>
       <div class="form-item w110">
         <div class="checkbox-box">
@@ -23,4 +23,4 @@
     <% end %>
   </div>
   
-  <h3><a href="#" class="dotted">РЕГИСТРАЦИЯ</a></h3>
+  <h3><a id="registration_link" href="registration" class="dotted">РЕГИСТРАЦИЯ</a></h3>
