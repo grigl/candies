@@ -1,4 +1,8 @@
 Candies::Application.routes.draw do
+  get "sync/remains"
+
+  get "sync/goods"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
