@@ -53,7 +53,7 @@ Spree::BaseHelper.module_eval do
   end
 
   def retrieve_brands
-    @brands = Taxonomy.find(2).root.children
+    @brands = ProductGroup.order(:name)
   end
 
   def product_price(product_or_variant, options={})

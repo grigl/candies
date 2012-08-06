@@ -46,7 +46,7 @@
         </ul>
         <ul class="catalog-menu-second">
           <% retrieve_brands.each do |brand| %>
-            <li><%= link_to brand.name, seo_url(brand) %></li>
+            <li><%= link_to brand.name, "/pg/#{brand.permalink}" %></li>
           <% end %>
         </ul>
       </nav>
@@ -61,7 +61,7 @@
         </ul>
         <ul class="catalog-menu-second">
           <% retrieve_brands.each do |brand| %>
-            <li><%= link_to brand.name, seo_url(brand) %></li>
+            <li><%= link_to brand.name, "/pg/#{brand.permalink}" %></li>
           <% end %>
         </ul>
       </nav>

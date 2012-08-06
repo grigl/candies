@@ -65,11 +65,12 @@
     </div>
   </div>
 <% end %>
-
-<%= @order.inspect if @order %>
-<hr>
-<%= Order.last.inspect %><br />
-<%= Order.last.state_events %>
-<hr>
-<%= User.last.inspect %>
+<% if Rails.env.development? %>
+  <%= @order.inspect if @order %>
+  <hr>
+  <%= Order.last.inspect %><br />
+  <%= Order.last.state_events %>
+  <hr>
+  <%= User.last.inspect %>
+<% end %>
 

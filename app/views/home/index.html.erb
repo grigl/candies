@@ -83,7 +83,7 @@
             <button type='submit' class="shop-item-buy-button" style='display:none'></button>
           <% end %>
           <div class="shop-item-price">
-            <%= product.price.to_i %> <em>Руб.</em>
+            <%= product_price(product, with_em: true) %>
           </div>
         </div>
       <% end %>
