@@ -1,14 +1,9 @@
 $(document).ready(function(){
+	// Генирируем событие 'html-inserted' всегда при вставке html, 
+	// если на вставленном html есть какие-то js-виджеты, например красивый селект
+	// В частности генерируем и сразу после загрузки страницы:
+	$(document).trigger('html-inserted'); 
 
-// placeholder
-	$('input[placeholder], textarea[placeholder]').placeholder();
-	
-// select
-	$('.select').ikSelect({
-		autoWidth: false,
-		ddFullWidth: false
-	});
-	
 // header
 	var page_height = 0;
 	var window_height = 0;
@@ -59,13 +54,28 @@ $('.shop-item-buy-link').click(function(e){
 	$(this).parent().find('.shop-item-buy-button').click();
 })
 
+});
+
 // hide/show delivery address form
 function toggleDAF() {
 	$('.js-delivery-address-form-block')[ $('.js-hide-delivery-address-form').is(':checked') ? 'slideUp' : 'slideDown' ]();
 }
-toggleDAF();
-$('.js-hide-delivery-address-form').change(toggleDAF);
+$('.js-hide-delivery-address-form').live('change', toggleDAF);
 
+
+// Все инициализации, которые могут быть актуальны не только для html который есть на странице сразу,
+// но и для того, что загружается аяксом должны быть в этом блоке:
+$(document).bind('html-inserted', function() {
+	toggleDAF();
+
+	// placeholder
+	$('input[placeholder], textarea[placeholder]').placeholder();
+	
+	// select
+	$('.select').ikSelect({
+		autoWidth: false,
+		ddFullWidth: false
+	});
 
 });
 
