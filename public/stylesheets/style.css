@@ -415,6 +415,11 @@ header li.cur a {cursor: default;}
 	width: 100%;
 }
 
+.accaunt-step {
+	position: absolute;
+	width: 416px;
+}
+
 /* //case */
 
 /*.jcarousel-progress {
