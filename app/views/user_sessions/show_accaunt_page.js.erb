@@ -1,0 +1,5 @@
+$('.accaunt_current').hide('slide', { direction: 'left'}, 1000);
+$('.accaunt_current').removeClass('accaunt_current');
+$('#accaunt').html('<%= escape_javascript(render 'shared/accaunt') %>');
+$('#accaunt').addClass('accaunt_current');
+$('#accaunt').show('slide', { direction: 'right'}, 1000 );

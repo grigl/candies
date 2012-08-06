@@ -6,14 +6,13 @@ Order.class_eval do
 
     event :next do
       transition :from => 'cart',     :to => 'address'
-      transition :from => 'address',  :to => 'delivery'
-      transition :from => 'delivery',  :to => 'confirm'
+      transition :from => 'address',  :to => 'payment'
       transition :from => 'confirm',  :to => 'complete'
       # note: some payment methods will not support a confirm step
       # transition :from => 'delivery',  :to => 'confirm',
-      #                                 :if => Proc.new { Gateway.current && Gateway.current.payment_profiles_supported? }
+                                       # :if => Proc.new { Gateway.current && Gateway.current.payment_profiles_supported? }
 
-      # transition :from => 'delivery', :to => 'complete'
+      transition :from => 'payment', :to => 'confirm'
     end
 
     event :cancel do
@@ -42,10 +41,39 @@ Order.class_eval do
     end
 
     after_transition :to => 'complete', :do => :finalize!
-    after_transition :to => 'delivery', :do => :create_tax_charge!
-    after_transition :to => 'delivery', :do => :create_shipment!
+    after_transition :to => 'confirm', :do => :create_tax_charge!
+    after_transition :to => 'confirm', :do => :create_shipment!
+    after_transition :to => 'confirm', :do => :update!
     after_transition :to => 'canceled', :do => :after_cancel
 
+  end
+
+  def previous_state
+    if state == 'address'
+      'cart'
+    elsif state == 'payment'
+      'address'
+    elsif state == 'confirm'
+      'payment'
+    elsif state == 'complete'
+      'confirm'
+    else
+      nil
+    end
+  end
+
+  def next_state
+    if state == 'cart'
+      'address'
+    elsif state == 'address'
+      'payment'
+    elsif state == 'payment'
+      'confirm'
+    elsif state == 'confirm'
+      'complete'
+    else
+      nil
+    end
   end
 
 end

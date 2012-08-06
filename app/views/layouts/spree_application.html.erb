@@ -16,6 +16,7 @@
   <%= stylesheet_link_tag 'style' %>
   <!--[if lte IE 8]><%= stylesheet_link_tag 'ie' %><![endif]-->
   <%= javascript_include_tag 'libs/jquery-1.7.2.min',
+                             'libs/jquery-ui-1.8.21.custom.min',
                              'libs/jquery.ikselect.min',
                              'libs/modernizr-2.0.6.min',
                              'script.js',
@@ -66,8 +67,6 @@
       </nav>
     </div>
     <!-- /catalog-menu -->
-
-    <%= debug params %>
 
     <%= yield %>
 

@@ -1,9 +1,10 @@
+  <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" }, remote: true do |form| %>  
     <div class="left-colum">
     
       <h3>КОНТАКТНЫЕ ДАННЫЕ</h3>
       
       <div class="checkout-form">
-        <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" }, remote: true do |form| %>
+        
         <%= form.fields_for :bill_address do |bill_form| %>
           <div class="checkout-box">
             <div class="form-item w175">
@@ -14,13 +15,23 @@
               <%= bill_form.label :lastname, 'ФАМИЛИЯ' %>
               <%= bill_form.text_field :lastname, :class => 'textfield' %>
             </div>
+        <% end %>
+            <div class="form-item w416">
+              <%= form.label :email, 'EMAIL' %>
+              <% if @order.email == 'temporaryemail@example.com' %>
+                <%= form.text_field :email, :class => 'textfield', value: '' %>
+              <% else %>
+                <%= form.text_field :email, :class => 'textfield' %>
+              <% end %>
+            </div>
+        <%= form.fields_for :bill_address do |bill_form| %>
             <div class="form-item w322">
               <%= bill_form.label :phone, 'ТЕЛЕФОН' %>
               <%= bill_form.text_field :phone, :class => 'textfield' %>
             </div>
           </div>
           <div class="checkout-buttons">
-            <a href="#" class="button">Назад</a>
+            <%= link_to 'НАЗАД', back_checkout_path(@order.state), class: 'button', remote: true %>
           </div>
 
       </div>
@@ -131,7 +142,9 @@
             </div>
           </div>
         <% end %>
-        <% end %>
+        
       </div>
       
     </div>
+
+  <% end %>

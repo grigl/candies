@@ -1,2 +1,4 @@
 $('.basket a span').html('<%=j current_order.item_count %>');
+$('.full-cart-container .shop-cart-wrapper').hide('slide', {direction: 'left'}, 1000);
 $('.full-cart-container').html('<%= escape_javascript(render "shared/shop_cart") %>');
+$('.full-cart-container .shop-cart-wrapper').show('slide', {direction: 'right'}, 1000);
