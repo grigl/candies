@@ -27,7 +27,7 @@
 </head>
 <body>
 
-<%= render 'shared/header' %>
+<%= yield :header %>
 
 <div class="page white">
   <div class="wrapper">
@@ -74,7 +74,7 @@
 </div>
 
 <div class="page">
-  <%= render 'shared/personal_page' %>
+  <%= yield(:page) %>
 </div>
 
 </body>

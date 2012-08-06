@@ -7,6 +7,11 @@ class HomeController < Spree::BaseController
     @products = @searcher.retrieve_products
   end
 
+  def about
+    @searcher = Spree::Config.searcher_class.new(params)
+    @products = @searcher.retrieve_products
+  end
+
   def completion_route
     order_path(@order)
   end

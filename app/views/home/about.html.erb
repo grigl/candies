@@ -1,7 +1,3 @@
-<%= content_for :header do %>    
-  <%= render 'shared/header' %>
-<% end %>
-
     <div class="left-colum">
       <% @products.limit(1).each do |product| %>
         <figure class="shop-item-images">
@@ -53,6 +49,9 @@
         <figure class="shop-item-images">
           <%= product_image(product, { width: 416, height: 305 }) %>
         </figure>
+<%= content_for :header do %>    
+  <%= render 'shared/about_header' %>
+<% end %>
         
         <div class="shop-item-options dotted">
           <div class="left">
@@ -95,5 +94,5 @@
     </div>
 
 <%= content_for :page do %>    
-  <%= render 'shared/personal_page' %>
+  <%= render 'shared/about_page' %>
 <% end %>
