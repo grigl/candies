@@ -59,6 +59,14 @@ $('.shop-item-buy-link').click(function(e){
 	$(this).parent().find('.shop-item-buy-button').click();
 })
 
+// hide/show delivery address form
+function toggleDAF() {
+	$('.js-delivery-address-form-block').slideToggle( !$('.js-hide-delivery-address-form').is(':checked') )
+}
+toggleDAF();
+$('.js-hide-delivery-address-form').change(toggleDAF);
+
+
 });
 
 // placeholder
