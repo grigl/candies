@@ -61,7 +61,7 @@ $('.shop-item-buy-link').click(function(e){
 
 // hide/show delivery address form
 function toggleDAF() {
-	$('.js-delivery-address-form-block').slideToggle( !$('.js-hide-delivery-address-form').is(':checked') )
+	$('.js-delivery-address-form-block')[ $('.js-hide-delivery-address-form').is(':checked') ? 'slideUp' : 'slideDown' ]();
 }
 toggleDAF();
 $('.js-hide-delivery-address-form').change(toggleDAF);
