@@ -1,6 +1,8 @@
 $("#<%= @order.state %> .wrapper").html('<%= escape_javascript(render "checkout/#{@order.state}") %>');
+$(document).trigger('html-inserted');
 var previousPage = $(".current")
 previousPage.removeClass('current');
 $("#<%= @order.state %>").addClass('current');
 previousPage.hide('slide', {direction: 'right'}, 1000);
 $("#<%= @order.state %>").show('slide', {direction: 'left'}, 1000);
+
