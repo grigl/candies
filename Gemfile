@@ -35,3 +35,5 @@ gem 'spree_variant_options', '0.2.0'
 # group :development, :test do
 #   gem 'webrat'
 # end
+gem "rest-client", "~> 1.6.7"
+gem "xml-simple", "~> 1.1.1"

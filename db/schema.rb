@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110510080413) do
+ActiveRecord::Schema.define(:version => 20120803102152) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -184,6 +184,7 @@ ActiveRecord::Schema.define(:version => 20110510080413) do
     t.string   "presentation"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ms_id"
   end
 
   create_table "option_values_variants", :id => false, :force => true do |t|
@@ -278,6 +279,7 @@ ActiveRecord::Schema.define(:version => 20110510080413) do
     t.string "name"
     t.string "permalink"
     t.string "order"
+    t.string "ms_id"
   end
 
   add_index "product_groups", ["name"], :name => "index_product_groups_on_name"
@@ -329,6 +331,8 @@ ActiveRecord::Schema.define(:version => 20110510080413) do
     t.string   "meta_keywords"
     t.integer  "count_on_hand",           :default => 0,    :null => false
     t.boolean  "export_to_yandex_market", :default => true, :null => false
+    t.integer  "gender"
+    t.string   "ms_sku"
   end
 
   add_index "products", ["available_on"], :name => "index_products_on_available_on"
@@ -574,6 +578,7 @@ ActiveRecord::Schema.define(:version => 20110510080413) do
     t.integer  "count_on_hand",                               :default => 0,     :null => false
     t.decimal  "cost_price",    :precision => 8, :scale => 2
     t.integer  "position"
+    t.string   "ms_good_id"
   end
 
   add_index "variants", ["product_id"], :name => "index_variants_on_product_id"

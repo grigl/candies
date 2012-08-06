@@ -10,10 +10,11 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="shortcut icon" href="/images/favicon.png">
   <link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
 
-  <%= stylesheet_link_tag 'style', 'ie' %>
+  <%= stylesheet_link_tag 'style' %>
+  <!--[if lte IE 8]><%= stylesheet_link_tag 'ie' %><![endif]-->
   <%= javascript_include_tag 'libs/jquery-1.7.2.min',
                              'libs/jquery.ikselect.min',
                              'libs/modernizr-2.0.6.min',
@@ -36,7 +37,7 @@
 
     <div class="left-colum">
       <nav class="catalog-menu dotted">
-        <div class="icon-sex"><img src="images/ico_male.png" width="55" height="67" alt="male"></div>
+        <div class="icon-sex"><img src="/images/ico_male.png" width="55" height="67" alt="male"></div>
         <ul class="catalog-menu-first">
           <% retrieve_collections.each do |collection| %>
             <li><%= link_to collection.name, seo_url(collection) %></li>
