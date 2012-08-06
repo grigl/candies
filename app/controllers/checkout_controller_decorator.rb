@@ -99,8 +99,13 @@ CheckoutController.class_eval do
   end
 
   def before_address
-    @order.bill_address ||= Address.default
-    @order.ship_address ||= Address.default
+    if current_user
+      @order.bill_address = current_user.addresses.first
+      @order.ship_address = current_user.addresses.first
+    else
+      @order.bill_address ||= Address.default
+      @order.ship_address ||= Address.default
+    end
   end
 
   def before_payment

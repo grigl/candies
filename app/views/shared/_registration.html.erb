@@ -23,52 +23,60 @@
             <%= f.label :password_confirmation, 'ПОДТВЕРДИТЕ ПАРОЛЬ' %>
             <%= f.password_field :password_confirmation, class: 'textfield' %>
           </div>
-          <%= f.fiels_for @user.address.build do |address_form| %>
+          <%= f.fields_for :address do |address_form| %>
             <div class="form-item w150">
 <!--               <label>ИМЯ</label>
               <input type="text" class="textfield"> -->
               <%= address_form.label :firstname, 'ИМЯ' %>
-              <%= address_form.password_field :firstname, class: 'textfield' %>
+              <%= address_form.text_field :firstname, class: 'textfield' %>
             </div>
             <div class="form-item w196">
 <!--               <label>ФАМИЛИЯ</label>
               <input type="text" class="textfield"> -->
               <%= address_form.label :lastname, 'ФАМИЛИЯ' %>
-              <%= address_form.password_field :lastname, class: 'textfield' %>
-            </div>
-            <div class="form-item w94">
-              <label>ТЕЛЕФОН</label>
-              <input type="text" class="textfield">
-            </div>
-            <div class="form-item w252">
-              <label>&nbsp;</label>
-              <input type="text" class="textfield">
+              <%= address_form.text_field :lastname, class: 'textfield' %>
             </div>
             <div class="form-item w346">
-              <label>АДРЕС</label>
-              <textarea class="textfield"></textarea>
+<!--               <label>ТЕЛЕФОН</label>
+              <input type="text" class="textfield"> -->
+              <%= address_form.label :phone, 'ТЕЛЕФОН' %>
+              <%= address_form.text_field :phone, class: 'textfield' %>
+            </div>
+            <div class="form-item w346">
+<!--               <label>АДРЕС</label>
+              <textarea class="textfield"></textarea> -->
+              <%= address_form.label :address1, 'АДРЕС' %>
+              <%= address_form.text_area :address1, class: 'textfield' %>
             </div>
             <div class="form-item w144">
-              <label>СТРАНА</label>
+<!--               <label>СТРАНА</label>
               <select class="select">
                 <option></option>
-              </select>
+              </select> -->
+              <%= address_form.label :country_id, 'СТРАНА' %>
+              <%= address_form.collection_select :country_id, available_countries, :id, :name, {} %>
             </div>
             <div class="form-item w202">
-              <label>ГОРОД</label>
+<!--               <label>ГОРОД</label>
               <select class="select">
                 <option></option>
-              </select>
+              </select> -->
+              <%= address_form.label :city, 'ГОРОД' %>
+              <%= address_form.text_field :city, :class => 'textfield' %>
             </div>
             <div class="form-item w210">
-              <label>ОБЛАСТЬ</label>
+<!--               <label>ОБЛАСТЬ</label>
               <select class="select">
                 <option></option>
-              </select>
+              </select> -->
+              <%= address_form.label :state, 'ОБЛАСТЬ' %>
+              <%= address_form.collection_select :state_id, available_countries.first.states, :id, :name, {} %> 
             </div>
             <div class="form-item w138">
-              <label>ИНДЕКС</label>
-              <input type="text" class="textfield">
+<!--               <label>ИНДЕКС</label>
+              <input type="text" class="textfield"> -->
+              <%= address_form.label :zipcode, 'ИНДЕКС' %>
+              <%= address_form.text_field :zipcode, :class => 'textfield' %>
             </div>
             
             <div class="form-item w346" align="right">
