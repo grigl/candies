@@ -1,3 +1,8 @@
+  <% if current_user %>
+    <% @order.bill_address = current_user.addresses.first %>
+    <% @order.ship_address = current_user.addresses.first %>
+  <% end %>
+
   <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" }, remote: true do |form| %>  
     <div class="left-colum">
     
