@@ -1,4 +1,4 @@
-Order.class_eval do 
+Order.class_eval do
 
   Order.state_machines.clear 
   # order state machine (see http://github.com/pluginaweek/state_machine/tree/master for details)
@@ -75,5 +75,4 @@ Order.class_eval do
       nil
     end
   end
-
 end

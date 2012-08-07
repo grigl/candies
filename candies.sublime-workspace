@@ -60,6 +60,46 @@
 	"buffers":
 	[
 		{
+			"file": "config/routes.rb",
+			"settings":
+			{
+				"buffer_size": 1940,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/checkout/_address.html.erb",
+			"settings":
+			{
+				"buffer_size": 5894,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/views/checkout/update_errors.js.erb",
+			"settings":
+			{
+				"buffer_size": 30,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config/database.yml",
+			"settings":
+			{
+				"buffer_size": 626,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/shared/_accaunt.html.erb",
+			"settings":
+			{
+				"buffer_size": 3615,
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "app/controllers/checkout_controller_decorator.rb",
 			"settings":
 			{
@@ -68,34 +108,45 @@
 			}
 		},
 		{
-			"file": "app/views/checkout/update_robokassa.js.erb",
+			"file": "Gemfile",
 			"settings":
 			{
-				"buffer_size": 318,
+				"buffer_size": 1047,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/home/index.html.erb",
+			"settings":
+			{
+				"buffer_size": 4028,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/controllers/orders_controller.rb",
+			"file": "app/views/home/about.html.erb",
 			"settings":
 			{
-				"buffer_size": 2485,
+				"buffer_size": 4030,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/views/checkout/_address.html.erb",
+			"contents": "",
+			"file": "app/views/shared/_about_page,html.erb",
+			"file_size": 0,
+			"file_write_time": 129887600536516653,
 			"settings":
 			{
-				"buffer_size": 5400,
+				"buffer_size": 0,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/models/order_decorator.rb",
+			"contents": "    <div class=\"left-colum\">\n      <% @products.limit(1).each do |product| %>\n        <figure class=\"shop-item-images\">\n          <%= product_image(product, { width: 416, height: 305 }) %>\n        </figure>\n        \n        <div class=\"shop-item-options dotted\">\n          <div class=\"left\">\n            <span class=\"label\">Цвет</span>\n            <ul class=\"shop-item-colors\">\n              <li><a href=\"#\"><img src=\"images/dummy.gif\" width=\"33\" height=\"33\" alt=\"\"></a></li>\n              <li><a href=\"#\"><img src=\"images/dummy.gif\" width=\"33\" height=\"33\" alt=\"\"></a></li>\n              <li class=\"cur\"><a href=\"#\"><img src=\"images/dummy.gif\" width=\"33\" height=\"33\" alt=\"\"></a></li>\n              <li><a href=\"#\"><img src=\"images/dummy.gif\" width=\"33\" height=\"33\" alt=\"\"></a></li>\n              <li><a href=\"#\"><img src=\"images/dummy.gif\" width=\"33\" height=\"33\" alt=\"\"></a></li>\n            </ul>\n          </div>\n          <div class=\"right\">\n            <span class=\"label\">Ваш размер</span>\n            <select class=\"select\">\n              <option>39</option>\n              <option>40</option>\n              <option>41</option>\n              <option>42</option>\n            </select>\n          </div>\n        </div>\n        \n        <div class=\"shop-item-text dotted\">\n          <p><%= product_description(product) rescue \"У товара нет описания\" %></p>\n        </div>\n        \n        <div class=\"shop-item-buy\">       \n          <%= form_for :order, :url => populate_orders_url, remote: true do |f| %>\n            <a href=\"#\" class=\"button plus shop-item-buy-link\">В корзину</a> \n            <%= hidden_field_tag \"variants[#{product.master.id}]\", 1 %>\n            <button type='submit' class=\"shop-item-buy-button\" style='display:none'></button>\n          <% end %>\n          <div class=\"shop-item-price\">\n            <%= product_price(product, with_em: true) %>\n          </div>\n        </div>\n      <% end %>\n    </div>\n\n    \n    <div class=\"right-colum\">\n      <% @products.limit(1).each do |product| %>\n        <figure class=\"shop-item-images\">\n          <%= product_image(product, { width: 416, height: 305 }) %>\n        </figure>\n        \n        <div class=\"shop-item-options dotted\">\n          <div class=\"left\">\n            <span class=\"label\">Цвет</span>\n            <ul class=\"shop-item-colors\">\n              <li><a href=\"#\"><img src=\"images/dummy.gif\" width=\"33\" height=\"33\" alt=\"\"></a></li>\n              <li><a href=\"#\"><img src=\"images/dummy.gif\" width=\"33\" height=\"33\" alt=\"\"></a></li>\n              <li class=\"cur\"><a href=\"#\"><img src=\"images/dummy.gif\" width=\"33\" height=\"33\" alt=\"\"></a></li>\n              <li><a href=\"#\"><img src=\"images/dummy.gif\" width=\"33\" height=\"33\" alt=\"\"></a></li>\n              <li><a href=\"#\"><img src=\"images/dummy.gif\" width=\"33\" height=\"33\" alt=\"\"></a></li>\n            </ul>\n          </div>\n          <div class=\"right\">\n            <span class=\"label\">Ваш размер</span>\n            <select class=\"select\">\n              <option>39</option>\n              <option>40</option>\n              <option>41</option>\n              <option>42</option>\n            </select>\n          </div>\n        </div>\n        \n        <div class=\"shop-item-text dotted\">\n          <p><%= product_description(product) rescue \"У товара нет описания\" %></p>\n        </div>\n        \n        <div class=\"shop-item-buy\">       \n          <%= form_for :order, :url => populate_orders_url, remote: true do |f| %>\n            <a href=\"#\" class=\"button plus shop-item-buy-link\">В корзину</a> \n            <%= hidden_field_tag \"variants[#{product.master.id}]\", 1 %>\n            <button type='submit' class=\"shop-item-buy-button\" style='display:none'></button>\n          <% end %>\n          <div class=\"shop-item-price\">\n            <%= product_price(product, with_em: true) %>\n          </div>\n        </div>\n      <% end %>\n      \n    </div>\n    \n\n<!--<div class=\"page\">\n  <div class=\"wrapper\">\n  </div>\n</div>-->",
 			"settings":
 			{
-				"buffer_size": 2118,
+				"buffer_size": 3941,
 				"line_ending": "Windows"
 			}
 		},
@@ -103,95 +154,39 @@
 			"file": "app/views/shared/_personal_page.html.erb",
 			"settings":
 			{
-				"buffer_size": 2261,
+				"buffer_size": 2187,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/views/checkout/_payment.html.erb",
+			"file": "markup/checkout_steps.html",
 			"settings":
 			{
-				"buffer_size": 1616,
+				"buffer_size": 13862,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/helpers/base_helper_decorator.rb",
+			"settings":
+			{
+				"buffer_size": 2574,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/views/checkout/_confirm.html.erb",
+			"file": "app/views/layouts/spree_application.html.erb",
 			"settings":
 			{
-				"buffer_size": 2710,
-				"line_ending": "Windows"
+				"buffer_size": 2516,
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "db/schema.rb",
 			"settings":
 			{
-				"buffer_size": 20403,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/checkout/_cart.html.erb",
-			"settings":
-			{
-				"buffer_size": 169,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/views/shared/_login.html.erb",
-			"settings":
-			{
-				"buffer_size": 893,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/views/shared/_accaunt_page.html.erb",
-			"settings":
-			{
-				"buffer_size": 440,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/controllers/user_sessions_controller_decorator.rb",
-			"settings":
-			{
-				"buffer_size": 641,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/views/user_sessions/show_accaunt_page.js.erb",
-			"settings":
-			{
-				"buffer_size": 293,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/views/shared/_accaunt.html.erb",
-			"settings":
-			{
-				"buffer_size": 3167,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/views/shared/_shop_cart.html.erb",
-			"settings":
-			{
-				"buffer_size": 2802,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "public/javascripts/application.js",
-			"settings":
-			{
-				"buffer_size": 1170,
+				"buffer_size": 20523,
 				"line_ending": "Unix"
 			}
 		},
@@ -199,7 +194,79 @@
 			"file": "app/views/shared/_registration.html.erb",
 			"settings":
 			{
-				"buffer_size": 2424,
+				"buffer_size": 4079,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/controllers/user_registrations_controller_decorator.rb",
+			"settings":
+			{
+				"buffer_size": 1657,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/views/checkout/_confirm.html.erb",
+			"settings":
+			{
+				"buffer_size": 2847,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/views/shared/_accaunt_page.html.erb",
+			"settings":
+			{
+				"buffer_size": 487,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/stylesheets/style.css",
+			"settings":
+			{
+				"buffer_size": 23085,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/controllers/home_controller.rb",
+			"settings":
+			{
+				"buffer_size": 1906,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/views/shared/_header.html.erb",
+			"settings":
+			{
+				"buffer_size": 323,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/views/shared/_about_header.html.erb",
+			"settings":
+			{
+				"buffer_size": 323,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/views/shared/_about_page.html.erb",
+			"settings":
+			{
+				"buffer_size": 5570,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/views/shared/_shop_cart.html.erb",
+			"settings":
+			{
+				"buffer_size": 2807,
 				"line_ending": "Windows"
 			}
 		}
@@ -232,6 +299,32 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Gleb/_rorwork/candies/public/stylesheets/style.css",
+		"/C/Users/Gleb/_rorwork/candies/app/views/shared/_personal_page_checkout.html.erb",
+		"/C/Users/Gleb/_rorwork/candies/app/views/layouts/spree_application.html.erb",
+		"/C/Users/Gleb/_rorwork/candies/app/views/checkout/update_errors.js.erb",
+		"/C/Users/Gleb/_rorwork/candies/app/views/checkout/_delivery.html.erb",
+		"/C/Users/Gleb/_rorwork/candies/app/views/user_registrations/registration_errors.js.erb",
+		"/C/Users/Gleb/_rorwork/candies/app/views/user_registrations/registration_complete.js.erb",
+		"/C/Users/Gleb/_rorwork/candies/app/controllers/user_registrations_controller_decorator.rb",
+		"/C/Users/Gleb/_rorwork/candies/app/views/shared/_registration.html.erb",
+		"/C/Users/Gleb/_rorwork/candies/app/views/shared/_shop_cart.html.erb",
+		"/C/Users/Gleb/_rorwork/candies/app/views/shared/_accaunt.html.erb",
+		"/C/Users/Gleb/_rorwork/candies/app/views/user_sessions/show_accaunt_page.js.erb",
+		"/C/Users/Gleb/_rorwork/candies/app/controllers/user_sessions_controller_decorator.rb",
+		"/C/Users/Gleb/_rorwork/candies/app/views/shared/_accaunt_page.html.erb",
+		"/C/Users/Gleb/_rorwork/candies/app/views/shared/_login.html.erb",
+		"/C/Users/Gleb/_rorwork/candies/app/views/checkout/_cart.html.erb",
+		"/C/Users/Gleb/_rorwork/candies/db/schema.rb",
+		"/C/Users/Gleb/_rorwork/candies/app/views/checkout/_confirm.html.erb",
+		"/C/Users/Gleb/_rorwork/candies/app/views/checkout/_payment.html.erb",
+		"/C/Users/Gleb/_rorwork/candies/app/views/shared/_personal_page.html.erb",
+		"/C/Users/Gleb/_rorwork/candies/app/models/order_decorator.rb",
+		"/C/Users/Gleb/_rorwork/candies/app/views/checkout/_address.html.erb",
+		"/C/Users/Gleb/_rorwork/candies/app/controllers/orders_controller.rb",
+		"/C/Users/Gleb/_rorwork/candies/app/views/checkout/update_robokassa.js.erb",
+		"/C/Users/Gleb/_rorwork/candies/app/controllers/checkout_controller_decorator.rb",
+		"/C/Users/Gleb/_rorwork/candies/public/javascripts/application.js",
 		"/C/Users/Gleb/_rorwork/candies/public/javascripts/script.js",
 		"/C/Users/Gleb/_rorwork/candies/app/controllers/gateway/robokassa_controller.rb",
 		"/C/Users/Gleb/_rorwork/spree_core-0.60.6/app/models/state_event.rb",
@@ -333,33 +426,7 @@
 		"/C/Users/Gleb/_rorwork/hiazma/app/views/admin/projects/edit.html.erb",
 		"/C/Users/Gleb/_rorwork/hiazma/app/views/admin/projects/new.html.erb",
 		"/C/Users/Gleb/_rorwork/hiazma/app/views/admin/articles/edit.html.erb",
-		"/C/Users/Gleb/_rorwork/hiazma/app/views/admin/articles/new.html.erb",
-		"/C/Users/Gleb/_rorwork/hiazma/app/assets/stylesheets/admin/about.css.scss",
-		"/C/Users/Gleb/_rorwork/hiazma/db/schema.rb",
-		"/C/Users/Gleb/_rorwork/hiazma/app/assets/stylesheets/admin/bootstrap_and_overrides.css.less",
-		"/C/Users/Gleb/_cwork/Vagrantfile",
-		"/C/Users/Gleb/Downloads/deploy (1).rb",
-		"/C/Users/Gleb/Documents/application.html.erb",
-		"/C/Users/Gleb/_rorwork/hiazma/app/uploaders/image_uploader.rb",
-		"/C/Users/Gleb/_rorwork/hiazma/app/controllers/admin/admin_controller.rb",
-		"/C/Users/Gleb/_rorwork/hiazma/app/views/admin/about/show.html.erb",
-		"/C/Users/Gleb/_rorwork/hiazma/db/migrate/20120704232055_create_settings.rb",
-		"/C/Users/Gleb/_rorwork/hiazma/app/helpers/application_helper.rb",
-		"/C/Users/Gleb/_rorwork/hiazma/.gitignore",
-		"/C/Users/Gleb/_rorwork/mystore/app/assets/stylesheets/store/all.css",
-		"/C/Users/Gleb/_rorwork/hiazma/app/views/devise/sessions/new.html.erb",
-		"/C/Users/Gleb/_rorwork/hiazma/app/controllers/admin/about_controller.rb",
-		"/C/Users/Gleb/_rorwork/hiazma/config/application.rb",
-		"/C/Users/Gleb/_rorwork/hiazma/app/models/user.rb",
-		"/C/Users/Gleb/_rorwork/hiazma/db/migrate/20120704210019_devise_create_users.rb",
-		"/C/Users/Gleb/_rorwork/hiazma/app/assets/stylesheets/admin.css",
-		"/C/Users/Gleb/_rorwork/hiazma/app/assets/stylesheets/application.css",
-		"/C/Users/Gleb/_rorwork/hiazma/app/views/shared/_flash_messages.html.erb",
-		"/C/Users/Gleb/_rorwork/hiazma/app/views/shared/top.html.erb",
-		"/C/Users/Gleb/old_rorwork/production.log",
-		"/L/www/water.html",
-		"/L/www/water_result.html",
-		"/L/www/test.js"
+		"/C/Users/Gleb/_rorwork/hiazma/app/views/admin/articles/new.html.erb"
 	],
 	"find":
 	{
@@ -384,6 +451,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"pg",
+			"/pg/",
+			"product",
 			"shipment_me",
 			"normalize_addresses",
 			"normalize_adresses",
@@ -464,22 +534,23 @@
 	"groups":
 	[
 		{
+			"selected": 25,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/controllers/checkout_controller_decorator.rb",
+					"file": "config/routes.rb",
 					"settings":
 					{
-						"buffer_size": 5421,
+						"buffer_size": 1940,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5416,
-								5416
+								178,
+								178
 							]
 						],
 						"settings":
@@ -496,18 +567,46 @@
 				},
 				{
 					"buffer": 1,
-					"file": "app/views/checkout/update_robokassa.js.erb",
+					"file": "app/views/checkout/_address.html.erb",
 					"settings":
 					{
-						"buffer_size": 318,
+						"buffer_size": 5894,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								318,
-								318
+								2304,
+								2304
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 504.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/views/checkout/update_errors.js.erb",
+					"settings":
+					{
+						"buffer_size": 30,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								29,
+								29
 							]
 						],
 						"settings":
@@ -521,136 +620,24 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "app/controllers/orders_controller.rb",
-					"settings":
-					{
-						"buffer_size": 2485,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2087,
-								2011
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 135.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
 					"buffer": 3,
-					"file": "app/views/checkout/_address.html.erb",
+					"file": "config/database.yml",
 					"settings":
 					{
-						"buffer_size": 5400,
+						"buffer_size": 626,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								608,
-								726
+								606,
+								606
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 690.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/models/order_decorator.rb",
-					"settings":
-					{
-						"buffer_size": 2118,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1403,
-								1403
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 360.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "app/views/shared/_personal_page.html.erb",
-					"settings":
-					{
-						"buffer_size": 2261,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2256,
-								2256
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 420.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "app/views/checkout/_payment.html.erb",
-					"settings":
-					{
-						"buffer_size": 1616,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								743,
-								831
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -661,19 +648,101 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "app/views/checkout/_confirm.html.erb",
+					"buffer": 4,
+					"file": "app/views/shared/_accaunt.html.erb",
 					"settings":
 					{
-						"buffer_size": 2710,
+						"buffer_size": 3615,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2050,
-								2088
+								2830,
+								2830
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 450.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/controllers/checkout_controller_decorator.rb",
+					"settings":
+					{
+						"buffer_size": 5421,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3592,
+								3592
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "Gemfile",
+					"settings":
+					{
+						"buffer_size": 1047,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								399,
+								399
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app/views/home/index.html.erb",
+					"settings":
+					{
+						"buffer_size": 4028,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								75,
+								0
 							]
 						],
 						"settings":
@@ -690,102 +759,46 @@
 				},
 				{
 					"buffer": 8,
-					"file": "db/schema.rb",
+					"file": "app/views/home/about.html.erb",
 					"settings":
 					{
-						"buffer_size": 20403,
+						"buffer_size": 4030,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								997,
-								997
+								2203,
+								2203
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 92.0,
+						"translation.y": 765.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 9,
-					"file": "app/views/checkout/_cart.html.erb",
+					"file": "app/views/shared/_about_page,html.erb",
 					"settings":
 					{
-						"buffer_size": 169,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								164,
-								164
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "app/views/shared/_login.html.erb",
-					"settings":
-					{
-						"buffer_size": 893,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								819,
-								836
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "app/views/shared/_accaunt_page.html.erb",
-					"settings":
-					{
-						"buffer_size": 440,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								56,
-								56
+								0,
+								0
 							]
 						],
 						"settings":
@@ -799,71 +812,129 @@
 					"type": "text"
 				},
 				{
-					"buffer": 12,
-					"file": "app/controllers/user_sessions_controller_decorator.rb",
+					"buffer": 10,
 					"settings":
 					{
-						"buffer_size": 641,
+						"buffer_size": 3941,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								232,
-								259
+								3941,
+								3941
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+							"default_dir": "C:\\Users\\Gleb\\_rorwork\\candies\\app\\views\\home",
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 630.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "app/views/shared/_personal_page.html.erb",
+					"settings":
+					{
+						"buffer_size": 2187,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2182,
+								2182
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "markup/checkout_steps.html",
+					"settings":
+					{
+						"buffer_size": 13862,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3735.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 13,
-					"file": "app/views/user_sessions/show_accaunt_page.js.erb",
+					"file": "app/helpers/base_helper_decorator.rb",
 					"settings":
 					{
-						"buffer_size": 293,
+						"buffer_size": 2574,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								293,
-								0
+								1944,
+								1944
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Rails/JavaScript (Rails).tmLanguage"
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 225.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 14,
-					"file": "app/views/shared/_accaunt.html.erb",
+					"file": "app/views/layouts/spree_application.html.erb",
 					"settings":
 					{
-						"buffer_size": 3167,
+						"buffer_size": 2516,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1186,
-								1186
+								1055,
+								1055
 							]
 						],
 						"settings":
@@ -873,25 +944,53 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 270.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 15,
-					"file": "app/views/shared/_shop_cart.html.erb",
+					"file": "db/schema.rb",
 					"settings":
 					{
-						"buffer_size": 2802,
+						"buffer_size": 20523,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1628,
-								1628
+								10962,
+								10962
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4230.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "app/views/shared/_registration.html.erb",
+					"settings":
+					{
+						"buffer_size": 4079,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3449,
+								3449
 							]
 						],
 						"settings":
@@ -901,30 +1000,58 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 90.0,
+						"translation.y": 540.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 16,
-					"file": "public/javascripts/application.js",
+					"buffer": 17,
+					"file": "app/controllers/user_registrations_controller_decorator.rb",
 					"settings":
 					{
-						"buffer_size": 1170,
+						"buffer_size": 1657,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								972,
-								972
+								824,
+								824
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3037.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "app/views/checkout/_confirm.html.erb",
+					"settings":
+					{
+						"buffer_size": 2847,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1142,
+								1142
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -935,19 +1062,180 @@
 					"type": "text"
 				},
 				{
-					"buffer": 17,
-					"file": "app/views/shared/_registration.html.erb",
+					"buffer": 19,
+					"file": "app/views/shared/_accaunt_page.html.erb",
 					"settings":
 					{
-						"buffer_size": 2424,
+						"buffer_size": 487,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								35,
-								35
+								487,
+								487
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 20,
+					"file": "public/stylesheets/style.css",
+					"settings":
+					{
+						"buffer_size": 23085,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8140,
+								8140
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 5604.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 21,
+					"file": "app/controllers/home_controller.rb",
+					"settings":
+					{
+						"buffer_size": 1906,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								334,
+								334
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 22,
+					"file": "app/views/shared/_header.html.erb",
+					"settings":
+					{
+						"buffer_size": 323,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								183,
+								194
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 23,
+					"file": "app/views/shared/_about_header.html.erb",
+					"settings":
+					{
+						"buffer_size": 323,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								182,
+								182
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 24,
+					"file": "app/views/shared/_about_page.html.erb",
+					"settings":
+					{
+						"buffer_size": 5570,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5536,
+								5536
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2226.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 25,
+					"file": "app/views/shared/_shop_cart.html.erb",
+					"settings":
+					{
+						"buffer_size": 2807,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								472,
+								472
 							]
 						],
 						"settings":
@@ -1021,6 +1309,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 385.0,
+	"side_bar_width": 461.0,
 	"status_bar_visible": true
 }

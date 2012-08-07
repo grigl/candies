@@ -3,7 +3,6 @@ class OrdersController < Spree::BaseController
 
   helper :products
 
-
   def show
     @order = Order.find_by_number(params[:id])
   end

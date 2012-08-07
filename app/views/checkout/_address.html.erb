@@ -20,7 +20,7 @@
               <%= bill_form.label :lastname, 'ФАМИЛИЯ' %>
               <%= bill_form.text_field :lastname, :class => 'textfield' %>
             </div>
-        <% end %>
+
             <div class="form-item w416">
               <%= form.label :email, 'EMAIL' %>
               <% if @order.email == 'temporaryemail@example.com' %>
@@ -29,7 +29,7 @@
                 <%= form.text_field :email, :class => 'textfield' %>
               <% end %>
             </div>
-        <%= form.fields_for :bill_address do |bill_form| %>
+
             <div class="form-item w322">
               <%= bill_form.label :phone, 'ТЕЛЕФОН' %>
               <%= bill_form.text_field :phone, :class => 'textfield' %>
@@ -72,7 +72,8 @@
             </div>
             <div class="form-item">
               <div class="checkbox-box">
-                <label><input type="checkbox" class="js-hide-delivery-address-form">
+<!--                 <label><input type="checkbox" class="js-hide-delivery-address-form"> -->
+                <label><%= check_box_tag 'order[use_billing]', '1', false, { class: "js-hide-delivery-address-form" } %>
                 Адрес плательщика совпадает с адресом доставки заказа</label>
               </div>
             </div>
