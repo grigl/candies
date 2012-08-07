@@ -475,7 +475,7 @@ header li.cur a {cursor: default;}
 /* c o n t e n t */
 
 .basket {
-	position: absolute;
+	position: fixed;
 	background: url(../images/bg_basket.png) no-repeat;
 	width: 148px;
 	height: 52px;

@@ -7,7 +7,7 @@ $(document).ready(function(){
 // header
 	var page_height = 0;
 	var window_height = 0;
-	var delta = 0;
+	var delta = 0, basket_limit = 0;
 	
 	$('header').each(function(){
 		$(this).addClass('middle').clone().prependTo('body').removeClass('middle').addClass('fixed');
@@ -21,12 +21,20 @@ $(document).ready(function(){
 		} else {
 			$('header.fixed').show();
 		}
+
+		if (scrollTop > basket_limit) {
+			$('.basket').stop().animate({top: -52});
+		} else {
+			$('.basket').stop().animate({top: 0});
+		}
+
 	});
 	
 	$(window).resize(function(){
 		page_height = $('.page.white').height();
 	  window_height = $(window).height();
 		delta = page_height - window_height + 30;
+		basket_limit = page_height - 100;
 		$('header.middle').css('top', page_height);
 		$(window).scroll();
 	});
