@@ -418,6 +418,8 @@ header li.cur a {cursor: default;}
 .accaunt-step {
 	position: absolute;
 	width: 416px;
+	margin-right: 20px;
+	margin-bottom: 40px;
 }
 
 /* //case */
