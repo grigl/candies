@@ -944,7 +944,7 @@ header li.cur a {cursor: default;}
 
 .checkout-box {min-height: 300px;}
 
-.checkout-payment {min-height: 370px;}
+/*.checkout-payment {min-height: 370px;}*/
 
 	.checkout-payment-item {
 		padding: 0 0 24px 20px;
