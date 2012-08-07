@@ -1,1 +1,1 @@
-alert('<%= @order.errors %>')
+throw {type: 'candies-form-validation', errors: <%= raw @order.errors.to_json %>};
