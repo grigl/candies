@@ -36,14 +36,17 @@ UserRegistrationsController.class_eval do
     end
   end
 
-  # GET /resource/edit
-  def edit
-    super
-  end
-
   # PUT /resource
   def update
-    super
+    @user = resource
+    if @user.update_attributes(params[:user])
+      set_flash_message :notice, :updated if is_navigational_format?
+      sign_in resource_name, resource, :bypass => true
+      render :reload_accaunt_page
+    else
+      clean_up_passwords(resource)
+      render :show_accaunt_edit_errors
+    end
   end
 
   # DELETE /resource

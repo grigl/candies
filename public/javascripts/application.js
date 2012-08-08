@@ -29,5 +29,21 @@
       $('#login').show('slide', { direction: 'right'}, 1000 );
     });
 
+    $('#show_accaunt_edit').live('click', function(e){
+      e.preventDefault();
+      $('.accaunt_current').hide('slide', { direction: 'left'}, 1000);
+      $('.accaunt_current').removeClass('accaunt_current');
+      $('#accaunt_edit').addClass('accaunt_current');
+      $('#accaunt_edit').show('slide', { direction: 'right'}, 1000 );
+    });
+
+    $('#show_accaunt').live('click', function(e){
+      e.preventDefault();
+      $('.accaunt_current').hide('slide', { direction: 'left'}, 1000);
+      $('.accaunt_current').removeClass('accaunt_current');
+      $('#accaunt').addClass('accaunt_current');
+      $('#accaunt').show('slide', { direction: 'right'}, 1000 );
+    });
+
   });
 })(jQuery);

@@ -2,6 +2,10 @@
   <%= render 'shared/login' unless current_user %>
 </div>
 
+<div class="accaunt-step" id="accaunt_edit" style="display:none;">
+  <%= render 'shared/accaunt_edit' %>
+</div>
+
 <div id="registration" style="display:none;" class="accaunt-step">
   <%= render 'shared/registration' %>
 </div>

@@ -1,13 +1,36 @@
-      <h3 class="right">
-        <a href="accaunt_edit" id="show_accaunt_edit" class="small">Изменить</a> <%= link_to 'Выйти', destroy_user_session_path, class: 'small' %>
+      <h3>
+        КОНТАКТНЫЕ ДАННЫЕ
       </h3>
       
-      <div class="user-name">
-        <div>
-          <%= current_user.email %><br>
-          тел: <%= current_user.default_address.phone %>
-        </div>
-        <h5><%= current_user.default_address.firstname %> <%= current_user.default_address.lastname %></h5>
+      <div class="checkout-form">
+        <%= form_for current_user, url: user_registration_path, remote: true do |f| %>
+          <%= f.fields_for :addresses, current_user.default_address do |address_form| %>
+          <div class="form-item w175">
+            <%= address_form.label :firstname, 'ИМЯ' %>
+            <%= address_form.text_field :firstname, class: 'textfield' %>
+          </div>
+          <div class="form-item w240">
+            <%= address_form.label :lastname, 'ФАМИЛИЯ' %>
+            <%= address_form.text_field :lastname, class: 'textfield' %>
+          </div>
+          <% end %>
+          <div class="form-item w416">
+            <%= f.label :email, 'EMAIL' %>
+            <%= f.text_field :email, class: 'textfield' %>
+          </div>
+          <%= f.fields_for :addresses, current_user.default_address do |address_form| %>
+          <div class="form-item w416">
+            <%= address_form.label :phone, 'ТЕЛЕФОН' %>
+            <%= address_form.text_field :phone, class: 'textfield' %>
+          </div>
+          <% end %>
+          <div class="form-item w94">
+            <a href="/back" id="show_accaunt" class="button">ОТМЕНИТЬ</a>
+          </div>
+          <div class="form-item w322" align="right">
+            <input type="submit" class="button" value="СОХРАНИТЬ">
+          </div>
+        <% end %>
       </div>
       
       <div class="user-address">
@@ -27,13 +50,6 @@
       </div>
       <div class="dotted">&nbsp;</div><br><br>
       
-      <script>    
-        $(function(){
-          $('.order-history-name').click(function(){
-            $(this).toggleClass('open').next().slideToggle();
-          });
-        });
-      </script>
       <div class="order-history">
         <h3 class="left">История заказов :</h3>
         <ul class="order-history-list">

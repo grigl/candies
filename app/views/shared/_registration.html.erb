@@ -22,6 +22,7 @@
             <%= f.password_field :password_confirmation, class: 'textfield' %>
           </div>
           <%= f.fields_for :address do |address_form| %>
+            <%= address_form.hidden_field :default, value: true %>
             <div class="form-item w150">
 <!--               <label>ИМЯ</label>
               <input type="text" class="textfield"> -->
