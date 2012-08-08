@@ -2,8 +2,8 @@ UserSessionsController.class_eval do
   def create
     authenticate_user!
 
+
     if user_signed_in?
-      associate_user
       if current_order
         @order = current_order
         respond_with(@order) { |format| format.js { render 'orders/update_and_show_cart' } }
@@ -17,8 +17,8 @@ UserSessionsController.class_eval do
         end
       end
     else
-      flash[:error] = I18n.t("devise.failure.invalid")
-      render :show_login_errors
+      @errors = { :email => ['wrong email or password'], :password => ['wrong email or password']}
+      respond_with(@errors) { |format| format.js { render :show_login_errors } }
     end
   end
 end
