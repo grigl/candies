@@ -7,6 +7,8 @@ Candies::Application.routes.draw do
   match '/about' => 'home#about'
   
   match 'pg/:product_group_name/:gender' => 'products#index'
+  
+  match '/t/*id/:gender' => 'taxons#show', :as => :taxons_search
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
