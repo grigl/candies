@@ -8,6 +8,19 @@
   <% end %>
 <% end %>
 
+
+<h1>
+<% if params["gender"] == "male"%>
+  <span>МУЖСКОЙ ОТДЕЛ /</span>
+<% end %>
+<% if params["gender"] == "female"%>
+  <span>ЖЕНСКИЙ ОТДЕЛ /</span>
+<% end %>
+<% if @product_group.nil? == false %>
+	<%= @product_group["name"] %>
+<% end %>
+</h1>
+
 <% if params[:keywords] %>
 
   <%= hook :search_results do %>
@@ -26,4 +39,3 @@
 
 
 <% end %>
-

@@ -6,10 +6,11 @@ class ProductsController < Spree::BaseController
   respond_to :html
 
   def index
+    @product_group = nil
     if params.has_key?("product_group_name") then
       product_group_name = params["product_group_name"]
-      product_group = ProductGroup.where('permalink = ?', product_group_name)[0]
-      all_products = product_group.products      
+      @product_group = ProductGroup.where('permalink = ?', product_group_name)[0]
+      all_products = @product_group.products      
     end
     
     #такой странный и запутанный этот spree
