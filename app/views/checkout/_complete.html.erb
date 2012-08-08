@@ -1,1 +1,7 @@
-YAY!
+<div class="checkout-success">
+  <h4>Спасибо за Ваш заказ!<br>В ближайшее время мы свяжемся с вами.</h4><br><br>
+  <% if @order.payment_method.is_a?(PaymentMethod::SberBankInvoice) %>
+    <%= link_to 'скачать квитанцию', orders_sberbank_invoice_path(@order), class: 'dotted' %>
+  <% end %><br />
+  <%= link_to 'вернуться в магазин', root_path, class: 'dotted' %>
+</div>

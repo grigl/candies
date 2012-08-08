@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <div class="checkout-step <%= 'current' if @order.state == 'complete' %>" id="complete" <%= 'style=display:none;' unless @order.state == 'complete' %>>
+  <div class="<%= 'current' if @order.state == 'complete' %>" id="complete" <%= 'style=display:none;' unless @order.state == 'complete' %>>
     <div class="wrapper">
       <%= render 'checkout/complete' if @order.state == 'complete' %>
     </div>
@@ -55,7 +55,7 @@
     </div>
   </div>
 
-  <div class="checkout-step" id="complete" style="display:none;">
+  <div id="complete" style="display:none;">
     <div class="wrapper">
     </div>
   </div>

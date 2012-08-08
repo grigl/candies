@@ -1,3 +1,9 @@
+<ul class="checkout-steps">
+  <li><a>1</a></li>
+  <li class="cur"><a>2</a></li>
+  <li><a>3</a></li>
+</ul>
+
 <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" }, remote: true do |form| %>
   <div>
     <div class="left-colum">
@@ -8,7 +14,8 @@
             <li class="checkout-payment-item">
               <input type="radio">
               <%= radio_button(:order, :shipping_method_id, shipping_method[:id]) %>
-              <%= shipping_method[:name] %> <%= number_to_currency shipping_method[:cost] %>
+              <h5><%= shipping_method[:name] %></h5>
+              <p><%= number_to_currency shipping_method[:cost] %></p>
             </li>
             <% end %>
           </ul>
@@ -21,7 +28,8 @@
             <% @order.available_payment_methods.each do |method| %>
             <li class="checkout-payment-item">
               <%= radio_button_tag "order[payments_attributes][][payment_method_id]", method.id, method == @order.payment_method %>
-              <%= t(method.name, :scope => :payment_methods, :default => method.name) %>
+              <h5><%= t(method.name, :scope => :payment_methods, :default => method.name) %></h5>
+              <p><%= method.description %></p>
             </li>
             <% end %>
           </ul>

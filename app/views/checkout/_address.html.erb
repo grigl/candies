@@ -3,6 +3,12 @@
     <% @order.ship_address = current_user.addresses.first %>
   <% end %>
 
+    <ul class="checkout-steps">
+      <li class="cur"><a>1</a></li>
+      <li><a>2</a></li>
+      <li><a>3</a></li>
+    </ul>
+
   <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" }, remote: true do |form| %>  
     <div class="left-colum">
     

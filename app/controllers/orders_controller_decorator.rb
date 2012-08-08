@@ -1,4 +1,4 @@
-class OrdersController < Spree::BaseController
+OrdersController.class_eval do
   respond_to :html
 
   helper :products
