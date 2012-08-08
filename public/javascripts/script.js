@@ -64,6 +64,83 @@ $('.shop-item-buy-link').click(function(e){
 
 });
 
+
+
+// Преобразование контролов выбора варианта товара
+//
+var color_table = {
+	"красный": "#f00",
+	"черный": "#000"
+}
+function transformVariantChooser() {
+	$('.js-variant-chooser').each(function() {
+
+		var container = $(this);
+		if (container.data('ready')) {
+			return;
+		} else {
+			container.data('ready', true);
+		}
+
+		var colors = {};
+		container.find('.js-source label').each(function(){
+			var description = $('.variant-description', this).html().split(',');
+			for (var i = 0; i < description.length; i++) {
+				var item = description[i].split(':');
+				if ($.trim(item[0]).toLowerCase() == 'цвет') {
+					var color = $.trim(item[1]);
+				}
+				if ($.trim(item[0]).toLowerCase() == 'размер') {
+					var size = $.trim(item[1]);
+				}
+			}
+			!colors[color] && (colors[color] = {});
+			colors[color][size] = $('input', this).attr('value');
+		})
+
+		for (color in colors) {
+			container.find('.shop-item-colors')
+				.append( $('<li class="js-color-option"></li>')
+									.css('background-color', color_table[color]).attr('title', color) );
+		}
+
+		function update_old_controls() {
+			var value = container.find('.js-size-select option:selected').data('value');
+			container.find('.js-source input[value="' + value + '"]').prop('checked', true).click();
+		}
+
+		function set_color(color) {
+			container.find('.js-color-option.cur').removeClass('cur');
+			container.find('.js-color-option[title="' + color + '"]').addClass('cur');
+			var size_select = container.find('.js-size-select');
+			var old_val = size_select.val();
+			size_select.empty();
+			for (size in colors[color]) {
+				size_select.append('<option value="' + size + '" data-value="' + colors[color][size] + '">' + size + '</option>');
+			}
+			size_select.ikSelect("reset");
+			size_select.ikSelect('select', old_val);
+			if (old_val != null && size_select.val() != old_val) {
+				container.find('.ik_select').animate({top: -20}, 50).animate({top: 0}, 600, 'easeOutBounce');
+			}
+			update_old_controls();
+		}
+
+		container.on('click', '.js-color-option', function() {
+			set_color($(this).attr('title'));
+		})
+		container.on('change', '.js-size-select', function(){
+			update_old_controls();
+		})
+
+		set_color(container.find('.js-color-option').first().attr('title'));
+	});
+}
+
+
+
+
+
 // hide/show delivery address form
 function toggleDAF() {
 	$('.js-delivery-address-form-block')[ $('.js-hide-delivery-address-form').is(':checked') ? 'slideUp' : 'slideDown' ]();
@@ -71,10 +148,12 @@ function toggleDAF() {
 $('.js-hide-delivery-address-form').live('change', toggleDAF);
 
 
+
 // Все инициализации, которые могут быть актуальны не только для html который есть на странице сразу,
 // но и для того, что загружается аяксом должны быть в этом блоке:
 $(document).bind('html-inserted', function() {
 	toggleDAF();
+	transformVariantChooser();
 
 	// placeholder
 	$('input[placeholder], textarea[placeholder]').placeholder();
@@ -86,6 +165,7 @@ $(document).bind('html-inserted', function() {
 	});
 
 });
+
 
 
 // Аякс-валидация

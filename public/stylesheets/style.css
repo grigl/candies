@@ -616,6 +616,8 @@ header li.cur a {cursor: default;}
 		float: left;
 		position: relative;
 		margin-right: 9px;
+		width: 33px; height: 33px;
+		cursor: pointer;
 	}
 	.shop-item-colors li.cur:after {
 		display: block;
