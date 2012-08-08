@@ -5,6 +5,8 @@ Candies::Application.routes.draw do
 
   match '/checkout/back/:state' => 'checkout#back', :as => :back_checkout
   match '/about' => 'home#about'
+  
+  match 'pg/:product_group_name/:gender' => 'products#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
