@@ -4,7 +4,6 @@ UserSessionsController.class_eval do
 
 
     if user_signed_in?
-      # associate_user
       if current_order
         @order = current_order
         respond_with(@order) { |format| format.js { render 'orders/update_and_show_cart' } }
