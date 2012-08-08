@@ -1,1 +1,1 @@
-alert('<%= @user.errors.merge(@user.addresses.first.errors) %>');
+throw {type: 'candies-form-validation', errors: <%= raw @user.errors.merge(@user.addresses.first.errors).to_json %>};

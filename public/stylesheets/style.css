@@ -166,6 +166,12 @@ textarea.textfield {height: 65px;}
 	float: right;
 	font-size: 12px;
 	color: #ff5900;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.mew88 .errorlist {
+	max-width: 88px;
 }
 /* //textfield */
 
@@ -845,6 +851,7 @@ header li.cur a {cursor: default;}
 	margin: 0 -4px 20px 0;
 	*margin-right: 0;
 	vertical-align: top;
+	position: relative;
 }
 
 	.w416 {width: 416px;}
@@ -888,6 +895,7 @@ header li.cur a {cursor: default;}
 	
 	.w150 {width: 150px;}
 	.w150 .textfield {width: 124px;}
+	.w150 .errorlist {margin-right: 10px;}
 	
 	.w145 {width: 144px;}
 	.w145 .textfield {width: 129px;}

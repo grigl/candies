@@ -103,7 +103,7 @@ $(document).on('ajax:error', 'form', function(__1, __2, __3, obj) {
 			$('[name$="[' + name.join('][') + ']"]', this)
 				.addClass('error')
 				.parent()
-				.prepend('<div class="errorlist">' + error_text + '</div>');
+				.prepend('<div class="errorlist" title="' + error_text + '">' + error_text + '</div>');
 		}
 	}
 });
