@@ -1,13 +1,21 @@
+require 'rake'
+
+Rake::Task.clear
+Candies::Application.load_tasks
+
 class SyncController < ApplicationController
   def goods
-    system('rake sync:goods')
+    puts Rake::Task["sync:goods"].reenable
+    puts Rake::Task["sync:goods"].invoke
   end
   
   def remains
-    system('rake sync:remains')
+    puts Rake::Task["sync:remains"].reenable
+    puts Rake::Task["sync:remains"].invoke    
   end  
   
-  def goods
-    system('rake sync:orders')
+  def orders
+    puts Rake::Task["sync:orders"].reenable
+    puts Rake::Task["sync:orders"].invoke
   end
 end
