@@ -2,7 +2,6 @@ UserSessionsController.class_eval do
   def create
     authenticate_user!
 
-
     if user_signed_in?
       if current_order
         @order = current_order

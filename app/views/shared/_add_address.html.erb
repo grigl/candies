@@ -1,7 +1,7 @@
- <h3 class="right">
-                <a href="/back" id="show_accaunt" class="small">назад</a>
+      <h3>
+        ДОБАВИТЬ АДРЕС
       </h3>
-      
+
       <div class="user-name">
         <div>
           <%= current_user.email %><br>
@@ -22,37 +22,51 @@
           <%= current_user.default_address.city %>, <%= current_user.default_address.state %><br />
           <%= current_user.default_address.country %>
         </h5>
-        
           <p>
             Остальные адреса:
           </p>
-
-        <% if current_user.addresses.count > 1 %>
-          <% for address in current_user.addresses.except(current_user.default_address) %>
-            <div class="options">
-              <a href="#">Редактировать</a>
-              <a href="#" class="ico-remove">Удалить</a>
-            </div>
-            <h5>
-              <%= address.address1 %><br />
-              <%= address.city %>, <%= address.state %><br />
-              <%= address.country %>
-            </h5>
-            <div class="checkbox-box">
-              <input id="<%= address.id %>" type="checkbox">
-              <label>Сделать адресом по умолчанию</label>
-            </div>
+          <%= form_for current_user, url: user_registration_path, remote: true do |f| %>
+            <%= f.fields_for :addresses, current_user.addresses.build do |address_form| %>
+              <%= address_form.hidden_field :firstname, value: current_user.default_address.firstname %>
+              <%= address_form.hidden_field :lastname, value: current_user.default_address.lastname %>
+              <%= address_form.hidden_field :phone, value: current_user.default_address.phone %>
+              <div class="form-item w416">
+                <%= address_form.label :address1, 'АДРЕС' %>
+                <%= address_form.text_area :address1, class: 'textfield' %>
+              </div>
+              <div class="form-item w184">
+                <%= address_form.label :country_id, 'СТРАНА' %>
+                <%= address_form.collection_select :country_id, available_countries, :id, :name, {}, class: 'select' %>
+              </div>
+              <div class="form-item w232">
+                <%= address_form.label :city, 'ГОРОД' %>
+                <%= address_form.text_field :city, :class => 'textfield' %>
+              </div>
+              <div class="form-item w272">
+                <%= address_form.label :state, 'ОБЛАСТЬ' %>
+                <%= address_form.collection_select :state_id, available_countries.first.states, :id, :name, {}, class: 'select' %> 
+              </div>
+              <div class="form-item w145">
+                <%= address_form.label :zipcode, 'ИНДЕКС' %>
+                <%= address_form.text_field :zipcode, :class => 'textfield' %>
+              </div>
+              <div class="form-item w416">
+                <div class="checkbox-box">
+                  <input type="checkbox">
+                  <label>Сделать адресом по умолчанию</label>
+                </div>
+              </div>
+              <div class="form-item w94">
+                <a href="/back" id="show_accaunt" class="button">ОТМЕНИТЬ</a>
+              </div>
+              <div class="form-item w322" align="right">
+                <input type="submit" class="button" value="СОХРАНИТЬ">
+              </div>
+            <% end %>
           <% end %>
-        <% else %>
-          ...
-        <% end %>
       </div>
 
       <div class="dotted">&nbsp;</div><br><br>
-
-      <div class="dotted">
-        <h3><a href="add_address" id="show_add_address">ДОБАВИТЬ НОВЫЙ АДРЕС</a></h3><br>
-      </div><br><br>
 
       <div class="order-history">
         <h3 class="left">История заказов :</h3>

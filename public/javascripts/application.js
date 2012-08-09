@@ -53,5 +53,13 @@
       $('#address_book').show('slide', { direction: 'right'}, 1000 );
     });
 
+    $('#show_add_address').live('click', function(e){
+      e.preventDefault();
+      $('.accaunt_current').hide('slide', { direction: 'left'}, 1000);
+      $('.accaunt_current').removeClass('accaunt_current');
+      $('#add_address').addClass('accaunt_current');
+      $('#add_address').show('slide', { direction: 'right'}, 1000 );
+    });
+
   });
 })(jQuery);
