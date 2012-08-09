@@ -1,55 +1,55 @@
-      <h3>
-        КОНТАКТНЫЕ ДАННЫЕ
+ <h3 class="right">
+        <a href="accaunt_edit" id="show_accaunt_edit" class="small">Изменить</a>
       </h3>
       
-      <div class="checkout-form">
-        <%= form_for current_user, url: user_registration_path, remote: true do |f| %>
-          <%= f.fields_for :addresses, current_user.default_address do |address_form| %>
-          <div class="form-item w175">
-            <%= address_form.label :firstname, 'ИМЯ' %>
-            <%= address_form.text_field :firstname, class: 'textfield' %>
-          </div>
-          <div class="form-item w240">
-            <%= address_form.label :lastname, 'ФАМИЛИЯ' %>
-            <%= address_form.text_field :lastname, class: 'textfield' %>
-          </div>
-          <% end %>
-          <div class="form-item w416">
-            <%= f.label :email, 'EMAIL' %>
-            <%= f.text_field :email, class: 'textfield' %>
-          </div>
-          <%= f.fields_for :addresses, current_user.default_address do |address_form| %>
-          <div class="form-item w416">
-            <%= address_form.label :phone, 'ТЕЛЕФОН' %>
-            <%= address_form.text_field :phone, class: 'textfield' %>
-          </div>
-          <% end %>
-          <div class="form-item w94">
-            <a href="/back" id="show_accaunt" class="button">ОТМЕНИТЬ</a>
-          </div>
-          <div class="form-item w322" align="right">
-            <input type="submit" class="button" value="СОХРАНИТЬ">
-          </div>
-        <% end %>
+      <div class="user-name">
+        <div>
+          <%= current_user.email %><br>
+          тел: <%= current_user.default_address.phone %>
+        </div>
+        <h5><%= current_user.default_address.firstname %> <%= current_user.default_address.lastname %></h5>
       </div>
       
       <div class="user-address">
         <p>
           Адрес по умолчанию :
         </p>
+        <div class="options">
+          <a href="#">Редактировать</a>
+        </div>
         <h5>
           <%= current_user.default_address.address1 %><br />
           <%= current_user.default_address.city %>, <%= current_user.default_address.state %><br />
           <%= current_user.default_address.country %>
         </h5>
-        
-        <p>
-          <a href="/address_book" id="show_address_book">Посмотреть / Редактировать  адресную книгу</a>
-          Всего адресов: <%= current_user.addresses.count %>
-        </p>
+        <% if current_user.addresses.count > 1 %>
+          <p>
+            Остальные адреса:
+          </p>
+          <% for address in current_user.addresses.except(current_user.default_address) %>
+            <div class="options">
+              <a href="#">Редактировать</a>
+              <a href="#" class="ico-remove">Удалить</a>
+            </div>
+            <h5>
+              <%= address.address1 %><br />
+              <%= address.city %>, <%= address.state %><br />
+              <%= address.country %>
+            </h5>
+            <div class="checkbox-box">
+              <input id="<%= address.id %>" type="checkbox">
+              <label>Сделать адресом по умолчанию</label>
+            </div>
+          <% end %>
+        <% end %>
       </div>
+
       <div class="dotted">&nbsp;</div><br><br>
-      
+
+      <div class="dotted">
+        <h3><a href="add_address" id="show_add_address">ДОБАВИТЬ НОВЫЙ АДРЕС</a></h3><br>
+      </div><br><br>
+
       <div class="order-history">
         <h3 class="left">История заказов :</h3>
         <ul class="order-history-list">

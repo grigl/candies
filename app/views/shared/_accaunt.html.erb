@@ -21,8 +21,8 @@
         </h5>
         
         <p>
-          <a href="#">Посмотреть / Редактировать  адресную книгу</a>
-          Всего адресов: 2
+          <a href="/address_book" id="show_address_book">Посмотреть / Редактировать  адресную книгу</a>
+          Всего адресов: <%= current_user.addresses.count %>
         </p>
       </div>
       <div class="dotted">&nbsp;</div><br><br>

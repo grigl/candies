@@ -15,7 +15,7 @@ UserRegistrationsController.class_eval do
   # POST /resource/sign_up
   def create
     @user = build_resource(params[:user])
-    @user.addresses.build(params[:user][:address])
+    @address = @user.addresses.build(params[:user][:address])
     if @user.save
       set_flash_message(:notice, :signed_up)
       sign_in(:user, @user)
