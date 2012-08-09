@@ -2,78 +2,50 @@
         <% @user = User.new %>
         <%= form_for :user, :url => registration_path(@user), remote: true do |f| %>
           <div class="form-item w346">
-<!--             <label>ИМЯ ПОЛЬЗОВАТЕЛЯ</label>
-            <input type="text" class="textfield"> -->
             <div class="errorlist" style="display:none;">Уже занят!</div>
             <%= f.label :email, 'EMAIL' %>
             <%= f.text_field :email, class: 'textfield' %>
           </div>
           <div class="form-item w346">
-           <!--  <label>ПАРОЛЬ</label>
-            <input type="password" class="textfield"> -->
             <%= f.label :password, 'ПАРОЛЬ' %>
             <%= f.password_field :password, class: 'textfield' %>
           </div>
           <div class="form-item w346">
             <div class="errorlist" style="display:none;">Подтверждение Пароля не совпадает!</div>
-<!--             <label>ПОДТВЕРДИТЕ ПАРОЛЬ</label>
-            <input type="password" class="textfield error"> -->
             <%= f.label :password_confirmation, 'ПОДТВЕРДИТЕ ПАРОЛЬ' %>
             <%= f.password_field :password_confirmation, class: 'textfield' %>
           </div>
           <%= f.fields_for :address do |address_form| %>
             <%= address_form.hidden_field :default, value: true %>
             <div class="form-item w150">
-<!--               <label>ИМЯ</label>
-              <input type="text" class="textfield"> -->
               <%= address_form.label :firstname, 'ИМЯ' %>
               <%= address_form.text_field :firstname, class: 'textfield' %>
             </div>
             <div class="form-item w196">
-<!--               <label>ФАМИЛИЯ</label>
-              <input type="text" class="textfield"> -->
               <%= address_form.label :lastname, 'ФАМИЛИЯ' %>
               <%= address_form.text_field :lastname, class: 'textfield' %>
             </div>
             <div class="form-item w346">
-<!--               <label>ТЕЛЕФОН</label>
-              <input type="text" class="textfield"> -->
               <%= address_form.label :phone, 'ТЕЛЕФОН' %>
               <%= address_form.text_field :phone, class: 'textfield' %>
             </div>
             <div class="form-item w346">
-<!--               <label>АДРЕС</label>
-              <textarea class="textfield"></textarea> -->
               <%= address_form.label :address1, 'АДРЕС' %>
               <%= address_form.text_area :address1, class: 'textfield' %>
             </div>
             <div class="form-item w144">
-<!--               <label>СТРАНА</label>
-              <select class="select">
-                <option></option>
-              </select> -->
               <%= address_form.label :country_id, 'СТРАНА' %>
               <%= address_form.collection_select :country_id, available_countries, :id, :name, {}, class: 'select' %>
             </div>
             <div class="form-item w202">
-<!--               <label>ГОРОД</label>
-              <select class="select">
-                <option></option>
-              </select> -->
               <%= address_form.label :city, 'ГОРОД' %>
               <%= address_form.text_field :city, :class => 'textfield' %>
             </div>
             <div class="form-item w210">
-<!--               <label>ОБЛАСТЬ</label>
-              <select class="select">
-                <option></option>
-              </select> -->
               <%= address_form.label :state, 'ОБЛАСТЬ' %>
               <%= address_form.collection_select :state_id, available_countries.first.states, :id, :name, {}, class: 'select' %> 
             </div>
             <div class="form-item w138 mew88">
-<!--               <label>ИНДЕКС</label>
-              <input type="text" class="textfield"> -->
               <%= address_form.label :zipcode, 'ИНДЕКС' %>
               <%= address_form.text_field :zipcode, :class => 'textfield' %>
             </div>

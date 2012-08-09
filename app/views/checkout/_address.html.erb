@@ -1,4 +1,4 @@
-  <% if current_user && @order.bill_address_id == 0 && @order.ship_address_id == 0 %>
+  <% if current_user %>
     <% @order.bill_address = current_user.default_address %>
     <% @order.ship_address = current_user.default_address %>
   <% end %>
