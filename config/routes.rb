@@ -2,6 +2,8 @@ Candies::Application.routes.draw do
   get "sync/remains"
 
   get "sync/goods"
+  
+  get "sync/order"
 
   match '/checkout/back/:state' => 'checkout#back', :as => :back_checkout
   match '/about' => 'home#about'
