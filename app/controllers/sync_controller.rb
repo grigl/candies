@@ -14,7 +14,7 @@ class SyncController < ApplicationController
     puts Rake::Task["sync:remains"].invoke    
   end  
   
-  def orders
+  def order
     puts Rake::Task["sync:orders"].reenable
     puts Rake::Task["sync:orders"].invoke
   end
