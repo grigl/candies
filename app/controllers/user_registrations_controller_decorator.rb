@@ -39,7 +39,13 @@ UserRegistrationsController.class_eval do
   # PUT /resource
   def update
     @user = resource
-    if @user.update_attributes(params[:user])
+    @address = @user.addresses.build(params[:user][:address])
+    if params[:user][:address][:default] == true
+      @user.default_address.update_attribute(:default, false)
+      @address.default = true
+    end
+
+    if @user.save
       set_flash_message :notice, :updated if is_navigational_format?
       sign_in resource_name, resource, :bypass => true
       render :reload_accaunt_page

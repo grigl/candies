@@ -26,7 +26,7 @@
             Остальные адреса:
           </p>
           <%= form_for current_user, url: user_registration_path, remote: true do |f| %>
-            <%= f.fields_for :addresses, current_user.addresses.build do |address_form| %>
+            <%= f.fields_for :address do |address_form| %>
               <%= address_form.hidden_field :firstname, value: current_user.default_address.firstname %>
               <%= address_form.hidden_field :lastname, value: current_user.default_address.lastname %>
               <%= address_form.hidden_field :phone, value: current_user.default_address.phone %>
@@ -52,17 +52,17 @@
               </div>
               <div class="form-item w416">
                 <div class="checkbox-box">
-                  <input type="checkbox">
+                  <%= address_form.check_box :default, {}, true, nil %>
                   <label>Сделать адресом по умолчанию</label>
                 </div>
               </div>
               <div class="form-item w94">
                 <a href="/back" id="show_accaunt" class="button">ОТМЕНИТЬ</a>
               </div>
+            <% end %>
               <div class="form-item w322" align="right">
                 <input type="submit" class="button" value="СОХРАНИТЬ">
               </div>
-            <% end %>
           <% end %>
       </div>
 
