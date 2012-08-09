@@ -65,7 +65,6 @@ namespace :sync do
         xml += '<customerOrderPosition goodId="'+line_item.variant.ms_good_id.to_s+'" quantity="'+line_item.quantity.to_s+'">'
         xml += '</customerOrderPosition>'
       end
-      xml += '<demands>'+order.special_instructions+'</demands>'
       xml += '</customerOrder>'
 
       request = RestClient::Resource.new rest_url, rest_user, rest_pass
