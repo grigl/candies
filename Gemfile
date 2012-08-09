@@ -15,7 +15,7 @@ gem 'synergy_default_theme', '1.0.2'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+#gem 'capistrano'
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
@@ -35,3 +35,4 @@ gem 'synergy_default_theme', '1.0.2'
 # end
 gem "rest-client", "~> 1.6.7"
 gem "xml-simple", "~> 1.1.1"
+gem 'capistrano-ext'
