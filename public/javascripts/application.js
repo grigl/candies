@@ -61,5 +61,9 @@
       $('#add_address').show('slide', { direction: 'right'}, 1000 );
     });
 
+    $('#address_make_default').live('change', function(){
+      $(this).parents('form').submit();
+    });
+
   });
 })(jQuery);

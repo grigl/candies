@@ -1,5 +1,5 @@
       <h3>
-        ДОБАВИТЬ АДРЕС
+        ИЗМЕНИТЬ АДРЕС
       </h3>
 
       <div class="user-name">
@@ -25,7 +25,7 @@
           <p>
             Остальные адреса:
           </p>
-          <%= form_for :address, url: new_address_path, remote: true do |address_form| %>
+          <%= form_for @address, url: address_path(@address), remote: true do |address_form| %>
 
               <%= address_form.hidden_field :firstname, value: current_user.default_address.firstname %>
               <%= address_form.hidden_field :lastname, value: current_user.default_address.lastname %>
@@ -49,12 +49,6 @@
               <div class="form-item w145">
                 <%= address_form.label :zipcode, 'ИНДЕКС' %>
                 <%= address_form.text_field :zipcode, :class => 'textfield' %>
-              </div>
-              <div class="form-item w416">
-                <div class="checkbox-box">
-                  <%= address_form.check_box :default, {}, true, nil %>
-                  <label>Сделать адресом по умолчанию</label>
-                </div>
               </div>
               <div class="form-item w94">
                 <a href="/back" id="show_accaunt" class="button">ОТМЕНИТЬ</a>

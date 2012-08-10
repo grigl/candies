@@ -1,18 +1,45 @@
 AddressesController.class_eval do
-  def create
-    # @user = current_user
-    # if params[:user][:address][:make_default]
-    #   @user.default_address.update_attribute(:default, false)
-    # end
+  def new_user_address
+    @user = current_user
+    @user.addresses.build(params[:address])
 
-    # @user.addresses.build(params[:user][:address])
+    if params[:address][:default] == true
+      @user.default_address.update_attribute(:default, false)
+      @address.default = true
+     end
 
-    # if @user.update_attributes(params[:user])
-    #   set_flash_message :notice, :updated if is_navigational_format?
-    #   render :reload_accaunt_page
-    # else
-    #   render :show_accaunt_edit_errors
-    # end
-    asdfasdfasdf
+    if @user.save
+      render 'user_registrations/reload_accaunt_page'
+    else
+      render 'user_registrations/show_accaunt_edit_errors'
+    end
+  end
+
+  def edit
+    render :show_edit_address_form
+  end
+
+  def update
+    if @address.update_attributes(params[:address])
+      render 'user_registrations/reload_accaunt_page'
+    else
+      render :show_edit_address_errors
+    end
+  end
+
+  def destroy
+    if @address.can_be_deleted?
+      @address.destroy
+    else
+      @address.update_attribute(:user_id, nil)
+    end
+    render 'user_registrations/reload_accaunt_page'
+  end
+
+  def make_default
+    @address = Address.find(params[:address][:id])
+    current_user.default_address.update_attribute(:default, nil)
+    @address.update_attribute(:default, true)
+    render 'user_registrations/reload_accaunt_page'
   end
 end

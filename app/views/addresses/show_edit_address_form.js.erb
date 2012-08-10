@@ -1,0 +1,5 @@
+$('.accaunt_current').hide('slide', { direction: 'left'}, 1000);
+$('.accaunt_current').removeClass('accaunt_current');
+$('#edit_address').html('<%= escape_javascript(render 'shared/edit_address') %>');
+$('#edit_address').addClass('accaunt_current');
+$('#edit_address').show('slide', { direction: 'right'}, 1000 );

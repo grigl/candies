@@ -30,8 +30,8 @@
         <% if current_user.addresses.count > 1 %>
           <% for address in current_user.addresses.except(current_user.default_address) %>
             <div class="options">
-              <a href="#">Редактировать</a>
-              <a href="#" class="ico-remove">Удалить</a>
+              <%= link_to 'Редактировать', edit_address_path(address), remote: true %>
+              <%= link_to 'Удалить', address_path(address), method: :delete, remote: true, class: 'ico-remove' %>
             </div>
             <h5>
               <%= address.address1 %><br />
@@ -39,8 +39,11 @@
               <%= address.country %>
             </h5>
             <div class="checkbox-box">
-              <input id="<%= address.id %>" type="checkbox">
-              <label>Сделать адресом по умолчанию</label>
+              <%= form_for :address, url: make_address_default_path, remote: true do |f| %>
+                <%= f.hidden_field :id, value: address.id %>
+                <input id="address_make_default" type="checkbox">
+                <label>Сделать адресом по умолчанию</label>
+              <% end %>
             </div>
           <% end %>
         <% else %>

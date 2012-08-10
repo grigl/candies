@@ -13,12 +13,12 @@
             <%= address_form.label :lastname, 'ФАМИЛИЯ' %>
             <%= address_form.text_field :lastname, class: 'textfield' %>
           </div>
-          <% end %>
+
           <div class="form-item w416">
             <%= f.label :email, 'EMAIL' %>
             <%= f.text_field :email, class: 'textfield' %>
           </div>
-          <%= f.fields_for :addresses, current_user.default_address do |address_form| %>
+
           <div class="form-item w416">
             <%= address_form.label :phone, 'ТЕЛЕФОН' %>
             <%= address_form.text_field :phone, class: 'textfield' %>

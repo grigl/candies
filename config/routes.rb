@@ -12,7 +12,11 @@ Candies::Application.routes.draw do
   
   match '/t/*id/:gender' => 'taxons#show', :as => :taxons_search
 
-  post 'user/create_address' => 'user_registrations#create_address', as: :user_address
+
+  post '/new_address' => 'addresses#new_user_address', as: :new_address
+  post '/make_address_default' => 'addresses#make_default', as: :make_address_default
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
