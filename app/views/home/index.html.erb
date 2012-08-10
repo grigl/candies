@@ -97,3 +97,14 @@
 <%= content_for :page do %>    
   <%= render 'shared/personal_page' %>
 <% end %>
+<% if params["scroll"] == "true" %>
+	<%= content_for :head  do %>
+	    <script>
+	      $(document).ready(function(e){
+	         page_height = $('.page.white').height();
+	         $('html, body').animate({scrollTop: page_height + 72}, 1200);
+	         e.preventDefault;
+	      });
+	    </script>
+	<% end %>
+<% end %>

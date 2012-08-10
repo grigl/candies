@@ -56,7 +56,9 @@
                     <p><%= link_to 'скачать квитанцию', orders_sberbank_invoice_path(order), class: 'button' %></p>
                   <% end %>
                   <p><br>&nbsp;</p>
+                  <% if order.shipping_method %>
                   <p>Доставка: <%= order.shipping_method.name %></p>
+                  <% end %>
                   <p>Получатель: <%= order.ship_address.firstname %> <%= order.ship_address.lastname %></p>
                   <p>Адрес доставки заказа:</p>
                   <p><%= order.ship_address.address1 %></p>

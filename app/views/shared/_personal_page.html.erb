@@ -34,11 +34,18 @@
     </div>
   </div>
 <% else %>
+  <% if flash[:order_complete] == true %>
+  <div class="checkout-step" id="cart" style="display: none">
+    <div class="wrapper">
+    </div>
+  </div>  
+  <% else %>
   <div class="checkout-step current" id="cart">
     <div class="wrapper">
       <%= render 'checkout/cart'%>
     </div>
-  </div>
+  </div>  
+  <% end %>
 
   <div class="checkout-step" id="address" style="display:none;">
     <div class="wrapper">     
@@ -55,10 +62,12 @@
     </div>
   </div>
 
-  <div id="complete" style="display:none;">
+  <div class="<%= 'current' if flash[:order_complete] == true %>" id="complete" <%= 'style=display:none;' unless flash[:order_complete] == true %>>
     <div class="wrapper">
+      <%= render 'checkout/complete' if flash[:order_complete] == true %>
     </div>
   </div>
+
 
   <div class="checkout-step" id="robokassa" style="display:none;">
     <div class="wrapper">
