@@ -23,10 +23,10 @@ UserRegistrationsController.class_eval do
         associate_user
         if current_order
           @order = current_order
-          respond_with(@order) { |format| format.js { render 'orders/update_and_show_cart' } }
+          respond_with(@order) { |format| format.js { render :show_congrats_page_and_cart } }
         else
           respond_to do |format|
-            format.js { render 'user_sessions/show_accaunt_page' }
+            respond_with(@user) { |format| format.js { render :show_congrats_page } }
           end
         end
       end

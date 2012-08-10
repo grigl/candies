@@ -1,0 +1,11 @@
+$("#cart .wrapper").html('<%= escape_javascript(render "checkout/cart") %>');
+$('.accaunt_current').removeClass('accaunt_current');
+$('#accaunt').html('<%= escape_javascript(render 'shared/accaunt') %>');
+$('#accaunt_edit').html('<%= escape_javascript(render 'shared/accaunt_edit') %>');
+$('#address_book').html('<%= escape_javascript(render 'shared/address_book') %>');
+$('#add_address').html('<%= escape_javascript(render 'shared/add_address') %>');
+$('#congrats').addClass('accaunt_current');
+$('#accaunt').hide();
+$('#congrats').show();
+$("#cart").addClass('current');
+$("#cart").show('slide', {direction: 'right'}, 1000);
