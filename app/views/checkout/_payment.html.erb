@@ -10,10 +10,15 @@
       <h3>Выберите способ доставки заказа:</h3>
       <div class="checkout-form">
           <ul class="checkout-payment">
-            <% @order.rate_hash.each do |shipping_method| %>
+            <% @order.rate_hash.each_with_index do |shipping_method, idx| %>
             <li class="checkout-payment-item">
               <input type="radio">
-              <%= radio_button(:order, :shipping_method_id, shipping_method[:id]) %>
+              <% if @order.shipping_method %>
+                <% checked_shipping_method = (shipping_method[:id] == @order.shipping_method_id) %>
+              <% else %>
+                <% checked_shipping_method = (idx == 0) %>
+              <% end %>
+              <%= radio_button_tag 'order[shipping_method_id]', shipping_method[:id], checked_shipping_method %>
               <h5><%= shipping_method[:name] %></h5>
               <p><%= number_to_currency shipping_method[:cost] %></p>
             </li>
