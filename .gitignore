@@ -6,3 +6,5 @@ config/database*
 .powrc
 .rvmrc
 markup/*
+*.sublime-workspace
+*.sublime-project
