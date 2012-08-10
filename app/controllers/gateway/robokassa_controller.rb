@@ -28,6 +28,7 @@ class Gateway::RobokassaController < Spree::BaseController
       @order.state = "complete"
       @order.completed_at = Time.now
       @order.save!
+      @order.update!
       
       render :text => "OK#{@order.id}"
     else
