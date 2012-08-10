@@ -48,6 +48,18 @@ Order.class_eval do
 
   end
 
+  def rate_hash
+    @rate_hash ||= available_shipping_methods(:front_end).collect do |ship_method|
+      next unless cost = ship_method.calculator.compute(self)
+      { :id => ship_method.id,
+        :shipping_method => ship_method,
+        :name => ship_method.name,
+        :description => ship_method.description,
+        :cost => cost
+      }
+    end.compact.sort_by{|r| r[:cost]}
+  end
+
   def previous_state
     if state == 'address'
       'cart'
