@@ -36,3 +36,4 @@ gem 'synergy_default_theme', '1.0.2'
 gem "rest-client", "~> 1.6.7"
 gem "xml-simple", "~> 1.1.1"
 gem 'capistrano-ext'
+gem 'unicorn'

@@ -32,7 +32,7 @@ namespace :sync do
     #return
     
     last_order_id = File.read(".last_order_id")
-    orders = Order.where('id > ? AND state <> "cart"', last_order_id)
+    orders = Order.where('id > ? AND completed_at IS NOT NULL', last_order_id)
     
     orders.each do|order|
       #добавим контрагента

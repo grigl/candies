@@ -25,8 +25,8 @@ class Gateway::RobokassaController < Spree::BaseController
       payment.amount = params["OutSum"].to_f
       payment.save
       @order.save!
-      @order.next! until @order.state == "complete"
-      @order.update!
+      @order.state = "complete"
+      @order.save!
       
       render :text => "OK#{@order.id}"
     else
