@@ -26,6 +26,7 @@ class Gateway::RobokassaController < Spree::BaseController
       payment.save
       @order.save!
       @order.state = "complete"
+      @order.completed_at = Time.now
       @order.save!
       
       render :text => "OK#{@order.id}"
@@ -37,16 +38,18 @@ class Gateway::RobokassaController < Spree::BaseController
   def success
     if @order && @gateway && valid_signature?(@gateway.options[:password1]) && @order.complete?
       session[:order_id] = nil
-      redirect_to order_path(@order), :notice => I18n.t("payment_success")
+      #redirect_to order_path(@order) + "?scroll=true", :notice => I18n.t("payment_success")
+      flash[:order_complete] = true
+      redirect_to root_url + "?scroll=true"
     else
       flash[:error] =  t("payment_fail")
-      redirect_to root_url
+      redirect_to root_url + "?scroll=true"
     end
   end
 
   def fail
     flash[:error] = t("payment_fail")
-    redirect_to @order.blank? ? root_url : checkout_state_path("payment")
+    redirect_to root_url + "?scroll=true"
   end
 
   private
