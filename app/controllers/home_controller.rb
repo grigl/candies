@@ -2,9 +2,20 @@ class HomeController < Spree::BaseController
   helper :products, :taxons
   before_filter :load_order
 
-  def index
-    @searcher = Spree::Config.searcher_class.new(params)
-    @products = @searcher.retrieve_products
+  def index   
+    all_products = Product.all
+    
+    #такой странный и запутанный этот spree
+    all_products_by_gender = {"male" => [], "female" => []}
+    all_products.each do|product|
+      if product.gender == 0 or product.gender == 1 then
+        all_products_by_gender["male"].push(product)
+      end
+      if product.gender == 0 or product.gender == 2 then
+        all_products_by_gender["female"].push(product)
+      end
+    end
+    @products = all_products_by_gender
   end
 
   def about
