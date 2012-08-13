@@ -44,7 +44,7 @@ $(document).ready(function(){
 // go-top
 $('.go-top').click(function(e){
 	 e.preventDefault();
-	 $('html, body').animate({scrollTop:'0px'}, 1200);
+	 $('html, body').animate({scrollTop:'0px'}, 600);
 	 return false;
 });
 
@@ -52,7 +52,7 @@ $('.go-top').click(function(e){
 $('.go-bottom').click(function(e){
 	 e.preventDefault();
 	 page_height = $('.page.white').height();
-	 $('html, body').animate({scrollTop: page_height + 72}, 1200);
+	 $('html, body').animate({scrollTop: page_height + 72}, 600);
 	 return false;
 });
 
