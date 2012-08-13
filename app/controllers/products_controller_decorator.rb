@@ -54,6 +54,7 @@ ProductsController.class_eval do
 
   def after_complete
     session[:order_id] = nil
+  end
   
   def show
     @product = Product.find_by_permalink!(params[:id])
