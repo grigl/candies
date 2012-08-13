@@ -79,7 +79,7 @@
             <div class="form-item">
               <div class="checkbox-box">
 <!--                 <label><input type="checkbox" class="js-hide-delivery-address-form"> -->
-                <label><%= check_box_tag 'order[use_billing]', '1', false, { class: "js-hide-delivery-address-form" } %>
+                <label><%= check_box_tag 'order[use_billing]', '1', @order.bill_address == @order.ship_address ? true : false, { class: "js-hide-delivery-address-form" } %>
                 Адрес плательщика совпадает с адресом доставки заказа</label>
               </div>
             </div>

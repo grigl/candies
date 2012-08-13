@@ -60,6 +60,11 @@ Order.class_eval do
     end.compact.sort_by{|r| r[:cost]}
   end
 
+  def clone_shipping_address
+    # просто отрубаем этот коллбэк из spree_addres_book
+    true  
+  end
+
   def previous_state
     if state == 'address'
       'cart'

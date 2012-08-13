@@ -12,22 +12,7 @@ class HomeController < Spree::BaseController
     @products = @searcher.retrieve_products
   end
 
-  def completion_route
-    order_path(@order)
-  end
-
-  def object_params
-    # For payment step, filter order parameters to produce the expected nested attributes for a single payment and its source, discarding attributes for payment methods other than the one selected
-    if @order.payment.present?
-      if params[:payment_source].present? && source_params = params.delete(:payment_source)[params[:order][:payments_attributes].first[:payment_method_id].underscore]
-        params[:order][:payments_attributes].first[:source_attributes] = source_params
-      end
-      if (params[:order][:payments_attributes])
-        params[:order][:payments_attributes].first[:amount] = @order.total
-      end
-    end
-    params[:order]
-  end
+  private
 
   def load_order
     @order = current_order
@@ -53,10 +38,5 @@ class HomeController < Spree::BaseController
 
   def after_complete
     session[:order_id] = nil
-  end
-
-  def rescue_from_spree_gateway_error
-    flash[:error] = t('spree_gateway_error_flash_for_checkout')
-    render :edit
   end
 end
