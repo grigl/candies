@@ -2,11 +2,25 @@
   <%= render 'shared/header' %>
 <% end %>
 
+<h1>
+<% if params["gender"] == "male"%>
+  <span>МУЖСКОЙ ОТДЕЛ /</span>
+<% end %>
+<% if params["gender"] == "female"%>
+  <span>ЖЕНСКИЙ ОТДЕЛ /</span>
+<% end %>
+<% if @product_group.nil? == false %>
+	<%= @product_group["name"] %>
+<% end %>
+</h1>
+
 <% if params[:keywords] %>
 
   <%= hook :search_results do %>
     <% if @products.empty? %>
-      <%= t(:no_products_found) %>
+	  <div class="seacrh-none">
+        НИЧЕГО НЕНАЙДЕНО :-(
+      </div>      
     <% else %>
       <%= render "shared/products", :products => @products, :taxon => @taxon %>
     <% end %>

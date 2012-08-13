@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 ProductsController.class_eval do
   HTTP_REFERER_REGEXP = /^https?:\/\/[^\/]+\/t\/([a-z0-9\-\/]+)$/
   
@@ -41,4 +43,10 @@ ProductsController.class_eval do
     @next_products = Product.limit(3)
     respond_with(@product)
   end 
+  
+  def search
+    @searcher = Spree::Config.searcher_class.new(params)
+    @products = @searcher.retrieve_products
+    respond_with(@products)
+  end
 end
