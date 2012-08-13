@@ -497,7 +497,10 @@ header li.cur a {cursor: default;}
 }
 .basket a {
 	color: #fff;
-	text-decoration: none;}
+	text-decoration: none;
+	display: block;
+	margin: 0 10px;
+}
 .basket span {
 	display: inline-block;
 	position: relative;
@@ -897,7 +900,6 @@ header li.cur a {cursor: default;}
 	
 	.w150 {width: 150px;}
 	.w150 .textfield {width: 124px;}
-	.w150 .errorlist {margin-right: 10px;}
 	
 	.w145 {width: 144px;}
 	.w145 .textfield {width: 129px;}
@@ -923,6 +925,13 @@ header li.cur a {cursor: default;}
 		text-transform: none;
 		white-space: nowrap;
 	}
+	
+	.w144 .errorlist, 
+	.w150 .errorlist, 
+	.w175 .errorlist, 
+	.w184 .errorlist, 
+	.w210 .errorlist, 
+	.w272 .errorlist {margin-right: 10px;}
 /* //form-items */
 
 .checkout-steps {
