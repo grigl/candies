@@ -31,9 +31,9 @@ namespace :sync do
   desc "Sync goods"
   task :goods => :environment do
     puts "Getting custom fields..."   
-    #цвета и размеры
-    good_values_size = {}
-    good_values_color = {}
+    #пол
+    #good_values_size = {}
+    #good_values_color = {}
     good_values_gender = {}
     response = RestClient::Request.new(:method => :get, :url => size_url, :user => rest_user, :password => rest_pass, :headers => { :content_type => :xml }).execute
     if response.code != 200 then
@@ -52,12 +52,12 @@ namespace :sync do
       value_object = OptionValue.where("ms_id = ?", value_id).limit(1)
       if value_object.empty? then
         value_object = OptionValue.new
-        if metadata_id == option_size_metadata_id then
-          value_object.option_type_id = option_size_id
-        end 
-        if metadata_id == option_color_metadata_id then
-          value_object.option_type_id = option_color_id
-        end 
+        #if metadata_id == option_size_metadata_id then
+        #  value_object.option_type_id = option_size_id
+        #end 
+        #if metadata_id == option_color_metadata_id then
+        #  value_object.option_type_id = option_color_id
+        #end 
         value_object.name = value_name
         value_object.presentation = value_name
         value_object.ms_id = value_id
@@ -65,12 +65,12 @@ namespace :sync do
       else
         value_object = value_object[0]
       end
-      if metadata_id == option_size_metadata_id then
-        good_values_size[value_id] = value_object.id
-      end 
-      if metadata_id == option_color_metadata_id then
-        good_values_color[value_id] = value_object.id
-      end 
+      #if metadata_id == option_size_metadata_id then
+      #  good_values_size[value_id] = value_object.id
+      #end 
+      #if metadata_id == option_color_metadata_id then
+      #  good_values_color[value_id] = value_object.id
+      #end 
       if metadata_id == param_gender_metadata_id then
         good_values_gender[value_id] = gender_hash.index(value_name)
       end
@@ -178,12 +178,12 @@ namespace :sync do
       if good.has_key?("attribute") then
         good["attribute"].each do|attribute|
           value_id = attribute["entityValueId"]
-          if good_values_size.has_key?(value_id) then
-            size_id = good_values_size[value_id]
-          end
-          if good_values_color.has_key?(value_id) then
-            color_id = good_values_color[value_id]
-          end
+          #if good_values_size.has_key?(value_id) then
+          #  size_id = good_values_size[value_id]
+          #end
+          #if good_values_color.has_key?(value_id) then
+          #  color_id = good_values_color[value_id]
+          #end
           if good_values_gender.has_key?(value_id) then
             gender_id = good_values_gender[value_id]
           end
@@ -210,21 +210,20 @@ namespace :sync do
       product.save 
         
       #variants
-      if size_id != 0 and color_id != 0 then
-        variant = Variant.where('ms_good_id = ? AND is_master = 0', good["id"][0])
-        if variant.empty? then
-          found_variant = Variant.new
-          found_variant.product_id = product.id
-          found_variant.price = price
-          found_variant.is_master = 0
-          found_variant.sku = sku
-          found_variant.option_values << OptionValue.find(size_id)
-          found_variant.option_values << OptionValue.find(color_id)
-          found_variant.ms_good_id = good["id"][0]
-          found_variant.save          
-        end          
-        
-      end      
+      #if size_id != 0 and color_id != 0 then
+      #  variant = Variant.where('ms_good_id = ? AND is_master = 0', good["id"][0])
+      #  if variant.empty? then
+      #    found_variant = Variant.new
+      #    found_variant.product_id = product.id
+      #    found_variant.price = price
+      #    found_variant.is_master = 0
+      #    found_variant.sku = sku
+      #    found_variant.option_values << OptionValue.find(size_id)
+      #    found_variant.option_values << OptionValue.find(color_id)
+      #    found_variant.ms_good_id = good["id"][0]
+      #    found_variant.save          
+      #  end 
+      #end      
     end
   end
 end
