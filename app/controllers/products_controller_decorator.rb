@@ -1,4 +1,6 @@
 ProductsController.class_eval do
+  HTTP_REFERER_REGEXP = /^https?:\/\/[^\/]+\/t\/([a-z0-9\-\/]+)$/
+  
   def index
     @product_group = nil
     if params.has_key?("product_group_name") then
