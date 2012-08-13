@@ -8,3 +8,4 @@ config/database*
 markup/*
 *.sublime-workspace
 *.sublime-project
+public/assets/*

@@ -1,0 +1,68 @@
+<% content_for :head do -%>
+  <%= stylesheet_link_tag 'basic-jquery-slider.css' %>
+  <%= javascript_include_tag 'basic-jquery-slider.js'%>
+<% end -%>
+<% content_for :script do -%>
+<script type="text/javascript">
+$(document).ready(function() {   
+     $('#slider').bjqs({
+        'animation' : 'slide',
+        'width' : 416,
+		'height' : 305,
+		'automatic': false,
+		'showMarkers': false,
+		'nextText': '',
+		'prevText': ''
+	});        
+});
+</script>
+<% end -%>
+<% @body_id = 'product-details' %>
+<div class="left-colum">
+	<figure class="shop-item-images">		
+		<div id="slider">
+        <ul class="bjqs">
+        <% @product.images.each do|image| %>
+			<li><img alt="<%= @product.name %>" height="305" width="416" src="<%= image.attachment.url %>"></li>
+		<% end %>
+        </ul>			
+    	</div>
+        <figcaption>
+        	Нажми на фотографию чтобы<br>посмотреть другой ракурс
+        </figcaption>    	
+	</figure>
+      
+      <div class="shop-item-buy dotted">
+	      <%= hook :cart_form do %>
+		  <div id="cart-form">
+	    	<%= render 'cart_form' %>
+	  	  </div>
+		  <% end %>
+	  </div>
+                  
+      <a href="javascript: history.go(-1)" class="shop-item-back">Назад к списку</a>
+      
+    </div>
+    
+
+<div class="right-colum">
+    	
+      <div class="shop-item-text dotted">
+      	<a href="#"><%= product_image(@product) %></a>
+      	<h2><%= @product.name %></h2>
+      	<%= product_description(@product) rescue t("product_has_no_description") %>
+      </div>
+      
+      <% if @next_products.empty? == false %>
+      <h3>Возможно, вам понравятся такие модели:</h3>
+      
+      <ul class="shop-items-list">
+      	<% @next_products.each do|next_product| %>
+      	<li>
+        	<%= link_to small_image(next_product), next_product %>
+        </li>
+        <% end %>
+      </ul>
+      <% end %>
+      
+    </div>
