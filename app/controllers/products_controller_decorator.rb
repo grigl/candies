@@ -42,7 +42,11 @@ ProductsController.class_eval do
       @taxon = Taxon.find_by_permalink($1)
     end
 
-    @next_products = Product.limit(3)
+    relations = @product.relations.limit(3)
+    @next_products = []
+    relations.each do|relation|
+      @next_products.push Product.find(relation.related_to_id)
+    end
     respond_with(@product)
   end 
   
@@ -51,6 +55,7 @@ ProductsController.class_eval do
     @products = @searcher.retrieve_products
     respond_with(@products)
   end
+
 
   private
 
@@ -78,5 +83,5 @@ ProductsController.class_eval do
 
   def after_complete
     session[:order_id] = nil
-  end
+  end  
 end
