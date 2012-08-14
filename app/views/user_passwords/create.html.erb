@@ -1,0 +1,22 @@
+<div class="form-box" align="center">
+	<% if @success == true %>
+		<br><h4>Пароль успешно восстановлен!</h4>
+	    Проверяйте свою почту :)<br><br><br><br>	
+	<% else %>
+		<br><h4>Вы у нас не зарегистрированы :(</h4>
+		<a href="/user/password/new" id="remind_pass_init">Попробовать ещё раз</a><br><br><br><br>
+	<% end %>
+</div>
+<script type="text/javascript">
+$(function() {
+	$('#remind_pass_init').click(function() {
+		$.get(
+			$(this).attr('href'),
+			function (html) {
+				$('#login').html(html);
+			}
+		);
+		return false;
+	});
+});
+</script>
