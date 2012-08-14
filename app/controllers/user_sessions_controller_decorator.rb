@@ -5,18 +5,18 @@ UserSessionsController.class_eval do
     if user_signed_in?
       if current_order
         @order = current_order
-        respond_with(@order) { |format| format.js { render 'orders/update_and_show_cart' } }
+        format.js { render js: "window.location = '#{root_url scroll: true}';" }
       else
         respond_to do |format|
           format.html {
             flash[:notice] = I18n.t("logged_in_succesfully")
             redirect_back_or_default(products_path)
           }
-          format.js { render :show_accaunt_page }
+          format.js { render js: "window.location = '#{root_url scroll: true}';" }
         end
       end
     else
-      @errors = { :email => ['wrong email or password'], :password => ['wrong email or password']}
+      @errors = { :email => [I18n.t("wrong_login")], :password => [I18n.t("wrong_login")]}
       respond_with(@errors) { |format| format.js { render :show_login_errors } }
     end
   end
