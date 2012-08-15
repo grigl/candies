@@ -1,5 +1,5 @@
 UserPasswordsController.class_eval do
-  layout nil
+  layout :resolve_layout
   
   def create
     self.resource = resource_class.send_reset_password_instructions(params[resource_name])
@@ -11,4 +11,12 @@ UserPasswordsController.class_eval do
     end    
   end  
   
+  def resolve_layout
+    case action_name
+    when "edit", "create"
+      "spree_application"
+    else
+      false
+    end
+  end  
 end
