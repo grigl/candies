@@ -99,8 +99,13 @@ CheckoutController.class_eval do
   end
 
   def before_address
-    @order.bill_address ||= Address.default
-    @order.ship_address ||= Address.default
+    if current_user
+      @order.bill_address ||= current_user.default_address.clone_without_default
+      @order.ship_address ||= current_user.default_address.clone_without_default
+    else
+      @order.bill_address ||= Address.default
+      @order.ship_address ||= Address.default
+    end
   end
 
   def before_payment
@@ -110,6 +115,7 @@ CheckoutController.class_eval do
   end
 
   def after_complete
+    @order.add_new_address_to_user(current_user)
     session[:order_id] = nil
   end
 
