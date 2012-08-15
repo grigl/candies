@@ -1,0 +1,5 @@
+$('#page').hide('slide', {direction: 'left'}, 1000);
+$('#page').html('<%= escape_javascript(render 'shared/about_page') %>');
+$('#header_wrapper').html('<%= escape_javascript(render 'shared/about_header') %>');
+$('#page').show('slide', {direction: 'right'}, 1000);
+window.history.pushState("", "", "/about");

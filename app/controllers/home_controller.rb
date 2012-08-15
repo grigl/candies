@@ -19,8 +19,31 @@ class HomeController < Spree::BaseController
   end
 
   def about
-    @searcher = Spree::Config.searcher_class.new(params)
-    @products = @searcher.retrieve_products
+    all_products = Product.all
+    
+    #такой странный и запутанный этот spree
+    all_products_by_gender = {"male" => [], "female" => []}
+    all_products.each do|product|
+      if product.gender == 0 or product.gender == 1 then
+        all_products_by_gender["male"].push(product)
+      end
+      if product.gender == 0 or product.gender == 2 then
+        all_products_by_gender["female"].push(product)
+      end
+    end
+    @products = all_products_by_gender
+  end
+
+  def show_personal_page
+    respond_to do |format|
+      format.js 
+    end
+  end
+
+  def show_about_page
+    respond_to do |format|
+      format.js 
+    end
   end
 
   private

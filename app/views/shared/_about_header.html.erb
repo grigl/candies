@@ -1,8 +1,9 @@
-<header>
+<header>  
   <a href="/" class="logo"><img src="/images/bg_logo.png" width="128" height="69" alt="Candies"></a>
   <ul>
     <li><a href="#" class="dotted go-top">Магазин</a></li>
-    <li><a href="/" class="dotted">Личный кабинет</a></li>
+<!--     <li><a href="/" class="dotted">Личный кабинет</a></li> -->
+    <li><%= link_to 'Личный кабинет', show_personal_page_path, remote: true, class: 'dotted' %></li>
     <li class="cur"><a href="/about" class="dotted">Информация</a></li>
   </ul>
 </header>

@@ -7,6 +7,9 @@ Candies::Application.routes.draw do
 
   get "products/search"
 
+  get '/show_personal_page' => 'home#show_personal_page', as: :show_personal_page
+  get '/show_about_page' => 'home#show_about_page', as: :show_about_page
+
   match '/checkout/back/:state' => 'checkout#back', :as => :back_checkout
   match '/about' => 'home#about'
   
