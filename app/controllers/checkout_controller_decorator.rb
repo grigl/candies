@@ -140,6 +140,7 @@ CheckoutController.class_eval do
     load_order
     payment_method = PaymentMethod.find(params[:order][:payments_attributes].first[:payment_method_id])
     if payment_method.kind_of? Gateway::Robokassa
+      @order.shipping_method_id = params["order"]["shipping_method_id"] #wtf?
       @response_url = gateway_robokassa_path(:gateway_id => payment_method.id, :order_id => @order.id)
       respond_with(@order) { |format| format.js { render :update_robokassa } }
     end
