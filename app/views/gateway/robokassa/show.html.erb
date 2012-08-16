@@ -10,7 +10,11 @@
       
       <div class="checkout-form">
         
-        <div class="checkout-confirm">          
+        <div class="checkout-confirm">         
+          <h4>
+            Доставка: <%= @order.shipping_method.name %><br>
+            Оплата: <%= @order.payment_method.name %>
+          </h4>        	 
           <h5>
             <%= @order.bill_address.firstname %><br>
             <%= @order.bill_address.address1 %><br />
