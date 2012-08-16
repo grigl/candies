@@ -1,5 +1,5 @@
 CheckoutController.class_eval do
-  before_filter :load_order, except: [:back]
+  before_filter :load_order, except: [:back, :back_to_address]
   # Updates the order and advances to the next state (when possible.)
   def update
     if @order.update_attributes(object_params)
@@ -24,6 +24,13 @@ CheckoutController.class_eval do
     else
       respond_with(@order) { |format| format.js { render :update_errors } }
     end
+  end
+
+  def back_to_address
+    @order = current_order
+    @order.update_attribute(:state, 'address')
+    state_callback(:before)
+    respond_with(@order) { |format| format.js { render :update_checkout } }
   end
 
   def update_registration

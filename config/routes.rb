@@ -11,6 +11,7 @@ Candies::Application.routes.draw do
   get '/show_about_page' => 'home#show_about_page', as: :show_about_page
 
   match '/checkout/back/:state' => 'checkout#back', :as => :back_checkout
+  match '/checkout/back_to_address' => 'checkout#back_to_address', :as => :back_to_address
   match '/about' => 'home#about'
   
   match 'pg/:product_group_name/:gender' => 'products#index'
