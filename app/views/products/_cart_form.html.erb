@@ -1,4 +1,4 @@
-<%= form_for :order, :url => populate_orders_url do |f| %>
+<%= form_for :order, :url => populate_orders_url, remote: true do |f| %>
 <%= hook :inside_product_cart_form do %>
 <div id="cart_wrapper">
   <% if @product.has_variants? %>
