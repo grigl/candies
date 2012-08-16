@@ -52,6 +52,12 @@
   <div class="cart-button-box dotted"> 
   <%= form_for @order, :url => update_checkout_registration_path, :html => { :method => :put, :id => "checkout_form_registration"}, remote: true do |f| %>
     <% if current_user %>
+      <% if @order.email.present? %>
+        <%= f.hidden_field :email, value: @order.email %>
+      <% else %>
+        <%= f.hidden_field :email, value: current_user.email %>
+      <% end %>
+
       <%= f.submit 'ОФОРМИТЬ ЗАКАЗ', :class => 'button' %>
     <% else %>
       <% if @order.email.present? %>
