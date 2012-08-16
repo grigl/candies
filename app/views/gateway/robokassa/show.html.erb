@@ -1,0 +1,86 @@
+<ul class="checkout-steps">
+  <li><a>1</a></li>
+  <li><a>2</a></li>
+  <li class="cur"><a>3</a></li>
+</ul>
+
+<div class="left-colum">
+    
+      <h3>Подтверждение</h3>
+      
+      <div class="checkout-form">
+        
+        <div class="checkout-confirm">          
+          <h5>
+            <%= @order.bill_address.firstname %><br>
+            <%= @order.bill_address.address1 %><br />
+            <%= @order.bill_address.city %>, <%= @order.bill_address.state %><br />
+            <%= @order.bill_address.country %>
+          </h5>
+        </div>
+        
+        <p><a href="#">изменить адрес</a></p><br><br>
+                  
+        <div class="checkout-buttons">
+           <%= link_to 'НАЗАД', back_checkout_path(@order.state), class: 'button', remote: true %>
+        </div>
+          
+      </div>
+
+    </div>
+    
+    <div class="right-colum">
+      
+      <h3>&nbsp;</h3>
+      
+      <ul class="cart-list dotted">
+        <% @order.line_items.each do |line_item| %>
+        <li class="cart-list-item">
+          <div class="image">
+            <% if line_item.variant.images.length == 0 %>
+              <%= small_image(line_item.variant.product, { width: 33, height: 33 }) %>
+            <% else %>
+              <%= image_tag line_item.variant.images.first.attachment.url(:small), width: 33, height: 33 %>
+            <% end %>
+          </div>
+          <div class="options">
+            Кол-во: <%= line_item.quantity %>
+          </div>
+          <div class="info">
+            <p class="name"><%= line_item.variant.product.name %></p>
+            <p>
+              <span class="size">размер: 43</span>
+              <span class="price">цена:   <%= product_price(line_item.variant.product) %></span>
+            </p>
+          </div> 
+        </li>
+        <% end %>
+      </ul>
+      
+      <div class="checkout-additionally">
+        <% @order.adjustments.each do |adjustment| %>
+        <p>
+          <em><%= number_to_currency adjustment.amount %></em>
+          <%= adjustment.label %>
+        </p>
+        <% end %>
+      </div>
+      
+      <div class="checkout-form">
+        <div class="checkout-total">
+          <span><%= number_to_currency @order.total %></span>
+          Итого
+        </div>
+		<%= form_tag @gateway.url, :method => "POST" do %>
+		<%= hidden_field_tag(:"MrchLogin", @gateway.options[:mrch_login]) %>
+		<%= hidden_field_tag(:"OutSum", @order.total)%>
+		<%= hidden_field_tag(:"InvId", @order.id)%>
+		<%= hidden_field_tag(:"Desc", I18n.t("robokassa.details_of_payment", :order_number => @order.number)) %>
+		<%= hidden_field_tag(:"SignatureValue", @signature) %>        
+          <div class="checkout-buttons" align="right">
+            <input type="submit" class="button" value="ОПЛАТИТЬ">
+          </div>
+        <% end %>
+      </div>
+      
+    </div>
