@@ -15,7 +15,7 @@
           Адрес по умолчанию :
         </p>
         <div class="options">
-          <a href="#">Редактировать</a>
+          <%= link_to 'Редактировать', edit_address_path(current_user.default_address), remote: true %>
         </div>
         <h5>
           <%= current_user.default_address.address1 %><br />
