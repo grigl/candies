@@ -28,7 +28,7 @@
           </p>
 
         <% if current_user.addresses.count > 1 %>
-          <% for address in current_user.addresses.except(current_user.default_address) %>
+          <% for address in current_user.addresses.without_address(current_user.default_address) %>
             <div class="options">
               <%= link_to 'Редактировать', edit_address_path(address), remote: true %>
               <%= link_to 'Удалить', address_path(address), method: :delete, remote: true, class: 'ico-remove' %>
