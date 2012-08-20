@@ -66,3 +66,7 @@ $(document).ready(function() {
       <% end %>
       
     </div>
+    
+  <%= content_for :header do %>    
+    <%= render 'shared/about_header' %>
+  <% end %>
