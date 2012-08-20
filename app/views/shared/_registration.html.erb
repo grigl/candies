@@ -15,20 +15,20 @@
             <%= f.label :password_confirmation, 'ПОДТВЕРДИТЕ ПАРОЛЬ' %>
             <%= f.password_field :password_confirmation, class: 'textfield' %>
           </div>
+          <div class="form-item w150">
+            <%= f.label :firstname, 'ИМЯ' %>
+            <%= f.text_field :firstname, class: 'textfield' %>
+          </div>
+          <div class="form-item w196">
+            <%= f.label :lastname, 'ФАМИЛИЯ' %>
+            <%= f.text_field :lastname, class: 'textfield' %>
+          </div>
+          <div class="form-item w346">
+            <%= f.label :phone, 'ТЕЛЕФОН' %>
+            <%= f.text_field :phone, class: 'textfield' %>
+          </div>
           <%= f.fields_for :address do |address_form| %>
             <%= address_form.hidden_field :default, value: true %>
-            <div class="form-item w150">
-              <%= address_form.label :firstname, 'ИМЯ' %>
-              <%= address_form.text_field :firstname, class: 'textfield' %>
-            </div>
-            <div class="form-item w196">
-              <%= address_form.label :lastname, 'ФАМИЛИЯ' %>
-              <%= address_form.text_field :lastname, class: 'textfield' %>
-            </div>
-            <div class="form-item w346">
-              <%= address_form.label :phone, 'ТЕЛЕФОН' %>
-              <%= address_form.text_field :phone, class: 'textfield' %>
-            </div>
             <div class="form-item w346">
               <%= address_form.label :address1, 'АДРЕС' %>
               <%= address_form.text_area :address1, class: 'textfield' %>

@@ -15,7 +15,12 @@ UserRegistrationsController.class_eval do
   # POST /resource/sign_up
   def create
     @user = build_resource(params[:user])
+
     @address = @user.addresses.build(params[:user][:address])
+    @address.firstname = params[:user][:firstname]
+    @address.lastname = params[:user][:lastname]
+    @address.phone = params[:user][:phone]
+
     if @user.save
       set_flash_message(:notice, :signed_up)
       sign_in(:user, @user)
@@ -41,9 +46,9 @@ UserRegistrationsController.class_eval do
     if @user.update_attributes(params[:user])
       set_flash_message :notice, :updated if is_navigational_format?
       sign_in resource_name, resource, :bypass => true
+      current_user.reload
       render :reload_accaunt_page
     else
-      clean_up_passwords(resource)
       render :show_accaunt_edit_errors
     end
 
