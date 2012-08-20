@@ -10,7 +10,33 @@ $(function(){
 		wrap: 'circular',
 		animation: 'slow',
 		auto: 4,
-		scroll: 1
+		scroll: 1,
+		initCallback: function(jc, state) { 
+			if (state == 'init') { 
+				jc.startAutoOrig = jc.startAuto; 
+				jc.startAuto = function() { 
+					if (!jc.paused) { 
+						jc.startAutoOrig(); 
+					} 
+				} 
+				jc.pause = function() { 
+					jc.paused = true; 
+					jc.stopAuto(); 
+				}; 
+				jc.play = function() { 
+					jc.paused = false; 
+					jc.startAuto(); 
+				};
+				$('body').live('click', function(e) {
+					jc.play();
+				});
+				$('.ik_select_link').live('click', function(e) {
+					jc.pause();
+					e.stopPropagation();
+				});
+			} 
+			jc.play(); 
+		}
 	});
 });
 </script>

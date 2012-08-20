@@ -653,7 +653,6 @@ header li.cur a {cursor: default;}
 	.shop-item-num {
 		text-align: center;
 		text-transform: uppercase;
-		line-height: 40px;
 	}
 	.shop-item-num span {color: #db1b21;}
 	.shop-item-price {
