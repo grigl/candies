@@ -67,8 +67,8 @@ Order.class_eval do
 
   def add_new_address_to_user(user)
     return unless user
-    [@order.bill_address, @order.ship_address].each do |order_address|
-      unless user.have_address(order_address)
+    [self.bill_address, self.ship_address].each do |order_address|
+      unless user.have_address?(order_address)
         new_user_address = order_address.clone_without_default
         new_user_address.user_id = user.id
         new_user_address.save
