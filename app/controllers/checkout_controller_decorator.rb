@@ -6,15 +6,12 @@ CheckoutController.class_eval do
       if @order.next
         state_callback(:after)
       else
-        flash[:error] = I18n.t(:payment_processing_failed)
         # respond_with(@order, :location => checkout_state_path(@order.state))
         respond_with(@order) { |format| format.js { render :update_errors } }
         return
       end
 
       if @order.state == "complete" || @order.completed?
-        flash[:notice] = I18n.t(:order_processed_successfully)
-        flash[:commerce_tracking] = "nothing special"
         # respond_with(@order, :location => completion_route)
         respond_with(@order) { |format| format.js { render :update_checkout } }
       else
@@ -107,8 +104,14 @@ CheckoutController.class_eval do
 
   def before_address
     if current_user
-      @order.bill_address ||= current_user.default_address.clone_without_default
-      @order.ship_address ||= current_user.default_address.clone_without_default
+      @order.bill_address ||= current_user.default_address.clone_wo_default_and_contacts
+      @order.bill_address.firstname ||= current_user.firstname
+      @order.bill_address.lastname ||= current_user.lastname
+      @order.bill_address.phone ||= current_user.phone
+      @order.ship_address ||= current_user.default_address.clone_wo_default_and_contacts   
+      @order.ship_address.firstname ||= current_user.firstname
+      @order.ship_address.lastname ||= current_user.lastname
+      @order.ship_address.phone ||= current_user.phone
     else
       @order.bill_address ||= Address.default
       @order.ship_address ||= Address.default
@@ -147,7 +150,9 @@ CheckoutController.class_eval do
     load_order
     payment_method = PaymentMethod.find(params[:order][:payments_attributes].first[:payment_method_id])
     if payment_method.kind_of? Gateway::Robokassa
+      puts params["order"]["shipping_method_id"]
       @order.shipping_method_id = params["order"]["shipping_method_id"] #wtf?
+      @order.save
       @response_url = gateway_robokassa_path(:gateway_id => payment_method.id, :order_id => @order.id)
       respond_with(@order) { |format| format.js { render :update_robokassa } }
     end

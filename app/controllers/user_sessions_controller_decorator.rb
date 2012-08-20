@@ -5,7 +5,9 @@ UserSessionsController.class_eval do
     if user_signed_in?
       if current_order
         @order = current_order
-        format.js { render js: "window.location = '#{root_url scroll: true}';" }
+        respond_to do |format|
+          format.js { render js: "window.location = '#{root_url scroll: true}';" }  
+        end
       else
         respond_to do |format|
           format.html {

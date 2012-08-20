@@ -1,7 +1,7 @@
 AddressesController.class_eval do
   def new_user_address
     @user = current_user
-    @user.addresses.build(params[:address])
+    @address = @user.addresses.build(params[:address])
 
     if params[:address][:default] == true
       @user.default_address.update_attribute(:default, false)
@@ -11,7 +11,7 @@ AddressesController.class_eval do
     if @user.save
       render 'user_registrations/reload_accaunt_page'
     else
-      render 'user_registrations/show_accaunt_edit_errors'
+      render :show_new_address_errors
     end
   end
 

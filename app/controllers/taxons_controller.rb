@@ -51,8 +51,19 @@ class TaxonsController < Spree::BaseController
   end
 
   def before_address
-    @order.bill_address ||= Address.default
-    @order.ship_address ||= Address.default
+    if current_user
+      @order.bill_address ||= current_user.default_address.clone_wo_default_and_contacts
+      @order.bill_address.firstname ||= current_user.firstname
+      @order.bill_address.lastname ||= current_user.lastname
+      @order.bill_address.phone ||= current_user.phone
+      @order.ship_address ||= current_user.default_address.clone_wo_default_and_contacts   
+      @order.ship_address.firstname ||= current_user.firstname
+      @order.ship_address.lastname ||= current_user.lastname
+      @order.ship_address.phone ||= current_user.phone
+    else
+      @order.bill_address ||= Address.default
+      @order.ship_address ||= Address.default
+    end
   end
 
   def before_delivery

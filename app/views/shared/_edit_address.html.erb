@@ -5,9 +5,9 @@
       <div class="user-name">
         <div>
           <%= current_user.email %><br>
-          тел: <%= current_user.default_address.phone %>
+          тел: <%= current_user.phone %>
         </div>
-        <h5><%= current_user.default_address.firstname %> <%= current_user.default_address.lastname %></h5>
+        <h5><%= current_user.firstname %> <%= current_user.lastname %></h5>
       </div>
       
       <div class="user-address">
@@ -20,8 +20,9 @@
           <%= current_user.default_address.country %>
         </h5>
           <p>
-            Остальные адреса:
+            Изменить адрес:
           </p>
+          
           <%= form_for @address, url: address_path(@address), remote: true do |address_form| %>
 
               <%= address_form.hidden_field :firstname, value: current_user.default_address.firstname %>

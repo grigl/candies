@@ -5,25 +5,22 @@
       <div class="user-name">
         <div>
           <%= current_user.email %><br>
-          тел: <%= current_user.default_address.phone %>
+          тел: <%= current_user.phone %>
         </div>
-        <h5><%= current_user.default_address.firstname %> <%= current_user.default_address.lastname %></h5>
+        <h5><%= current_user.firstname %> <%= current_user.lastname %></h5>
       </div>
       
       <div class="user-address">
         <p>
           Адрес по умолчанию :
         </p>
-        <div class="options">
-          <a href="#">Редактировать</a>
-        </div>
         <h5>
           <%= current_user.default_address.address1 %><br />
           <%= current_user.default_address.city %>, <%= current_user.default_address.state %><br />
           <%= current_user.default_address.country %>
         </h5>
           <p>
-            Остальные адреса:
+            Новый адрес:
           </p>
           <%= form_for :address, url: new_address_path, remote: true do |address_form| %>
 

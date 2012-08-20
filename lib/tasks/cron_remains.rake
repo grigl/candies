@@ -99,7 +99,7 @@ namespace :sync do
         end
       end        
         
-      if size_id != 0 and color_id != 0 then
+      if size_id != 0 and color_id != 0 and product.nil? == false then
         variant = Variant.where('ms_good_id = ? AND is_master = 0', cons_id)
         if variant.empty? then
           found_variant = Variant.new
