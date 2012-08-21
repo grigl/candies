@@ -9,3 +9,4 @@ markup/*
 *.sublime-workspace
 *.sublime-project
 public/assets/*
+config/database.yml
