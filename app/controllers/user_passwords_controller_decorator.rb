@@ -26,7 +26,7 @@ UserPasswordsController.class_eval do
   
   def resolve_layout
     case action_name
-    when "edit, "update""
+    when "edit", "update"
       "spree_application"
     else
       false
