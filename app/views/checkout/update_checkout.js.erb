@@ -5,3 +5,5 @@ previousPage.hide('slide', {direction: 'left'}, 1000);
 previousPage.removeClass('current');
 $("#<%= @order.state %>").addClass('current');
 $("#<%= @order.state %>").show('slide', {direction: 'right'}, 1000);
+
+$('.js-delivery-address-form-block')[ $('.js-hide-delivery-address-form').is(':checked') ? 'slideUp' : 'slideDown' ]();

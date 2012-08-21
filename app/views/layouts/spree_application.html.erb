@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,4 +82,95 @@
 </div>
 <%= yield(:script) %>
 </body>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Candies</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
+
+  <%= stylesheet_link_tag 'style' %>
+  <!--[if lte IE 8]><%= stylesheet_link_tag 'ie' %><![endif]-->
+  <%= javascript_include_tag 'libs/jquery-1.7.2.min',
+                             'libs/jquery-ui-1.8.21.custom.min',
+                             'libs/jquery.ikselect.min',
+                             'libs/modernizr-2.0.6.min',
+                             'jquery.easing.1.3.js',
+                             'script.js',
+                             'rails.js' %>
+  <%= javascript_include_tag :defaults %>
+  <script>
+    $('.go-bottom').live('click', (function(e){
+      e.preventDefault();
+      window.location = '<%= root_url scroll: true %>'
+    }));
+  </script>                      
+  <%= csrf_meta_tag %>
+  <%= yield(:head) %>
+</head>
+<body>
+
+<div id="header_wrapper">
+  <%= yield :header %>
+</div>
+
+<div class="page white">
+  <div class="wrapper">
+    
+    <div class="basket">
+      <%= render 'shared/cart_quantity' %>
+    </div>
+
+    <div class="left-colum">
+      <nav class="catalog-menu dotted">
+        <div class="icon-sex"><img src="/images/ico_male.png" width="55" height="67" alt="male"></div>
+        <ul class="catalog-menu-first">
+          <% retrieve_collections.each do |collection| %>
+            <li><%= link_to collection.name, seo_url(collection) + "/male" %></li>
+          <% end %>
+        </ul>
+        <ul class="catalog-menu-second">
+          <% retrieve_brands.each do |brand| %>
+            <li><%= link_to brand.name, "/pg/#{brand.permalink}/male" %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+    <div class="right-colum">
+      <nav class="catalog-menu dotted">
+        <div class="icon-sex"><img src="/images/ico_female.png" width="55" height="67" alt="female"></div>
+        <ul class="catalog-menu-first">
+          <% retrieve_collections.each do |collection| %>
+            <li><%= link_to collection.name, seo_url(collection) + "/female" %></li>
+          <% end %>
+        </ul>
+        <ul class="catalog-menu-second">
+          <% retrieve_brands.each do |brand| %>
+            <li><%= link_to brand.name, "/pg/#{brand.permalink}/female" %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+    <!-- /catalog-menu -->
+
+    <%= yield %>
+
+  </div>
+</div>
+
+<div class="page" id="page">
+  <%= yield(:page) %>
+</div>
+<%= yield(:script) %>
+</body>
+>>>>>>> b074c7813f35c90031601e855070e4183171e98b
 </html>
