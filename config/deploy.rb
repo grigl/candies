@@ -116,7 +116,7 @@ namespace :deploy do
   task :symlink_uploads, :rolses => :app do
      run <<-CMD
       rm -rf #{latest_release}/public/assets &&
-      ln -s #{shared_path}/uploads #{latest_release}/public/assets
+      ln -s #{shared_path}/public/assets #{latest_release}/public/assets
     CMD
   end  
 end
