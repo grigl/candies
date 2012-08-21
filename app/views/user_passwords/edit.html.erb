@@ -1,0 +1,33 @@
+<%= content_for :page do %>
+  <%= render 'shared/personal_page' %>
+<% end %>
+<%= content_for :header do %>    
+  <%= render 'shared/header' %>
+<% end %>
+<h2>Сменить мой пароль</h2>
+
+<div class="form-box left-colum">
+	<div class="left-colum">
+	<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+	  <%= devise_error_messages! %>
+	  <%= f.hidden_field :reset_password_token %>
+
+	  <div class="form-item w346 new_password">	
+	  <%= f.label :password, "Новый пароль" %>
+	  <%= f.password_field :password, :class => "textfield" %>
+	  </div>
+	
+	  <div class="form-item w346 new_password">
+	  <%= f.label :password_confirmation, "Повторите новый пароль" %>
+	  <%= f.password_field :password_confirmation, :class => "textfield" %>
+	  </div>
+	
+	  <%= f.submit "Сменить пароль", :class => "button" %>
+	<% end %>
+	</div>
+</div>
+<style>
+	.new_password label {
+		color: black;
+	}
+</style>
