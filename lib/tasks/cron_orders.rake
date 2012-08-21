@@ -10,8 +10,8 @@ my_company_rest_url = "https://online.moysklad.ru/exchange/rest/ms/xml/MyCompany
 company_rest_url = "https://online.moysklad.ru/exchange/rest/ms/xml/Company/list"
 company_rest_create_url = "https://online.moysklad.ru/exchange/rest/ms/xml/Company"
 
-rest_user = "admin@devilmaydie"
-rest_pass = "f9ca1808ba"
+rest_user = "danya@candies/banya"
+rest_pass = "bosscandies"
 
 target_id = "tqjH1zi-ij_ezKsLROtu11"
 
