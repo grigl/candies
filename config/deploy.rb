@@ -77,6 +77,7 @@ set :repository,  "git@github.com:whitescape/candies.git"
 ## следующие строки.
 
 after "deploy:update_code", :copy_database_config
+after "deploy:update_code", "deploy:symlink_uploads"
 task :copy_database_config, roles => :app do
   db_config = "#{shared_path}/database.yml"
   run "cp #{db_config} #{release_path}/config/database.yml"
@@ -110,4 +111,12 @@ namespace :deploy do
   task :restart, :roles => :app do
     run "[ -f #{unicorn_pid} ] && kill -USR2 `cat #{unicorn_pid}` || #{unicorn_start_cmd}"
   end
+  
+  desc "Link uploads"
+  task :symlink_uploads, :rolses => :app do
+     run <<-CMD
+      rm -rf #{latest_release}/public/assets &&
+      ln -s #{shared_path}/public/assets #{latest_release}/public/assets
+    CMD
+  end  
 end

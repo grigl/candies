@@ -11,9 +11,22 @@ UserPasswordsController.class_eval do
     end    
   end  
   
+  # PUT /resource/password
+  def update
+    self.resource = resource_class.reset_password_by_token(params[resource_name]) 
+  
+    if resource.errors.empty?
+      set_flash_message(:notice, :updated) if is_navigational_format?
+      sign_in(resource_name, resource)
+      respond_with resource, :location => redirect_location(resource_name, resource)
+    else
+      respond_with_navigational(resource){ render_with_scope :edit }
+    end
+  end  
+  
   def resolve_layout
     case action_name
-    when "edit", "create"
+    when "edit, "update""
       "spree_application"
     else
       false
