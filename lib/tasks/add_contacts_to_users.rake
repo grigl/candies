@@ -1,5 +1,5 @@
 namespace :user_fix do
-  task :add_contacts_to_users do
+  task :add_contacts_to_users => :environment do
     users = User.all
 
     users.each do |user|

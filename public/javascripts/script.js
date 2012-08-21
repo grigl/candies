@@ -49,12 +49,12 @@ $('.go-top').live('click', (function(e){
 }));
 
 // go-bottom
-$('.go-bottom').live('click', (function(e){
-	 e.preventDefault();
-	 page_height = $('.page.white').height();
-	 $('html, body').animate({scrollTop: page_height + 72}, 400);
-	 return false;
-}));
+// $('.go-bottom').live('click', (function(e){
+// 	 e.preventDefault();
+// 	 page_height = $('.page.white').height();
+// 	 $('html, body').animate({scrollTop: page_height + 72}, 400);
+// 	 return false;
+// }));
 
 //product add_to_cart
 $('.shop-item-buy-link').click(function(e){
