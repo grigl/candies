@@ -1,3 +1,3 @@
 engine=rails3
-dns_alias='candies.test.whitescape.com'
+dns_alias=''
 rails3_adapter=mysql2
