@@ -51,6 +51,9 @@ $('.go-top').live('click', (function(e){
 // go-bottom
 $('.go-bottom').live('click', (function(e){
 	 e.preventDefault();
+	 if ($('.current').attr('id') != "cart") {
+	 		$.get('/show_personal_page');
+		}
 	 page_height = $('.page.white').height();
 	 $('html, body').animate({scrollTop: page_height + 72}, 400);
 	 return false;
