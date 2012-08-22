@@ -29,7 +29,19 @@ class TaxonsController < Spree::BaseController
       end
     end
 
-    @products = all_products_by_gender[params["gender"]]
+    if params.has_key?("page") then
+      @page = params["page"].to_i
+    else
+      @page = 1
+    end    
+    @products_count = all_products_by_gender[params["gender"]].count
+    first = @page - 1 * 14
+    last = first + 14
+    if last > @products_count then
+      last = @products_count
+    end
+    @last_page = (@products_count / 14).ceil
+    @products = all_products_by_gender[params["gender"]].slice(first, last)
     respond_with(@taxon)
   end
 

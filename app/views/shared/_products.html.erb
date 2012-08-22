@@ -1,7 +1,3 @@
-<%
-  paginated_products = @searcher.products if params.key?(:keywords)
-  paginated_products ||= products
-%>
 <% if products.empty? %>
   <%= t(:no_products_found) %>
 <% elsif params.key?(:keywords) %>
@@ -27,17 +23,17 @@
 <% end %>
  
 <ul class="pagination">
-  <% if (@page-1) > 0 %>
-  <li class="prev"><a href="?<%= (@page-1)%>">« Назад</a></li>
+  <% if (page-1) > 0 %>
+  <li class="prev"><a href="?<%= (page-1)%>">« Назад</a></li>
   <% end %>
-  <% for i in 1..@last_page %>
-  	<% if @page == i %>
+  <% for i in 1..last_page %>
+  	<% if page == i %>
   	<li class="cur"><a href="?page=<%= i %>"><%= i %></a></li>
   	<% else %>
   	<li><a href="?page=<%= i %>"><%= i %></a></li>
   	<% end %>
   <% end %>
-  <% if (@page+1) < @last_page %>
-  <li class="next"><a href="?<%= (@page+1)%>">Вперед »</a></li>
+  <% if (page+1) < last_page %>
+  <li class="next"><a href="?<%= (page+1)%>">Вперед »</a></li>
   <% end %>
 </ul>

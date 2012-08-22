@@ -24,7 +24,7 @@ ProductsController.class_eval do
       end
     end
     
-    if params.has_key?["page"] then
+    if params.has_key?("page") then
       @page = params["page"].to_i
     else
       @page = 1

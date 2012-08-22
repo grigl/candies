@@ -15,7 +15,7 @@
 <% else %>
 
   <%= hook :homepage_products do %>
-    <%= render "shared/products", :products => @products, :taxon => @taxon %>
+    <%= render "shared/products", :products => @products, :taxon => @taxon, :page => @page, :last_page => @last_page %>
   <% end %>
 
 
