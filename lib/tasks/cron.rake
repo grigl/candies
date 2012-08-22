@@ -39,8 +39,8 @@ namespace :sync do
     end
     xml = response.to_str
     config = XmlSimple.xml_in(xml)
-    #puts config #конфиг нужно будет вывести, чтобы определить все *_metadata_id
-    #return
+    puts config #конфиг нужно будет вывести, чтобы определить все *_metadata_id
+    return
     config['customEntity'].each do|custom_entity|
       value_name = custom_entity['name']
       value_id = custom_entity['id'][0]

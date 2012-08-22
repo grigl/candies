@@ -48,7 +48,7 @@ $(function(){
       <% @products["male"].each do |product| %>
       	<li class="jcarousel-item">
         <figure class="shop-item-images">	
-          <%= product_image(product, { width: 416, height: 305 }) %>
+          <%= link_to product_image(product, { width: 416, height: 305 }), product %>
         </figure>
         
       <div class="js-variant-chooser">
@@ -112,7 +112,7 @@ $(function(){
       <% @products["female"].each do |product| %>
       	<li class="jcarousel-item">
         <figure class="shop-item-images">	
-          <%= product_image(product, { width: 416, height: 305 }) %>
+          <%= link_to product_image(product, { width: 416, height: 305 }), product %>
         </figure>
         
       <div class="js-variant-chooser">
