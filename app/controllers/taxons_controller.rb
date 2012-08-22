@@ -35,7 +35,7 @@ class TaxonsController < Spree::BaseController
       @page = 1
     end    
     @products_count = all_products_by_gender[params["gender"]].count
-    first = @page - 1 * 14
+    first = (@page-1) * 14
     last = first + 14
     if last > @products_count then
       last = @products_count
