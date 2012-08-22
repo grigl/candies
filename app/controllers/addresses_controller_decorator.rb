@@ -42,4 +42,9 @@ AddressesController.class_eval do
     @address.update_attribute(:default, true)
     render 'user_registrations/reload_accaunt_page'
   end
+
+  def get_address
+    @address = Address.find(params[:id])
+    render json: @address
+  end
 end

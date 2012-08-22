@@ -12,5 +12,13 @@ Address.class_eval do
     attributes.except("id", "updated_at", "created_at", "default", 'firstname', 'lastname', 'phone') ==  other.attributes.except("id", "updated_at", "created_at", "default", 'firstname', 'lastname', 'phone')
   end
 
+  def to_s
+    if default == true
+      "#{I18n.t :default_address_label} #{zipcode}, #{country}, #{state || state_name}, #{city}, #{address1}"
+    else
+      "#{zipcode}, #{country}, #{state || state_name}, #{city}, #{address1}"
+    end
+  end
+
   named_scope :without_address, lambda{|address| address ? {:conditions => ["id != ?", address.id]} : {} }
 end

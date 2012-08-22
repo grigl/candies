@@ -67,7 +67,59 @@ $('.shop-item-buy-link').click(function(e){
 
 });
 
+//Выбор Адреса из адресной книги
+$('#select-address-book-bill').live('change', function(e){
+	var selectedId = $('#select-address-book-bill option:selected').attr('value');
+	$.getJSON('/get_address.json?id=' + selectedId, function(data){
+		var address = data['address'];
 
+		var targetFields = {}		
+		targetFields['address1'] = address['address1'];
+		targetFields['zipcode'] = address['zipcode'];
+		targetFields['city'] = address['city'];
+
+		var targetSelects = {}
+		targetSelects['country_id'] = address['country_id'];
+		targetSelects['state_id'] = address['state_id'];
+
+		$.each(targetFields, function(k, v){
+			$('#order_bill_address_attributes_' + k).attr('value', v);
+		});
+
+		$.each(targetSelects, function(k, v){
+			$('#order_bill_address_attributes_' + k).attr('value', v);
+			var selectText = $('#order_bill_address_attributes_' + k + ' option:selected').text();
+			$('#order_bill_address_attributes_' + k).parent().find('.ik_select_link_text').text(selectText);
+		});
+
+	});
+});
+$('#select-address-book-ship').live('change', function(e){
+  var selectedId = $('#select-address-book-ship option:selected').attr('value');
+  $.getJSON('/get_address.json?id=' + selectedId, function(data){
+    var address = data['address'];
+
+    var targetFields = {}   
+    targetFields['address1'] = address['address1'];
+    targetFields['zipcode'] = address['zipcode'];
+    targetFields['city'] = address['city'];
+
+    var targetSelects = {}
+    targetSelects['country_id'] = address['country_id'];
+    targetSelects['state_id'] = address['state_id'];
+
+    $.each(targetFields, function(k, v){
+      $('#order_ship_address_attributes_' + k).attr('value', v);
+    });
+
+    $.each(targetSelects, function(k, v){
+      $('#order_ship_address_attributes_' + k).attr('value', v);
+      var selectText = $('#order_ship_address_attributes_' + k + ' option:selected').text();
+      $('#order_ship_address_attributes_' + k).parent().find('.ik_select_link_text').text(selectText);
+    });
+
+  });
+});
 
 // Преобразование контролов выбора варианта товара
 //

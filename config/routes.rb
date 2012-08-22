@@ -21,6 +21,7 @@ Candies::Application.routes.draw do
 
   post '/new_address' => 'addresses#new_user_address', as: :new_address
   post '/make_address_default' => 'addresses#make_default', as: :make_address_default
+  get '/get_address' => 'addresses#get_address'
 
 
   # The priority is based upon order of creation:

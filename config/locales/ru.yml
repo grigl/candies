@@ -1,3 +1,4 @@
 ru:
   
   wrong_login: 'Неправильный имэйл или пароль'
+  default_address_label: 'адрес по умолчанию:'
