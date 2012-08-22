@@ -1,0 +1,127 @@
+    <div class="left-colum">
+	  <div class="jcarousel-progress"></div>
+	  <ul class="jcarousel">             	
+      <% @products["male"].each do |product| %>
+      	<li class="jcarousel-item">
+        <figure class="shop-item-images">	
+          <%= link_to product_image(product, { width: 416, height: 305 }), product %>
+        </figure>
+        
+      <div class="js-variant-chooser">
+        <!-- Временно display:block, нужно будет поменять на none -->
+        <ul style="display: none" class="js-source">
+          <%  has_checked = false
+          product.variants.active.each_with_index do |v,index|
+            next if v.option_values.empty? || (!v.in_stock && !Spree::Config[:show_zero_stock_products])
+            checked = !has_checked && (v.in_stock || Spree::Config[:allow_backorders])
+            has_checked = true if checked %>
+            <li>
+              <label>
+                <%= radio_button_tag "products[#{product.id}]", v.id, checked, :disabled => !v.in_stock && !Spree::Config[:allow_backorders] %>
+                <span class="variant-description">
+                  <%= variant_options v %>
+                </span>
+                <% if variant_price_diff v %>
+                  <span class="price diff"><%= variant_price_diff v %></span>
+                <% end %>
+              </label>
+            </li>
+          <% end%>
+        </ul>
+
+        <div class="shop-item-options dotted">
+          <div class="left">
+            <span class="label">Цвет</span>
+            <ul class="shop-item-colors">
+            </ul>
+          </div>
+          <div class="right">
+            <span class="label">Ваш размер</span>
+            <select class="select js-size-select">
+            </select>
+          </div>
+        </div>
+
+      </div>
+        
+        <div class="shop-item-text dotted">
+          <p><%= product_description(product) rescue "У товара нет описания" %></p>
+        </div>
+        
+        <div class="shop-item-buy">       
+          <%= form_for :order, :url => populate_orders_url, remote: true do |f| %>
+            <button type="submit" class="add-to-cart button plus">В корзину</button>
+            <%= hidden_field_tag "variants[#{product.master.id}]", 1 %>
+          <% end %>
+          <div class="shop-item-price">
+            <%= product_price(product, with_em: true) %>
+          </div>
+        </div>
+        </li>
+      <% end %>
+  	  </ul>
+  	  </div>
+
+    <div class="right-colum">
+	  <div class="jcarousel-progress"></div>
+	  <ul class="jcarousel">             	
+      <% @products["female"].each do |product| %>
+      	<li class="jcarousel-item">
+        <figure class="shop-item-images">	
+          <%= link_to product_image(product, { width: 416, height: 305 }), product %>
+        </figure>
+        
+      <div class="js-variant-chooser">
+        <!-- Временно display:block, нужно будет поменять на none -->
+        <ul style="display: none" class="js-source">
+          <%  has_checked = false
+          product.variants.active.each_with_index do |v,index|
+            next if v.option_values.empty? || (!v.in_stock && !Spree::Config[:show_zero_stock_products])
+            checked = !has_checked && (v.in_stock || Spree::Config[:allow_backorders])
+            has_checked = true if checked %>
+            <li>
+              <label>
+                <%= radio_button_tag "products[#{product.id}]", v.id, checked, :disabled => !v.in_stock && !Spree::Config[:allow_backorders] %>
+                <span class="variant-description">
+                  <%= variant_options v %>
+                </span>
+                <% if variant_price_diff v %>
+                  <span class="price diff"><%= variant_price_diff v %></span>
+                <% end %>
+              </label>
+            </li>
+          <% end%>
+        </ul>
+
+        <div class="shop-item-options dotted">
+          <div class="left">
+            <span class="label">Цвет</span>
+            <ul class="shop-item-colors">
+            </ul>
+          </div>
+          <div class="right">
+            <span class="label">Ваш размер</span>
+            <select class="select js-size-select">
+            </select>
+          </div>
+        </div>
+
+      </div>
+        
+        <div class="shop-item-text dotted">
+          <p><%= product_description(product) rescue "У товара нет описания" %></p>
+        </div>
+        
+        <div class="shop-item-buy">       
+          <%= form_for :order, :url => populate_orders_url, remote: true do |f| %>
+            <button type="submit" class="add-to-cart button plus">В корзину</button>
+            <%= hidden_field_tag "variants[#{product.master.id}]", 1 %>
+          <% end %>
+          <div class="shop-item-price">
+            <%= product_price(product, with_em: true) %>
+          </div>
+        </div>
+        </li>
+      <% end %>
+  	  </ul>
+  	  </div>    
