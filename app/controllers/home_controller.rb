@@ -14,7 +14,7 @@ class HomeController < Spree::BaseController
         all_products_by_gender["male"].push(product)
         cnt_male+=1
       end
-      if (product.gender == 0 or product.gender == 2) and (cnt_male < 3) then
+      if (product.gender == 0 or product.gender == 2) and (cnt_female < 3) then
         all_products_by_gender["female"].push(product)
         cnt_female+=1
       end
