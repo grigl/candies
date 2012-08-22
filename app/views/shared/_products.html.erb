@@ -21,19 +21,21 @@
   <% end %>
 </ul>
 <% end %>
- 
+  
+<% if last_page > 1 %>
 <ul class="pagination">
-  <% if (page-1) > 0 %>
-  <li class="prev"><a href="?<%= (page-1)%>">« Назад</a></li>
+  <% if (page+1) <= last_page %>
+  <li class="prev"><a href="?page=<%= (page+1)%>">« Назад</a></li>
   <% end %>
-  <% for i in 1..last_page %>
+  <% last_page.downto(1) do|i| %>
   	<% if page == i %>
   	<li class="cur"><a href="?page=<%= i %>"><%= i %></a></li>
   	<% else %>
   	<li><a href="?page=<%= i %>"><%= i %></a></li>
   	<% end %>
   <% end %>
-  <% if (page+1) < last_page %>
-  <li class="next"><a href="?<%= (page+1)%>">Вперед »</a></li>
+  <% if (page-1) >= 1 %>
+  <li class="next"><a href="?page=<%= (page-1)%>">Вперед »</a></li>
   <% end %>
 </ul>
+<% end %>

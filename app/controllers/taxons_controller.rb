@@ -20,7 +20,6 @@ class TaxonsController < Spree::BaseController
     
     all_products_by_gender = {"male" => [], "female" => []}
     all_products.each do|product|
-      puts product.gender
       if product.gender == 0 or product.gender == 1 then
         all_products_by_gender["male"].push product
       end
@@ -34,7 +33,7 @@ class TaxonsController < Spree::BaseController
     else
       @page = 1
     end    
-    @products_count = all_products_by_gender[params["gender"]].count
+    @products_count = all_products_by_gender[params["gender"]].count.to_f
     first = (@page-1) * 14
     last = first + 14
     if last > @products_count then

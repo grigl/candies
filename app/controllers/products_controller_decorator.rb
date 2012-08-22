@@ -29,7 +29,7 @@ ProductsController.class_eval do
     else
       @page = 1
     end    
-    @products_count = all_products_by_gender[params["gender"]].count
+    @products_count = all_products_by_gender[params["gender"]].count.to_f
     first = (@page - 1) * 14
     last = first + 14
     if last > @products_count then
