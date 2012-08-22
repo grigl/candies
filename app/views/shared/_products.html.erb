@@ -27,8 +27,8 @@
 <% end %>
  
 <ul class="pagination">
-  <% if @page - 1 > 0 %>
-  <li class="prev"><a href="?<%= (@page - 1)%>">« Назад</a></li>
+  <% if (@page-1) > 0 %>
+  <li class="prev"><a href="?<%= (@page-1)%>">« Назад</a></li>
   <% end %>
   <% for i in 1..@last_page %>
   	<% if @page == i %>
@@ -37,7 +37,7 @@
   	<li><a href="?page=<%= i %>"><%= i %></a></li>
   	<% end %>
   <% end %>
-  <% if @page + 1 < @last_page %>
-  <li class="next"><a href="?<%= (@page + 1)%>">Вперед »</a></li>
+  <% if (@page+1) < @last_page %>
+  <li class="next"><a href="?<%= (@page+1)%>">Вперед »</a></li>
   <% end %>
 </ul>
