@@ -198,7 +198,7 @@ $(document).on('ajax:beforeSend', 'form', function() {
 //disable и enable кнопок "в корзину"
 $(function() {
 	var is_populating = false;
-	$('#order_populate').bind("ajax:beforeSend", function(evt, xhr, settings) {
+	$('form.order_populate').bind("ajax:beforeSend", function(evt, xhr, settings) {
 		if (is_populating) {
 			xhr.abort();
 		} else {
@@ -206,7 +206,7 @@ $(function() {
 			$('.add-to-cart').addClass("disabled")			
 		}
 	});
-	$('#order_populate').bind("ajax:complete", function(evt, xhr, status) {
+	$('form.order_populate').bind("ajax:complete", function(evt, xhr, status) {
 		is_populating = false;
 		$('.add-to-cart').removeClass("disabled")
 	});	
