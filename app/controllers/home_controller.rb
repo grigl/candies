@@ -3,7 +3,7 @@ class HomeController < Spree::BaseController
   before_filter :load_order
 
   def index   
-    all_products = Product.all
+    all_products = Product.where('on_index = 1')
     
     #такой странный и запутанный этот spree
     all_products_by_gender = {"male" => [], "female" => []}
