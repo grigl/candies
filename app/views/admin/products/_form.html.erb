@@ -18,6 +18,11 @@
         <%= f.label :gender, "Тип" %> <br />
         <%= f.select(:gender, options_for_select([ ['Унисекс', 0], ['Мужская', 1], ['Женская', 2] ], @product.gender)) %>
       <% end %>      
+      
+      <%= f.field_container :on_main do %>
+        <%= f.label :on_index, "Показывать на главной" %> <br />
+        <%= f.check_box :on_index  %>
+      <% end %>      
 
       <%= f.field_container :description do %>
         <%= f.label :description, t("description")%><br />

@@ -3,16 +3,20 @@ class HomeController < Spree::BaseController
   before_filter :load_order
 
   def index   
-    all_products = Product.all
+    all_products = Product.where('on_index = 1')
     
     #такой странный и запутанный этот spree
     all_products_by_gender = {"male" => [], "female" => []}
+    cnt_male = 0
+    cnt_female = 0
     all_products.each do|product|
-      if product.gender == 0 or product.gender == 1 then
+      if (product.gender == 0 or product.gender == 1) and (cnt_male < 3) then
         all_products_by_gender["male"].push(product)
+        cnt_male+=1
       end
-      if product.gender == 0 or product.gender == 2 then
+      if (product.gender == 0 or product.gender == 2) and (cnt_female < 3) then
         all_products_by_gender["female"].push(product)
+        cnt_female+=1
       end
     end
     @products = all_products_by_gender

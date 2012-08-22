@@ -23,13 +23,15 @@
 
 <% if @taxon.children.empty? || !params[:keywords].blank? %>
   <%= hook :taxon_products do %>
-    <%= render :partial => "shared/products", :locals => {:products => @products, :taxon => @taxon } %>
+    <%= render "shared/products", :products => @products, :taxon => @taxon, :page => @page, :last_page => @last_page %>
   <% end %>
 <% else %>
   <%= hook :taxon_children do %>
     <%= render :partial => "taxon", :collection => @taxon.children %>
   <% end %>
 <% end %>
+
+<%= render 'shared/search' %>
 
 <%= content_for :page do %>    
   <%= render 'shared/personal_page' %>
