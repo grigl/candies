@@ -1,6 +1,9 @@
 <%= content_for :header do %>    
   <%= render 'shared/header' %>
 <% end %>
+<%= content_for :title_add do %>    
+  <%= @product.name %>
+<% end %>
 <% content_for :head do -%>
   <%= stylesheet_link_tag 'basic-jquery-slider.css' %>
   <%= javascript_include_tag 'basic-jquery-slider.js'%>
