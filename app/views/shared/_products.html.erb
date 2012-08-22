@@ -26,11 +26,18 @@
 </ul>
 <% end %>
  
-<% if paginated_products.respond_to?(:total_pages)
-      params.delete(:search)
-      params.delete(:taxon)
-      
-%><%= will_paginate(paginated_products,
-                    :previous_label => "&#171; #{t('previous')}",
-                    :next_label => "#{t('next')} &#187;") %>
-<% end %>
+<ul class="pagination">
+  <% if @page - 1 > 0 %>
+  <li class="prev"><a href="?<%= (@page - 1)%>">« Назад</a></li>
+  <% end %>
+  <% for i in 1..@last_page %>
+  	<% if @page == i %>
+  	<li class="cur"><a href="?page=<%= i %>"><%= i %></a></li>
+  	<% else %>
+  	<li><a href="?page=<%= i %>"><%= i %></a></li>
+  	<% end %>
+  <% end %>
+  <% if @page + 1 < @last_page %>
+  <li class="next"><a href="?<%= (@page + 1)%>">Вперед »</a></li>
+  <% end %>
+</ul>
