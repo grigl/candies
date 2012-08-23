@@ -1,5 +1,7 @@
-$('#page').hide('slide', {direction: 'left'}, 1000);
-$('#page').html('<%= escape_javascript(render 'shared/personal_page') %>');
-$('#header_wrapper').html('<%= escape_javascript(render 'shared/header') %>');
-$('#page').show('slide', {direction: 'right'}, 1000);
-window.history.pushState("", "", "/");
+// см. также `script.js` – При нажатии на «Информация» и «Личный кабинет»
+
+$('#page').promise().done(function(){
+  $('#page').html('<%= escape_javascript(render 'shared/personal_page') %>');
+  $('#header_wrapper').html('<%= escape_javascript(render 'shared/header') %>');
+  window.history && window.history.pushState && window.history.pushState("", "", "/");
+});

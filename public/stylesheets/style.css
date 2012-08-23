@@ -1250,3 +1250,15 @@ header li.cur.none {background: none;}
 	border-left: 0;
 }
 /* //about */
+
+/* используется при переходах на «Информация» и «Личный кабинет» */
+.loading-animation {
+	position: absolute;
+	width: 24px; height: 24px;
+	top: 40%; left: 50%;
+	margin-left: -12px;
+	background: white url('../images/ajax_loader.gif') 4px 4px no-repeat;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
