@@ -327,6 +327,13 @@ button.button, input[type="submit"].button {
 	background: url(../images/ico_plus.png) 9px 11px no-repeat;
 	padding-left: 22px;
 }
+.white .button:active, .white .button.active {
+	color: #fff;
+	background-color: #2a292a;
+}
+.button.plus:active, input[type="submit"].button.plus:active {
+	background-position: 9px -40px;
+}
 /* //button */
 
 /* g e n e r a l */
@@ -380,12 +387,14 @@ header li a {
 	line-height: 25px;
 	text-transform: uppercase;
 }
-header li.cur {
+header li.cur,
+header li.cur.none:first-child {
 	background-color: #b52469;
 	padding: 0 6px;
 	margin: 0 9px;
 }
 header li.cur a {cursor: default;}
+header li.cur.none {background: none;}
 /* //header */
 
 .page {
@@ -585,6 +594,11 @@ header li.cur a {cursor: default;}
 	color: #fff;
 	text-align: center;
 	text-transform: uppercase;
+	opacity: 0;
+	-webkit-transition: all 0.3s ease; 
+	-moz-transition: all 0.3s ease; 
+	-o-transition: all 0.3s ease; 
+	transition: all 0.3s ease;
 }
 .shop-item-images figcaption:after {
 	content: "";
@@ -596,6 +610,7 @@ header li.cur a {cursor: default;}
 	right: 15px;
 	bottom: -23px;
 }
+.shop-item-images:hover figcaption {opacity: 1;}
 
 .shop-item-options {
 	margin-bottom: 16px;
@@ -636,6 +651,10 @@ header li.cur a {cursor: default;}
 .shop-item-text {
 	padding-bottom: 18px;
 	margin-bottom: 14px;
+}
+.shop-item-text p {
+	height: 80px;
+	overflow: hidden;
 }
 .shop-item-text img {
 	height: 70px;
@@ -678,7 +697,10 @@ header li.cur a {cursor: default;}
 }
 /* //shop-item */
 
-.shop-items-list {margin: 20px -16px 16px 0;}
+.shop-items-list {
+	margin: 20px -16px 16px 0;
+	padding-bottom: 40px;
+}
 .shop-items-list.m-height {min-height: 400px;}
 .shop-items-list li {
 	width: 128px;
@@ -727,7 +749,11 @@ header li.cur a {cursor: default;}
 .pagination li.next {padding-left: 12px;}
 /* //pagination */
 	
-.search-field {float: left;}
+.search-field {
+	position: absolute;
+	bottom: -26px;
+	z-index: 10;
+}
 .search-field .label {
 	display: block;
 	font-size: 20px;
