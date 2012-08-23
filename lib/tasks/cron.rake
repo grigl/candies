@@ -152,7 +152,7 @@ namespace :sync do
         end
       end
       
-      product = Product.where("ms_sku = ?", sku).limit(1)
+      product = Product.where("ms_sku = ?", ms_sku).limit(1)
       if product.empty?
         product = Product.new
         product.name = name
