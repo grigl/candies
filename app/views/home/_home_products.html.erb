@@ -113,7 +113,7 @@
         </div>
         
         <div class="shop-item-buy">       
-          <%= form_for :order, :url => populate_orders_url, remote: true do |f| %>
+          <%= form_for :order, :url => populate_orders_url, remote: true, :html => {:class => "order_populate"} do |f| %>
             <button type="submit" class="add-to-cart button plus">В корзину</button>
             <%= hidden_field_tag "variants[#{product.master.id}]", 1 %>
           <% end %>

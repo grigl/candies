@@ -257,18 +257,16 @@ $(document).on('ajax:beforeSend', 'form', function() {
 
 //disable и enable кнопок "в корзину"
 $(function() {
-	var is_populating = false;
 	$('form.order_populate').bind("ajax:beforeSend", function(evt, xhr, settings) {
-		if (is_populating) {
+		if ($(this).find('.add-to-cart').hasClass("disabled")) {
 			xhr.abort();
 		} else {
 			is_populating = true;
-			$('.add-to-cart').addClass("disabled")			
+			$(this).find('.add-to-cart').addClass("disabled")			
 		}
 	});
 	$('form.order_populate').bind("ajax:complete", function(evt, xhr, status) {
-		is_populating = false;
-		$('.add-to-cart').removeClass("disabled")
+		$(this).find('.add-to-cart').removeClass("disabled")
 	});	
 });
 
