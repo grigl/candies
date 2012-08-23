@@ -4,20 +4,20 @@
       <li><a>3</a></li>
     </ul>
 
-  <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" }, remote: true do |form| %>  
+  <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" }, remote: true do |form| %>
     <div class="left-colum">
-    
+
       <h3>КОНТАКТНЫЕ ДАННЫЕ</h3>
-      
+
       <div class="checkout-form">
-        
+
         <%= form.fields_for :bill_address do |bill_form| %>
           <div class="checkout-box">
 
             <% if current_user %>
               <div class="form-item w272">
                 <label>Выберите адрес из адресной книги</label>
-                <%= collection_select :address, :id, current_user.addresses, :id, :to_s, {}, :class => 'select', id: 'select-address-book-bill' %> 
+                <%= collection_select :address, :id, current_user.addresses, :id, :to_s, {}, :class => 'select', id: 'select-address-book-bill' %>
               </div>
             <% end %>
 
@@ -43,19 +43,17 @@
               <%= bill_form.label :phone, 'ТЕЛЕФОН' %>
               <%= bill_form.text_field :phone, :class => 'textfield' %>
             </div>
-          </div>
-          <div class="checkout-buttons">
-            <%= link_to 'НАЗАД', back_checkout_path(@order.state), class: 'button', remote: true %>
+
           </div>
 
       </div>
 
     </div>
-    
+
     <div class="right-colum">
-      
+
       <h3>Адрес доставки заказа:</h3>
-      
+
       <div class="checkout-form">
 
           <div class="checkout-box">
@@ -73,7 +71,7 @@
             </div>
             <div class="form-item w272">
               <%= bill_form.label :state, t(:state) %>
-              <%= bill_form.collection_select :state_id, @order.bill_address.country.states, :id, :name, {}, :class => 'select' %> 
+              <%= bill_form.collection_select :state_id, @order.bill_address.country.states, :id, :name, {}, :class => 'select' %>
             </div>
             <div class="form-item w145">
               <%= bill_form.label :zipcode, 'ИНДЕКС' %>
@@ -87,20 +85,17 @@
               </div>
             </div>
           </div>
-          <div class="checkout-buttons" align="right">
-            <input type="submit" class="button" value="ДАЛЬШЕ">
-          </div>
 
         <% end %>
       </div>
-      
+
     </div>
 
     <div class="js-delivery-address-form-block">
       <div class="left-colum">
-      
+
         <h3>КОНТАКТНЫЕ ДАННЫЕ ПЛАТЕЛЬЩИКА</h3>
-        
+
         <div class="checkout-form">
 
           <%= form.fields_for :ship_address do |ship_form| %>
@@ -109,7 +104,7 @@
               <% if current_user %>
                 <div class="form-item w272">
                   <label>Выберите адрес из адресной книги</label>
-                  <%= collection_select :address, :id, current_user.addresses, :id, :to_s, {}, :class => 'select', id: 'select-address-book-ship' %> 
+                  <%= collection_select :address, :id, current_user.addresses, :id, :to_s, {}, :class => 'select', id: 'select-address-book-ship' %>
                 </div>
               <% end %>
 
@@ -130,11 +125,11 @@
         </div>
 
       </div>
-      
+
       <div class="right-colum">
-        
+
         <h3>Адрес плательщика</h3>
-        
+
         <div class="checkout-form">
 
             <div class="checkout-box">
@@ -152,7 +147,7 @@
               </div>
               <div class="form-item w272">
                 <%= ship_form.label :state, t(:state) %>
-                <%= ship_form.collection_select :state_id, @order.bill_address.country.states, :id, :name, {}, :class => 'select' %> 
+                <%= ship_form.collection_select :state_id, @order.bill_address.country.states, :id, :name, {}, :class => 'select' %>
               </div>
               <div class="form-item w145">
                 <%= ship_form.label :zipcode, 'ИНДЕКС' %>
@@ -165,10 +160,22 @@
               </div>
             </div>
           <% end %>
-          
+
         </div>
-        
+
       </div>
     </div><!-- / .js-delivery-address-form-block -->
+
+    <div class="left-colum">
+      <div class="checkout-buttons">
+        <%= link_to 'НАЗАД', back_checkout_path(@order.state), class: 'button', remote: true %>
+      </div>
+    </div>
+
+    <div class="right-colum">
+      <div class="checkout-buttons" align="right">
+        <input type="submit" class="button" value="ДАЛЬШЕ">
+      </div>
+    </div>
 
   <% end %>
