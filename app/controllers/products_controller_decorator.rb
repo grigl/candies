@@ -61,6 +61,15 @@ ProductsController.class_eval do
   def search
     @searcher = Spree::Config.searcher_class.new(params)
     @products = @searcher.retrieve_products
+    if params.has_key?("page") then
+      @page = params["page"].to_i
+    else
+      @page = 1
+    end    
+    @products_count = @products.count.to_f
+    first = (@page - 1) * 14
+    @last_page = (@products_count / 14).ceil
+    @products = @products.slice(first, 14)
     respond_with(@products)
   end
 
