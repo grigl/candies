@@ -327,6 +327,13 @@ button.button, input[type="submit"].button {
 	background: url(../images/ico_plus.png) 9px 11px no-repeat;
 	padding-left: 22px;
 }
+.white .button:active, .white .button.active {
+	color: #fff;
+	background-color: #2a292a;
+}
+.button.plus:active, input[type="submit"].button.plus:active {
+	background-position: 9px -40px;
+}
 /* //button */
 
 /* g e n e r a l */
@@ -644,6 +651,10 @@ header li.cur.none {background: none;}
 .shop-item-text {
 	padding-bottom: 18px;
 	margin-bottom: 14px;
+}
+.shop-item-text p {
+	height: 80px;
+	overflow: hidden;
 }
 .shop-item-text img {
 	height: 70px;

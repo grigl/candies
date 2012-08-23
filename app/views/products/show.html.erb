@@ -29,7 +29,7 @@ $(document).ready(function() {
       <div class="shop-item-text dotted">
       	<a href="#"><%= product_image(@product) %></a>
       	<h2><%= @product.name %></h2>
-      	<%= product_description(@product) rescue t("product_has_no_description") %>
+      	<p><%= product_description(@product) rescue t("product_has_no_description") %></p>
       	<%= render 'shared/social' %>
       </div>
       
@@ -103,7 +103,7 @@ $(document).ready(function() {
       <div class="shop-item-text dotted">
       	<a href="#"><%= product_image(@product) %></a>
       	<h2><%= @product.name %></h2>
-      	<%= product_description(@product) rescue t("product_has_no_description") %>
+      	<p><%= product_description(@product) rescue t("product_has_no_description") %></p>
       	<%= render 'shared/social' %>
       </div>
       
