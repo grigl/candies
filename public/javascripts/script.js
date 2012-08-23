@@ -287,6 +287,11 @@ $(function() {
 $('.js-personal-page-link, .js-about-link').live('ajax:before', function() {
 	$('#page').hide('slide', {direction: $(this).is('.js-about-link') ? 'right' : 'left'}, 1000, function() {
 		$('#page').html('<div class="loading-animation"></div>').show();
+		// докручиваем до темной части, если требуется
+		var scroll_to = $('.page.white').height() + 72;
+		if (Math.max($('html').scrollTop(), $('body').scrollTop()) < scroll_to) {
+			$('html, body').animate({scrollTop: scroll_to}, 400);
+		}
 	});
 });
 
