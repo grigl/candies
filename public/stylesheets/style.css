@@ -695,6 +695,16 @@ header li.cur.none {background: none;}
 	padding-left: 12px;
 	margin-top: 16px;
 }
+.shop-item-forward {
+	display: block;
+	float: right;
+	background: url(../images/ico_forward.png) 100% 50% no-repeat;
+	font-size: 17px;
+	text-decoration: none;
+	text-transform: uppercase;
+	padding-right: 12px;
+	margin-top: 16px;
+}
 /* //shop-item */
 
 .shop-items-list {
