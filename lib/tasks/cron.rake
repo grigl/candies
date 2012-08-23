@@ -16,8 +16,8 @@ option_size_id = 1
 option_color_id = 2
 
 #чтобы получить эти id нужно будет сделать запрос сначала и вывести сам xml. Лучше бы подобные данные выводили в веб-морде
-param_gender_metadata_id = "BWYidMM6gaC_X7mHsVLm90" #id для пола
-gender_hash = { 0 => "Унисекс", 1 => "Мужские", 2 => "Женские" }
+param_gender_metadata_id = "ym_o9SGqiZu7c6j8dztOv2" #id для пола
+gender_hash = { 0 => "Унисекс", 1 => "Мужской", 2 => "Женский" }
 
 rest_user = "danya@candies/banya"
 rest_pass = "bosscandies"
@@ -39,22 +39,12 @@ namespace :sync do
     end
     xml = response.to_str
     config = XmlSimple.xml_in(xml)
-    puts config #конфиг нужно будет вывести, чтобы определить все *_metadata_id
-    return
+    #puts config #конфиг нужно будет вывести, чтобы определить все *_metadata_id
+    #return
     config['customEntity'].each do|custom_entity|
       value_name = custom_entity['name']
       value_id = custom_entity['id'][0]
       metadata_id = custom_entity["entityMetadataId"]
-      value_object = OptionValue.where("ms_id = ?", value_id).limit(1)
-      if value_object.empty? then
-        value_object = OptionValue.new 
-        value_object.name = value_name
-        value_object.presentation = value_name
-        value_object.ms_id = value_id
-        value_object.save
-      else
-        value_object = value_object[0]
-      end
       if metadata_id == param_gender_metadata_id then
         good_values_gender[value_id] = gender_hash.index(value_name)
       end
@@ -157,8 +147,6 @@ namespace :sync do
       price = good["salePrice"]
       
       #attributes
-      size_id = 0
-      color_id = 0
       gender_id = 0
       if good.has_key?("attribute") then
         good["attribute"].each do|attribute|
