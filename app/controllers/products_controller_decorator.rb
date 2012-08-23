@@ -32,7 +32,7 @@ ProductsController.class_eval do
     @products_count = all_products_by_gender[params["gender"]].count.to_f
     first = (@page - 1) * 14
     @last_page = (@products_count / 14).ceil
-    @products = all_products_by_gender[params["gender"]].slice(first, last)
+    @products = all_products_by_gender[params["gender"]].slice(first, 14)
     respond_with(@products)
   end
 
