@@ -28,7 +28,7 @@ $(document).ready(function(){
 			$('.basket').stop().animate({top: 0});
 		}
 		
-		if(scrollTop > page_height){
+		if(scrollTop > page_height - window_height * 1 / 3){
 			$('header ul li:first-child').removeClass('cur');
 			$('header ul li.cur').removeClass('none');
 		} else {
@@ -132,8 +132,28 @@ $('#select-address-book-ship').live('change', function(e){
 // Преобразование контролов выбора варианта товара
 //
 var color_table = {
-	"красный": "#f00",
-	"черный": "#000"
+ 	"синий": "#2E2EFE",
+	"голубой": "#00BFFF",
+	"розовый": "#FE2EF7",
+	"светло-зелёный": "#82FA58",
+	"светло-зеленый": "#82FA58",
+	"зелёный": "#40FF00",
+	"зеленый": "#40FF00",
+	"жёлтый": "#F7FE2E",
+	"желтый": "#F7FE2E",
+	"оранжевый": "#FE642E",
+	"красный": "#FE2E2E",
+	"белый": "#FFFFFF",
+	"чёрный": "#000000",
+	"черный": "#000000",
+	"коричневый": "#8A4B08",
+	"бордовый": "#610B0B",
+	"фиолетовый": "#610B5E",
+	"серый": "#BDBDBD",
+	"бирюзовый": "#00FFFF",
+	"бежевый": "#F5ECCE",
+	"тёмно-синий": "#0B0B3B",
+	"темно-синий": "#0B0B3B"
 }
 function transformVariantChooser() {
 	$('.js-variant-chooser').each(function() {
@@ -162,9 +182,21 @@ function transformVariantChooser() {
 		})
 
 		for (color in colors) {
-			container.find('.shop-item-colors')
-				.append( $('<li class="js-color-option"></li>')
-									.css('background-color', color_table[color]).attr('title', color) );
+			double_color = color.split('/');
+			if (double_color.length == 1) {
+				container.find('.shop-item-colors')
+					.append( $('<li class="js-color-option" style="border: 1px solid black;"></li>')
+										.css('background-color', color_table[color]).attr('title', color) );				
+			} else {
+				cl_1 = double_color[0];
+				cl_2 = double_color[1];
+				container.find('.shop-item-colors')
+					.append($('<li class="js-color-option" style="border: 1px solid black;"></li>')
+					.attr('title', color)
+					.prepend('<div style="float: left; width: 50%; height: 33px; background-color:'+color_table[cl_1]+'"></div></li>')
+					.prepend('<div style="float: right; width: 50%; height: 33px; background-color:'+color_table[cl_2]+'"></div></li>')
+					);				
+			}
 		}
 
 		function update_old_controls() {
