@@ -33,7 +33,7 @@ class TaxonsController < Spree::BaseController
     else
       @page = 1
     end    
-    @products_count = all_products_by_gender[params["gender"]].count.to_f
+    @products_count = all_products_by_gender[params["gender"]].size.to_f
     first = (@page-1) * 14
     @last_page = (@products_count / 14).ceil
     @products = all_products_by_gender[params["gender"]].slice(first, 14)
