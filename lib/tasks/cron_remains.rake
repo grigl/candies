@@ -4,25 +4,30 @@
 require 'rest_client'
 require 'xmlsimple'
 
+#для опций
+#эти id из базы данных
+option_size_id = 1
+option_color_id = 2
+
 #global vars
 rest_url = "https://online.moysklad.ru/exchange/rest/stock/xml"
 cons_rest_url = "https://online.moysklad.ru/exchange/rest/ms/xml/Consignment/list" #серии
 
-rest_user = "admin@devilmaydie"
-rest_pass = "f9ca1808ba"
+rest_user = "danya@candies/banya"
+rest_pass = "bosscandies"
 
-#folders...
-root_folder = '1CANDIES' #название корневого каталога магазина
-male_folder = '2Man' #название "мужского" каталога
-female_folder = '3Women' #название "жеского" каталога
-
-warehouse_id = "0WUXbhnsjAiKQMf-QZ3Th3" #id склада
+warehouse_id = "7Jy2W1FvhCST6pgOAuu2S1" #id склада
 
 #чтобы получить эти id нужно будет сделать запрос сначала и вывести сам xml. Лучше бы подобные данные выводили в веб-морде
-option_size_metadata_id = "o037ulinis2iueO23YZ3O1" #id типа опций "размер"
-option_color_metadata_id = "b2Ivdtt2gquzhvTBj-3Xy3" #id типа опций "цвет"
+option_size_metadata_id = "TiaJNYl-haejojQ1kGCvA2" #id типа опций "размер"
+option_color_metadata_id = "5nwjOWZCitqPdd57bNs3D1" #id типа опций "цвет"
 main_rest_url = "https://online.moysklad.ru/exchange/rest/ms/xml"
 size_url = main_rest_url + "/CustomEntity/list"
+
+option_names = {
+  "5nwjOWZCitqPdd57bNs3D1" => "size",
+  "TiaJNYl-haejojQ1kGCvA2" => "color",
+}
 
 namespace :sync do
   desc "Sync remains"
@@ -70,7 +75,8 @@ namespace :sync do
     end    
     
     #серии  
-    response = RestClient::Request.new(:method => :get, :url => cons_rest_url, :user => rest_user, :password => rest_pass, :headers => { :content_type => :xml }).execute
+    puts "Getting series"
+    response = RestClient::Request.new(:method => :get, :url => cons_rest_url, :user => rest_user, :password => rest_pass, :headers => { :content_type => :xml }, :timeout => 1800).execute
     if response.code != 200 then
       puts "Error fetching remains"
       puts "Answer: " + response.to_str
@@ -100,6 +106,20 @@ namespace :sync do
       end        
         
       if size_id != 0 and color_id != 0 and product.nil? == false then
+        product_option_type_color = ProductOptionType.where('product_id = ? AND option_type_id = ? ', product.id, option_color_id).limit(1)
+        if product_option_type_color.empty? then
+          product_option_type_color = ProductOptionType.new
+          product_option_type_color.product_id = product.id
+          product_option_type_color.option_type_id = option_color_id
+          product_option_type_color.save
+        end
+        product_option_type_size = ProductOptionType.where('product_id = ? AND option_type_id = ? ', product.id, option_size_id).limit(1)
+        if product_option_type_size.empty? then
+          product_option_type_size = ProductOptionType.new
+          product_option_type_size.product_id = product.id
+          product_option_type_size.option_type_id = option_size_id
+          product_option_type_size.save
+        end        
         variant = Variant.where('ms_good_id = ? AND is_master = 0', cons_id)
         if variant.empty? then
           found_variant = Variant.new
@@ -115,6 +135,7 @@ namespace :sync do
       end        
     end
     
+    puts "Finally remains"
     rest_url = rest_url + '?storeId=' + warehouse_id + '&showConsignments=true'
     response = RestClient::Request.new(:method => :get, :url => rest_url, :user => rest_user, :password => rest_pass, :headers => { :content_type => :xml }).execute
     if response.code != 200 then

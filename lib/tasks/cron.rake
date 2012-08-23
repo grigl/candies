@@ -10,11 +10,6 @@ good_folder_url = rest_url + "/GoodFolder/list"
 good_url = rest_url + "/Good/list"
 entity_url = rest_url + "/CustomEntity/list"
 
-#для опций
-#эти id из базы данных
-option_size_id = 1
-option_color_id = 2
-
 #чтобы получить эти id нужно будет сделать запрос сначала и вывести сам xml. Лучше бы подобные данные выводили в веб-морде
 param_gender_metadata_id = "ym_o9SGqiZu7c6j8dztOv2" #id для пола
 gender_hash = { 0 => "Унисекс", 1 => "Мужской", 2 => "Женский" }
