@@ -1,6 +1,6 @@
     <div class="left-colum">
 	  <div class="jcarousel-progress"></div>
-	  <ul class="jcarousel1">             	
+	  <ul class="jcarousel">             	
       <% @products["male"].each do |product| %>
         <%= form_for :order, :url => populate_orders_url, remote: true, :html => {:class => "order_populate"}  do |f| %>
       	<li class="jcarousel-item">
@@ -63,7 +63,7 @@
 
     <div class="right-colum">
 	  <div class="jcarousel-progress"></div>
-	  <ul class="jcarousel1">             	
+	  <ul class="jcarousel">             	
       <% @products["female"].each do |product| %>
         <%= form_for :order, :url => populate_orders_url, remote: true, :html => {:class => "order_populate"} do |f| %>
       	<li class="jcarousel-item">
