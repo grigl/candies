@@ -27,6 +27,14 @@ $(document).ready(function(){
 		} else {
 			$('.basket').stop().animate({top: 0});
 		}
+		
+		if(scrollTop > page_height){
+			$('header ul li:first-child').removeClass('cur');
+			$('header ul li.cur').removeClass('none');
+		} else {
+			$('header ul li.cur').addClass('none');
+			$('header ul li:first-child').addClass('cur');
+		}
 
 	});
 	

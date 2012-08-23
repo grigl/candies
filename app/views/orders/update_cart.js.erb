@@ -1,5 +1,5 @@
 $('.basket a span').html('<%=j current_order.item_count %>');
 $('.basket').animate({top: -20}, 100).animate({top: 0}, 600, 'easeOutBounce');
-$('.full-cart-container .shop-cart-wrapper').hide('slide', {direction: 'left'}, 1000);
+$('.full-cart-container .shop-cart-wrapper').hide();
 $('.full-cart-container').html('<%= escape_javascript(render "shared/shop_cart") %>');
-$('.full-cart-container .shop-cart-wrapper').show('slide', {direction: 'right'}, 1000);
+$('.full-cart-container .shop-cart-wrapper').show();
