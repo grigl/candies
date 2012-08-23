@@ -1,7 +1,8 @@
     <div class="left-colum">
 	  <div class="jcarousel-progress"></div>
-	  <ul class="jcarousel">             	
+	  <ul class="jcarousel1">             	
       <% @products["male"].each do |product| %>
+        <%= form_for :order, :url => populate_orders_url, remote: true, :html => {:class => "order_populate"}  do |f| %>
       	<li class="jcarousel-item">
         <figure class="shop-item-images">	
           <%= link_to product_image(product, { width: 416, height: 305 }), product %>
@@ -49,23 +50,22 @@
         </div>
         
         <div class="shop-item-buy">       
-          <%= form_for :order, :url => populate_orders_url, remote: true, :html => {:class => "order_populate"}  do |f| %>
             <button type="submit" class="add-to-cart button plus">В корзину</button>
-            <%= hidden_field_tag "variants[#{product.master.id}]", 1 %>
-          <% end %>
           <div class="shop-item-price">
             <%= product_price(product, with_em: true) %>
           </div>
         </div>
         </li>
+        <% end %>
       <% end %>
   	  </ul>
   	  </div>
 
     <div class="right-colum">
 	  <div class="jcarousel-progress"></div>
-	  <ul class="jcarousel">             	
+	  <ul class="jcarousel1">             	
       <% @products["female"].each do |product| %>
+        <%= form_for :order, :url => populate_orders_url, remote: true, :html => {:class => "order_populate"} do |f| %>
       	<li class="jcarousel-item">
         <figure class="shop-item-images">	
           <%= link_to product_image(product, { width: 416, height: 305 }), product %>
@@ -113,15 +113,13 @@
         </div>
         
         <div class="shop-item-buy">       
-          <%= form_for :order, :url => populate_orders_url, remote: true, :html => {:class => "order_populate"} do |f| %>
             <button type="submit" class="add-to-cart button plus">В корзину</button>
-            <%= hidden_field_tag "variants[#{product.master.id}]", 1 %>
-          <% end %>
           <div class="shop-item-price">
             <%= product_price(product, with_em: true) %>
           </div>
         </div>
         </li>
+      <% end %>  
       <% end %>
   	  </ul>
   	  </div>    
