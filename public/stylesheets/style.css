@@ -1272,3 +1272,10 @@ header li.cur.none {background: none;}
 	-moz-border-radius: 50%;
 	border-radius: 50%;
 }
+
+.copyright-link {
+	display: block;
+	margin: 0 auto;
+	width: 95px; height: 40px;
+	background: url('../images/whitescape-copyright-logo.png') no-repeat;
+}
