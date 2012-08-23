@@ -13,23 +13,23 @@ company_rest_create_url = "https://online.moysklad.ru/exchange/rest/ms/xml/Compa
 rest_user = "danya@candies/banya"
 rest_pass = "bosscandies"
 
-target_id = "tqjH1zi-ij_ezKsLROtu11"
+target_id = "OieObr9ng9abW9GSMqz353"
 
 namespace :sync do
   desc "Sync orders"
   task :orders => :environment do
     
-    код в комментах ниже позволит вытащить id компании для target_id
-    response = RestClient::Request.new(:method => :get, :url => my_company_rest_url, :user => rest_user, :password => rest_pass, :headers => { :content_type => :xml }).execute
-    if response.code != 200 then
-      puts "Error fetching remains"
-      puts "Answer: " + response.to_str
-      return
-    end
+    #код в комментах ниже позволит вытащить id компании для target_id
+    #response = RestClient::Request.new(:method => :get, :url => my_company_rest_url, :user => rest_user, :password => rest_pass, :headers => { :content_type => :xml }).execute
+    #if response.code != 200 then
+    #  puts "Error fetching remains"
+    #  puts "Answer: " + response.to_str
+    #  return
+    #end
     
-    xml = response.to_str
-    puts xml
-    return
+    #xml = response.to_str
+    #puts xml
+    #return
     
     last_order_id = File.read(".last_order_id")
     orders = Order.where('id > ? AND completed_at IS NOT NULL', last_order_id)
