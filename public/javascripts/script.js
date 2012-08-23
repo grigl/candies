@@ -28,7 +28,7 @@ $(document).ready(function(){
 			$('.basket').stop().animate({top: 0});
 		}
 		
-		if(scrollTop > page_height){
+		if(scrollTop > page_height - window_height * 1 / 3){
 			$('header ul li:first-child').removeClass('cur');
 			$('header ul li.cur').removeClass('none');
 		} else {

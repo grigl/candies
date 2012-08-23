@@ -51,7 +51,7 @@
       <div class="order-history">
         <h3 class="left">История заказов :</h3>
         <ul class="order-history-list">
-          <% if current_user.orders.empty? %>
+          <% if current_user.orders.select { |order| order.completed? }.empty? %>
             У вас еще нет завершенных заказов.
           <% else %>
             <% current_user.orders.select { |order| order.completed? }.each do |order| %>
