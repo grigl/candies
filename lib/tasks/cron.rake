@@ -139,7 +139,7 @@ namespace :sync do
       sku = good["productCode"]
       ms_sku = good["id"][0]
       name = good["name"]
-      price = good["salePrice"] / 100
+      price = good["salePrice"].to_f / 100
       
       #attributes
       gender_id = 0
