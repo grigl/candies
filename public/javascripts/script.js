@@ -166,8 +166,11 @@ function transformVariantChooser() {
 		}
 
 		var colors = {};
+		var quantities = {};
 		container.find('.js-source label').each(function(){
 			var description = $('.variant-description', this).html().split(',');
+			var onHand = $('.variant-on-hand', this).html();
+
 			for (var i = 0; i < description.length; i++) {
 				var item = description[i].split(':');
 				if ($.trim(item[0]).toLowerCase() == 'цвет') {
@@ -177,6 +180,7 @@ function transformVariantChooser() {
 					var size = $.trim(item[1]);
 				}
 			}
+
 			!colors[color] && (colors[color] = {});
 			colors[color][size] = $('input', this).attr('value');
 		})

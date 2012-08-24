@@ -17,6 +17,7 @@
             <li>
               <label>
                 <%= radio_button_tag "products[#{@product.id}]", v.id, checked, :disabled => !v.in_stock && !Spree::Config[:allow_backorders] %>
+                <span class="variant-on-hand"><%= v.on_hand %></span>
                 <span class="variant-description">
                   <%= variant_options v %>
                 </span>
@@ -56,11 +57,7 @@
     	<%= product_price(@product) %>
     </div>
     <div class="shop-item-num">
-    	<% if @product.count_on_hand > 0 %>
-    		На складе: <span><%= @product.count_on_hand %></span>
-    	<% else %>
-    		На складе: <span>НЕТ</span>
-    	<% end %>
+    	На складе: <span class="shop-item-on-hand"></span>
     </div>    
   <% else %>
     <%= content_tag('strong', t('out_of_stock')) %>
