@@ -9,7 +9,6 @@
 
         <%= form_for :order, :url => populate_orders_url, remote: true, :html => {:class => "order_populate"}  do |f| %>        
       <div class="js-variant-chooser">
-        <!-- Временно display:block, нужно будет поменять на none -->
         <ul style="display: none" class="js-source">
           <%  has_checked = false
           product.variants.active.each_with_index do |v,index|
@@ -73,7 +72,6 @@
 
         <%= form_for :order, :url => populate_orders_url, remote: true, :html => {:class => "order_populate"} do |f| %>        
       <div class="js-variant-chooser">
-        <!-- Временно display:block, нужно будет поменять на none -->
         <ul style="display: none" class="js-source">
           <%  has_checked = false
           product.variants.active.each_with_index do |v,index|
