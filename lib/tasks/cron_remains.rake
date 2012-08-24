@@ -120,12 +120,14 @@ namespace :sync do
             product_option_type_color = ProductOptionType.new
             product_option_type_color.product_id = product.id
             product_option_type_color.option_type_id = option_color_id
+            product_option_type_color.save
           end
           product_option_type_size = ProductOptionType.where('product_id = ? AND option_type_id = ? ', product.id, option_size_id).limit(1)
           if product_option_type_size.empty? then
             product_option_type_size = ProductOptionType.new
             product_option_type_size.product_id = product.id
             product_option_type_size.option_type_id = option_size_id
+            product_option_type_size.save
           end        
           variant = Variant.where('ms_good_id = ? AND is_master = 0', cons_id)
           if variant.empty? then
