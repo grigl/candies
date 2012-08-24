@@ -51,6 +51,9 @@ $(document).ready(function() {
 	<figure class="shop-item-images">		
 		<div id="slider">
         <ul class="bjqs">
+        <% if @product.images.empty? %>
+        	<li><img alt="<%= @product.name %>" height="305" width="416" src="/images/noimage/product.jpg"></li>
+        <% end %>
         <% @product.images.each do|image| %>
 			<li><img alt="<%= @product.name %>" height="305" width="416" src="<%= image.attachment.url %>"></li>
 		<% end %>
