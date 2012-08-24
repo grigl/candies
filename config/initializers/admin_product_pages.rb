@@ -1,0 +1,1 @@
+Spree::Config.set :admin_products_per_page => 100
