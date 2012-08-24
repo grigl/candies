@@ -199,17 +199,17 @@ ActiveRecord::Schema.define(:version => 20120824134054) do
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
     t.string   "number",               :limit => 15
-    t.decimal  "item_total",                         :precision => 12, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "total",                              :precision => 12, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "item_total",                         :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "total",                              :precision => 8, :scale => 2, :default => 0.0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state"
-    t.decimal  "adjustment_total",                   :precision => 8,  :scale => 2, :default => 0.0, :null => false
-    t.decimal  "credit_total",                       :precision => 8,  :scale => 2, :default => 0.0, :null => false
+    t.decimal  "adjustment_total",                   :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "credit_total",                       :precision => 8, :scale => 2, :default => 0.0, :null => false
     t.datetime "completed_at"
     t.integer  "bill_address_id"
     t.integer  "ship_address_id"
-    t.decimal  "payment_total",                      :precision => 8,  :scale => 2, :default => 0.0
+    t.decimal  "payment_total",                      :precision => 8, :scale => 2, :default => 0.0
     t.integer  "shipping_method_id"
     t.string   "shipment_state"
     t.string   "payment_state"

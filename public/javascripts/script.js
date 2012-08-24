@@ -155,8 +155,8 @@ var color_table = {
 	"тёмно-синий": "#0B0B3B",
 	"темно-синий": "#0B0B3B"
 }
-function transformVariantChooser(wrapper) {
-	$(wrapper + ' ' + '.js-variant-chooser').each(function() {
+function transformVariantChooser() {
+	$('.js-variant-chooser').each(function() {
 
 		var container = $(this);
 		if (container.data('ready')) {
@@ -210,13 +210,13 @@ function transformVariantChooser(wrapper) {
 
 			if (parseInt(onHand) < 1) {
 				var onHandText = "Нет";
-				$('.add-to-cart').addClass("disabled");
+				container.parent().parent().find('.add-to-cart').addClass("disabled"); 
 			}	else {
 				var onHandText = onHand;
-				$('.add-to-cart').removeClass("disabled");
+				container.parent().parent().find('.add-to-cart').removeClass("disabled");
 			};
 
-			$('.shop-item-on-hand').html(onHandText);
+			container.parent().parent().find('.shop-item-on-hand').html(onHandText);
 		};
 
 		function set_color(color) {
@@ -263,9 +263,7 @@ $('.js-hide-delivery-address-form').live('change', toggleDAF);
 // но и для того, что загружается аяксом должны быть в этом блоке:
 $(document).bind('html-inserted', function() {
 	toggleDAF();
-	transformVariantChooser('#cart_wrapper');
-	transformVariantChooser('.right-colum');
-	transformVariantChooser('.left-colum');
+	transformVariantChooser();
 
 	// placeholder
 	$('input[placeholder], textarea[placeholder]').placeholder();
