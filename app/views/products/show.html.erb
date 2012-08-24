@@ -27,7 +27,7 @@ $(document).ready(function() {
 <% if @product.gender == 2 %>
 <div class="left-colum">
       <div class="shop-item-text dotted">
-      	<a href="#"><%= product_image(@product) %></a>
+      	<a href="<%= @product.product_groups[0].permalink %>"><img alt="<%= @product.product_groups[0].name %>" height="70" width="70" src="<%= @product.product_groups[0].icon %>"></a>      	
       	<h2><%= @product.name %></h2>
       	<p><%= product_description(@product) rescue t("product_has_no_description") %></p>
       	<%= render 'shared/social' %>
@@ -107,7 +107,7 @@ $(document).ready(function() {
 <div class="right-colum">
     	
       <div class="shop-item-text dotted">
-      	<a href="#"><%= product_image(@product) %></a>
+      	<a href="/pg/<%= @product.product_groups[0].permalink %>/male"><img alt="<%= @product.product_groups[0].name %>" height="70" width="70" src="<%= @product.product_groups[0].icon %>"></a>      	
       	<h2><%= @product.name %></h2>
       	<p><%= product_description(@product) rescue t("product_has_no_description") %></p>
       	<%= render 'shared/social' %>
