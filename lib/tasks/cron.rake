@@ -139,7 +139,7 @@ namespace :sync do
       sku = good["productCode"]
       ms_sku = good["id"][0]
       name = good["name"]
-      price = good["salePrice"]
+      price = good["salePrice"].to_f / 100
       
       #attributes
       gender_id = 0
@@ -166,6 +166,8 @@ namespace :sync do
       else
         product = product[0]
       end
+      product.price = price
+      product.gender = gender_id
       p_group = ProductGroup.where("ms_id = ?", dir_parents[good["parentId"]])[0]
       product.product_groups.clear
       product.product_groups << p_group
