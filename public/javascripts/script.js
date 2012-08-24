@@ -155,8 +155,8 @@ var color_table = {
 	"тёмно-синий": "#0B0B3B",
 	"темно-синий": "#0B0B3B"
 }
-function transformVariantChooser() {
-	$('.js-variant-chooser').each(function() {
+function transformVariantChooser(wrapper) {
+	$(wrapper + ' ' + '.js-variant-chooser').each(function() {
 
 		var container = $(this);
 		if (container.data('ready')) {
@@ -266,7 +266,9 @@ $('.js-hide-delivery-address-form').live('change', toggleDAF);
 // но и для того, что загружается аяксом должны быть в этом блоке:
 $(document).bind('html-inserted', function() {
 	toggleDAF();
-	transformVariantChooser();
+	transformVariantChooser('#cart_wrapper');
+	transformVariantChooser('.right-colum');
+	transformVariantChooser('.left-colum');
 
 	// placeholder
 	$('input[placeholder], textarea[placeholder]').placeholder();

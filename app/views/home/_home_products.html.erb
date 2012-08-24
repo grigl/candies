@@ -18,6 +18,7 @@
             <li>
               <label>
                 <%= radio_button_tag "products[#{product.id}]", v.id, checked, :disabled => !v.in_stock && !Spree::Config[:allow_backorders] %>
+                <span class="variant-on-hand"><%= v.on_hand %></span>
                 <span class="variant-description">
                   <%= variant_options v %>
                 </span>
@@ -54,6 +55,9 @@
           <div class="shop-item-price">
             <%= product_price(product, with_em: true) %>
           </div>
+          <div class="shop-item-num" style='padding-top:13px;'>
+            На складе: <span class="shop-item-on-hand"></span>
+          </div>
         </div>
         </li>
         <% end %>
@@ -81,6 +85,7 @@
             <li>
               <label>
                 <%= radio_button_tag "products[#{product.id}]", v.id, checked, :disabled => !v.in_stock && !Spree::Config[:allow_backorders] %>
+                <span class="variant-on-hand"><%= v.on_hand %></span>
                 <span class="variant-description">
                   <%= variant_options v %>
                 </span>
@@ -116,6 +121,9 @@
             <button type="submit" class="add-to-cart button plus">В корзину</button>
           <div class="shop-item-price">
             <%= product_price(product, with_em: true) %>
+          </div>
+          <div class="shop-item-num" style='padding-top:13px;'>
+            На складе: <span class="shop-item-on-hand"></span>
           </div>
         </div>
         </li>
