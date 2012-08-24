@@ -476,11 +476,15 @@ header li.cur.none {background: none;}
 	100%{width: 50%;}
 }*/
 
-.jcarousel-clip-vertical, 
-.jcarousel {
+.jcarousel-clip-vertical {
 	overflow: hidden;
 	height: 540px;
+	position: relative;
 }
+	.jcarousel {
+		position: relative;
+		height: 540px;
+	}
 
 	.jcarousel-item {
 		height: 540px;

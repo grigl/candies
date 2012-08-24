@@ -138,6 +138,10 @@ namespace :sync do
             found_variant.option_values << OptionValue.find(color_id)
             found_variant.ms_good_id = cons_id
             found_variant.save          
+          else
+            found_variant = variant[0]
+            found_variant.price = product.price
+            found_variant.save
           end 
         end        
       end      

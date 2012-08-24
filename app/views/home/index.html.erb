@@ -5,7 +5,7 @@
 <% content_for :script do -%>
 <script type="text/javascript">
 $(function(){
-	$('.jcarousel').jcarousel({
+	/*$('.jcarousel').jcarousel({
 		vertical: true,
 		wrap: 'circular',
 		animation: 'slow',
@@ -37,6 +37,35 @@ $(function(){
 			} 
 			jc.play(); 
 		}
+	});*/
+
+	// Самодельный jcarousel не ломающий другой js
+	$('.jcarousel').each(function(){
+		var container = $(this)
+		  , paused = false
+		  , itemHeight = container.find('.jcarousel-item').height()
+
+		container
+			.wrap('<div class="jcarousel-clip-vertical"></div>')
+			.css('height', 'auto')
+
+		setInterval(function(){
+			paused || container.animate({top: -itemHeight}, 1000, 'easeInOutCubic', function(){
+				container.find('.jcarousel-item').first().appendTo(container)
+				container.css('top', 0)
+			})
+		}, 5000)
+
+		container.on({
+			mouseover: function() {paused = true},
+			mouseout: function() {paused = false}
+		})
+
+		$('.ik_select_block').live({
+			mouseover: function() {paused = true},
+			mouseout: function() {paused = false}
+		})
+
 	});
 });
 </script>
