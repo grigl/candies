@@ -14,7 +14,7 @@
       $('form#updatecart').submit();
     })
 
-    $('#registration_link').live('click', function(e){
+    $('.registration_link').live('click', function(e){
       e.preventDefault();
       $('.accaunt_current').hide('slide', { direction: 'left'}, 1000);
       $('.accaunt_current').removeClass('accaunt_current');
@@ -22,12 +22,20 @@
       $('#registration').show('slide', { direction: 'right'}, 1000 );
     });
 
-    $('#login_link').live('click', function(e){
+    $('.login_link').live('click', function(e){
       e.preventDefault();
       $('.accaunt_current').hide('slide', { direction: 'left'}, 1000);
       $('.accaunt_current').removeClass('accaunt_current');
       $('#login').addClass('accaunt_current');
       $('#login').show('slide', { direction: 'right'}, 1000 );
+    });
+
+    $('.remind_link').live('click', function(e){
+      e.preventDefault();
+      $('.accaunt_current').hide('slide', { direction: 'left'}, 1000);
+      $('.accaunt_current').removeClass('accaunt_current');
+      $('#remind').addClass('accaunt_current');
+      $('#remind').show('slide', { direction: 'right'}, 1000 );
     });
 
     $('#show_accaunt_edit').live('click', function(e){

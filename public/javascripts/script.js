@@ -317,19 +317,6 @@ $(function() {
 	});	
 });
 
-//восстановление пароля
-$(function() {
-	$('#remind_pass_init').click(function() {
-		$.get(
-			$(this).attr('href'),
-			function (html) {
-				$('#login').html(html);
-			}
-		);
-		return false;
-	});
-});
-
 //При нажатии на «Информация» и «Личный кабинет»
 $('.js-personal-page-link, .js-about-link').live('ajax:before', function() {
 	$('#page').hide('slide', {direction: $(this).is('.js-about-link') ? 'right' : 'left'}, 1000, function() {

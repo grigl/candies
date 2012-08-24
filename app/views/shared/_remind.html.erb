@@ -1,0 +1,29 @@
+<div class="form-box">
+  <%= form_for User.new, :as => :user, :url => user_password_path do |f| %>
+    <div class="form-item w346">
+      <label>логин или адрес электронной почты:</label>
+      <input type="email" size="30" name="user[email]" id="user_email" class="textfield">
+    </div>
+    <div class="form-item w346" align="center">
+      <input type="submit" class="button" value="ВОССТАНОВИТЬ ПАРОЛЬ">
+    </div>
+  <% end %>
+</div>
+
+<h3><a href="login" class="dotted login_link">ЛОГИН</a></h3>
+
+<script type="text/javascript">
+$(function() {
+  $('#user_new').submit(function() {
+    var href = $(this).attr('action');
+    $.post(
+      href,
+      $(this).serialize(),
+      function (html) {
+        $('#remind').html(html);
+      }
+    );
+    return false;
+  });
+});
+</script>
