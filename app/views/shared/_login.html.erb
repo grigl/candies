@@ -24,3 +24,18 @@
   </div>
   
   <h3><a id="registration_link" href="registration" class="dotted">РЕГИСТРАЦИЯ</a></h3>
+  
+<script type="text/javascript">
+//восстановление пароля
+$(function() {
+	$('#remind_pass_init').click(function() {
+		$.get(
+			$(this).attr('href'),
+			function (html) {
+				$('#login').html(html);
+			}
+		);
+		return false;
+	});
+});
+</script>
