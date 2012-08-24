@@ -57,13 +57,13 @@ $(function(){
 		}, 5000)
 
 		container.on({
-			mouseover: function() {console.log(paused = true)},
-			mouseout: function() {console.log(paused = false)}
+			mouseover: function() {paused = true},
+			mouseout: function() {paused = false}
 		})
 
 		$('.ik_select_block').live({
-			mouseover: function() {console.log(paused = true)},
-			mouseout: function() {console.log(paused = false)}
+			mouseover: function() {paused = true},
+			mouseout: function() {paused = false}
 		})
 
 	});
