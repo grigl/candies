@@ -185,21 +185,18 @@ function transformVariantChooser(wrapper) {
 		})
 
 		for (color in colors) {
-			double_color = color.split('/');
-			if (double_color.length == 1) {
-				container.find('.shop-item-colors')
-					.append( $('<li class="js-color-option" style="border: 1px solid black;"></li>')
-										.css('background-color', color_table[color]).attr('title', color) );				
-			} else {
-				cl_1 = double_color[0];
-				cl_2 = double_color[1];
-				container.find('.shop-item-colors')
-					.append($('<li class="js-color-option" style="border: 1px solid black;"></li>')
+			color_a = color.split('/')[0];
+			color_b = color.split('/')[1] || color_a;
+			container.find('.shop-item-colors').append(
+				$('<li class="js-color-option"><span class="helper"></span></li>')
+					.find('.helper')
+						.css({
+							'border-left-color': color_table[color_a],
+							'border-right-color': color_table[color_b]
+						})
+					.end()
 					.attr('title', color)
-					.prepend('<div style="float: left; width: 50%; height: 33px; background-color:'+color_table[cl_1]+'"></div></li>')
-					.prepend('<div style="float: right; width: 50%; height: 33px; background-color:'+color_table[cl_2]+'"></div></li>')
-					);				
-			}
+			);
 		}
 
 		function update_old_controls() {

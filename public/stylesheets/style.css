@@ -636,21 +636,28 @@ header li.cur.none {background: none;}
 
 	.shop-item-colors li {
 		float: left;
-		position: relative;
+		width: 16px; height: 16px;
 		margin-right: 9px;
-		width: 33px; height: 33px;
+		padding: 1px;
 		cursor: pointer;
+		border: 1px solid white;
+		margin-top: 5px;
 	}
-	.shop-item-colors li.cur:after {
-		display: block;
-		position: absolute;
-		content: "";
-		width: 12px;
-		height: 12px;
-		background: url(../images/ico_color_checked.png) no-repeat;
-		top: 0;
-		left: 0;
+	.shop-item-colors li.cur {
+		border-color: black;
 	}
+	.shop-item-colors li,
+	.shop-item-colors li .helper {
+		-webkit-border-radius: 50%;
+		-moz-border-radius: 50%;
+		border-radius: 50%;
+	}
+		.shop-item-colors li .helper {
+			display: block;
+			width: 0; height: 16px;
+			border: solid;
+			border-width: 0 8px;
+		}
 
 .shop-item-text {
 	padding-bottom: 18px;
