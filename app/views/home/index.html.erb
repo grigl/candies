@@ -1,44 +1,9 @@
 <% content_for :head do -%>
-  <%= javascript_include_tag 'jquery.jcarousel.min.js'%>
   <%= javascript_include_tag 'product' %>
 <% end -%>
 <% content_for :script do -%>
 <script type="text/javascript">
 $(function(){
-	/*$('.jcarousel').jcarousel({
-		vertical: true,
-		wrap: 'circular',
-		animation: 'slow',
-		auto: 4,
-		scroll: 1,
-		initCallback: function(jc, state) { 
-			if (state == 'init') { 
-				jc.startAutoOrig = jc.startAuto; 
-				jc.startAuto = function() { 
-					if (!jc.paused) { 
-						jc.startAutoOrig(); 
-					} 
-				} 
-				jc.pause = function() { 
-					jc.paused = true; 
-					jc.stopAuto(); 
-				}; 
-				jc.play = function() { 
-					jc.paused = false; 
-					jc.startAuto(); 
-				};
-				$('body').live('click', function(e) {
-					jc.play();
-				});
-				$('.ik_select_link').live('click', function(e) {
-					jc.pause();
-					e.stopPropagation();
-				});
-			} 
-			jc.play(); 
-		}
-	});*/
-
 	// Самодельный jcarousel не ломающий другой js
 	$('.jcarousel').each(function(){
 		var container = $(this)
