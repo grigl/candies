@@ -166,7 +166,6 @@ function transformVariantChooser() {
 		}
 
 		var colors = {};
-		var quantities = {};
 		container.find('.js-source label').each(function(){
 			var description = $('.variant-description', this).html().split(',');
 			var onHand = $('.variant-on-hand', this).html();
@@ -206,7 +205,22 @@ function transformVariantChooser() {
 		function update_old_controls() {
 			var value = container.find('.js-size-select option:selected').data('value');
 			container.find('.js-source input[value="' + value + '"]').prop('checked', true).click();
+			set_on_hand();
 		}
+
+		function set_on_hand() {
+			var onHand = container.find('.js-source input[type="radio"]:checked').parent().find('.variant-on-hand').html();
+
+			if (parseInt(onHand) < 1) {
+				var onHandText = "Нет";
+				$('.add-to-cart').addClass("disabled");
+			}	else {
+				var onHandText = onHand;
+				$('.add-to-cart').removeClass("disabled");
+			};
+
+			$('.shop-item-on-hand').html(onHandText);
+		};
 
 		function set_color(color) {
 			container.find('.js-color-option.cur').removeClass('cur');
