@@ -801,7 +801,6 @@ header li.cur.none {background: none;}
 .cart-list {margin-bottom: 16px;}
 
 	.cart-list-item {
-		min-height: 33px;
 		background: url(../images/dot_gray.gif) repeat-x;
 		padding: 17px 0;
 	}
