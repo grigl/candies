@@ -10,3 +10,4 @@ markup/*
 *.sublime-project
 public/assets/*
 config/database.yml
+*.sql
