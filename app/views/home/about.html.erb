@@ -16,22 +16,16 @@ $(function(){
 </script>
 <% end -%>
 
-  <%=render 'home_products' %>	  
-
-  <%= content_for :page do %> 
-    <%= render 'shared/about_page' %>
-  <% end %>
+  <%=render 'home_products' %>	
 
   <%= content_for :header do %>    
     <%= render 'shared/about_header' %>
   <% end %>
 
   <%= content_for :head  do %>
-      <script>
-        $(document).ready(function(e){
-           page_height = $('.page.white').height();
-           $('html, body').animate({scrollTop: page_height + 72}, 400);
-           e.preventDefault;
-        });
-      </script>
+    <script>
+      $(function(){
+        switchPage('about');
+      })
+    </script>
   <% end %>

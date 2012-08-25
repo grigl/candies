@@ -59,9 +59,9 @@ $('.go-top').live('click', (function(e){
 // go-bottom
 $('.go-bottom').live('click', (function(e){
 	 e.preventDefault();
-	 if ($('.current').attr('id') != "cart") {
-	 		$.get('/show_personal_page');
-		}
+	 if ($(this).is('.js-cart-link')) {
+	 	 switchPage('personal');
+	 }
 	 page_height = $('.page.white').height();
 	 $('html, body').animate({scrollTop: page_height + 72}, 400);
 	 return false;
@@ -317,20 +317,38 @@ $(function() {
 	});	
 });
 
-//При нажатии на «Информация» и «Личный кабинет»
-$('.js-personal-page-link, .js-about-link').live('ajax:before', function() {
-	$('#page').hide('slide', {direction: $(this).is('.js-about-link') ? 'right' : 'left'}, 1000, function() {
-		$('#page').html('<div class="loading-animation"></div>').show();
+window.switchPage = function( pageName, noScroll ) {
+	if (pageName == 'personal') {
+		if (!$('.js-personal-page-link').parent().hasClass('cur')) {
+			$('.js-page-about').hide('slide', {direction: 'right'}, 1000)
+			$('.js-page-personal').show('slide', {direction: 'left'}, 1000)
+			$('.js-about-link').parent().removeClass('cur')
+			$('.js-personal-page-link').parent().addClass('cur')
+			window.history && window.history.pushState && window.history.pushState("", "", "/");
+		}
+	}
+	if (pageName == 'about') {
+		if (!$('.js-about-link').parent().hasClass('cur')) {
+			$('.js-page-personal').hide('slide', {direction: 'left'}, 1000)
+			$('.js-page-about').show('slide', {direction: 'right'}, 1000)
+			$('.js-personal-page-link').parent().removeClass('cur')
+			$('.js-about-link').parent().addClass('cur')
+			window.history && window.history.pushState && window.history.pushState("", "", "/about");
+		}
+	}
+	if (!noScroll) {
 		// докручиваем до темной части, если требуется
 		var scroll_to = $('.page.white').height() + 72;
 		if (Math.max($('html').scrollTop(), $('body').scrollTop()) < scroll_to) {
 			$('html, body').animate({scrollTop: scroll_to}, 400);
 		}
-	});
-});
+	}
+	return void(0);
+}
+$(function(){ switchPage('personal', true) })
 
 // placeholder
-(function(b){function d(a){this.input=a;a.attr("type")=="password"&&this.handlePassword();b(a[0].form).submit(function(){if(a.hasClass("placeholder")&&a[0].value==a.attr("placeholder"))a[0].value=""})}d.prototype={show:function(a){if(this.input[0].value===""||a&&this.valueIsPlaceholder()){if(this.isPassword)try{this.input[0].setAttribute("type","text")}catch(b){this.input.before(this.fakePassword.show()).hide()}this.input.addClass("placeholder");this.input[0].value=this.input.attr("placeholder")}},
+;(function(b){function d(a){this.input=a;a.attr("type")=="password"&&this.handlePassword();b(a[0].form).submit(function(){if(a.hasClass("placeholder")&&a[0].value==a.attr("placeholder"))a[0].value=""})}d.prototype={show:function(a){if(this.input[0].value===""||a&&this.valueIsPlaceholder()){if(this.isPassword)try{this.input[0].setAttribute("type","text")}catch(b){this.input.before(this.fakePassword.show()).hide()}this.input.addClass("placeholder");this.input[0].value=this.input.attr("placeholder")}},
 hide:function(){if(this.valueIsPlaceholder()&&this.input.hasClass("placeholder")&&(this.input.removeClass("placeholder"),this.input[0].value="",this.isPassword)){try{this.input[0].setAttribute("type","password")}catch(a){}this.input.show();this.input[0].focus()}},valueIsPlaceholder:function(){return this.input[0].value==this.input.attr("placeholder")},handlePassword:function(){var a=this.input;a.attr("realType","password");this.isPassword=!0;if(b.browser.msie&&a[0].outerHTML){var c=b(a[0].outerHTML.replace(/type=(['"])?password\1/gi,
 "type=$1text$1"));this.fakePassword=c.val(a.attr("placeholder")).addClass("placeholder").focus(function(){a.trigger("focus");b(this).hide()});b(a[0].form).submit(function(){c.remove();a.show()})}}};var e=!!("placeholder"in document.createElement("input"));b.fn.placeholder=function(){return e?this:this.each(function(){var a=b(this),c=new d(a);c.show(!0);a.focus(function(){c.hide()});a.blur(function(){c.show(!1)});b.browser.msie&&(b(window).load(function(){a.val()&&a.removeClass("placeholder");c.show(!0)}),
 a.focus(function(){if(this.value==""){var a=this.createTextRange();a.collapse(!0);a.moveStart("character",0);a.select()}}))})}})(jQuery);

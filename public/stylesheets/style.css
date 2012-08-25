@@ -1314,3 +1314,9 @@ header li.cur.none {background: none;}
 }
 
 
+/* страницы ЛК и эбаут */
+.pages .page {
+	position: absolute;
+}
+
+
