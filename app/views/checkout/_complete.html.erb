@@ -2,7 +2,7 @@
   <h4>Спасибо за Ваш заказ!<br>В ближайшее время мы свяжемся с вами.</h4><br><br>
   <% if @order.nil? == false %>
   <% if @order.payment_method.is_a?(PaymentMethod::SberBankInvoice) %>
-    <%= link_to 'скачать квитанцию', orders_sberbank_invoice_path(@order), class: 'dotted' %>
+    <%= link_to 'скачать квитанцию', orders_sberbank_invoice_path(@order), class: 'dotted', target: "_blank" %>
   <% end %><br />
   <% end %>
   <%= link_to 'вернуться в магазин', root_path, class: 'dotted' %>
