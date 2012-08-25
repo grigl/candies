@@ -5,7 +5,9 @@
     $('form#updatecart a.delete').show().live('click', function(e){
       $(this).parent().find('input.line_item_quantity').val(0);
       $(this).parents('.cart-list-item').slideUp();
-      $(this).parents('form').submit();
+      $(this).parents('form')
+        .addClass('loading')
+        .submit();
       e.preventDefault();
     });
 
