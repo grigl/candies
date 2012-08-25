@@ -76,10 +76,17 @@
   </div>
 </div>
 
-<div class="page" id="page">
-  <%= yield(:page) %>
+<div class="pages">
+  <div class="page js-page-personal">
+    <%= render 'shared/personal_page' %>
+  </div>
+
+  <div class="page js-page-about">
+    <%= render 'shared/about_page' %>
+  </div>
 </div>
-<a href="http://whitescape.com" class="copyright-link"></a>
+
+<!-- <a href="http://whitescape.com" class="copyright-link"></a> -->
 <%= yield(:script) %>
 </body>
 </html>

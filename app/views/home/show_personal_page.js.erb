@@ -1,7 +1,1 @@
-// см. также `script.js` – При нажатии на «Информация» и «Личный кабинет»
-
-$('#page').promise().done(function(){
-  $('#page').html('<%= escape_javascript(render 'shared/personal_page') %>');
-  $('#header_wrapper').html('<%= escape_javascript(render 'shared/header') %>');
-  window.history && window.history.pushState && window.history.pushState("", "", "/");
-});
+// Ненужный файл

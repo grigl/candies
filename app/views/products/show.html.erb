@@ -29,7 +29,7 @@ $(document).ready(function() {
       <div class="shop-item-text dotted">
       	<a href="<%= @product.product_groups[0].permalink %>"><img alt="<%= @product.product_groups[0].name %>" height="70" width="70" src="<%= @product.product_groups[0].icon %>"></a>      	
       	<h2><%= @product.name %></h2>
-      	<p><%= product_description(@product) rescue t("product_has_no_description") %></p>
+      	<p class="product-description"><%= product_description(@product) rescue t("product_has_no_description") %></p>
       	<%= render 'shared/social' %>
       </div>
       
@@ -109,7 +109,7 @@ $(document).ready(function() {
       <div class="shop-item-text dotted">
       	<a href="/pg/<%= @product.product_groups[0].permalink %>/male"><img alt="<%= @product.product_groups[0].name %>" height="70" width="70" src="<%= @product.product_groups[0].icon %>"></a>      	
       	<h2><%= @product.name %></h2>
-      	<p><%= product_description(@product) rescue t("product_has_no_description") %></p>
+      	<p class="product-description"><%= product_description(@product) rescue t("product_has_no_description") %></p>
       	<%= render 'shared/social' %>
       </div>
       
