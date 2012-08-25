@@ -317,6 +317,21 @@ $(function() {
 	});	
 });
 
+$(function() {
+	$('#updatecart').bind("ajax:beforeSend", function(evt, xhr, settings) {
+		if ($(this).find('.line_item_quantity').hasClass("disabled")) {
+			xhr.abort();
+		} else {
+			is_populating = true;
+			alert('asdf');
+			$(this).find('.line_item_quantity').addClass("disabled")			
+		}
+	});
+	$('form.order_populate').bind("ajax:complete", function(evt, xhr, status) {
+		$(this).find('.add-to-cart').removeClass("disabled")
+	});	
+});
+
 //При нажатии на «Информация» и «Личный кабинет»
 $('.js-personal-page-link, .js-about-link').live('ajax:before', function() {
 	$('#page').hide('slide', {direction: $(this).is('.js-about-link') ? 'right' : 'left'}, 1000, function() {
