@@ -671,6 +671,7 @@ header li.cur.none {background: none;}
 	height: 70px;
 	margin-bottom: 16px;
 }
+.shop-item-text .product-description {margin-bottom: 1em}
 	
 .shop-item-buy {
 	overflow: hidden;
