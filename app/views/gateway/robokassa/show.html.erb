@@ -23,7 +23,7 @@
           </h5>
         </div>
         
-        <p><a href="#">изменить адрес</a></p><br><br>
+        <p><%= link_to 'изменить адрес', back_to_address_path, remote: true %></p><br><br>
                   
         <div class="checkout-buttons">
            <%= link_to 'НАЗАД', back_checkout_path(@order.state), class: 'button', remote: true %>
