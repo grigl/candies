@@ -900,7 +900,7 @@ header li.cur.none {background: none;}
 /* //cart-button-box */
 
 .form-box {
-	background-color: rgba(0, 0, 0, 0.15);
+	/*background-color: rgba(0, 0, 0, 0.15);*/
 	margin-bottom: 45px;
 	padding: 30px 35px 14px;
 	-webkit-border-radius: 6px;
