@@ -4,7 +4,7 @@
       <% @products["male"].each do |product| %>
       	<li class="jcarousel-item">
         <figure class="shop-item-images">	
-          <%= link_to product_image(product, { width: 416, height: 305 }), product %>
+          <%= link_to product_image(product, { width: 416 }), product %>
         </figure>
 
         <%= form_for :order, :url => populate_orders_url, remote: true, :html => {:class => "order_populate"}  do |f| %>        
@@ -71,7 +71,7 @@
       <% @products["female"].each do |product| %>
       	<li class="jcarousel-item">
         <figure class="shop-item-images">	
-          <%= link_to product_image(product, { width: 416, height: 305 }), product %>
+          <%= link_to product_image(product, { width: 416 }), product %>
         </figure>
 
         <%= form_for :order, :url => populate_orders_url, remote: true, :html => {:class => "order_populate"} do |f| %>        

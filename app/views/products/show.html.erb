@@ -27,7 +27,7 @@ $(document).ready(function() {
 <% if @product.gender == 2 %>
 <div class="left-colum">
       <div class="shop-item-text dotted">
-      	<a href="<%= @product.product_groups[0].permalink %>"><img alt="<%= @product.product_groups[0].name %>" height="70" width="70" src="<%= @product.product_groups[0].icon %>"></a>      	
+      	<a href="<%= @product.product_groups[0].permalink %>"><img alt="<%= @product.product_groups[0].name %>" height="70" src="<%= @product.product_groups[0].icon %>"></a>      	
       	<h2><%= @product.name %></h2>
       	<p class="product-description"><%= product_description(@product) rescue t("product_has_no_description") %></p>
       	<%= render 'shared/social' %>
@@ -52,10 +52,10 @@ $(document).ready(function() {
 		<div id="slider">
         <ul class="bjqs">
         <% if @product.images.empty? %>
-        	<li><img alt="<%= @product.name %>" height="305" width="416" src="/images/noimage/product.jpg"></li>
+        	<li><img alt="<%= @product.name %>" src="/images/noimage/product.jpg"></li>
         <% end %>
         <% @product.images.each do|image| %>
-			<li><img alt="<%= @product.name %>" height="305" width="416" src="<%= image.attachment.url %>"></li>
+			<li><img alt="<%= @product.name %>" src="<%= image.attachment.url %>"></li>
 		<% end %>
         </ul>			
     	</div>
@@ -79,10 +79,10 @@ $(document).ready(function() {
 		<div id="slider">
         <ul class="bjqs">
         <% if @product.images.empty? %>
-        	<li><img alt="<%= @product.name %>" height="305" width="416" src="/images/noimage/product.jpg"></li>
+        	<li><img alt="<%= @product.name %>" src="/images/noimage/product.jpg"></li>
         <% end %>        	
         <% @product.images.each do|image| %>
-			<li><img alt="<%= @product.name %>" height="305" width="416" src="<%= image.attachment.url %>"></li>
+			<li><img alt="<%= @product.name %>" src="<%= image.attachment.url %>"></li>
 		<% end %>
         </ul>			
     	</div>
@@ -107,7 +107,7 @@ $(document).ready(function() {
 <div class="right-colum">
     	
       <div class="shop-item-text dotted">
-      	<a href="/pg/<%= @product.product_groups[0].permalink %>/male"><img alt="<%= @product.product_groups[0].name %>" height="70" width="70" src="<%= @product.product_groups[0].icon %>"></a>      	
+      	<a href="/pg/<%= @product.product_groups[0].permalink %>/male"><img alt="<%= @product.product_groups[0].name %>" height="70" src="<%= @product.product_groups[0].icon %>"></a>      	
       	<h2><%= @product.name %></h2>
       	<p class="product-description"><%= product_description(@product) rescue t("product_has_no_description") %></p>
       	<%= render 'shared/social' %>
