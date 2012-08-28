@@ -324,7 +324,7 @@ window.switchPage = function( pageName, noScroll ) {
 			$('.js-page-personal').show('slide', {direction: 'left'}, 1000)
 			$('.js-about-link').parent().removeClass('cur')
 			$('.js-personal-page-link').parent().addClass('cur')
-			window.history && window.history.pushState && window.history.pushState("", "", "/");
+			/*window.history && window.history.pushState && window.history.pushState("", "", "/")*/;
 		}
 	}
 	if (pageName == 'about') {
@@ -333,7 +333,7 @@ window.switchPage = function( pageName, noScroll ) {
 			$('.js-page-about').show('slide', {direction: 'right'}, 1000)
 			$('.js-personal-page-link').parent().removeClass('cur')
 			$('.js-about-link').parent().addClass('cur')
-			window.history && window.history.pushState && window.history.pushState("", "", "/about");
+			/*window.history && window.history.pushState && window.history.pushState("", "", "/about")*/;
 		}
 	}
 	if (!noScroll) {
