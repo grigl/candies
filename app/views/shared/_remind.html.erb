@@ -14,6 +14,7 @@
 
 <script type="text/javascript">
 $(function() {
+  $('#user_new').unbind('submit');
   $('#user_new').submit(function() {
     var href = $(this).attr('action');
     $.post(
