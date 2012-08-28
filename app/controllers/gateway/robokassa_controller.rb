@@ -27,7 +27,7 @@ class Gateway::RobokassaController < Spree::BaseController
       payment.save
       @order.save!
       @order.state = "complete"
-      @order.completed_at = Time.now
+      @order.finalize!
       @order.save!
       @order.update!
       
