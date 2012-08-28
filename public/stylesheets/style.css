@@ -401,6 +401,7 @@ header li.cur.none {background: none;}
 .page {
 	width: 100%;
 	min-width: 996px;
+	min-height: 1520px;
 	position: relative;
 }
 	.white {
