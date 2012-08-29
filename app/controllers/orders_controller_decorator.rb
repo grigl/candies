@@ -9,6 +9,18 @@ OrdersController.class_eval do
 
   def update
     @order = current_order
+    #наглая подмена параметров, чтобы нельзя бы заказать больше
+    params[:order]["line_items_attributes"].each do|i, item|
+      line_item_id = item["id"].to_i
+      line_item_qty = item["quantity"].to_f
+      line_item = LineItem.find(line_item_id)
+      variant_id = line_item.variant_id
+      variant = Variant.find(variant_id)
+      if variant.count_on_hand < line_item_qty then
+        params[:order]["line_items_attributes"][i]["quantity"] = variant.count_on_hand
+      end
+    end
+    ###
     if @order.update_attributes(params[:order])
       @order.update_totals
       @order.line_items = @order.line_items.select {|li| li.quantity > 0 }
