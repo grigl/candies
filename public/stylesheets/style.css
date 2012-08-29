@@ -327,6 +327,10 @@ button.button, input[type="submit"].button {
 	background: url(../images/ico_plus.png) 9px 11px no-repeat;
 	padding-left: 22px;
 }
+.button:active, .button.active {
+	color: #333;
+	background-color: #fff;
+}
 .white .button:active, .white .button.active {
 	color: #fff;
 	background-color: #2a292a;
@@ -687,7 +691,8 @@ header li.cur.none {background: none;}
 	
 .shop-item-buy {
 	overflow: hidden;
-	padding-bottom: 16px;
+	padding: 16px 0;
+	margin-top: -16px;
 }
 .shop-item-buy .button {
 	float: left;
@@ -1086,9 +1091,9 @@ header li.cur.none {background: none;}
 	position: absolute;
 	width: 600px;
 	height: 200px;
-	top: 50%;
+	top: 300px;
 	left: 50%;
-	margin: -100px 0 0 -300px;
+	margin: 0 0 0 -300px;
 	text-align: center;
 }
 /* //checkout */

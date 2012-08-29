@@ -4,28 +4,36 @@
   <li class="cur"><a>3</a></li>
 </ul>
 
+<script>
+$(document).ready(function(){
+	var right_col_height = $("div#right").height();
+	$("div#left").height(right_col_height - 135);
+});
+</script>
+
 <div class="left-colum">
     
       <h3>Подтверждение</h3>
       
       <div class="checkout-form">
         
-        <div class="checkout-confirm">
-          <h4>
-            Доставка: <%= @order.shipping_method.name %><br>
-            Оплата: <%= @order.payment_method.name %>
-          </h4>
-          
-          <h5>
-            <%= @order.bill_address.firstname %><br>
-            <%= @order.bill_address.address1 %><br />
-            <%= @order.bill_address.city %>, <%= @order.bill_address.state %><br />
-            <%= @order.bill_address.country %>
-          </h5>
+				<div id="left">
+					<div class="checkout-confirm">
+						<h4>
+							Доставка: <%= @order.shipping_method.name %><br>
+							Оплата: <%= @order.payment_method.name %>
+						</h4>
+						
+						<h5>
+							<%= @order.bill_address.firstname %><br>
+							<%= @order.bill_address.address1 %><br />
+							<%= @order.bill_address.city %>, <%= @order.bill_address.state %><br />
+							<%= @order.bill_address.country %>
+						</h5>
+					</div>
+					<p><%= link_to 'изменить адрес', back_to_address_path, remote: true %></p><br><br>
         </div>
-        
-        <p><%= link_to 'изменить адрес', back_to_address_path, remote: true %></p><br><br>
-                  
+				        
         <div class="checkout-buttons">
            <%= link_to 'НАЗАД', back_checkout_path(@order.state), class: 'button', remote: true %>
         </div>
@@ -34,7 +42,7 @@
 
     </div>
     
-    <div class="right-colum">
+    <div class="right-colum" id="right">
       
       <h3>&nbsp;</h3>
       
