@@ -1,4 +1,4 @@
-<% for_mail_host = "http://thecandies.ru" %>
+<% for_mail_host = Spree::Config[:site_url] %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html lang="ru" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Candies</title></head>
 <body style="font-size:14px; line-height:17px; color:#000000; font-family:Arial, Helvetica, sans-serif; background-color:#ffffff;">
 <div id="mailsub">
@@ -16,7 +16,7 @@
 Заказанные продукты:<br />
 <br />
 <% for item in @order.line_items %>
-<a href="#" style="color:#0D52BA;"><%=item.variant.product.name%> (x<%=item.quantity%>): RUR <%= number_to_currency(item.price * item.quantity) %></a><br />
+<a href="http://<%= for_mail_host%>/product/<%=item.variant.product.sku %>" style="color:#0D52BA;"><%=item.variant.product.name%> (x<%=item.quantity%>): RUR <%= number_to_currency(item.price * item.quantity) %></a><br />
 <% end %>
 <br />
 <font style="font-size:18px; line-height:21px; color:#B52367;">Итого RUR <%= number_to_currency @order.total %></font><br />
@@ -29,7 +29,7 @@
 Доставка: <%= @order.shipping_method.name %><br />
 Получатель: <%= @order.ship_address.attributes["firstname"] %> <%= @order.ship_address.attributes["lastname"] %><br />
 Адрес доставки заказа: <%= @order.ship_address.to_s %><br />
-Стоимость доставки: RUR 0.00<br />
+Стоимость доставки: RUR <%= @order.adjustments[0].amount %><br />
 <br />
 <br /><div style="border-bottom:1px dotted #000;"></div><br />
 <font style="font-size:18px; line-height:21px;">Оплата заказа:</font><br />
@@ -41,9 +41,9 @@
 Мы свяжемся с вами в ближайшее время.<br />
 <br />
 <br /><div style="border-bottom:1px dotted #000;"></div><br />
-<a href="<%= for_mail_host %>" style="font-size:18px; line-height:21px; color:#000000; float:right;">Войти в магазин</a>
+<a href="http://<%= for_mail_host %>" style="font-size:18px; line-height:21px; color:#000000; float:right;">Войти в магазин</a>
 С наилучшими пожеланиями, Candies.<br />
-www.candies.ru<br />
+www.thecandies.ru<br />
 <br />
 <br /><br />
 
