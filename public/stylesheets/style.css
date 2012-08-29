@@ -926,6 +926,7 @@ header li.cur.none {background: none;}
 }
 
 	.w416 {width: 416px;}
+	.w416 .ik_select {width: 416px;}
 	.w416 .textfield {width: 400px;}
 	
 	.w346 {width: 346px;}
