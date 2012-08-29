@@ -106,8 +106,20 @@
                       <p class="num">кол-во: <%= line_item.quantity %></p>
                       <p class="name"><%= line_item.variant.product.name %></p>
                       <p>
-                        <span class="size">размер: 43</span>
-                        <span class="color">цвет: черный</span>
+                        <span class="size">размер: 
+                          <% line_item.variant.option_values.select.each do|ov| %>
+                            <% if ov.option_type.name == 'size' %>
+                              <%= ov.presentation %>
+                            <% end %>
+                          <% end %>
+                        </span>
+                        <span class="color">цвет: 
+                          <% line_item.variant.option_values.select.each do|ov| %>
+                            <% if ov.option_type.name == 'color' %>
+                              <%= ov.presentation %>
+                            <% end %>
+                          <% end %>
+                        </span>
                         <span class="price">цена:   <%= product_price(line_item.variant) %></span>
                       </p>
                     </li>

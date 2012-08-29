@@ -42,6 +42,13 @@
               		<% end %>
               	<% end %>
               </span>
+              <span class="color">цвет: 
+                <% line_item.variant.option_values.select.each do|ov| %>
+                  <% if ov.option_type.name == 'color' %>
+                    <%= ov.presentation %>
+                  <% end %>
+                <% end %>
+              </span>
               <span class="price">цена:   <%= product_price(line_item.variant) %></span>
             </p>
           </div>
