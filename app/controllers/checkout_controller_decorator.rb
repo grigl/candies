@@ -53,6 +53,7 @@ CheckoutController.class_eval do
 
   def back
     @order = current_order
+    @order.state = params[:state]
     @order.state = @order.previous_state
     if @order.save
       respond_with(@order) { |format| format.js { render :back_checkout } }

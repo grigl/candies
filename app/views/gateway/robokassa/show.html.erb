@@ -26,7 +26,7 @@
         <p><%= link_to 'изменить адрес', back_to_address_path, remote: true %></p><br><br>
                   
         <div class="checkout-buttons">
-           <%= link_to 'НАЗАД', back_checkout_path(@order.state), class: 'button', remote: true %>
+           <%= link_to 'НАЗАД', back_checkout_path('confirm'), class: 'button', remote: true %>
         </div>
           
       </div>
@@ -54,7 +54,18 @@
             <p class="name"><%= line_item.variant.product.name %></p>
             <p>
               <span class="size">размер: 
-                <%= line_item.variant.option_values.select {|ov| ov.option_type.name == 'size'}.first.presentation %>
+                <% line_item.variant.option_values.select.each do|ov| %>
+                  <% if ov.option_type.name == 'size' %>
+                    <%= ov.presentation %>
+                  <% end %>
+                <% end %>
+              </span>
+              <span class="color">цвет: 
+                <% line_item.variant.option_values.select.each do|ov| %>
+                  <% if ov.option_type.name == 'color' %>
+                    <%= ov.presentation %>
+                  <% end %>
+                <% end %>
               </span>
               <span class="price">цена:   <%= product_price(line_item.variant.product) %></span>
             </p>
