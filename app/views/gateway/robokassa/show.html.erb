@@ -88,10 +88,17 @@
           <span><%= number_to_currency @order.total %></span>
           Итого
         </div>
-		<%= form_tag @gateway.url, :method => "POST" do %>
+        <%= form_for @order, :url => update_checkout_path("confirm"), :html => { :id => "update_comment" } do |form| %>
+          <div class="form-item w416">
+            <%= form.label :special_instructions, 'Комментарии к заказу (заполняется по желанию):' %>
+              <%= form.text_area :special_instructions, :class => 'textfield' %>
+          </div>
+        <% end %>
+        
+		<%= form_tag @gateway.url, :method => "POST", :id => "robokassa_pay" do %>
 		<%= hidden_field_tag(:"MrchLogin", @gateway.options[:mrch_login]) %>
-		<%= hidden_field_tag(:"OutSum", @order.total)%>
-		<%= hidden_field_tag(:"InvId", @order.id)%>
+		<%= hidden_field_tag(:"OutSum", @order.total) %>
+		<%= hidden_field_tag(:"InvId", @order.id) %>
 		<%= hidden_field_tag(:"Desc", I18n.t("robokassa.details_of_payment", :order_number => @order.number)) %>
 		<%= hidden_field_tag(:"SignatureValue", @signature) %>        
           <div class="checkout-buttons" align="right">
@@ -99,5 +106,30 @@
           </div>
         <% end %>
       </div>
-      
     </div>
+    
+<script type="text/javascript">
+$(function() {
+	var is_saved = false;
+	var in_progress = false;
+	$("#robokassa_pay").submit(function() {
+		if (!is_saved) {
+			if (in_progress) {
+				return false;
+			}
+			in_progress = true;
+			form = $('#update_comment');
+			$.post(
+				$(form).attr('action'),
+				$(form).serialize(),
+				function (data) {
+					is_saved = true;
+					in_progress = true;
+					$('#robokassa_pay').submit();
+				}
+			);
+			return false;	
+		}
+	});
+});
+</script>

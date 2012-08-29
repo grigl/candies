@@ -1,6 +1,7 @@
 CheckoutController.class_eval do
   before_filter :load_order, except: [:back, :back_to_address]
-  # Updates the order and advances to the next state (when possible.)
+
+  # Updates the order and advances to the next state (when possible.)  
   def update
     if @order.update_attributes(object_params)
       if @order.next

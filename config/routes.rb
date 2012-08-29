@@ -1,4 +1,4 @@
-Candies::Application.routes.draw do
+Candies::Application.routes.draw do 
   get "sync/remains"
 
   get "sync/goods"
@@ -23,8 +23,7 @@ Candies::Application.routes.draw do
   post '/make_address_default' => 'addresses#make_default', as: :make_address_default
   get '/get_address' => 'addresses#get_address'
 
-   match '/admin' => 'admin/products#index', :as => :admin
-
+  match '/admin' => 'admin/products#index', :as => :admin
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
