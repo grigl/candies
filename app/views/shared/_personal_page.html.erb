@@ -1,7 +1,9 @@
 <% if @order %>
   <% if flash[:order_fail] == true %>
   <div class="checkout-step current">
-  	<%= render 'checkout/failure' %>
+  	<div class="wrapper">
+  		<%= render 'checkout/failure' %>
+  	</div>
   </div>
   <% end %>
   <div class="checkout-step <%= 'current' if @order.state == 'cart' %>" id="cart" <%= 'style=display:none;' unless @order.state == 'cart' and flash[:order_fail] != true %>> 
