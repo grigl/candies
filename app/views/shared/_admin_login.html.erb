@@ -1,5 +1,12 @@
 <div class="form-box">
-    <%= form_for :user, :url => user_session_path, remote: true do |f| %>
+	<% if params["from_admin"] == "true" %>
+		<% add_action = "?from_admin=true" %>
+		<% is_remote = false %>
+	<% else %>
+		<% add_action = "" %>
+		<% is_remote = true %>
+	<% end %>
+    <%= form_for :user, :url => user_session_path + add_action, remote: is_remote do |f| %>
       <div class="form-item w346">
         <%= f.label :email , 'EMAIL' %>
         <%= f.text_field :email, class: 'textfield' %>
