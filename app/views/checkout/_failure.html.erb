@@ -1,4 +1,4 @@
-<div>
+<div class="checkout-success">
   <h4>Произошли проблемы с оплатой!<br>Покупка не осуществленна.</h4><br><br>
   <% if @order.nil? == false %>
     <%= link_to 'попробовать повторить', back_checkout_path('address'), class: 'dotted', target: "_blank", remote: true %>

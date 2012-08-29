@@ -16,7 +16,7 @@
 Заказанные продукты:<br />
 <br />
 <% for item in @order.line_items %>
-<a href="http://<%= for_mail_host%>/product/<%=item.variant.product.sku %>" style="color:#0D52BA;"><%=item.variant.product.name%> (x<%=item.quantity%>): RUR <%= number_to_currency(item.price * item.quantity) %></a><br />
+<a href="http://<%= for_mail_host%>/products/<%=item.variant.product.permalink %>" style="color:#0D52BA;"><%=item.variant.product.name%> (x<%=item.quantity%>): RUR <%= number_to_currency(item.price * item.quantity) %></a><br />
 <% end %>
 <br />
 <font style="font-size:18px; line-height:21px; color:#B52367;">Итого RUR <%= number_to_currency @order.total %></font><br />
