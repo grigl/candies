@@ -4,31 +4,31 @@
   	<%= render 'checkout/failure' %>
   </div>
   <% end %>
-  <div class="checkout-step <%= 'current' if @order.state == 'cart' %>" id="cart" <%= 'style=display:none;' unless @order.state == 'cart' %>> 
+  <div class="checkout-step <%= 'current' if @order.state == 'cart' %>" id="cart" <%= 'style=display:none;' unless @order.state == 'cart' and flash[:order_fail] != true %>> 
     <div class="wrapper">
       <%= render 'checkout/cart' if @order.state == 'cart' %>
     </div>
   </div>
 
-  <div class="checkout-step <%= 'current' if @order.state == 'address' %>" id="address" <%= 'style=display:none;' unless @order.state == 'address' %>>
+  <div class="checkout-step <%= 'current' if @order.state == 'address' %>" id="address" <%= 'style=display:none;' unless @order.state == 'address' and flash[:order_fail] != true %>>
     <div class="wrapper">
       <%= render 'checkout/address', order: @order if @order.state == 'address' %>
     </div>
   </div>
 
-  <div class="checkout-step <%= 'current' if @order.state == 'payment' %>" id="payment" <%= 'style=display:none;' unless @order.state == 'payment' %>>
+  <div class="checkout-step <%= 'current' if @order.state == 'payment' %>" id="payment" <%= 'style=display:none;' unless @order.state == 'payment' and flash[:order_fail] != true %>>
     <div class="wrapper">
       <%= render 'checkout/payment' if @order.state == 'payment' %>
     </div>
   </div>
 
-  <div class="checkout-step <%= 'current' if @order.state == 'confirm' %>" id="confirm" <%= 'style=display:none;' unless @order.state == 'confirm' %>>
+  <div class="checkout-step <%= 'current' if @order.state == 'confirm' %>" id="confirm" <%= 'style=display:none;' unless @order.state == 'confirm' and flash[:order_fail] != true %>>
     <div class="wrapper">
       <%= render 'checkout/confirm' if @order.state == 'confirm' %>
     </div>
   </div>
 
-  <div class="<%= 'current' if @order.state == 'complete' %>" id="complete" <%= 'style=display:none;' unless @order.state == 'complete' %>>
+  <div class="<%= 'current' if @order.state == 'complete' %>" id="complete" <%= 'style=display:none;' unless @order.state == 'complete' and flash[:order_fail] != true %>>
     <div class="wrapper">
       <%= render 'checkout/complete' if @order.state == 'complete' %>
     </div>
