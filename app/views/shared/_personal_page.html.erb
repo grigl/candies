@@ -1,4 +1,9 @@
 <% if @order %>
+  <% if flash[:order_complete] == true %>
+  <div class="checkout-step current">
+  	<%= render 'checkout/failure' %>
+  </div>
+  <% end %>
   <div class="checkout-step <%= 'current' if @order.state == 'cart' %>" id="cart" <%= 'style=display:none;' unless @order.state == 'cart' %>> 
     <div class="wrapper">
       <%= render 'checkout/cart' if @order.state == 'cart' %>

@@ -53,6 +53,7 @@ class Gateway::RobokassaController < Spree::BaseController
 
   def fail
     flash[:order_fail] = true
+    flash[:error] = t("payment_fail")
     redirect_to root_url + "?scroll=true"
   end
 
