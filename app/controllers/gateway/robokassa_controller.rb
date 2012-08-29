@@ -52,7 +52,6 @@ class Gateway::RobokassaController < Spree::BaseController
   end
 
   def fail
-    session[:order_id] = nil
     flash[:order_fail] = true
     redirect_to root_url + "?scroll=true"
   end
