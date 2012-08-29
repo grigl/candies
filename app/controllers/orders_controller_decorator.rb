@@ -18,6 +18,8 @@ OrdersController.class_eval do
       variant = Variant.find(variant_id)
       if variant.count_on_hand < line_item_qty then
         params[:order]["line_items_attributes"][i]["quantity"] = variant.count_on_hand
+      else
+        params[:order]["line_items_attributes"][i]["quantity"] = line_item_qty
       end
     end
     ###
