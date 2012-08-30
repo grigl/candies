@@ -63,7 +63,7 @@ $('.go-bottom').live('click', (function(e){
 	 	 switchPage('personal');
 	 }
 	 page_height = $('.page.white').height();
-	 $('html, body').animate({scrollTop: page_height + 72}, 400);
+	 $('html, body').animate({scrollTop: page_height}, 400);
 	 return false;
 }));
 
@@ -257,6 +257,11 @@ function toggleDAF() {
 }
 $('.js-hide-delivery-address-form').live('change', toggleDAF);
 
+// hide/show order history item
+$('.order-history-name').click(function(){
+	$(this).toggleClass('open').next().slideToggle();
+});
+
 
 
 // Все инициализации, которые могут быть актуальны не только для html который есть на странице сразу,
@@ -338,7 +343,7 @@ window.switchPage = function( pageName, noScroll ) {
 	}
 	if (!noScroll) {
 		// докручиваем до темной части, если требуется
-		var scroll_to = $('.page.white').height() + 72;
+		var scroll_to = $('.page.white').height();
 		if (Math.max($('html').scrollTop(), $('body').scrollTop()) < scroll_to) {
 			$('html, body').animate({scrollTop: scroll_to}, 400);
 		}

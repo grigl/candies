@@ -414,6 +414,16 @@ header li.cur.none {background: none;}
 		height: auto;
 		min-height: 100%;
 	}
+	.white:after {
+		content: "";
+		display: block;
+		position: absolute;
+		bottom: -40px;
+		left: 0;
+		width: 100%;
+		height: 40px;
+		background-color: #fff;
+	}
 	.white a {color: #000;}
 	.white .wrapper {padding: 35px 0 0;}
 
@@ -421,6 +431,7 @@ header li.cur.none {background: none;}
 		width: 996px;
 		margin: auto;
 		padding: 200px 0 70px;
+		position: relative;
 	}
 	
 		.left-colum, .right-colum {
@@ -800,20 +811,24 @@ header li.cur.none {background: none;}
 	position: absolute;
 	bottom: -26px;
 	z-index: 10;
+	width: 270px;
 }
 .search-field .label {
 	display: block;
 	font-size: 20px;
 	line-height: 30px;
 	float: left;
-	margin-right: 16px;
 }
-.search-field .textfield {width: 174px;}
+.search-field .textfield {
+	width: 174px;
+	float: right;
+}
 .search-field label {
 	font-size: 10px;
 	color: #888;
 	text-align: right;
 	padding-top: 3px;
+	clear: both;
 }
 .seacrh-none {
 	height: 420px;
@@ -1328,7 +1343,6 @@ header li.cur.none {background: none;}
 	top: -10px; left: -10px;
 	width: 100%; height: 100%;
 	padding: 10px;
-	background: rgba(255, 255, 255, .1);
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
