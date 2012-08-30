@@ -25,7 +25,7 @@ $(document).ready(function(){
 						</h4>
 						
 						<h5>
-							<%= @order.bill_address.firstname %><br>
+							<%= @order.bill_address.firstname %> <%= @order.bill_address.lastname %><br>
 							<%= @order.bill_address.address1 %><br />
 							<%= @order.bill_address.city %>, <%= @order.bill_address.state %><br />
 							<%= @order.bill_address.country %>
