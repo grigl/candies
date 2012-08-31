@@ -19,7 +19,7 @@
   <%= hook :search_results do %>
     <% if @products.empty? %>
 	  <div class="seacrh-none">
-        НИЧЕГО НЕНАЙДЕНО :-(
+        НИЧЕГО НЕ НАЙДЕНО :-(
       </div>      
     <% else %>
       <%= render "shared/products", :products => @products, :taxon => @taxon, :page => @page, :last_page => @last_page %>

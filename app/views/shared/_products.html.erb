@@ -1,5 +1,9 @@
 <% if products.empty? %>
-  <%= t(:no_products_found) %>
+<div class="shop-items-list m-height">
+	  <div class="seacrh-none">
+        НИЧЕГО НЕ НАЙДЕНО :-(
+      </div>
+</div>
 <% elsif params.key?(:keywords) %>
   <h1><%= t(:search_results, :keywords => h(params[:keywords])) %></h1>
 <% end %>
