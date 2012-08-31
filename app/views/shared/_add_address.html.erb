@@ -22,7 +22,7 @@
           <p>
             Новый адрес:
           </p>
-          <%= form_for :address, url: new_address_path, remote: true do |address_form| %>
+          <%= form_for Address.new, url: new_address_path, remote: true do |address_form| %>
 
               <%= address_form.hidden_field :firstname, value: current_user.default_address.firstname %>
               <%= address_form.hidden_field :lastname, value: current_user.default_address.lastname %>

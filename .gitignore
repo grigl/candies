@@ -11,3 +11,5 @@ markup/*
 public/assets/*
 config/database.yml
 *.sql
+.vagrant
+Vagrantfile
