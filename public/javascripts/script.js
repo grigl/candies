@@ -73,6 +73,11 @@ $('.shop-item-buy-link').click(function(e){
 	$(this).parent().find('.shop-item-buy-button').click();
 })
 
+// hide/show order history item
+$('.order-history-name').live('click', (function(){
+	$(this).toggleClass('open').next().slideToggle();
+}));
+
 });
 
 //Выбор Адреса из адресной книги
@@ -256,11 +261,6 @@ function toggleDAF() {
 	$('.js-delivery-address-form-block')[ $('.js-hide-delivery-address-form').is(':checked') ? 'slideUp' : 'slideDown' ]();
 }
 $('.js-hide-delivery-address-form').live('change', toggleDAF);
-
-// hide/show order history item
-$('.order-history-name').click(function(){
-	$(this).toggleClass('open').next().slideToggle();
-});
 
 
 
