@@ -6,6 +6,9 @@ class TaxonsController < Spree::BaseController
   respond_to :html
 
   def show
+    if params["gender"] != "male" and params["gender"] != "female" then
+      render_404 and return
+    end    
     all_collection_id = 5 #грязный грязный хак
     
     @taxon = Taxon.find_by_permalink!(params[:id])
