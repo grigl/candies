@@ -10,10 +10,18 @@ ProductsController.class_eval do
     if params.has_key?("product_group_name") then
       product_group_name = params["product_group_name"]
       @product_group = ProductGroup.where('permalink = ?', product_group_name)[0]
-      all_products = @product_group.products      
+      if @product_group.nil? then
+        render_404 and return
+      end
+      all_products = @product_group.products
+    else
+      render_404 and return
     end
     
     #такой странный и запутанный этот spree
+    if params["gender"] != "male" and params["gender"] != "female" then
+      render_404 and return
+    end
     all_products_by_gender = {"male" => [], "female" => []}
     all_products.each do|product|
       if product.gender == 0 or product.gender == 1 then
