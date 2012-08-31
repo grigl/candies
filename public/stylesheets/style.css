@@ -331,7 +331,7 @@ button.button, input[type="submit"].button {
 	color: #333;
 	background-color: #fff;
 }
-.white .button:active, .white .button.active {
+.white .button:active, .white .button.active, input[type="submit"].button:active {
 	color: #fff;
 	background-color: #2a292a;
 }
