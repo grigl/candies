@@ -30,7 +30,6 @@ class Gateway::RobokassaController < Spree::BaseController
       @order.save!
       @order.state = "complete"
       @order.finalize!
-      @order.save!
       @order.update!
       
       render :text => "OK#{@order.id}"
