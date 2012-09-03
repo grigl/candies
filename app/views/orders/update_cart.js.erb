@@ -4,3 +4,5 @@ $('.full-cart-container .shop-cart-wrapper').hide();
 $('.full-cart-container').html('<%= escape_javascript(render "shared/shop_cart") %>');
 $('.full-cart-container .shop-cart-wrapper').show();
 switchPage('personal');
+
+$(document).trigger('html-inserted');
