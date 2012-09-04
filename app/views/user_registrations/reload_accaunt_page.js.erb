@@ -1,8 +1,10 @@
 $('.accaunt_current').hide('slide', { direction: 'left'}, 1000);
 $('.accaunt_current').removeClass('accaunt_current');
 $('#accaunt').html('<%= escape_javascript(render 'shared/accaunt') %>');
-$('#accaunt_edit').html('<%= escape_javascript(render 'shared/accaunt_edit') %>');
+$('#accaunt_edit').html('<%= escape_javascript(render 'shared/accaunt_edit') %>').trigger('html-inserted');
 $('#address_book').html('<%= escape_javascript(render 'shared/address_book') %>');
 $('#add_address').html('<%= escape_javascript(render 'shared/add_address') %>');
 $('#accaunt').addClass('accaunt_current');
 $('#accaunt').show('slide', { direction: 'right'}, 1000 );
+
+$(document).trigger('html-inserted');

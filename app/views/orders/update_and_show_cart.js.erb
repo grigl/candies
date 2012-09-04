@@ -1,4 +1,5 @@
 $("#cart .wrapper").html('<%= escape_javascript(render "checkout/cart") %>');
+$(document).trigger('html-inserted');
 var previousPage = $(".current")
 previousPage.hide('slide', {direction: 'left'}, 1000);
 previousPage.removeClass('current');
