@@ -26,7 +26,7 @@
         <p><%= link_to 'изменить адрес', back_to_address_path, remote: true %></p><br><br>
                   
         <div class="checkout-buttons">
-           <%= link_to 'НАЗАД', back_checkout_path('confirm'), class: 'button', remote: true %>
+           <%= link_to 'НАЗАД', back_checkout_path('confirm'), class: 'button payment_back', remote: true %>
         </div>
           
       </div>
@@ -88,7 +88,7 @@
           <span><%= number_to_currency @order.total %></span>
           Итого
         </div>
-        <%= form_for @order, :url => update_checkout_path("confirm"), :html => { :id => "update_comment" } do |form| %>
+        <%= form_for @order, :url => update_comment_path, :html => { :id => "update_comment" } do |form| %>
           <div class="form-item w416">
             <%= form.label :special_instructions, 'Комментарии к заказу (заполняется по желанию):' %>
               <%= form.text_area :special_instructions, :class => 'textfield' %>
@@ -119,7 +119,7 @@ $(function() {
 			}
 			in_progress = true;
 			form = $('#update_comment');
-			$.post(
+			$.get(
 				$(form).attr('action'),
 				$(form).serialize(),
 				function (data) {
@@ -131,5 +131,29 @@ $(function() {
 			return false;	
 		}
 	});
+	//back button hack
+	var is_saved_back = false;
+	var in_progress_back = false;
+	$(".payment_back").bind("ajax:beforeSend", function(evt, xhr, settings) {
+		if (!is_saved_back) {
+			if (in_progress_back) {
+				xhr.abort();
+				return false;
+			}
+			in_progress_back = true;
+			form = $('#update_comment');
+			$.get(
+				$(form).attr('action'),
+				$(form).serialize(),
+				function (data) {
+					is_saved_back = true;
+					in_progress_back = true;
+					$('.payment_back').click();
+				}
+			);
+			xhr.abort();
+			return false;	
+		}
+	});	
 });
 </script>

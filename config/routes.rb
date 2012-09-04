@@ -24,6 +24,8 @@ Candies::Application.routes.draw do
   get '/get_address' => 'addresses#get_address'
 
   match '/admin' => 'admin/products#index', :as => :admin
+  
+  get 'update_comment' => 'update_comment#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
