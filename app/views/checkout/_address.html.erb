@@ -54,7 +54,10 @@
             <% if current_user %>
               <div class="form-item w416">
                 <label>Выберите адрес из адресной книги</label>
-                <%= collection_select :address, :id, current_user.addresses.default_first, :id, :to_s, {}, :class => 'select', id: 'select-address-book-bill' %>
+                <% selected_bill_address_id = current_user.same_address(@order.bill_address).id rescue nil %>
+                <%= collection_select :address, :id, current_user.addresses.default_first, :id, :to_s, 
+                    {selected: selected_bill_address_id, :include_blank => true}, 
+                    :class => 'select', id: 'select-address-book-bill' %>
               </div>
             <% end %>
 
@@ -131,7 +134,10 @@
               <% if current_user %>
                 <div class="form-item w416">
                   <label>Выберите адрес из адресной книги</label>
-                  <%= collection_select :address, :id, current_user.addresses, :id, :to_s, {}, :class => 'select', id: 'select-address-book-ship' %>
+                  <% selected_ship_address_id = current_user.same_address(@order.ship_address).id rescue nil %>
+                  <%= collection_select :address, :id, current_user.addresses.default_first, :id, :to_s, 
+                      {selected: selected_ship_address_id, :include_blank => true}, 
+                      :class => 'select', id: 'select-address-book-ship' %>
                 </div>
               <% end %>
 

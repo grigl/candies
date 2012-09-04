@@ -15,4 +15,12 @@ User.class_eval do
     end
     !result.empty?
   end
+
+  def same_address(address)
+    result = []
+    self.addresses.each do |user_address|
+      result << user_address if user_address.same_as_without_contacts?(address)
+    end
+    result[0]
+  end
 end

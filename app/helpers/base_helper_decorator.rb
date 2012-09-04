@@ -68,4 +68,8 @@ Spree::BaseHelper.module_eval do
       options.delete(:format_as_currency) ? format_price(amount, options) : amount
     end
   end
+
+  def selected_ship_address
+    
+  end
 end
