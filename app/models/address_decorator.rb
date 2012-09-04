@@ -20,5 +20,9 @@ Address.class_eval do
     end
   end
 
+  scope :default_first, (lambda do
+    self.select { |address| address.default = true } + self.select { |address| address.default != true }
+  end)
+
   named_scope :without_address, lambda{|address| address ? {:conditions => ["id != ?", address.id]} : {} }
 end
