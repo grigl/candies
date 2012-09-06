@@ -16,10 +16,10 @@
             Оплата: <%= @order.payment_method.name %>
           </h4>        	 
           <h5>
-            <%= @order.bill_address.firstname %> <%= @order.bill_address.lastname %><br>
-            <%= @order.bill_address.address1 %><br />
-            <%= @order.bill_address.city %>, <%= @order.bill_address.state %><br />
-            <%= @order.bill_address.country %>
+            <%= @order.ship_address.firstname %> <%= @order.ship_address.lastname %><br>
+            <%= @order.ship_address.address1 %><br />
+            <%= @order.ship_address.city %>, <%= @order.ship_address.state %><br />
+            <%= @order.ship_address.country %>
           </h5>
         </div>
         
