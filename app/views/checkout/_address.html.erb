@@ -11,16 +11,16 @@
 
       <div class="checkout-form">
 
-        <%= form.fields_for :bill_address do |bill_form| %>
+        <%= form.fields_for :ship_address do |ship_form| %>
           <div class="checkout-box">
 
             <div class="form-item w175">
-              <%= bill_form.label :firstname, 'ИМЯ' %>
-              <%= bill_form.text_field :firstname, :class => 'textfield' %>
+              <%= ship_form.label :firstname, 'ИМЯ' %>
+              <%= ship_form.text_field :firstname, :class => 'textfield' %>
             </div>
             <div class="form-item w240">
-              <%= bill_form.label :lastname, 'ФАМИЛИЯ' %>
-              <%= bill_form.text_field :lastname, :class => 'textfield' %>
+              <%= ship_form.label :lastname, 'ФАМИЛИЯ' %>
+              <%= ship_form.text_field :lastname, :class => 'textfield' %>
             </div>
 
             <div class="form-item w416">
@@ -33,8 +33,8 @@
             </div>
 
             <div class="form-item w416">
-              <%= bill_form.label :phone, 'ТЕЛЕФОН' %>
-              <%= bill_form.text_field :phone, :class => 'textfield' %>
+              <%= ship_form.label :phone, 'ТЕЛЕФОН' %>
+              <%= ship_form.text_field :phone, :class => 'textfield' %>
             </div>
 
           </div>
@@ -54,32 +54,32 @@
             <% if current_user %>
               <div class="form-item w416">
                 <label>Выберите адрес из адресной книги</label>
-                <% selected_bill_address_id = current_user.same_address(@order.bill_address).id rescue nil %>
+                <% selected_ship_address_id = current_user.same_address(@order.ship_address).id rescue nil %>
                 <%= collection_select :address, :id, current_user.addresses.default_first, :id, :to_s, 
-                    {selected: selected_bill_address_id, :include_blank => true}, 
-                    :class => 'select', id: 'select-address-book-bill' %>
+                    {selected: selected_ship_address_id, :include_blank => true}, 
+                    :class => 'select', id: 'select-address-book-ship' %>
               </div>
             <% end %>
 
             <div class="form-item w416">
-              <%= bill_form.label :address1, 'АДРЕС' %>
-              <%= bill_form.text_area :address1, :class => 'textfield' %>
+              <%= ship_form.label :address1, 'АДРЕС' %>
+              <%= ship_form.text_area :address1, :class => 'textfield' %>
             </div>
             <div class="form-item w184">
-              <%= bill_form.label :country_id, 'СТРАНА' %>
-              <%= bill_form.collection_select :country_id, available_countries, :id, :name, {}, :class => 'select' %>
+              <%= ship_form.label :country_id, 'СТРАНА' %>
+              <%= ship_form.collection_select :country_id, available_countries, :id, :name, {}, :class => 'select' %>
             </div>
             <div class="form-item w232">
-              <%= bill_form.label :city, 'ГОРОД' %>
-              <%= bill_form.text_field :city, :class => 'textfield' %>
+              <%= ship_form.label :city, 'ГОРОД' %>
+              <%= ship_form.text_field :city, :class => 'textfield' %>
             </div>
             <div class="form-item w272">
-              <%= bill_form.label :state, t(:state) %>
-              <%= bill_form.collection_select :state_id, @order.bill_address.country.states, :id, :name, {}, :class => 'select' %>
+              <%= ship_form.label :state, t(:state) %>
+              <%= ship_form.collection_select :state_id, @order.ship_address.country.states, :id, :name, {}, :class => 'select' %>
             </div>
             <div class="form-item w145">
-              <%= bill_form.label :zipcode, 'ИНДЕКС' %>
-              <%= bill_form.text_field :zipcode, :class => 'textfield' %>
+              <%= ship_form.label :zipcode, 'ИНДЕКС' %>
+              <%= ship_form.text_field :zipcode, :class => 'textfield' %>
             </div>
             <div class="form-item">
               <div class="checkbox-box">
@@ -102,20 +102,20 @@
 
         <div class="checkout-form">
 
-          <%= form.fields_for :ship_address do |ship_form| %>
+          <%= form.fields_for :bill_address do |bill_form| %>
             <div class="checkout-box">
 
               <div class="form-item w175">
-                <%= ship_form.label :firstname, 'ИМЯ' %>
-                <%= ship_form.text_field :firstname, :class => 'textfield' %>
+                <%= bill_form.label :firstname, 'ИМЯ' %>
+                <%= bill_form.text_field :firstname, :class => 'textfield' %>
               </div>
               <div class="form-item w240">
-                <%= ship_form.label :lastname, 'ФАМИЛИЯ' %>
-                <%= ship_form.text_field :lastname, :class => 'textfield' %>
+                <%= bill_form.label :lastname, 'ФАМИЛИЯ' %>
+                <%= bill_form.text_field :lastname, :class => 'textfield' %>
               </div>
               <div class="form-item w416">
-                <%= ship_form.label :phone, 'ТЕЛЕФОН' %>
-                <%= ship_form.text_field :phone, :class => 'textfield' %>
+                <%= bill_form.label :phone, 'ТЕЛЕФОН' %>
+                <%= bill_form.text_field :phone, :class => 'textfield' %>
               </div>
             </div>
 
@@ -134,32 +134,32 @@
               <% if current_user %>
                 <div class="form-item w416">
                   <label>Выберите адрес из адресной книги</label>
-                  <% selected_ship_address_id = current_user.same_address(@order.ship_address).id rescue nil %>
+                  <% selected_bill_address_id = current_user.same_address(@order.bill_address).id rescue nil %>
                   <%= collection_select :address, :id, current_user.addresses.default_first, :id, :to_s, 
-                      {selected: selected_ship_address_id, :include_blank => true}, 
+                      {selected: selected_bill_address_id, :include_blank => true}, 
                       :class => 'select', id: 'select-address-book-ship' %>
                 </div>
               <% end %>
 
               <div class="form-item w416">
-                <%= ship_form.label :address1, 'АДРЕС' %>
-                <%= ship_form.text_area :address1, :class => 'textfield' %>
+                <%= bill_form.label :address1, 'АДРЕС' %>
+                <%= bill_form.text_area :address1, :class => 'textfield' %>
               </div>
               <div class="form-item w184">
-                <%= ship_form.label :country_id, 'СТРАНА' %>
-                <%= ship_form.collection_select :country_id, available_countries, :id, :name, {}, :class => 'select' %>
+                <%= bill_form.label :country_id, 'СТРАНА' %>
+                <%= bill_form.collection_select :country_id, available_countries, :id, :name, {}, :class => 'select' %>
               </div>
               <div class="form-item w232">
-                <%= ship_form.label :city, 'ГОРОД' %>
-                <%= ship_form.text_field :city, :class => 'textfield' %>
+                <%= bill_form.label :city, 'ГОРОД' %>
+                <%= bill_form.text_field :city, :class => 'textfield' %>
               </div>
               <div class="form-item w272">
-                <%= ship_form.label :state, t(:state) %>
-                <%= ship_form.collection_select :state_id, @order.bill_address.country.states, :id, :name, {}, :class => 'select' %>
+                <%= bill_form.label :state, t(:state) %>
+                <%= bill_form.collection_select :state_id, @order.bill_address.country.states, :id, :name, {}, :class => 'select' %>
               </div>
               <div class="form-item w145">
-                <%= ship_form.label :zipcode, 'ИНДЕКС' %>
-                <%= ship_form.text_field :zipcode, :class => 'textfield' %>
+                <%= bill_form.label :zipcode, 'ИНДЕКС' %>
+                <%= bill_form.text_field :zipcode, :class => 'textfield' %>
               </div>
               <div class="form-item">
                 <div class="checkbox-box">
