@@ -327,11 +327,11 @@ button.button, input[type="submit"].button {
 	background: url(../images/ico_plus.png) 9px 11px no-repeat;
 	padding-left: 22px;
 }
-.button:active, .button.active {
+.button:active, .button.active, input[type="submit"].button:active {
 	color: #333;
 	background-color: #fff;
 }
-.white .button:active, .white .button.active, input[type="submit"].button:active {
+.white .button:active, .white .button.active, .white input[type="submit"].button:active {
 	color: #fff;
 	background-color: #2a292a;
 }

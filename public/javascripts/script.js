@@ -278,6 +278,10 @@ $(document).bind('html-inserted', function() {
 		autoWidth: false,
 		ddFullWidth: false
 	});
+	
+	$('.select.f-hide').each(function(){
+		$(this).parent().find('.ik_select_link_text').empty();
+	});
 
 });
 
