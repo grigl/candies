@@ -4,11 +4,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 	display: block;
 	margin: 0;
 }
-audio[controls], canvas, video {
-	display: inline-block; 
-	*display: inline; 
-	*zoom: 1;
-}
+audio[controls], canvas, video {display: inline-block;}
 
 html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, a, font, img, small, strong, em, b, u, i, center, dl, dt, dd, ol, ul, li, form, table, tbody, tfoot, thead, tr, th, td {
 	margin: 0; 
@@ -137,8 +133,6 @@ a.dotted {background: url(../images/dot_white.gif) 0 100% repeat-x;}
 
 .textfield {
 	display: inline-block;
-	*display: inline;
-	*zoom: 1;
 	width: 210px;
 	height: 18px; 
 	margin: 0;
@@ -185,8 +179,6 @@ textarea.textfield {height: 65px;}
 .ik_select {
 	position: relative; 
 	display: inline-block; 
-	*display: inline; 
-	*zoom: 1; 
 	vertical-align: top; 
 	*vertical-align: top; 
 	width: 220px;
@@ -288,8 +280,6 @@ textarea.textfield {height: 65px;}
 
 .button {
 	display: inline-block;
-	*display: inline;
-	*zoom: 1;
 	padding: 6px 10px 6px;
 	margin: 0;
 	border: 1px solid #fff;
@@ -327,11 +317,11 @@ button.button, input[type="submit"].button {
 	background: url(../images/ico_plus.png) 9px 11px no-repeat;
 	padding-left: 22px;
 }
-.button:active, .button.active {
+.button:active, .button.active, input[type="submit"].button:active {
 	color: #333;
 	background-color: #fff;
 }
-.white .button:active, .white .button.active, input[type="submit"].button:active {
+.white .button:active, .white .button.active, .white input[type="submit"].button:active {
 	color: #fff;
 	background-color: #2a292a;
 }
@@ -379,8 +369,6 @@ header .logo {
 header ul {margin-left: 32px; height: 60px;}
 header li {
 	display: inline-block;
-	*display: inline;
-	*zoom: 1;
 	height: 27px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -437,8 +425,6 @@ header li.cur.none {background: none;}
 		.left-colum, .right-colum {
 			width: 416px;
 			display: inline-block;
-			*display: inline;
-			*zoom: 1;
 			vertical-align: top;
 		}
 		.left-colum {margin-right: 160px;}
@@ -577,11 +563,7 @@ header li.cur.none {background: none;}
 	float: left;
 }
 .right-colum .icon-sex {float: right;}
-.catalog-menu li {
-	display: inline-block;
-	*display: inline;
-	*zoom: 1;
-}
+.catalog-menu li {display: inline-block;}
 .catalog-menu a {text-decoration: none;}
 
 	.catalog-menu-first {
@@ -760,8 +742,6 @@ header li.cur.none {background: none;}
 	width: 128px;
 	overflow: hidden;
 	display: inline-block;
-	*display: inline;
-	*zoom: 1;
 	margin: 0 12px 12px 0;
 	vertical-align: top;
 	text-align: center;
@@ -937,8 +917,6 @@ header li.cur.none {background: none;}
 
 .form-item {
 	display: inline-block;
-	*display: inline;
-	*zoom: 1;
 	margin: 0 -4px 20px 0;
 	*margin-right: 0;
 	vertical-align: top;
@@ -1033,8 +1011,6 @@ header li.cur.none {background: none;}
 }
 .checkout-steps li {
 	display: inline-block;
-	*display: inline;
-	*zoom: 1;
 	height: 18px;
 	width: 18px;
 	-webkit-border-radius: 100%;

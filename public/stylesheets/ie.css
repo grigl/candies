@@ -1,1 +1,13 @@
-.form-box {background-color: #333;}
+.textfield, 
+.ik_select, 
+.button, 
+header li, 
+.left-colum, 
+.right-colum, 
+.catalog-menu li, 
+.shop-items-list li, 
+.form-item, 
+.checkout-steps li {
+	display: inline; 
+	zoom: 1;
+}
