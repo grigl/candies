@@ -52,10 +52,10 @@ $(document).ready(function() {
 		<div id="slider">
         <ul class="bjqs">
         <% if @product.images.empty? %>
-        	<li><img alt="<%= @product.name %>" src="/images/noimage/product.jpg"></li>
+        	<li><img alt="<%= @product.name %>" src="/images/noimage/large.jpg"></li>
         <% end %>
         <% @product.images.each do|image| %>
-			<li><img alt="<%= @product.name %>" src="<%= image.attachment.url %>"></li>
+			<li><img alt="<%= @product.name %>" src="<%= image.attachment.url(:large) %>"></li>
 		<% end %>
         </ul>			
     	</div>
@@ -79,10 +79,10 @@ $(document).ready(function() {
 		<div id="slider">
         <ul class="bjqs">
         <% if @product.images.empty? %>
-        	<li><img alt="<%= @product.name %>" src="/images/noimage/product.jpg"></li>
+        	<li><img alt="<%= @product.name %>" src="/images/noimage/large.jpg"></li>
         <% end %>        	
         <% @product.images.each do|image| %>
-			<li><img alt="<%= @product.name %>" src="<%= image.attachment.url %>"></li>
+			<li><img alt="<%= @product.name %>" src="<%= image.attachment.url(:large) %>"></li>
 		<% end %>
         </ul>			
     	</div>
