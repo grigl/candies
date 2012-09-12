@@ -509,6 +509,10 @@ header li.cur.none {background: none;}
 	opacity: 0.4; 
 	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
 }
+.catalog-menu.dimmed {
+	opacity: 0.4; 
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+}
 .catalog-menu.disabled:after {
 	content: "";
 	display: block;
