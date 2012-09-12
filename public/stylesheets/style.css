@@ -581,6 +581,7 @@ header li.cur.none {background: none;}
 	bottom: -23px;
 }
 .shop-item-images:hover figcaption {opacity: 1;}
+.shop-item-images .bjqs-next {background: url(../images/dummy.gif) no-repeat;}
 
 .shop-item-options {
 	margin-bottom: 16px;
