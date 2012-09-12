@@ -2,14 +2,14 @@
 <div class="wrapper">
   
     <div class="about-contacts dotted">
-      <div class="phone"><%= @page.phone if @page %></div>
-      <div class="map"><%= @page.address.html_safe if @page %></div>
+      <div class="phone"><%= @page.phone rescue nil %></div>
+      <div class="map"><%= @page.address.html_safe rescue nil %></div>
       <a href="#" class="button"><img src="/images/ico_fb.png" width="80" height="18" alt="facebook"></a>
       <a href="#" class="button"><img src="/images/ico_vk.png" width="98" height="18" alt="vkontakte"></a>
     </div>
     
     <div class="about-candies">
-      <%= @page.body.html_safe if @page %>
+      <%= @page.body.html_safe rescue nil %>
     </div>
     
     <div class="about-deliver dotted">
@@ -18,10 +18,10 @@
         <img src="/images/ico_box.png" width="40" height="33" class="right">
       </div>
       <div class="left-colum">
-        <%= @page.body2.html_safe if @page %>
+        <%= @page.body2.html_safe rescue nil %>
       </div>
       <div class="right-colum">
-        <%= @page.body3.html_safe if @page %>
+        <%= @page.body3.html_safe rescue nil %>
       </div>
     </div>
     
