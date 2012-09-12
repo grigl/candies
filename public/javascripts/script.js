@@ -228,6 +228,10 @@ function transformVariantChooser() {
 			for (size in colors[color]) {
 				size_select.append('<option value="' + size + '" data-value="' + colors[color][size] + '">' + size + '</option>');
 			}
+			var sortedVals = $.makeArray($(size_select +' option')).sort(function(a,b){
+				return parseInt($(a).text()) > parseInt($(b).text()) ? 1 : parseInt($(a).text()) < parseInt($(b).text()) ? -1 : 0 ;
+			});
+			size_select.empty().html(sortedVals);
 			size_select.ikSelect("reset");
 			size_select.ikSelect('select', old_val);
 			if (old_val != null && size_select.val() != old_val) {
