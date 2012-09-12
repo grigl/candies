@@ -75,12 +75,11 @@ ProductsController.class_eval do
       @page = 1
     end    
     @products_count = @products.size.to_f
-    first = (@page - 1) * 14
-    @last_page = (@products_count / 14).ceil
-    @products = @products.slice(first, 14)
+    first = (@page - 1) * 28
+    @last_page = (@products_count / 28).ceil
+    @products = @products.slice(first, 28)
     respond_with(@products)
   end
-
 
   private
 
