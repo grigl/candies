@@ -67,8 +67,9 @@ ProductsController.class_eval do
   end 
   
   def search
-    @searcher = Spree::Config.searcher_class.new(params)
-    @products = @searcher.retrieve_products
+    # @searcher = Spree::Config.searcher_class.new(params)
+    # @products = @searcher.retrieve_products
+    @products = Product.find(:all, :conditions => ['name LIKE ?', "%#{params[:keywords]}%"])
     if params.has_key?("page") then
       @page = params["page"].to_i
     else
