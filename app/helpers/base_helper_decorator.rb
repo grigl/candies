@@ -78,9 +78,9 @@ Spree::BaseHelper.module_eval do
       gender = params[:gender]
     elsif request.request_uri.starts_with?("/products") && params[:id]
       gender_int = Product.find_by_permalink!(params[:id]).gender rescue nil
-      gender = 'female' if gender_int == 0 
+      gender = 'unisex' if gender_int == 0 
       gender = 'male' if gender_int == 1
-      gender = 'unisex' if gender_int == 2
+      gender = 'female' if gender_int == 2
     end
     gender ? gender : nil
   end
