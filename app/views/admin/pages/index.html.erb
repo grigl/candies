@@ -1,0 +1,27 @@
+<div class='toolbar'>
+  <ul class='actions'>
+    <li id="new_product_link">
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+
+<table class="index">
+	<tr>
+		<th><%= Page.human_attribute_name(:title) %></th>
+		<th><%= t("action") %></th>
+  </tr>
+	<tbody>
+    	<% @pages.each do |page| %>
+		<tr class="<%= cycle('even', 'odd') %>" id="<%= dom_id page %>">
+			<td>
+				<%= page.title %>
+			</td>
+			<td>
+        <%= link_to_edit page %> &nbsp;
+        <%= link_to_delete page %>
+	    </td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

@@ -1,0 +1,11 @@
+<%= stylesheet_link_tag 'formtastic', 'formtastic_changes' %>
+
+<%= f.inputs do %>
+  <%= f.input :title, as: :hidden %>
+  <%= f.input :slug, as: :hidden %>
+  <%= f.input :address, label: 'Адрес' %>
+  <%= f.input :phone, label: 'Телефон' %>
+  <%= f.input :body, label: 'Текст' %>
+  <%= f.input :body2, label: 'Текст 2' %>
+  <%= f.input :body3, label: 'Текст 3' %>
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120824134054) do
+ActiveRecord::Schema.define(:version => 20120912215329) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -199,17 +199,17 @@ ActiveRecord::Schema.define(:version => 20120824134054) do
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
     t.string   "number",               :limit => 15
-    t.decimal  "item_total",                         :precision => 8, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "total",                              :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "item_total",                         :precision => 12, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "total",                              :precision => 12, :scale => 2, :default => 0.0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state"
-    t.decimal  "adjustment_total",                   :precision => 8, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "credit_total",                       :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "adjustment_total",                   :precision => 8,  :scale => 2, :default => 0.0, :null => false
+    t.decimal  "credit_total",                       :precision => 8,  :scale => 2, :default => 0.0, :null => false
     t.datetime "completed_at"
     t.integer  "bill_address_id"
     t.integer  "ship_address_id"
-    t.decimal  "payment_total",                      :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "payment_total",                      :precision => 8,  :scale => 2, :default => 0.0
     t.integer  "shipping_method_id"
     t.string   "shipment_state"
     t.string   "payment_state"
@@ -234,6 +234,10 @@ ActiveRecord::Schema.define(:version => 20120824134054) do
     t.string   "meta_description"
     t.string   "layout"
     t.boolean  "show_in_sidebar",                      :default => false, :null => false
+    t.text     "body2"
+    t.text     "body3"
+    t.string   "phone"
+    t.text     "address"
   end
 
   add_index "pages", ["slug"], :name => "index_pages_on_slug"
