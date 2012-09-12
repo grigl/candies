@@ -37,9 +37,9 @@ class TaxonsController < Spree::BaseController
       @page = 1
     end    
     @products_count = all_products_by_gender[params["gender"]].size.to_f
-    first = (@page-1) * 14
-    @last_page = (@products_count / 14).ceil
-    @products = all_products_by_gender[params["gender"]].slice(first, 14)
+    first = (@page-1) * 28
+    @last_page = (@products_count / 28).ceil
+    @products = all_products_by_gender[params["gender"]].slice(first, 28)
     respond_with(@taxon)
   end
 
