@@ -281,20 +281,6 @@ $(document).bind('html-inserted', function() {
 	$('.select.f-hide').each(function(){
 		$(this).parent().find('.ik_select_link_text').empty();
 	});
-	
-	$('.ik_select_option').hover(function(){
-		var title = $(this).attr("title");
-		$(this).attr("tmp_title", title).attr("title","");
-		},
-		function() { 
-			var title = $(this).attr("tmp_title");
-			$(this).attr("title", title);
-	});
-	
-	$('.ik_select_option').click(function(){
-		var title = $(this).attr("tmp_title");
-		$(this).attr("title", title);
-	});
 
 });
 
