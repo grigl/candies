@@ -278,6 +278,8 @@ $(document).bind('html-inserted', function() {
 		ddFullWidth: false
 	});
 	
+	$('.ik_select_option').attr('title', '');
+	
 	$('.select.f-hide').each(function(){
 		$(this).parent().find('.ik_select_link_text').empty();
 	});
