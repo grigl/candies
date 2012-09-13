@@ -7,7 +7,19 @@
 <div class="form-box left-colum">
 	<div class="left-colum">
 	<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, :id => 'user_new_pass' }) do |f| %>
-	  <%= devise_error_messages! %>
+	<% if @user.errors %>
+	  <% @user.errors.full_messages.each do |error| %>
+	  	<% if error == 'Reset password token имеет неверное значение' %>
+	  		Что-то пошло не так и восстановить пароль не удалось. 
+	  		Скорее всего ссылка восстановления пароля устарела 
+	  		или вы попытались восстановить пароль второй раз по одной и той-же ссылке.
+	  		Запросите письмо с инструкциями еще раз и попробуйте снова.<br /><br />
+	  	<% else %>
+	  		<%= error %>
+	  	<% end %>
+	  <% end %>
+	 <% end %>
+
 	  <%= f.hidden_field :reset_password_token %>
 
 	  <div class="form-item w346 new_password">	
