@@ -272,10 +272,15 @@ textarea.textfield {height: 65px;}
 	background-image: none;
 	color: #fff;
 }
-.ik_select_active {background: url(../images/ico_checked.png) 4px 4px no-repeat;}
+.ik_select_actives {background: url(../images/ico_checked.png) 4px 4px no-repeat;}
 .ik_select.ik_select_disabled .ik_select_link {
 	opacity: 0.4; 
 	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+}
+.ik_select_list_inner {
+	overflow: auto;
+	overflow-x: hidden;
+	max-height: 200px;
 }
 /*//select*/
 
