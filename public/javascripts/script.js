@@ -232,8 +232,7 @@ function transformVariantChooser() {
 				return parseInt($(a).text()) > parseInt($(b).text()) ? 1 : parseInt($(a).text()) < parseInt($(b).text()) ? -1 : 0 ;
 			});
 			size_select.empty().html(sortedVals);
-			size_select.ikSelect("reset");
-			size_select.ikSelect('select', old_val);
+			size_select.customSelect();
 			if (old_val != null && size_select.val() != old_val) {
 				container.find('.ik_select').animate({top: -20}, 50).animate({top: 0}, 600, 'easeOutBounce');
 			}
