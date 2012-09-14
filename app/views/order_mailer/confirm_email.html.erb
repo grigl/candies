@@ -13,7 +13,7 @@
 Заказанные продукты:<br />
 <br />
 <% for item in @order.line_items %>
-<a href="http://<%= for_mail_host%>/products/<%=item.variant.product.permalink %>" style="color:#0D52BA;"><%=item.variant.product.name%> (x<%=item.quantity%>): RUR <%= number_to_currency(item.price * item.quantity) %></a><br />
+<a href="http://<%= Spree::Config[:site_url] %>/products/<%=item.variant.product.permalink %>" style="color:#0D52BA;"><%=item.variant.product.name%> (x<%=item.quantity%>): RUR <%= number_to_currency(item.price * item.quantity) %></a><br />
 <% end %>
 <br />
 <font style="font-size:18px; line-height:21px; color:#B52367;">Итого RUR <%= number_to_currency @order.total %></font><br />
@@ -38,7 +38,7 @@
 Мы свяжемся с вами в ближайшее время.<br />
 <br />
 <br /><div style="border-bottom:1px dotted #000;"></div><br />
-<a href="http://<%= for_mail_host %>" style="font-size:18px; line-height:21px; color:#000000; float:right;">Войти в магазин</a>
+<a href="http://<%= Spree::Config[:site_url] %>" style="font-size:18px; line-height:21px; color:#000000; float:right;">Войти в магазин</a>
 С наилучшими пожеланиями, Candies.<br />
 <a href="http://thecandies.ru/">www.thecandies.ru</a><br />
 <br />
