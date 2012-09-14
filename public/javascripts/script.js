@@ -273,13 +273,14 @@ $(document).bind('html-inserted', function() {
 	$('input[placeholder], textarea[placeholder]').placeholder();
 	
 	// select
-	$('.select').ikSelect({
-		autoWidth: false,
-		ddFullWidth: false
-	});
+	$('.select').customSelect();
 	
 	$('.select.f-hide').each(function(){
-		$(this).parent().find('.ik_select_link_text').empty();
+		$(this).next().addClass('f-hiden');
+	});
+	
+	$('.select.f-hide').click(function(){
+		$(this).next().removeClass('f-hiden');
 	});
 
 });

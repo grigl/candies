@@ -170,35 +170,19 @@ textarea.textfield {height: 65px;}
 }
 /* //textfield */
 
-.ik_select select {
-	margin: 0; 
-	padding: 0; 
-	position: absolute; 
-	width: 100%; 
-	opacity: 0;
-}
-.ik_select {
-	position: relative; 
-	display: inline-block; 
-	vertical-align: top; 
-	*vertical-align: top; 
-	width: 220px;
-	height: 32px; 
-}
-.ik_select_link {
-	overflow: hidden; 
-	white-space: nowrap; 
-	position: relative; 
-	cursor: pointer; 
-	*zoom: 1;
+.select {
+	display: inline-block;
 	height: 18px; 
 	margin: 0;
-	padding: 6px 32px 6px 8px; 
+	padding: 6px 0; 
 	font-size: 16px;
 	line-height: 18px;
 	color: #000;
 	background-color: #fff;
 	border: 1px solid #bfbfbf;
+	overflow: hidden;
+	white-space: nowrap;
+	position: relative;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
@@ -208,75 +192,29 @@ textarea.textfield {height: 65px;}
 	-o-transition: border linear 0.2s, box-shadow linear 0.2s;
 	transition: border linear 0.2s, box-shadow linear 0.2s;
 }
-.ik_select_link:hover {}
-.ik_select_link.ik_select_focus {}
-.ik_select_link_text {
-	overflow: hidden; 
-	display: block; 
-	width: 100%; 
-	text-overflow: ellipsis;
-}
-.ik_select_link_text:after {
+span.select:after {
 	position: absolute; 
 	display: block;
 	width: 20px;
-	top: 0; 
+	height: 28px;
+	top: 1px; 
 	right: 0; 
 	content: "\25BC"; 
 	font-size: 8px;
 	line-height: 30px;
 	color: #000;
+	padding-left: 30px;
+	background: url(../images/select_after.png) repeat-y;
 }
-.ik_select_block {
-	position: absolute; 
-	z-index: 9999; 
-	width: 100%; 
-	left: 0; 
-	top: 0; 
-	display: none; 
+select.select {
+	height: 32px;
+	z-index: 10;
 }
-.ik_select_block_right {left: auto;}
-.ik_select_list {
-	padding: 4px 0; 
-	position: relative;  
-	border: 1px solid #b1b1b1; 
-	background-color: #fff;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
+.select .select-text {
+	display: block;
+	padding: 0 38px 0 8px; 
 }
-.ik_select_optgroup_label {
-	color: #7f8080; 
-	padding: 0 21px;
-}
-.ik_select_list ul {
-	margin: 0; 
-	padding: 0;
-}
-.ik_select_list li {
-	list-style: none; 
-	margin: 0 -1px; 
-	cursor: pointer; 
-	padding: 0 18px; 
-	position: relative; 
-	height: 19px;
-	font-size: 16px;
-	line-height: 19px; 
-	color: #000;
-	overflow: hidden; 
-	white-space: nowrap;
-}
-.ik_select_optgroup li {padding-left: 42px;}
-.ik_select_list li.ik_select_hover {
-	background-color: #000;
-	background-image: none;
-	color: #fff;
-}
-.ik_select_active {background: url(../images/ico_checked.png) 4px 4px no-repeat;}
-.ik_select.ik_select_disabled .ik_select_link {
-	opacity: 0.4; 
-	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
-}
+.select.f-hiden {color: #fff;}
 /*//select*/
 
 .button {
@@ -892,7 +830,7 @@ header li.cur.none {background: none;}
 }
 
 	.w416 {width: 416px;}
-	.w416 .ik_select {width: 416px;}
+	.w416 .select {width: 416px;}
 	.w416 .textfield {width: 400px;}
 	
 	.w346 {width: 346px;}
@@ -902,7 +840,7 @@ header li.cur.none {background: none;}
 	.w322 .textfield {width: 306px;}
 	
 	.w272 {width: 272px;}
-	.w272 .ik_select {width: 264px;}
+	.w272 .select {width: 260px;}
 	.w272 .textfield {width: 244px;}
 	
 	.w252 {width: 252px;}
@@ -912,21 +850,21 @@ header li.cur.none {background: none;}
 	.w240 .textfield {width: 224px;}
 	
 	.w232 {width: 232px;}
-	.w232 .ik_select {width: 234px;}
+	.w232 .select {width: 232px;}
 	
 	.w210 {width: 208px;}
 	.w210 .textfield {width: 182px;}
-	.w210 .ik_select {width: 201px;}
+	.w210 .select {width: 198px;}
 	
 	.w202 {width: 202px;}
 	.w202 .textfield {width: 186px;}
-	.w202 .ik_select {width: 203px;}
+	.w202 .select {width: 202px;}
 	
 	.w196 {width: 196px;}
 	.w196 .textfield {width: 180px;}
 	
 	.w184 {width: 184px;}
-	.w184 .ik_select {width: 176px;}
+	.w184 .select {width: 172px;}
 	
 	.w175 {width: 175px;}
 	.w175 .textfield {width: 149px;}
@@ -939,7 +877,7 @@ header li.cur.none {background: none;}
 	
 	.w144 {width: 144px;}
 	.w144 .textfield {width: 118px;}
-	.w144 .ik_select {width: 136px;}
+	.w144 .select {width: 134px;}
 	
 	.w138 {width: 138px;}
 	.w138 .textfield {width: 122px;}
