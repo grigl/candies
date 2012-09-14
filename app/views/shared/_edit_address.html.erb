@@ -42,7 +42,7 @@
               </div>
               <div class="form-item w272">
                 <%= address_form.label :state, 'ОБЛАСТЬ' %>
-                <%= address_form.collection_select :state_id, available_countries.first.states, :id, :name, {}, class: 'select-fw' %> 
+                <%= address_form.collection_select :state_id, available_countries.first.states, :id, :name, {}, class: 'select' %> 
               </div>
               <div class="form-item w145">
                 <%= address_form.label :zipcode, 'ИНДЕКС' %>
@@ -132,8 +132,4 @@
           autoWidth: false,
           ddFullWidth: false
         });
-				$('.select-fw').ikSelect({
-					autoWidth: false
-				});
-				$('.ik_select_option').attr('title', '');
       </script>

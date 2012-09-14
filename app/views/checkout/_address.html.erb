@@ -75,7 +75,7 @@
             </div>
             <div class="form-item w272">
               <%= ship_form.label :state, t(:state) %>
-              <%= ship_form.collection_select :state_id, @order.ship_address.country.states, :id, :name, {}, :class => 'select-fw' %>
+              <%= ship_form.collection_select :state_id, @order.ship_address.country.states, :id, :name, {}, :class => 'select' %>
             </div>
             <div class="form-item w145">
               <%= ship_form.label :zipcode, 'ИНДЕКС' %>

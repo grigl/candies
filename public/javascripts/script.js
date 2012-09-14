@@ -278,18 +278,7 @@ $(document).bind('html-inserted', function() {
 		ddFullWidth: false
 	});
 	
-	$('.select-fw').ikSelect({
-		autoWidth: false
-	});
-	
-	$('.ik_select_option').attr('title', '');
-	
-	$('.ik_select_has_events').click(function(){
-		 $('.ik_select_has_events').removeClass('ik_select_actives');
-		 $(this).addClass('ik_select_actives');
-	});
-	
-	$('.f-hide').each(function(){
+	$('.select.f-hide').each(function(){
 		$(this).parent().find('.ik_select_link_text').empty();
 	});
 

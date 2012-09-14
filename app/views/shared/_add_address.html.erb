@@ -41,7 +41,7 @@
               </div>
               <div class="form-item w272">
                 <%= address_form.label :state, 'ОБЛАСТЬ' %>
-                <%= address_form.collection_select :state_id, available_countries.first.states, :id, :name, {}, class: 'select-fw f-hide' %> 
+                <%= address_form.collection_select :state_id, available_countries.first.states, :id, :name, {}, class: 'select f-hide' %> 
               </div>
               <div class="form-item w145">
                 <%= address_form.label :zipcode, 'ИНДЕКС' %>
