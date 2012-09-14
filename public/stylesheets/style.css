@@ -536,9 +536,7 @@ header li.cur.none {background: none;}
 	min-height: 32px;
 }
 .shop-item-options .right {float: right;}
-.shop-item-options .ik_select {width: 46px;}
-.shop-item-options .ik_select_link {padding-right: 20px;}
-.shop-item-options .ik_select_link_text:after {width: 14px;}
+.shop-item-options .select {width: 66px;}
 .shop-item-options .label {
 	display: block;
 	float: left;
