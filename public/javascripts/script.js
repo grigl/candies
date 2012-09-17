@@ -303,10 +303,18 @@ $(document).on('ajax:error', 'form', function(__1, __2, __3, obj) {
 			for (var i = 0; i < name.length - 1; i++) {
 				name[i] += '_attributes';
 			}
-			$('[name$="[' + name.join('][') + ']"]', this)
+			var fieldWithErrors = $('[name$="[' + name.join('][') + ']"]', this);
+			if (fieldWithErrors.hasClass('error')) {
+				fieldWithErrors
+				.parent()
+				.find('div.errorlist')
+				.text(error_text);
+			} else {
+				fieldWithErrors
 				.addClass('error')
 				.parent()
 				.prepend('<div class="errorlist" title="' + error_text + '">' + error_text + '</div>');
+			}
 		}
 	}
 });
