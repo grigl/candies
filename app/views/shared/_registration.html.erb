@@ -47,7 +47,7 @@
             </div>
             <div class="form-item w138 mew88">
               <%= address_form.label :zipcode, 'ИНДЕКС' %>
-              <%= address_form.text_field :zipcode, :class => 'textfield' %>
+              <%= address_form.text_field :zipcode, :class => 'textfield number', maxlength: '6' %>
             </div>
             
             <div class="form-item w346" align="right">

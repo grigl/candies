@@ -73,6 +73,11 @@ $('.order-history-name').live('click', (function(){
 	$(this).toggleClass('open').next().slideToggle();
 }));
 
+// textfield number filter
+$('.textfield.number').keyup(function(){
+	this.value = this.value.replace (/\D+/, '')
+});
+
 });
 
 //Выбор Адреса из адресной книги

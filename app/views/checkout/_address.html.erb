@@ -79,7 +79,7 @@
             </div>
             <div class="form-item w145">
               <%= ship_form.label :zipcode, 'ИНДЕКС' %>
-              <%= ship_form.text_field :zipcode, :class => 'textfield' %>
+              <%= ship_form.text_field :zipcode, :class => 'textfield number', maxlength: '6' %>
             </div>
             <div class="form-item">
               <div class="checkbox-box">
@@ -159,7 +159,7 @@
               </div>
               <div class="form-item w145">
                 <%= bill_form.label :zipcode, 'ИНДЕКС' %>
-                <%= bill_form.text_field :zipcode, :class => 'textfield' %>
+                <%= bill_form.text_field :zipcode, :class => 'textfield number', maxlength: '6' %>
               </div>
               <div class="form-item">
                 <div class="checkbox-box">
