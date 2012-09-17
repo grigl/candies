@@ -25,21 +25,37 @@
   <% end %>
 </ul>
 <% end %>
-  
+    
 <% if last_page > 1 %>
 <ul class="pagination">
   <% if (page-1) >= 1 %>
-  <li class="prev"><a href="?page=<%= (page-1)%>">« Назад</a></li>
+	  <% if is_search == true %>
+	  <li class="prev"><a href="?keywords=<%= params['keywords']%>&page=<%= (page-1)%>">« Назад</a></li>
+	  <% else %>
+	  <li class="prev"><a href="?page=<%= (page-1)%>">« Назад</a></li>
+	  <% end %>
   <% end %>
   <% 1.upto(last_page) do|i| %>
   	<% if page == i %>
-  	<li class="cur"><a href="?page=<%= i %>"><%= i %></a></li>
+      <% if is_search == true %>
+      <li class="cur"><a href="?keywords=<%= params['keywords']%>&page=<%= i %>"><%= i %></a></li>
+      <% else %>  	
+  	  <li class="cur"><a href="?keywords="?page=<%= i %>"><%= i %></a></li>
+  	  <% end %>
   	<% else %>
-  	<li><a href="?page=<%= i %>"><%= i %></a></li>
+      <% if is_search == true %>
+      <li><a href="?keywords=<%= params['keywords']%>&page=<%= i %>"><%= i %></a></li>
+      <% else %>  	
+  	  <li><a href="?page=<%= i %>"><%= i %></a></li>
+  	  <% end %>
   	<% end %>
   <% end %>
   <% if (page+1) <= last_page %>
+  <% if is_search == true %>
+  <li class="next"><a href="?keywords=<%= params['keywords']%>&page=<%= (page+1)%>">Вперед »</a></li>
+  <% else %>  
   <li class="next"><a href="?page=<%= (page+1)%>">Вперед »</a></li>
+  <% end %>
   <% end %>
 </ul>
 <% end %>

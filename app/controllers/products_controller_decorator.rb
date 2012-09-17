@@ -39,6 +39,9 @@ ProductsController.class_eval do
     end    
     @products_count = all_products_by_gender[params["gender"]].size.to_f
     first = (@page - 1) * 28
+    if first > @products_count.to_i then
+      render_404 and return
+    end
     @last_page = (@products_count / 28).ceil
     @products = all_products_by_gender[params["gender"]].slice(first, 28)
     respond_with(@products)
@@ -77,6 +80,9 @@ ProductsController.class_eval do
     end    
     @products_count = @products.size.to_f
     first = (@page - 1) * 28
+    if first > @products_count.to_i then
+      render_404 and return
+    end    
     @last_page = (@products_count / 28).ceil
     @products = @products.slice(first, 28)
     respond_with(@products)
