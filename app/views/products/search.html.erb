@@ -22,14 +22,14 @@
         НИЧЕГО НЕ НАЙДЕНО :-(
       </div>      
     <% else %>
-      <%= render "shared/products", :products => @products, :taxon => @taxon, :page => @page, :last_page => @last_page %>
+      <%= render "shared/products", :products => @products, :taxon => @taxon, :page => @page, :last_page => @last_page, :is_search => true %>
     <% end %>
   <% end %>
 
 <% else %>
 
   <%= hook :homepage_products do %>
-    <%= render "shared/products", :products => @products, :taxon => @taxon, :page => @page, :last_page => @last_page %>
+    <%= render "shared/products", :products => @products, :taxon => @taxon, :page => @page, :last_page => @last_page, :is_search => true %>
   <% end %>
 
 
