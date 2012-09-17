@@ -48,20 +48,12 @@
                   <% if order.payment_method.is_a?(PaymentMethod::SberBankInvoice) %>
                     <p><%= link_to 'скачать квитанцию', orders_sberbank_invoice_path(order), class: 'button' %></p>
                   <% end %>
-                  <p><br>&nbsp;</p>
                   <% if order.shipping_method %>
                   <p>Доставка: <%= order.shipping_method.name %></p>
                   <% end %>
                   <p>Получатель: <%= order.ship_address.firstname %> <%= order.ship_address.lastname %></p>
                   <p>Адрес доставки заказа:</p>
                   <p><%= order.ship_address.address1 %></p>
-                  <p><br>&nbsp;</p>
-<!--                   <form>
-                    <h5>Печатные формы:</h5>
-                    <input type="checkbox"><label>Инвойс</label>
-                    <input type="checkbox"><label>Квитанция</label>
-                    <p><input type="submit" class="button" value="ПЕЧАТЬ"></p>
-                  </form> -->
                 </div>
                 <h4>Заказанные продукты:</h4>
                 <ul class="dotted">
