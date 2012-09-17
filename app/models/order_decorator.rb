@@ -60,8 +60,10 @@ Order.class_eval do
     end.compact.sort_by{|r| r[:cost]}
   end
 
-  def clone_shipping_address
-    # просто отрубаем этот коллбэк из spree_addres_book
+  before_validation :clone_shipping_address, :if => "@use_billing"
+  attr_accessor :use_billing
+
+  def clone_billing_address
     true  
   end
 
