@@ -13,16 +13,9 @@ ProductsController.class_eval do
       if @product_group.nil? then
         render_404 and return
       end
-      get_products = @product_group.products
+      all_products = Product.joins(:product_groups).where('product_groups.id' => @product_group.id).joins(:variants).group(:id)
     else
       render_404 and return
-    end
-    
-    all_products = []
-    for get_product in get_products do
-      if get_product.variants then
-        all_products.push(get_product)
-      end
     end
     
     #такой странный и запутанный этот spree
