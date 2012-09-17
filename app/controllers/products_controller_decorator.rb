@@ -13,9 +13,16 @@ ProductsController.class_eval do
       if @product_group.nil? then
         render_404 and return
       end
-      all_products = @product_group.products
+      get_products = @product_group.products
     else
       render_404 and return
+    end
+    
+    all_products = []
+    for get_product in get_products do
+      if get_product.variants then
+        all_products.push(get_product)
+      end
     end
     
     #такой странный и запутанный этот spree
@@ -39,7 +46,7 @@ ProductsController.class_eval do
     end    
     @products_count = all_products_by_gender[params["gender"]].size.to_f
     first = (@page - 1) * 28
-    if first > @products_count.to_i then
+    if first > @products_count.to_i or @page <= 0 then
       render_404 and return
     end
     @last_page = (@products_count / 28).ceil
@@ -50,6 +57,9 @@ ProductsController.class_eval do
   def show
     @product = Product.find_by_permalink!(params[:id])
     return unless @product
+    if @product.variants.empty? then
+      render_404 and return
+    end
 
     @variants = Variant.active.includes([:option_values, :images]).where(:product_id => @product.id)
     @product_properties = ProductProperty.includes(:property).where(:product_id => @product.id)
@@ -72,7 +82,15 @@ ProductsController.class_eval do
   def search
     # @searcher = Spree::Config.searcher_class.new(params)
     # @products = @searcher.retrieve_products
-    @products = Product.find(:all, :conditions => ['name LIKE ?', "%#{params[:keywords]}%"])
+    get_products = Product.find(:all, :conditions => ['name LIKE ?', "%#{params[:keywords]}%"])
+    
+    @products = []
+    for get_product in get_products do
+      if get_product.variants then
+        @products.push(get_product)
+      end
+    end    
+    
     if params.has_key?("page") then
       @page = params["page"].to_i
     else
@@ -80,7 +98,7 @@ ProductsController.class_eval do
     end    
     @products_count = @products.size.to_f
     first = (@page - 1) * 28
-    if first > @products_count.to_i then
+    if first > @products_count.to_i or @page <= 0 then
       render_404 and return
     end    
     @last_page = (@products_count / 28).ceil

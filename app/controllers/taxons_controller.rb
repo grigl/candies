@@ -15,11 +15,18 @@ class TaxonsController < Spree::BaseController
     return unless @taxon
 
     if @taxon.id == all_collection_id then
-      all_products = Product.all
+      get_products = Product.all
     else
       @searcher = Spree::Config.searcher_class.new(params.merge(:taxon => @taxon.id)) 
-      all_products = @searcher.retrieve_products 
+      get_products = @searcher.retrieve_products 
     end
+    
+    all_products = get_products
+    for get_product in get_products do
+      if get_product.variants then
+        all_products.push(get_product)
+      end
+    end    
     
     all_products_by_gender = {"male" => [], "female" => []}
     all_products.each do|product|
@@ -38,7 +45,7 @@ class TaxonsController < Spree::BaseController
     end    
     @products_count = all_products_by_gender[params["gender"]].size.to_f
     first = (@page-1) * 28
-    if first > @products_count.to_i then
+    if first > @products_count.to_i or @page <= 0 then
       render_404 and return
     end    
     @last_page = (@products_count / 28).ceil
