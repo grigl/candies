@@ -74,7 +74,7 @@
         <%= f.hidden_field :email, value: current_user.email %>
       <% end %>
 
-      <%= f.submit 'ОФОРМИТЬ ЗАКАЗ', :class => 'button' %>
+      <span class="btn-wrap"><%= f.submit 'ОФОРМИТЬ ЗАКАЗ', :class => 'button' %></span>
     <% else %>
       <% if @order.email.present? %>
         <%= f.hidden_field :email, value: @order.email %>
@@ -82,7 +82,7 @@
         <%= f.hidden_field :email, value: 'temporaryemail@example.com' %>
       <% end %>
 
-      <%= f.submit 'ОФОРМИТЬ ЗАКАЗ БЕЗ РЕГИСТРАЦИИ', :class => 'button' %>
+      <span class="btn-wrap"><%= f.submit 'ОФОРМИТЬ ЗАКАЗ БЕЗ РЕГИСТРАЦИИ', :class => 'button' %></span>
     <% end %>
 
   <% end %>
