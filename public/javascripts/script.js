@@ -236,7 +236,7 @@ function transformVariantChooser() {
 			var sortedVals = $.makeArray($(size_select).find('option')).sort(function(a,b){
 				return parseInt($(a).text()) > parseInt($(b).text()) ? 1 : parseInt($(a).text()) < parseInt($(b).text()) ? -1 : 0 ;
 			});
-			size_select.empty().html(sortedVals);
+			size_select.empty().html(sortedVals).find(':first').attr('selected','selected');
 			size_select.customSelect();
 			if (old_val != null && size_select.val() != old_val) {
 				container.find('.ik_select').animate({top: -20}, 50).animate({top: 0}, 600, 'easeOutBounce');
