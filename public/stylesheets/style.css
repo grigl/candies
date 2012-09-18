@@ -439,10 +439,11 @@ header li.cur.none {background: none;}
 
 
 .catalog-menu {
-	height: 74px;
+	min-height: 66px;
 	margin-bottom: 30px;
 	text-transform: uppercase;
 	position: relative;
+	padding: 0 0 8px 60px;
 }
 .catalog-menu.disabled {
 	opacity: 0.4; 
@@ -465,9 +466,17 @@ header li.cur.none {background: none;}
 	height: 80px;
 	width: 55px;
 	background: url(../images/dot_shevron.gif) bottom no-repeat;
-	float: left;
+	position: absolute;
+	bottom: -5px;
+	left: 0;
 }
-.right-colum .icon-sex {float: right;}
+.right-colum .icon-sex {
+	left: auto;
+	right: 0;
+}
+.right-colum .catalog-menu {
+	padding: 0 60px 8px 0;
+}
 .catalog-menu li {display: inline-block;}
 .catalog-menu a {text-decoration: none;}
 
