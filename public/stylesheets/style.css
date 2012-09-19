@@ -589,11 +589,11 @@ header li.cur.none {background: none;}
 		}
 
 .shop-item-text {
-	padding-bottom: 18px;
+	padding-bottom: 13px;
 	margin-bottom: 14px;
 }
 .shop-item-text p {
-	height: 75px;
+	height: 80px;
 	overflow: hidden;
 	padding-bottom: 5px;
 }
