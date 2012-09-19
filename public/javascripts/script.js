@@ -233,11 +233,11 @@ function transformVariantChooser() {
 			for (size in colors[color]) {
 				size_select.append('<option value="' + size + '" data-value="' + colors[color][size] + '">' + size + '</option>');
 			}
-			size_select.customSelect().find('option').removeAttr('selected').parent().find('option[value='+ old_val +']').attr('selected','selected');
+			size_select.customSelect().find('option').removeAttr('selected').parent().find('option[value="'+ old_val +'"]').attr('selected','selected');
 			size_select.next().find('span').html(old_val);
-			if (old_val != null && size_select.val() != old_val) {
+			/*if (old_val != null && size_select.val() != old_val) {
 				container.find('span.select').animate({top: -20}, 50).animate({top: 0}, 600, 'easeOutBounce');
-			}
+			}*/
 			update_old_controls();
 		}
 
