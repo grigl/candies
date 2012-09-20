@@ -544,8 +544,10 @@ header li.cur.none {background: none;}
 	right: 15px;
 	bottom: -23px;
 }
-.shop-item-images:hover figcaption.hint {opacity: 1;}
-/**/
+.shop-item-images:hover figcaption.hint {
+	opacity: 1;
+	z-index: 11;
+}
 .shop-item-images figcaption.lightbox {
 	position: absolute;
 	top: 0;
