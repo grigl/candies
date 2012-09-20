@@ -11,7 +11,7 @@
 <% content_for :script do -%>
 <script type="text/javascript">
 $(document).ready(function() {   
-     $('#slider').bjqs({
+    $('#slider').bjqs({
         'animation' : 'slide',
         'width' : 416,
 		'height' : 305,
@@ -19,7 +19,7 @@ $(document).ready(function() {
 		'showMarkers': false,
 		'nextText': '',
 		'prevText': ''
-	});        
+	   });
 });
 </script>
 <% end -%>
@@ -55,13 +55,20 @@ $(document).ready(function() {
         	<li><img alt="<%= @product.name %>" src="/images/noimage/large.jpg"></li>
         <% end %>
         <% @product.images.each do|image| %>
-			<li><img alt="<%= @product.name %>" src="<%= image.attachment.url(:large) %>"></li>
-		<% end %>
+			    <li>
+            <img alt="<%= @product.name %>" src="<%= image.attachment.url(:large) %>">
+            <figcaption class="lightbox">
+              <a rel="group1" class="product_image_link" href="<%= image.attachment.url(:large) %>">go</a>
+            </figcaption>
+          </li>
+		    <% end %>
         </ul>			
     	</div>
+      <% unless @product.images.empty? %>
         <figcaption>
         	Нажми на фотографию чтобы<br>посмотреть другой ракурс
-        </figcaption>    	
+        </figcaption>
+      <% end %>    	
 	</figure>
       
       <div class="shop-item-buy dotted">
@@ -82,13 +89,20 @@ $(document).ready(function() {
         	<li><img alt="<%= @product.name %>" src="/images/noimage/large.jpg"></li>
         <% end %>        	
         <% @product.images.each do|image| %>
-			<li><img alt="<%= @product.name %>" src="<%= image.attachment.url(:large) %>"></li>
-		<% end %>
-        </ul>			
-    	</div>
-        <figcaption>
-        	Нажми на фотографию чтобы<br>посмотреть другой ракурс
-        </figcaption>    	
+          <li>
+            <img alt="<%= @product.name %>" src="<%= image.attachment.url(:large) %>">
+            <figcaption class="lightbox">
+              <a rel="group1" class="product_image_link" href="<%= image.attachment.url(:large) %>">go</a>
+            </figcaption>
+          </li> 
+        <% end %>
+        </ul>
+        <% unless @product.images.empty? %>
+          <figcaption class="hint">
+            Нажми на фотографию чтобы<br>посмотреть другой ракурс
+          </figcaption>		
+        <% end %>	
+    	</div>  	
 	</figure>
       
       <div class="shop-item-buy dotted">
@@ -127,3 +141,15 @@ $(document).ready(function() {
       
     </div>
 <% end %>
+
+            <script>
+              $(document).ready(function() {
+                $("a.product_image_link").fancybox({
+                  'transitionIn'  : 'elastic',
+                  'transitionOut' : 'elastic',
+                  'speedIn'   : 600, 
+                  'speedOut'    : 200, 
+                  'overlayShow' : false
+                });                
+              });
+            </script> 

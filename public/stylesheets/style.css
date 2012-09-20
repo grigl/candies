@@ -517,7 +517,7 @@ header li.cur.none {background: none;}
 	width: 416px;
 	min-height: 305px;
 }
-.shop-item-images figcaption {
+.shop-item-images figcaption.hint {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -534,7 +534,7 @@ header li.cur.none {background: none;}
 	-o-transition: all 0.3s ease; 
 	transition: all 0.3s ease;
 }
-.shop-item-images figcaption:after {
+.shop-item-images figcaption.hint:after {
 	content: "";
 	display: block;
 	position: absolute;
@@ -544,7 +544,28 @@ header li.cur.none {background: none;}
 	right: 15px;
 	bottom: -23px;
 }
-.shop-item-images:hover figcaption {opacity: 1;}
+.shop-item-images:hover figcaption.hint {opacity: 1;}
+/**/
+.shop-item-images figcaption.lightbox {
+	position: absolute;
+	top: 0;
+	left: 200;
+	margin-left:395px;
+	margin-top:5px;
+	width: 16px;
+	height: 16px;
+	background: url(../images/zoom_icon_16x16.png) no-repeat;
+	opacity: 0;
+	-webkit-transition: all 0.3s ease; 
+	-moz-transition: all 0.3s ease; 
+	-o-transition: all 0.3s ease; 
+	transition: all 0.3s ease;
+}
+.shop-item-images:hover figcaption.lightbox {
+	opacity: 1;
+	z-index: 10;
+}
+.shop-item-images figcaption.lightbox a {opacity:0;}
 .shop-item-images .bjqs-next {background: url(../images/dummy.gif) no-repeat;}
 
 .shop-item-options {
