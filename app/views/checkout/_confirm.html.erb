@@ -76,7 +76,11 @@ $(document).ready(function(){
                   <% end %>
                 <% end %>
               </span>
-              <span class="price">цена:   <%= product_price(line_item.variant.product) %></span>
+              <% if line_item.variant.product.on_sale? %>
+                <span class="price">цена:   <%= sale_price(line_item.variant.product) %></span>
+              <% else %>
+                <span class="price">цена:   <%= product_price(line_item.variant) %></span>
+              <% end %> 
             </p>
           </div> 
         </li>

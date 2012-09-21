@@ -16,7 +16,12 @@
         <%= hook :products_list_item, {:product => product} do %>
           <%= link_to product_image(product), product %>
           <div>
-        	<span class="price"><%= product.price %> <em>руб.</em></span>
+          <% if product.on_sale? %>
+            <span class="price old_price"><%= product.price %> <em>руб.</em></span><br />
+            <span class="price"><%= product.sale_price %> <em>руб.</em></span>
+          <% else %>
+        	 <span class="price"><%= product.price %> <em>руб.</em></span>
+          <% end %>
           	<p><%= product.name %></p>
           </div>          
         <% end %>

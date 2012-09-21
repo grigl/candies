@@ -39,11 +39,11 @@
         <%= f.error_message_on :price %>
       <% end %>
 
-      <div style="display:none;">
-        <%= f.field_container :cost_price do %>
-          <%= f.label :cost_price, t("cost_price")%><br />
-          <%= f.text_field :cost_price, :value => number_with_precision(@product.cost_price, :precision => 2) %>
-          <%= f.error_message_on :cost_price %>
+      <div>
+        <%= f.field_container :sale_price do %>
+          <%= f.label :sale_price, t("sale_price")%><br />
+          <%= f.text_field :sale_price, :value => number_with_precision(@product.sale_price, :precision => 2) %>
+          <%= f.error_message_on :sale_price %>
         <% end %>
       </div>
 

@@ -647,7 +647,7 @@ header li.cur.none {background: none;}
 	.shop-item-num span {color: #db1b21;}
 	.shop-item-price {
 		float: right;
-		font-size: 44px;
+		font-size: 22px;
 		line-height: 44px;
 	}
 	.shop-item-price em {
@@ -1279,3 +1279,10 @@ header li.cur.none {background: none;}
 	color: #B52469;	
 }
 
+.shop-item-price .old_price {
+	text-decoration: line-through;
+}
+
+.shop-items-list .old_price {
+	text-decoration: line-through;
+}

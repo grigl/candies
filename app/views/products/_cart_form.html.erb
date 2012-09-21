@@ -45,7 +45,7 @@
       </div>
     <% end %>
     </div>
-  <% end%>
+  <% end %>
   <% if @product.has_stock? || Spree::Config[:allow_backorders] %>
     <%= hidden_field_tag (@product.has_variants? ? :quantity : "variants[#{@product.master.id}]"),
       1, :class => "title", :size => 3 %>
@@ -53,9 +53,16 @@
     <button type='submit' class='add-to-cart button plus'>
       <%= t('add_to_cart') %>
     </button>
-    <div class="shop-item-price">
-    	<%= product_price(@product) %>
-    </div>
+    <% if @product.on_sale? %>
+      <div class="shop-item-price">
+      	<span class="old_price"><%= product_price(@product) %></span>
+        <%= sale_price(@product) %>
+      </div>
+    <% else %>
+      <div class="shop-item-price">
+        <%= product_price(@product) %>
+      </div>
+    <% end %>
     <div class="shop-item-num">
     	На складе: <span class="shop-item-on-hand"></span>
     </div>    

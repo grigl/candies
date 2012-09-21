@@ -32,7 +32,7 @@ class Product < ActiveRecord::Base
     :class_name => 'Variant',
     :conditions => ["variants.is_master = ? AND variants.deleted_at IS NULL", true]
 
-  delegate_belongs_to :master, :sku, :price, :weight, :height, :width, :depth, :is_master
+  delegate_belongs_to :master, :sku, :price, :sale_price, :weight, :height, :width, :depth, :is_master
   delegate_belongs_to :master, :cost_price if Variant.table_exists? && Variant.column_names.include?("cost_price")
 
   after_create :set_master_variant_defaults
@@ -136,6 +136,10 @@ class Product < ActiveRecord::Base
   # returns the number of inventory units "on_hand" for this product
   def on_hand
     has_variants? ? variants.inject(0){|sum, v| sum + v.on_hand} : master.on_hand
+  end
+
+  def on_sale?
+    self.sale_price && self.sale_price != 0
   end
 
   # adjusts the "on_hand" inventory level for the product up or down to match the given new_level
@@ -255,4 +259,5 @@ class Product < ActiveRecord::Base
   def update_memberships
     self.product_groups = ProductGroup.all.select{|pg| pg.include?(self)}
   end
+
 end

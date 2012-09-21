@@ -2,3 +2,4 @@ ru:
 
   wrong_login: 'Неправильный email или пароль'
   default_address_label: 'адрес по умолчанию:'
+  sale_price: 'Цена со скидкой'
