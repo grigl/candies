@@ -649,8 +649,8 @@ header li.cur.none {background: none;}
 		float: right;
 		font-size: 22px;
 		line-height: 44px;
-		color: #b52469;
 	}
+	.shop-item-price.sale {color: #b52469;}
 	.shop-item-price em {
 		font-style: normal;
 		font-size: 18px;
