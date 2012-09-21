@@ -52,14 +52,16 @@
         <div class="shop-item-buy">      
         	<%= hidden_field_tag (product.has_variants? ? :quantity : "variants[#{product.master.id}]"), 1%> 
             <button type="submit" class="add-to-cart button plus">В корзину</button>
-          <div class="shop-item-price">
             <% if product.on_sale? %>
-              <span class="old_price"><%= product_price(product) %></span>
-              <%= sale_price(product) %>
+              <div class="shop-item-price sale">
+								<span class="old_price"><%= product_price(product) %></span>
+              	<%= sale_price(product) %>
+							</div>
             <% else %>
-              <%= product_price(product) %>
+							<div class="shop-item-price">
+              	<%= product_price(product) %>
+							</div>
             <% end %>
-          </div>
           <div class="shop-item-num" style='padding-top:13px;'>
             На складе: <span class="shop-item-on-hand"></span>
           </div>
@@ -124,14 +126,16 @@
         <div class="shop-item-buy">       
         	<%= hidden_field_tag (product.has_variants? ? :quantity : "variants[#{product.master.id}]"), 1%>
             <button type="submit" class="add-to-cart button plus">В корзину</button>
-          <div class="shop-item-price">
-            <% if product.on_sale? %>
-              <span class="old_price"><%= product_price(product) %></span>
-              <%= sale_price(product) %>
+          	<% if product.on_sale? %>
+              <div class="shop-item-price sale">
+								<span class="old_price"><%= product_price(product) %></span>
+              	<%= sale_price(product) %>
+							</div>
             <% else %>
-              <%= product_price(product) %>
+							<div class="shop-item-price">
+              	<%= product_price(product) %>
+							</div>
             <% end %>
-          </div>
           <div class="shop-item-num" style='padding-top:13px;'>
             На складе: <span class="shop-item-on-hand"></span>
           </div>

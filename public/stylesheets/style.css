@@ -706,6 +706,7 @@ header li.cur.none {background: none;}
 }
 .price.old_price~.price {
 	background: none;
+	color: #b52469;
 }
 .shop-items-list .price em {
 	font-style: normal;
