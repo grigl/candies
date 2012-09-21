@@ -649,6 +649,7 @@ header li.cur.none {background: none;}
 		float: right;
 		font-size: 22px;
 		line-height: 44px;
+		color: #b52469;
 	}
 	.shop-item-price em {
 		font-style: normal;
@@ -702,6 +703,9 @@ header li.cur.none {background: none;}
 	padding: 1px 5px;
 	text-transform: uppercase;
 	font-size: 16px;
+}
+.price.old_price~.price {
+	background: none;
 }
 .shop-items-list .price em {
 	font-style: normal;
@@ -1279,10 +1283,8 @@ header li.cur.none {background: none;}
 	color: #B52469;	
 }
 
-.shop-item-price .old_price {
-	text-decoration: line-through;
-}
-
+.shop-item-price .old_price,
 .shop-items-list .old_price {
 	text-decoration: line-through;
+	color: #000;
 }
