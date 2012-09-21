@@ -58,7 +58,7 @@ $(document).ready(function() {
 			    <li>
             <img alt="<%= @product.name %>" src="<%= image.attachment.url(:large) %>">
             <figcaption class="lightbox">
-              <a rel="group1" class="product_image_link" href="<%= image.attachment.url(:large) %>">go</a>
+              <a rel="group1" class="product_image_link" href="<%= image.attachment.url(:original) %>">go</a>
             </figcaption>
           </li>
 		    <% end %>
@@ -92,7 +92,7 @@ $(document).ready(function() {
           <li>
             <img alt="<%= @product.name %>" src="<%= image.attachment.url(:large) %>">
             <figcaption class="lightbox">
-              <a rel="group1" class="product_image_link" href="<%= image.attachment.url(:large) %>">go</a>
+              <a rel="group1" class="product_image_link" href="<%= image.attachment.url(:original) %>">go</a>
             </figcaption>
           </li> 
         <% end %>
