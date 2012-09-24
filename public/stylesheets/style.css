@@ -1288,6 +1288,17 @@ header li.cur.none {background: none;}
 
 .shop-item-price .old_price,
 .shop-items-list .old_price {
-	text-decoration: line-through;
 	color: #000;
+	position: relative;
+}
+.shop-item-price .old_price:after,
+.shop-items-list .old_price:after {
+	content: "";
+	position: absolute;
+	display: block;
+	height: 2px;
+	width: 100%;
+	background-color: #000;
+	top: 50%;
+	margin-top: -1px;
 }
