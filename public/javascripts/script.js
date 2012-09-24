@@ -283,6 +283,12 @@ $(document).bind('html-inserted', function() {
 	$('.select.f-hide').click(function(){
 		$(this).next().removeClass('f-hiden');
 	});
+	
+	// copyright
+	$('.pages .page').each(function(){
+		$('.copyright-link').remove();
+		$(this).append('<a href="http://whitescape.com" class="copyright-link"></a>');
+	});
 
 });
 
