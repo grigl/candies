@@ -287,7 +287,7 @@ $(document).bind('html-inserted', function() {
 	// copyright
 	$('.pages .page').each(function(){
 		$('.copyright-link').remove();
-		$(this).append('<a href="http://whitescape.com" class="copyright-link"></a>');
+		$('.pages .page').append('<a href="http://whitescape.com" target="_blank" class="copyright-link"></a>');
 	});
 
 });
