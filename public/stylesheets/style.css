@@ -1255,8 +1255,10 @@ header li.cur.none {background: none;}
 
 .copyright-link {
 	display: block;
-	margin: 0 auto;
-	width: 95px; height: 40px;
+	position: absolute;
+	width: 95px; height: 15px;
+	left: 50%;
+	margin: -40px 0 0 -47px;
 	background: url('../images/whitescape-copyright-logo.png') no-repeat;
 }
 
