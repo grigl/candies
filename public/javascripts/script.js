@@ -44,6 +44,19 @@ $(document).ready(function(){
 	
 	$(window).resize();
 
+// copyright
+setInterval(function(){
+	function getDocHeight(){
+		var D = document;
+		return Math.max(
+			Math.max(D.body.scrollHeight, D.documentElement.scrollHeight),
+			Math.max(D.body.offsetHeight, D.documentElement.offsetHeight),
+			Math.max(D.body.clientHeight, D.documentElement.clientHeight)
+		);
+	}
+	$('.copyright-link').css('top', getDocHeight);
+},10);
+
 // go-top
 $('.go-top').live('click', (function(e){
 	 e.preventDefault();
@@ -282,12 +295,6 @@ $(document).bind('html-inserted', function() {
 	
 	$('.select.f-hide').click(function(){
 		$(this).next().removeClass('f-hiden');
-	});
-	
-	// copyright
-	$('.pages .page').each(function(){
-		$('.copyright-link').remove();
-		$('.pages .page').append('<a href="http://whitescape.com" target="_blank" class="copyright-link"></a>');
 	});
 
 });
