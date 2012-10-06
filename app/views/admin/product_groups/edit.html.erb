@@ -6,7 +6,7 @@
 
   <%= form_for(@product_group, :url => object_url, :html => { :id => 'product-group-form', :method => :put, :multipart => :true }) do |f| %>
 
-      <%= f.field_container :name do %>
+      <%= f.field_container :name, class: 'disabled' do %>
         <%= f.label :name, t("name") %><br />
         <%= f.text_field :name %>
         <%= f.error_message_on :name %>
