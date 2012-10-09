@@ -180,7 +180,7 @@ function transformVariantChooser() {
 		if (container.data('ready')) {
 			return;
 		} else {
-			container.data('ready', true);
+			container.data('ready', true).find('select').addClass('js-select-ready');
 		}
 
 		var colors = {};
@@ -255,7 +255,7 @@ function transformVariantChooser() {
 					.appendTo(size_select);
 			}
 			cur_val = cur_val || first_size;
-			size_select.customSelect().addClass('js-select-ready')
+			size_select.customSelect()
 				.find('option').removeAttr('selected')
 				.filter('[value="'+ cur_val +'"]').attr('selected', 'selected');
 			size_select.next().find('span').html(cur_val);
