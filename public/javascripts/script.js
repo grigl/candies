@@ -272,7 +272,9 @@ function transformVariantChooser() {
 			update_old_controls();
 		})
 
-		set_color(container.find('.js-color-option').first().attr('title'));
+		var $selected_color = container.find('.js-color-option.cur');
+		$selected_color = !$selected_color.length ? container.find('.js-color-option').first() : $selected_color;
+		set_color($selected_color.attr('title'));
 	});
 }
 
