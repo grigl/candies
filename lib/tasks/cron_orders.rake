@@ -11,7 +11,7 @@ company_rest_url = "https://online.moysklad.ru/exchange/rest/ms/xml/Company/list
 company_rest_create_url = "https://online.moysklad.ru/exchange/rest/ms/xml/Company"
 
 rest_user = "danya@candies/banya"
-rest_pass = "bosscandies"
+rest_pass = "dan13yan88"
 
 target_id = "OieObr9ng9abW9GSMqz353"
 

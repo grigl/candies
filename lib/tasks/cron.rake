@@ -15,7 +15,7 @@ param_gender_metadata_id = "ym_o9SGqiZu7c6j8dztOv2" #id для пола
 gender_hash = { 0 => "Унисекс", 1 => "Мужской", 2 => "Женский" }
 
 rest_user = "danya@candies/banya"
-rest_pass = "bosscandies"
+rest_pass = "dan13yan88"
 
 #folders...
 root_folder = '1CANDIES' #название корневого каталога магазина
