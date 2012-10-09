@@ -241,13 +241,24 @@ function transformVariantChooser() {
 			container.find('.js-color-option.cur').removeClass('cur');
 			container.find('.js-color-option[title="' + color + '"]').addClass('cur');
 			var size_select = container.find('.js-size-select');
-			var old_val = size_select.val();
+			var old_val = size_select.val(),
+				cur_val,
+				first_size;
 			size_select.empty();
 			for (size in colors[color]) {
-				size_select.append('<option value="' + size + '" data-value="' + colors[color][size] + '">' + size + '</option>');
+				first_size = first_size || size;
+				cur_val = (size==old_val)?size:cur_val;
+				$('<option />')
+					.attr('data-value', colors[color][size])
+					.val(size)
+					.html(size)
+					.appendTo(size_select);
 			}
-			size_select.customSelect().find('option').removeAttr('selected').parent().find('option[value="'+ old_val +'"]').attr('selected','selected');
-			size_select.next().find('span').html(old_val);
+			cur_val = cur_val || first_size;
+			size_select.customSelect()
+				.find('option').removeAttr('selected')
+				.filter('[value="'+ cur_val +'"]').attr('selected', 'selected');
+			size_select.next().find('span').html(cur_val);
 			/*if (old_val != null && size_select.val() != old_val) {
 				container.find('span.select').animate({top: -20}, 50).animate({top: 0}, 600, 'easeOutBounce');
 			}*/
