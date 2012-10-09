@@ -255,7 +255,7 @@ function transformVariantChooser() {
 					.appendTo(size_select);
 			}
 			cur_val = cur_val || first_size;
-			size_select.customSelect()
+			size_select.customSelect().addClass('js-select-ready')
 				.find('option').removeAttr('selected')
 				.filter('[value="'+ cur_val +'"]').attr('selected', 'selected');
 			size_select.next().find('span').html(cur_val);
@@ -300,7 +300,7 @@ $(document).bind('html-inserted', function() {
 	$('input[placeholder], textarea[placeholder]').placeholder();
 	
 	// select
-	$('.select').customSelect();
+	$('.select:not(.js-select-ready)').customSelect();
 	
 	$('.select.f-hide').each(function(){
 		$(this).next().addClass('f-hiden');
