@@ -1,0 +1,30 @@
+<% count, preview = @product_group.generate_preview(999) %>
+
+<h2><%= ProductGroup.human_attribute_name(:products) %> (<%= count %>)</h2>
+
+<% if count == 0 %>
+  <p><%= t('no_match_found') %></p>
+<% else %>
+
+  <table class="index">
+    <thead>
+    <tr>
+      <th><%= Product.human_attribute_name(:name) %></th>
+      <th><%= t(:action) %></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% preview.each do |product| %>
+      <tr>
+        <td>
+          <%= link_to product.name, product_url(product) %>
+        </td>
+        <td>
+          <%= link_to t(:edit), edit_admin_product_path(product) %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+

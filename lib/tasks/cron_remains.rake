@@ -14,7 +14,7 @@ rest_url = "https://online.moysklad.ru/exchange/rest/stock/xml"
 cons_rest_url = "https://online.moysklad.ru/exchange/rest/ms/xml/Consignment/" #серии
 
 rest_user = "danya@candies/banya"
-rest_pass = "bosscandies"
+rest_pass = "dan13yan88"
 
 warehouse_id = "7Jy2W1FvhCST6pgOAuu2S1" #id склада
 

@@ -72,7 +72,7 @@
               </h4>
               <div class="order-history-info">
                 <div class="info dotted">
-                  <p>Оплата: <%= order.payment_method.name %></p>
+                  <p>Оплата: <%= order.payment_method.name rescue '' %></p>
                   <p>Плательщик: <%= order.bill_address.firstname %> <%= order.bill_address.lastname %></p>
                   <p>&nbsp;</p>
                   <% if order.payment_method.is_a?(PaymentMethod::SberBankInvoice) %>
