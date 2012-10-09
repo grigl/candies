@@ -180,7 +180,7 @@ function transformVariantChooser() {
 		if (container.data('ready')) {
 			return;
 		} else {
-			container.data('ready', true).find('select').addClass('js-select-ready');
+			container.data('ready', true);
 		}
 
 		var colors = {};
@@ -255,10 +255,12 @@ function transformVariantChooser() {
 					.appendTo(size_select);
 			}
 			cur_val = cur_val || first_size;
+
 			size_select.customSelect()
 				.find('option').removeAttr('selected')
-				.filter('[value="'+ cur_val +'"]').attr('selected', 'selected');
-			size_select.next().find('span').html(cur_val);
+					.filter('[value="'+ cur_val +'"]').attr('selected', 'selected').end()
+				.end()
+				.next().find('span').html(cur_val);
 			/*if (old_val != null && size_select.val() != old_val) {
 				container.find('span.select').animate({top: -20}, 50).animate({top: 0}, 600, 'easeOutBounce');
 			}*/
@@ -300,7 +302,7 @@ $(document).bind('html-inserted', function() {
 	$('input[placeholder], textarea[placeholder]').placeholder();
 	
 	// select
-	$('.select:not(.js-select-ready)').customSelect();
+	$('.select').customSelect();
 	
 	$('.select.f-hide').each(function(){
 		$(this).next().addClass('f-hiden');
