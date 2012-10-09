@@ -17,12 +17,11 @@ class TaxonsController < Spree::BaseController
     if @taxon.id == all_collection_id then
       all_products = Product.joins(:variants).group(:id)
     else
-      @searcher = Spree::Config.searcher_class.new(params.merge(:taxon => @taxon.id)) 
-      get_products = @searcher.retrieve_products
-      all_products = get_products
+      get_products = @taxon.products
+      all_products = []
       for get_product in get_products do
-        if get_product.variants then
-          all_products.push(get_product)
+        if get_product.class.to_s == 'Product' then
+          all_products.push(get_product) unless all_products.include?(get_product)
         end
       end      
     end
