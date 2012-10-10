@@ -4,7 +4,7 @@
       <li><a>3</a></li>
     </ul>
 
-  <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" }, remote: true, disable_with: 'ДАЛЬШЕ' do |form| %>
+  <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" }, remote: true do |form| %>
     <div class="left-colum">
 
       <h3>КОНТАКТНЫЕ ДАННЫЕ</h3>
@@ -182,7 +182,7 @@
 
     <div class="right-colum">
       <div class="checkout-buttons" align="right">
-        <span class="btn-wrap"><input type="submit" class="button" value="ДАЛЬШЕ"></span>
+        <span class="btn-wrap"><input type="submit" class="button" value="ДАЛЬШЕ" data-disable-with="ДАЛЬШЕ" /></span>
       </div>
     </div>
 
