@@ -4,7 +4,7 @@
       <li><a>3</a></li>
     </ul>
 
-  <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" }, remote: true do |form| %>
+  <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" }, remote: true, disable_with: 'ДАЛЬШЕ' do |form| %>
     <div class="left-colum">
 
       <h3>КОНТАКТНЫЕ ДАННЫЕ</h3>
@@ -176,7 +176,7 @@
 
     <div class="left-colum">
       <div class="checkout-buttons">
-        <%= link_to 'НАЗАД', back_checkout_path(@order.state), class: 'button', remote: true %>
+        <%= link_to 'НАЗАД', back_checkout_path(@order.state), class: 'button', remote: true, disable_with: 'НАЗАД' %>
       </div>
     </div>
 
