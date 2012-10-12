@@ -31,6 +31,7 @@ class Gateway::RobokassaController < Spree::BaseController
       @order.state = "complete"
       @order.finalize!
       @order.update!
+      @order.add_new_address_to_user(current_user)
       
       render :text => "OK#{@order.id}"
     else
