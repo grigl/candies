@@ -31,7 +31,6 @@ class Gateway::RobokassaController < Spree::BaseController
       @order.state = "complete"
       @order.finalize!
       @order.update!
-      @order.add_new_address_to_user(current_user)
       
       render :text => "OK#{@order.id}"
     else
@@ -41,6 +40,7 @@ class Gateway::RobokassaController < Spree::BaseController
 
   def success
     if @order && @gateway && valid_signature?(@gateway.options[:password1]) && @order.complete?
+      @order.add_new_address_to_user(current_user)
       session[:order_id] = nil
       #redirect_to order_path(@order) + "?scroll=true", :notice => I18n.t("payment_success")
       flash[:order_complete] = true
