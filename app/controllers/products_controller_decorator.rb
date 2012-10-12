@@ -79,7 +79,7 @@ ProductsController.class_eval do
     
     @products = []
     for get_product in get_products do
-      if get_product.variants then
+      if get_product.variants.empty? == false then
         @products.push(get_product)
       end
     end    

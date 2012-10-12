@@ -35,7 +35,7 @@ $(document).ready(function(){
         </div>
 				        
         <div class="checkout-buttons">
-           <%= link_to 'НАЗАД', back_checkout_path(@order.state), class: 'button', remote: true %>
+           <%= link_to 'НАЗАД', back_checkout_path(@order.state), class: 'button', remote: true, disable_with: 'НАЗАД'%>
         </div>
           
       </div>
@@ -107,7 +107,7 @@ $(document).ready(function(){
               <%= form.text_area :special_instructions, :class => 'textfield' %>
           </div>
           <div class="checkout-buttons" align="right">
-            <span class="btn-wrap"><input type="submit" class="button" value="ОФОРМИТЬ ЗАКАЗ"></span>
+            <span class="btn-wrap"><input type="submit" class="button" value="ОФОРМИТЬ ЗАКАЗ" data-disable-with="ОФОРМИТЬ ЗАКАЗ" /></span>
           </div>
         <% end %>
       </div>

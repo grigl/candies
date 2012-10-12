@@ -26,7 +26,7 @@
         <p><%= link_to 'изменить адрес', back_to_address_path, remote: true %></p><br><br>
                   
         <div class="checkout-buttons">
-           <%= link_to 'НАЗАД', back_checkout_path('confirm'), class: 'button payment_back', remote: true %>
+           <%= link_to 'НАЗАД', back_checkout_path('confirm'), class: 'button payment_back', remote: true, disable_with: 'НАЗАД' %>
         </div>
           
       </div>
@@ -106,7 +106,7 @@
 		<%= hidden_field_tag(:"Desc", I18n.t("robokassa.details_of_payment", :order_number => @order.number)) %>
 		<%= hidden_field_tag(:"SignatureValue", @signature) %>        
           <div class="checkout-buttons" align="right">
-            <input type="submit" class="button" value="ОПЛАТИТЬ">
+            <input type="submit" class="button" value="ОПЛАТИТЬ" data-disable-with="ОПЛАТИТЬ" />
           </div>
         <% end %>
       </div>

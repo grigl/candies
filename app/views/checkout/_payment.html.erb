@@ -46,12 +46,12 @@
   <div>
     <div class="left-colum">
       <div class="checkout-buttons">
-        <%= link_to 'НАЗАД', back_checkout_path(@order.state), class: 'button', remote: true %>
+        <%= link_to 'НАЗАД', back_checkout_path(@order.state), class: 'button', remote: true, disable_with: 'НАЗАД' %>
       </div>
     </div>
     <div class="right-colum">
       <div class="checkout-buttons" align="right">
-        <span class="btn-wrap"><input type="submit" class="button" value="ДАЛЬШЕ"></span>
+        <span class="btn-wrap"><input type="submit" class="button" value="ДАЛЬШЕ" data-disable-with="ДАЛЬШЕ" /></span>
       </div>
     </div>
   </div>

@@ -9,7 +9,7 @@ Address.class_eval do
 
   def same_as_without_contacts?(other)
     return false if other.nil?
-    attributes.except("id", "updated_at", "created_at", "default", 'firstname', 'lastname', 'phone', 'user_id') ==  other.attributes.except("id", "updated_at", "created_at", "default", 'firstname', 'lastname', 'phone', 'user_id')
+    attributes.values_at('address1', 'city', 'state_id', 'country_id', 'zipcode') ==  other.attributes.values_at('address1', 'city', 'state_id', 'country_id', 'zipcode')
   end
 
   def to_s
