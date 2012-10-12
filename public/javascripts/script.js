@@ -257,9 +257,8 @@ function transformVariantChooser() {
 			cur_val = cur_val || first_size;
 
 			size_select.customSelect()
-				.find('option').removeAttr('selected')
-					.filter('[value="'+ cur_val +'"]').attr('selected', 'selected').end()
-				.end()
+				.find('option').removeAttr('selected').end()    // For some reason $.filter() does not handle backslash-lookup properly.
+				.find('[value="'+ cur_val.replace(/\\/g, '\\\\') +'"]').attr('selected', 'selected').end()
 				.next().find('span').html(cur_val);
 			/*if (old_val != null && size_select.val() != old_val) {
 				container.find('span.select').animate({top: -20}, 50).animate({top: 0}, 600, 'easeOutBounce');
