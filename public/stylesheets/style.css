@@ -298,6 +298,12 @@ header.fixed {
 	background: none;
 	z-index: 2;
 }
+.ios header.fixed {
+	position: absolute;
+	margin-top: 0;
+	right: 0;
+	background: white;
+}
 
 header .logo {
 	display: block;
@@ -422,6 +428,9 @@ header li.cur.none {background: none;}
 	color: #fff;
 	line-height: 46px;
 	z-index: 100;
+}
+.ios .basket {
+	position: absolute;
 }
 .basket a {
 	color: #fff;

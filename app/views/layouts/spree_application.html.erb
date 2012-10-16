@@ -27,6 +27,14 @@
   <%= javascript_include_tag :defaults %>                   
   <%= csrf_meta_tag %>
   <%= yield(:head) %>
+  
+  <script>
+    $(function(){
+      if (navigator.userAgent.match(/(ipad|iphone|ipod|android)/i)) {
+        $('html').addClass('ios')
+      }
+    })
+  </script>
 </head>
 <body>
 <%= yield :afterbody %>
