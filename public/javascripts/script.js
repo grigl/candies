@@ -60,7 +60,7 @@ setInterval(function(){
 		);
 	}
 	$('.copyright-link').css('top', getDocHeight);
-},10);
+}, 10);
 
 // go-top
 $('.go-top').live('click', (function(e){
