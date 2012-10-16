@@ -573,6 +573,7 @@ header li.cur.none {background: none;}
 	-o-transition: all 0.3s ease; 
 	transition: all 0.3s ease;
 }
+.ios .shop-item-images figcaption.lightbox {display: none !important;}
 .shop-item-images:hover figcaption.lightbox {
 	opacity: 1;
 	z-index: 10;
