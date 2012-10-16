@@ -298,12 +298,6 @@ header.fixed {
 	background: none;
 	z-index: 2;
 }
-.ios header.fixed {
-	position: absolute;
-	margin-top: 0;
-	right: 0;
-	background: white;
-}
 
 header .logo {
 	display: block;
@@ -341,6 +335,9 @@ header li.cur.none {background: none;}
 	min-height: 100%;
 	position: relative;
 }
+.ios .page {
+	min-width: 1010px;
+}
 	.white {
 		background-color: #fff;
 		color: #000;
@@ -357,6 +354,9 @@ header li.cur.none {background: none;}
 		width: 100%;
 		height: 50px;
 		background-color: #fff;
+	}
+	.ios .page:after {
+		top: -1px;
 	}
 	.page.white:after {
 		background-color: transparent;

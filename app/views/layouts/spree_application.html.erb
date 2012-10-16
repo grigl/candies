@@ -29,8 +29,9 @@
   <%= yield(:head) %>
   
   <script>
-    $(function(){
-      if (navigator.userAgent.match(/(ipad|iphone|ipod|android)/i)) {
+    window.IOS = navigator.userAgent.match(/(ipad|iphone|ipod|android)/i)
+    $(function() {
+      if (IOS) {
         $('html').addClass('ios')
       }
     })

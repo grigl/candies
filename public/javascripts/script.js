@@ -11,10 +11,12 @@ $(document).ready(function(){
 	
 	$(window).scroll(function(e){
 		var scrollTop = $(window).scrollTop();
-		if(scrollTop > delta + 64){
-			$('header').removeClass('fixed').css('top', page_height);
-		} else {
-			$('header').addClass('fixed').css('top', window_height);
+		if (!IOS) {
+			if(scrollTop > delta + 64){
+				$('header').removeClass('fixed').css('top', page_height);
+			} else {
+				$('header').addClass('fixed').css('top', window_height);
+			}
 		}
 
 		if (scrollTop > basket_limit) {
@@ -40,6 +42,9 @@ $(document).ready(function(){
 		basket_limit = page_height - 100;
 		$('header.fixed').css('top', window_height);
 		$(window).scroll();
+		if (IOS) {
+			$('header').css('top', page_height);
+		}
 	});
 	
 	$(window).resize();
