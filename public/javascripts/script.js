@@ -367,7 +367,7 @@ $(function() {
 	});	
 });
 
-window.switchPage = function( pageName, noScroll ) {
+window.switchPage = function( pageName, noScroll, anchor ) {
 	if (pageName == 'personal') {
 		if (!$('.js-personal-page-link').parent().hasClass('cur')) {
 			$('.js-page-about').hide('slide', {direction: 'right'}, 1000)
@@ -386,10 +386,17 @@ window.switchPage = function( pageName, noScroll ) {
 			/*window.history && window.history.pushState && window.history.pushState("", "", "/about")*/;
 		}
 	}
-	if (!noScroll) {
+	if (!noScroll && !anchor) {
 		// докручиваем до темной части, если требуется
 		var scroll_to = $('.page.white').height();
 		if (Math.max($('html').scrollTop(), $('body').scrollTop()) < scroll_to) {
+			$('html, body').animate({scrollTop: scroll_to}, 400);
+		}
+	}
+	if (anchor) {
+		var scroll_to = $('#' + anchor + ', a[name="' + anchor + '"]');
+		if (scroll_to.length) {
+			scroll_to = scroll_to.offset().top;
 			$('html, body').animate({scrollTop: scroll_to}, 400);
 		}
 	}

@@ -593,7 +593,14 @@ header li.cur.none {background: none;}
 	line-height: 32px;
 	margin-right: 10px;
 }
-
+/* Отдельные стили для лейбла-ссылки */
+.shop-item-options a.label {
+	text-decoration: none;
+	border-bottom: dashed 1px;
+	line-height: 14px;
+	position: relative;
+	top: 9px;
+}
 	.shop-item-colors li {
 		float: left;
 		width: 16px; height: 16px;
