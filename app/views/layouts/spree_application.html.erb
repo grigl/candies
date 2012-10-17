@@ -35,6 +35,29 @@
         $('html').addClass('ios')
       }
     })
+    
+    $(function() {
+      // На iOS странные глюки с эффектом 'slide' когда страница зумированна.
+      // Сделаем чтобы функции hide/show на iOS вызывались без аргументов.
+      var original = {
+        hide: $.fn.hide,
+        show: $.fn.show
+      }
+      $.fn.hide = function() {
+        if (IOS) {
+          return original.hide.apply(this)
+        } else {
+          return original.hide.apply(this, arguments)
+        }
+      }
+      $.fn.show = function() {
+        if (IOS) {
+          return original.show.apply(this)
+        } else {
+          return original.show.apply(this, arguments)
+        }
+      }
+    })
   </script>
 </head>
 <body>
