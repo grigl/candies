@@ -12,7 +12,13 @@ OrdersController.class_eval do
     #наглая подмена параметров, чтобы нельзя бы заказать больше
     params[:order]["line_items_attributes"].each do|i, item|
       line_item_id = item["id"].to_i
-      line_item_qty = item["quantity"].to_i
+
+      if item["quantity"] =~ /^[-+]?[0-9]+$/
+        line_item_qty = item["quantity"].to_i
+      else
+        line_item_qty = LineItem.find(item["id"]).quantity
+      end
+
       line_item = LineItem.find(line_item_id)
       variant_id = line_item.variant_id
       variant = Variant.find(variant_id)
