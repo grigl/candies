@@ -92,6 +92,29 @@ Order.class_eval do
     end.compact.sort_by{|r| r[:cost]}
   end
 
+  def finalize!
+    update_attribute(:completed_at, Time.now)
+    self.out_of_stock_items = InventoryUnit.assign_opening_inventory(self)
+    # lock any optional adjustments (coupon promotions, etc.)
+    adjustments.optional.each { |adjustment| adjustment.update_attribute("locked", true) }
+    self.record_shipping_and_payment_methods
+    OrderMailer.confirm_email(self).deliver
+
+    self.state_events.create({
+      :previous_state => "cart",
+      :next_state     => "complete",
+      :name           => "order" ,
+      :user_id        => (User.respond_to?(:current) && User.current.try(:id)) || self.user_id
+    })
+  end
+
+  def record_shipping_and_payment_methods
+    return unless self.shipping_method && self.payment_method
+
+    self.update_attribute(:shipping_method_name, self.shipping_method.name)
+    self.update_attribute(:payment_method_name, self.payment_method.name)  
+  end
+
   before_validation :clone_shipping_address, :if => "@use_billing"
   attr_accessor :use_billing
 

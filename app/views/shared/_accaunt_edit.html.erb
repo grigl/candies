@@ -55,61 +55,7 @@
             У вас еще нет завершенных заказов.
           <% else %>
             <% current_user.orders.select { |order| order.completed? }.each do |order| %>
-            <li class="order-history-item">
-              <p class="date"><%= order.completed_at %></p>
-              <h4 class="order-history-name">
-                Заказ № <%= order.number %>
-                <span><%= number_to_currency order.total %></span>
-              </h4>
-              <div class="order-history-info">
-                <div class="info dotted">
-                  <p>Оплата: <%= order.payment_method.name rescue '' %></p>
-                  <p>Плательщик: <%= order.bill_address.firstname %> <%= order.bill_address.lastname %></p>
-                  <p>&nbsp;</p>
-                  <% if order.payment_method.is_a?(PaymentMethod::SberBankInvoice) %>
-                    <p><%= link_to 'скачать квитанцию', orders_sberbank_invoice_path(order), class: 'button' %></p>
-                  <% end %>
-                  <p><br>&nbsp;</p>
-                  <p>Доставка: <%= order.shipping_method.name %></p>
-                  <p>Получатель: <%= order.ship_address.firstname %> <%= order.ship_address.lastname %></p>
-                  <p>Адрес доставки заказа:</p>
-                  <p><%= order.ship_address.address1 %></p>
-                  <p><br>&nbsp;</p>
-<!--                   <form>
-                    <h5>Печатные формы:</h5>
-                    <input type="checkbox"><label>Инвойс</label>
-                    <input type="checkbox"><label>Квитанция</label>
-                    <p><input type="submit" class="button" value="ПЕЧАТЬ"></p>
-                  </form> -->
-                </div>
-                <h4>Заказанные продукты:</h4>
-                <ul class="dotted">
-                  <% order.line_items.each do |line_item| %>
-                    <li>
-                      <p class="num">кол-во: <%= line_item.quantity %></p>
-                      <p class="name"><%= line_item.variant.product.name %></p>
-                      <p>
-                        <span class="size">размер: 
-                          <% line_item.variant.option_values.select.each do|ov| %>
-                            <% if ov.option_type.name == 'size' %>
-                              <%= ov.presentation %>
-                            <% end %>
-                          <% end %>
-                        </span>
-                        <span class="color">цвет: 
-                          <% line_item.variant.option_values.select.each do|ov| %>
-                            <% if ov.option_type.name == 'color' %>
-                              <%= ov.presentation %>
-                            <% end %>
-                          <% end %>
-                        </span>
-                        <span class="price">цена:   <%= product_price(line_item.variant) %></span>
-                      </p>
-                    </li>
-                  <% end %>
-                </ul>
-              </div>
-            </li>
+              <%= render 'shared/order_history', order: order %>
             <% end %>
           <% end %>
         </ul>

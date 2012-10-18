@@ -1,89 +1,42 @@
-      <h3 class="right">
-        <a href="accaunt_edit" id="show_accaunt_edit" class="small">Изменить</a> <%= link_to 'Выйти', destroy_user_session_path, class: 'small' %>
-      </h3>
-      
-      <div class="user-name">
-        <div>
-          <%= current_user.email %><br>
-          тел: <%= current_user.phone %>
-        </div>
-        <h5><%= current_user.firstname %> <%= current_user.lastname %></h5>
-      </div>
-      
-      <div class="user-address">
-        <p>
-          Адрес по умолчанию :
-        </p>
-        <h5>
-          <%= current_user.default_address.address1 %><br />
-          <%= current_user.default_address.city %>, <%= current_user.default_address.state %><br />
-          <%= current_user.default_address.country %>
-        </h5>
-        
-        <p>
-          <a href="/address_book" id="show_address_book">Посмотреть / Редактировать  адресную книгу</a>
-          Всего адресов: <%= current_user.addresses.count %>
-        </p>
-      </div>
-      <div class="dotted">&nbsp;</div><br><br>
-      
-      <div class="order-history">
-        <h3 class="left">История заказов :</h3>
-        <ul class="order-history-list">
-          <% if current_user.orders.select { |order| order.completed? }.empty? %>
-            У вас еще нет завершенных заказов.
-          <% else %>
-            <% current_user.orders.select { |order| order.completed? }.each do |order| %>
-            <li class="order-history-item">
-              <p class="date"><%= order.completed_at %></p>
-              <h4 class="order-history-name">
-                Заказ № <%= order.number %>
-                <span><%= number_to_currency order.total %></span>
-              </h4>
-              <div class="order-history-info">
-                <div class="info dotted">
-                  <p>Оплата: <%= order.payment_method.name rescue '' %></p>
-                  <p>Плательщик: <%= order.bill_address.firstname %> <%= order.bill_address.lastname %></p>
-                  <p>&nbsp;</p>
-                  <% if order.payment_method.is_a?(PaymentMethod::SberBankInvoice) %>
-                    <p><%= link_to 'скачать квитанцию', orders_sberbank_invoice_path(order), class: 'button' %></p>
-                  <% end %>
-                  <% if order.shipping_method %>
-                  <p>Доставка: <%= order.shipping_method.name %></p>
-                  <% end %>
-                  <p>Получатель: <%= order.ship_address.firstname %> <%= order.ship_address.lastname %></p>
-                  <p>Адрес доставки заказа:</p>
-                  <p><%= order.ship_address.address1 %></p>
-                </div>
-                <h4>Заказанные продукты:</h4>
-                <ul class="dotted">
-                  <% order.line_items.each do |line_item| %>
-                    <li>
-                      <p class="num">кол-во: <%= line_item.quantity %></p>
-                      <p class="name"><%= line_item.variant.product.name %></p>
-                      <p>
-                        <span class="size">размер: 
-                          <% line_item.variant.option_values.select.each do|ov| %>
-                            <% if ov.option_type.name == 'size' %>
-                              <%= ov.presentation %>
-                            <% end %>
-                          <% end %>
-                        </span>
-                        <span class="color">цвет: 
-                          <% line_item.variant.option_values.select.each do|ov| %>
-                            <% if ov.option_type.name == 'color' %>
-                              <%= ov.presentation %>
-                            <% end %>
-                          <% end %>
-                        </span>
-                        <span class="price">цена:   <%= product_price(line_item.variant) %></span>
-                      </p>
-                    </li>
-                  <% end %>
-                </ul>
-              </div>
-            </li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
+<h3 class="right">
+  <a href="accaunt_edit" id="show_accaunt_edit" class="small">Изменить</a> <%= link_to 'Выйти', destroy_user_session_path, class: 'small' %>
+</h3>
+
+<div class="user-name">
+  <div>
+    <%= current_user.email %><br>
+    тел: <%= current_user.phone %>
+  </div>
+  <h5><%= current_user.firstname %> <%= current_user.lastname %></h5>
+</div>
+
+<div class="user-address">
+  <p>
+    Адрес по умолчанию :
+  </p>
+  <h5>
+    <%= current_user.default_address.address1 %><br />
+    <%= current_user.default_address.city %>, <%= current_user.default_address.state %><br />
+    <%= current_user.default_address.country %>
+  </h5>
+  
+  <p>
+    <a href="/address_book" id="show_address_book">Посмотреть / Редактировать  адресную книгу</a>
+    Всего адресов: <%= current_user.addresses.count %>
+  </p>
+</div>
+<div class="dotted">&nbsp;</div><br><br>
+
+<div class="order-history">
+  <h3 class="left">История заказов :</h3>
+  <ul class="order-history-list">
+    <% if current_user.orders.select { |order| order.completed? }.empty? %>
+      У вас еще нет завершенных заказов.
+    <% else %>
+      <% current_user.orders.select { |order| order.completed? }.each do |order| %>
+        <%= render 'shared/order_history', order: order %>
+      </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
