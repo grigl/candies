@@ -11,7 +11,7 @@ UserPasswordsController.class_eval do
       if resource.errors.full_messages.join('').include?('не может быть пустым')
         @error = 'Вы не ввели адрес электронной почты'
       else
-        @error = 'Не верный адрес электронной почты'
+        @error = 'Неверный адрес электронной почты'
       end
       @success = false
     end    
