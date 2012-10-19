@@ -49,6 +49,15 @@ $(document).ready(function(){
 	
 	$(window).resize();
 
+	// Что-то происходит и меняется размер .page.white,
+	// при этом `resize` не срабатывает
+	// (проявляется на странице товара)
+	setInterval(function(){
+		page_height = $('.page.white').height();
+		delta = page_height - window_height + 30;
+		basket_limit = page_height - 100;
+	}, 1000);
+
 // copyright
 setInterval(function(){
 	function getDocHeight(){

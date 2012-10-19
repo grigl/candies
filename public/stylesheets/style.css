@@ -631,9 +631,15 @@ header li.cur.none {background: none;}
 	margin-bottom: 14px;
 }
 .shop-item-text p {
+	padding-bottom: 5px;
+}
+/* .small — в карточке товара на главной */
+.shop-item-text.small p {
 	height: 80px;
 	overflow: hidden;
-	padding-bottom: 5px;
+}
+.social-buttons-in-product-description {
+	height: 32px;
 }
 .shop-item-text img {
 	height: 70px;
