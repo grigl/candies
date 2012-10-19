@@ -20,7 +20,7 @@
               <% end %>
               <%= radio_button_tag 'order[shipping_method_id]', shipping_method[:id], checked_shipping_method %>
               <h5><%= shipping_method[:name] %></h5>
-              <p><%= shipping_method[:description] %></p>
+              <p><%= shipping_method[:description].html_safe rescue '' %></p>
               <p><%= number_to_currency shipping_method[:cost] %></p>
             </li>
             <% end %>
@@ -35,7 +35,7 @@
             <li class="checkout-payment-item">
               <%= radio_button_tag "order[payments_attributes][][payment_method_id]", method.id, method == @order.payment_method %>
               <h5><%= t(method.name, :scope => :payment_methods, :default => method.name) %></h5>
-              <p><%= method.description %></p>
+              <p><%= method.description.html_safe rescue '' %></p>
             </li>
             <% end %>
           </ul>
