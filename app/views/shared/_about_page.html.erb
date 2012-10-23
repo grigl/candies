@@ -33,10 +33,9 @@
           <img src="https://money.yandex.ru/img/yamoney_logo88x31.gif" alt="Мы принимаем Яндекс.Деньги" title="Мы принимаем Яндекс.Деньги" border="0" width="88" height="31"/>
         </a>
         
-        <!-- TODO: сделать редактируемым. Желательно как-то оставить текущий с помощью `rescue` или чтобы в админке был заполнен сразу (этот текст взят из требований) -->
-        Яндекс.Деньги — доступный и безопасный способ платить за товары и услуги через интернет. 
-        Пополнение счета и оплата заказов происходят в реальном времени 
-        <a href="http://money.yandex.ru/" target="_blank">на сайте платежной системы</a>.
+        <%= @page.body4.html_safe rescue 'Яндекс.Деньги — доступный и безопасный способ платить за товары и услуги через интернет. 
+                Пополнение счета и оплата заказов происходят в реальном времени 
+                <a href="http://money.yandex.ru/" target="_blank">на сайте платежной системы</a>.'.html_safe %>
         
       </p>
       <div style="clear:both; height:1em"></div>
@@ -45,8 +44,7 @@
           <img src="http://www.webmoney.ru/img/icons/88x31_wm_blue_on_white_ru.png" alt="Мы принимаем WebMoney" title="Мы принимаем WebMoney" border="0" width="88" height="31">
         </a> 
         
-        <!-- TODO: сделать редактируемым -->
-        ~ Текст о WebMoney ~
+        <%= @page.body5.html_safe rescue '~ Текст о WebMoney ~'.html_safe %>
         
       </p>
       <div style="clear:both; height:1em"></div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121018140750) do
+ActiveRecord::Schema.define(:version => 20121023121912) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -240,6 +240,8 @@ ActiveRecord::Schema.define(:version => 20121018140750) do
     t.text     "body3"
     t.string   "phone"
     t.text     "address"
+    t.text     "body4"
+    t.text     "body5"
   end
 
   add_index "pages", ["slug"], :name => "index_pages_on_slug"
