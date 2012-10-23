@@ -28,6 +28,8 @@
   <%= csrf_meta_tag %>
   <%= yield(:head) %>
   
+  <%= Page.find_by_title('other_info').body2.html_safe rescue nil %>
+
   <script>
     window.IOS = navigator.userAgent.match(/(ipad|iphone|ipod|android)/i)
     $(function() {

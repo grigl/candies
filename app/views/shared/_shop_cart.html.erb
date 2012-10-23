@@ -93,9 +93,7 @@
   </div>
 
 <div class="cart-deliver-box">
-  Срок доставки по Москве и Санкт-Петербургу — на следующий день.<br>
-  Срок доставки в другие крупные города России — от 1 до 10 дней.<br>
-  Срок доставки в отдаленные населенные пункты — до 12 дней.<br>
+  <%= Page.find_by_title('other_info').body.html_safe rescue nil %>
   <br>
   <%= link_to 'Все подробности доставки', 'javascript:switchPage("about")' %>
 </div>
