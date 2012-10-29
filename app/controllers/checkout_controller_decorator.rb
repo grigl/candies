@@ -4,6 +4,10 @@ CheckoutController.class_eval do
   # Updates the order and advances to the next state (when possible.)  
   def update
     if @order.update_attributes(object_params)
+      if params[:state] == 'confirm'
+        @order.state = 'payment'
+        @order.save
+      end
       if @order.next
         state_callback(:after)
       else
