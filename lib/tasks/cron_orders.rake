@@ -67,7 +67,6 @@ namespace :sync do
         xml += '</customerOrderPosition>'
       end
       xml += '</customerOrder>'
-      puts xml
 
       request = RestClient::Resource.new rest_url, rest_user, rest_pass
       response = request.put xml, :content_type => 'application/xml'
@@ -76,7 +75,6 @@ namespace :sync do
         puts "Answer: " + response.to_str
         return
       end
-      puts response.to_str
       
       last_order_id = order.id
       
