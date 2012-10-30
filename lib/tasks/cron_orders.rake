@@ -75,6 +75,7 @@ namespace :sync do
         puts "Answer: " + response.to_str
         return
       end
+      puts response.to_str
       
       last_order_id = order.id
       
