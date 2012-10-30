@@ -62,7 +62,7 @@ namespace :sync do
       order.line_items.each do|line_item|
         variant_id = line_item.variant_id
         sum = line_item.price*line_item.quantity
-        xml += '<customerOrderPosition goodId="'+line_item.variant.ms_good_id.to_s+'" quantity="'+line_item.quantity.to_s+'">'
+        xml += '<customerOrderPosition consignmentId="'+line_item.variant.ms_good_id.to_s+'" quantity="'+line_item.quantity.to_s+'">'
         xml += '<basePrice sumInCurrency="'+sum.to_s+'" sum="'+sum.to_s+'"/>'
         xml += '</customerOrderPosition>'
       end
