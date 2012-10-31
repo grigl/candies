@@ -1,0 +1,48 @@
+<div id="mailsub" style="font-size:14px; line-height:17px; color:#000000; font-family:Arial, Helvetica, sans-serif; background-color:#ffffff;">
+<table cellpadding="0" cellspacing="0" border="0" width="100%"><tr>
+<td height="120" valign="top"><img src="http://<%= Spree::Config[:site_url] %>/images/header_bg.gif" width="100%" height="85" style="display:block;" /></td>
+<td width="128" height="120" valign="top"><img src="http://<%= Spree::Config[:site_url] %>/images/header_logo.gif" width="128" height="85" alt="Candies" style="display:block;" /></td>
+<td height="120" valign="top"><img src="http://<%= Spree::Config[:site_url] %>/images/header_bg.gif" width="100%" height="85" style="display:block;" /></td>
+</tr></table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td>&nbsp;</td><td width="570">
+
+<center><font style="font-size:21px; line-height:21px;">Поступил новый заказ</font></center>
+<br /><div style="border-bottom:1px dotted #000;"></div><br />
+<font style="font-size:18px; line-height:21px;">Номер заказа: <font style="color:#B52367;"><%= @order.number %></font></font><br />
+<br /><br />
+Заказанные продукты:<br />
+<br />
+<% for item in @order.line_items %>
+<a href="http://<%= Spree::Config[:site_url] %>/products/<%=item.variant.product.permalink %>" style="color:#0D52BA;"><%=item.variant.product.name%> (x<%=item.quantity%>): RUR <%= number_to_currency(item.price * item.quantity) %></a><br />
+<% end %>
+<br />
+<font style="font-size:18px; line-height:21px; color:#B52367;">Итого RUR <%= number_to_currency @order.total %></font><br />
+<br />
+<font style="font-size:12px;">Телефон: <%= @order.ship_address.attributes["phone"] %></font><br />
+<br />
+<br /><div style="border-bottom:1px dotted #000;"></div><br />
+<font style="font-size:18px; line-height:21px;">Доставка заказа:</font><br />
+<br />
+Доставка: <%= @order.shipping_method.name %><br />
+Получатель: <%= @order.ship_address.attributes["firstname"] %> <%= @order.ship_address.attributes["lastname"] %><br />
+Адрес доставки заказа: <%= @order.ship_address.to_s %><br />
+Стоимость доставки: RUR <%= @order.adjustments[0].amount %><br />
+<br />
+<br /><div style="border-bottom:1px dotted #000;"></div><br />
+<font style="font-size:18px; line-height:21px;">Оплата заказа:</font><br />
+<br />
+Оплата: <%= @order.payment_method.name %> <br />
+Плательщик: <%= @order.bill_address.attributes["firstname"] %> <%= @order.bill_address.attributes["lastname"] %><br />
+Адрес плательщика: <%= @order.bill_address.to_s %><br />
+<br />
+Мы свяжемся с вами в ближайшее время.<br />
+<br />
+<br /><div style="border-bottom:1px dotted #000;"></div><br />
+<a href="http://<%= Spree::Config[:site_url] %>" style="font-size:18px; line-height:21px; color:#000000; float:right;">Войти в магазин</a>
+С наилучшими пожеланиями, Candies.<br />
+<a href="http://thecandies.ru/">www.thecandies.ru</a><br />
+<br />
+<br /><br />
+
+</td><td>&nbsp;</td></tr></table>
+</div>

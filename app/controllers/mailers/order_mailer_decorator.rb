@@ -1,3 +1,4 @@
+# encoding: utf-8
 OrderMailer.class_eval do
   helper "spree/base"
 
@@ -11,6 +12,17 @@ OrderMailer.class_eval do
          format.html
          end
   end
+  
+  def admin_email(order, resend=false)
+    @order = order
+    subject = (resend ? "[RESEND] " : "")
+    subject += "#{Spree::Config[:site_name]} Поступил новый заказ ##{order.number}"
+    mail(:to => 'hello@thecandies.ru',
+         :subject => subject
+         ) do |format|
+         format.html
+         end
+  end  
 
   def cancel_email(order, resend=false)
     @order = order

@@ -98,7 +98,7 @@ Order.class_eval do
     # lock any optional adjustments (coupon promotions, etc.)
     adjustments.optional.each { |adjustment| adjustment.update_attribute("locked", true) }
     self.record_shipping_and_payment_methods
-    OrderMailer.confirm_email(self).deliver
+    OrderMailer.admin_email(self).deliver
 
     self.state_events.create({
       :previous_state => "cart",

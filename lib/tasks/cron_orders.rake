@@ -31,8 +31,9 @@ namespace :sync do
     #puts xml
     #return
     
-    last_order_id = File.read(".last_order_id")
-    orders = Order.where('id > ? AND completed_at IS NOT NULL', last_order_id)
+    #last_order_id = File.read(".last_order_id")
+    #orders = Order.where('id > ? AND completed_at IS NOT NULL', last_order_id)
+    orders = Order.where('is_working = ? AND (is_sync = ? OR is_sync IS NULL)', true, false)
     
     orders.each do|order|
       #добавим контрагента
@@ -76,9 +77,11 @@ namespace :sync do
         return
       end
       
-      last_order_id = order.id
+      #last_order_id = order.id
+      order.is_sync = true
+      order.save()
       
     end        
-    File.open('.last_order_id', 'w') {|f| f.write(last_order_id) }
+    #File.open('.last_order_id', 'w') {|f| f.write(last_order_id) }
   end
 end
