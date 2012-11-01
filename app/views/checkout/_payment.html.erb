@@ -1,10 +1,12 @@
 <script type="text/javascript">
 $(function () {
-        if ($('#refreshCheck')[0].checked) window.location.reload();
-        $('#refreshCheck')[0].checked = true;
+        if ($('#refreshCheck').attr('checked')) {
+          window.location.reload();
+        }; 
+        $('#refreshCheck').attr('checked', true);
 </script>
 
-<input type="checkbox" style="dsplay:none;" id="refreshCheck">
+<input type="checkbox" style="display:none;" id="refreshCheck">
 
 <ul class="checkout-steps">
   <li><a>1</a></li>
