@@ -133,7 +133,7 @@ $(document).ready(function() {
       <ul class="shop-items-list">
       	<% @next_products.each do|next_product| %>
       	<li>
-        	<%= link_to small_image(next_product), next_product %>
+        	<%= link_to product_image(next_product), next_product %>
         </li>
         <% end %>
       </ul>
