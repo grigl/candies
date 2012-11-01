@@ -68,6 +68,18 @@ Spree::BaseHelper.module_eval do
   def retrieve_brands
     @brands = ProductGroup.order(:name)
   end
+  
+  def retrieve_male_brands
+    @brands = ProductGroup.joins('JOIN product_groups_products where product_groups.id = product_groups_products.product_group_id
+                                  AND product_groups_products.product_id IN (SELECT id FROM products where gender = 0 OR gender = 1)').
+                                  order(:name).group(:id)
+  end
+  
+  def retrieve_female_brands
+    @brands = ProductGroup.joins('JOIN product_groups_products where product_groups.id = product_groups_products.product_group_id
+                                  AND product_groups_products.product_id IN (SELECT id FROM products where gender = 0 OR gender = 2)').
+                                  order(:name).group(:id)
+  end  
 
   def product_price(product_or_variant, options={})
     options.assert_valid_keys(:format_as_currency, :show_vat_text, :with_em)

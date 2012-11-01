@@ -84,7 +84,7 @@
           <% end %>
         </ul>
         <ul class="catalog-menu-second">
-          <% retrieve_brands.each do |brand| %>
+          <% retrieve_male_brands.each do |brand| %>
             <li><%= link_to brand.name, "/pg/#{brand.permalink}/male" %></li>
           <% end %>
         </ul>
@@ -99,7 +99,7 @@
           <% end %>
         </ul>
         <ul class="catalog-menu-second">
-          <% retrieve_brands.each do |brand| %>
+          <% retrieve_female_brands.each do |brand| %>
             <li><%= link_to brand.name, "/pg/#{brand.permalink}/female" %></li>
           <% end %>
         </ul>
