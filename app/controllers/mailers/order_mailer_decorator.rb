@@ -17,7 +17,7 @@ OrderMailer.class_eval do
     @order = order
     subject = (resend ? "[RESEND] " : "")
     subject += "#{Spree::Config[:site_name]} Поступил новый заказ ##{order.number}"
-    mail(:to => 'hello@thecandies.ru',
+    mail(:to => 'admin@thecandies.ru',
          :subject => subject
          ) do |format|
          format.html
