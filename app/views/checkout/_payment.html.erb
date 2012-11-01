@@ -1,10 +1,12 @@
-<script type="text/javascript">
-$(function () {
-        if ($('#refreshCheck').attr('checked')) {
-          window.location.reload();
-        }; 
-        $('#refreshCheck').attr('checked', true);
-</script>
+<%= content_for :head do %>
+  <script type="text/javascript">
+  $(function () {
+          if ($('#refreshCheck').attr('checked')) {
+            window.location.reload();
+          }; 
+          $('#refreshCheck').attr('checked', true);
+  </script>
+<% end %>
 
 <input type="checkbox" style="display:none;" id="refreshCheck">
 
