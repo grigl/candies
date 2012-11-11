@@ -28,6 +28,8 @@
     <td class="actions">
       <%= hook :admin_products_index_row_actions, locals do %>
         <%= link_to_edit product, :class => 'edit' unless product.deleted?  %>
+        &nbsp;
+        <%= link_to_delete product unless product.deleted?  %>
       <% end %>
     </td>
   </tr>
