@@ -14,7 +14,7 @@
     </tr>
     </thead>
     <tbody>
-    <% preview.each do |product| %>
+    <% preview.not_deleted.each do |product| %>
       <tr>
         <td>
           <%= link_to product.name, product_url(product) %>
